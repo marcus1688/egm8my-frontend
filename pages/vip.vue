@@ -437,21 +437,21 @@ const getSectionTitle = (rowName) => {
 };
 
 useHead({
-  title: "OC7 | VIP Membership Program & Exclusive Benefits - Malaysia Casino",
+  title: "EGM8 | VIP Membership Program & Exclusive Benefits - Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "OC7 VIP | Elite Gaming Benefits & Premium Rewards",
+      content: "EGM8 VIP | Elite Gaming Benefits & Premium Rewards",
     },
     {
       name: "description",
       content:
-        "Experience OC7's exclusive VIP membership program with premium benefits including higher withdrawal limits, special rebates, monthly bonuses, birthday rewards, and personalized customer service in Malaysia's top gaming platform.",
+        "Experience EGM8's exclusive VIP membership program with premium benefits including higher withdrawal limits, special rebates, monthly bonuses, birthday rewards, and personalized customer service in Malaysia's top gaming platform.",
     },
     {
       name: "keywords",
       content:
-        "OC7 VIP, VIP membership Malaysia, casino VIP program, exclusive gaming benefits, premium rewards, VIP rebates, monthly VIP bonus, high roller benefits, elite gaming Malaysia, OC7 premium membership",
+        "EGM8 VIP, VIP membership Malaysia, casino VIP program, exclusive gaming benefits, premium rewards, VIP rebates, monthly VIP bonus, high roller benefits, elite gaming Malaysia, EGM8 premium membership",
     },
   ],
   htmlAttrs: {
@@ -460,17 +460,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/vip",
+      href: "https://www.egm8my.vip/vip",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/vip",
+      href: "https://www.egm8my.vip/vip",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/vip",
+      href: "https://www.egm8my.vip/vip",
     },
   ],
 });

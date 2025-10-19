@@ -201,21 +201,21 @@ const checkShouldShowPopup = (currentPopupId, lastPopupId, lastPopupTime) => {
 };
 
 useHead({
-  title: "OC7 | Premier Online Gaming & Casino Experience in Malaysia",
+  title: "EGM8 | Premier Online Gaming & Casino Experience in Malaysia",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | Malaysia's Leading Online Gaming Platform",
+      content: "EGM8 | Malaysia's Leading Online Gaming Platform",
     },
     {
       name: "description",
       content:
-        "OC7 delivers the ultimate online gaming experience in Malaysia with premium slot machines, live dealer games, comprehensive sportsbook, instant withdrawals, and exclusive member benefits.",
+        "EGM8 delivers the ultimate online gaming experience in Malaysia with premium slot machines, live dealer games, comprehensive sportsbook, instant withdrawals, and exclusive member benefits.",
     },
     {
       name: "keywords",
       content:
-        "OC7, Malaysia online gaming, premium slots, live dealers, sports betting, instant withdrawal, member rewards, gaming platform Malaysia, online casino games, trusted gaming site",
+        "EGM8, Malaysia online gaming, premium slots, live dealers, sports betting, instant withdrawal, member rewards, gaming platform Malaysia, online casino games, trusted gaming site",
     },
   ],
   htmlAttrs: {
@@ -224,17 +224,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/",
+      href: "https://www.egm8my.vip/",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/",
+      href: "https://www.egm8my.vip/",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/",
+      href: "https://www.egm8my.vip/",
     },
   ],
 });

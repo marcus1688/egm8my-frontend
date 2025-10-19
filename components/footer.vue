@@ -208,7 +208,7 @@
         <div
           class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center max-lg:pt-4"
         >
-          <img src="/images/OC7_whitelogo.png" alt="Logo" class="h-8" />
+          <img src="/images/egm8my.png" alt="Logo" class="h-8" />
 
           <div class="text-sm text-gray-500 max-lg:text-xs">
             {{ $t("copyright") }}

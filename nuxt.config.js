@@ -1,6 +1,8 @@
 const isDev = process.env.NODE_ENV === "development";
 const isAPKBuild = process.env.BUILD_TARGET === "apk";
-const APIURL = isDev ? "http://localhost:3001/api/" : "https://api.oc7.me/api/";
+const APIURL = isDev
+  ? "http://localhost:3001/api/"
+  : "https://api.egm8my.vip/api/";
 const SSR_ENABLED = isAPKBuild ? false : true;
 
 export default defineNuxtConfig({
@@ -14,7 +16,7 @@ export default defineNuxtConfig({
       charset: "utf-8",
       viewport:
         "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
-      title: "OC7",
+      title: "EGM8",
       script: [
         {
           src: "https://cdn.jsdelivr.net/npm/sweetalert2@10",

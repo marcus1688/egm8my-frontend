@@ -375,21 +375,21 @@ onMounted(async () => {
 });
 
 useHead({
-  title: "OC7 | Lucky Draw",
+  title: "EGM8 | Lucky Draw",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | Lucky Draw",
+      content: "EGM8 | Lucky Draw",
     },
     {
       name: "description",
       content:
-        "Join OC7's exciting 9 grid lucky draw game! Win amazing prizes including cash rewards and exclusive bonuses. Test your luck today!",
+        "Join EGM8's exciting 9 grid lucky draw game! Win amazing prizes including cash rewards and exclusive bonuses. Test your luck today!",
     },
     {
       name: "keywords",
       content:
-        "OC7 lucky draw, 9 grid lottery, casino games, win prizes, cash rewards, online gaming Malaysia",
+        "EGM8 lucky draw, 9 grid lottery, casino games, win prizes, cash rewards, online gaming Malaysia",
     },
   ],
   htmlAttrs: {
@@ -398,7 +398,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/luckydraw",
+      href: "https://www.egm8my.vip/luckydraw",
     },
   ],
 });

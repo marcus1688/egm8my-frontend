@@ -710,21 +710,21 @@ const acceptTerms = () => {
 };
 
 useHead({
-  title: "OC7 | Terms & Conditions - Legal Agreement Malaysia Online Casino",
+  title: "EGM8 | Terms & Conditions - Legal Agreement Malaysia Online Casino",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | Terms & Conditions - User Agreement & Policies",
+      content: "EGM8 | Terms & Conditions - User Agreement & Policies",
     },
     {
       name: "description",
       content:
-        "Read OC7's comprehensive terms and conditions covering user agreements, account policies, intellectual property rights, deposits & withdrawals, responsible gaming, and legal provisions for Malaysia's premier gaming platform.",
+        "Read EGM8's comprehensive terms and conditions covering user agreements, account policies, intellectual property rights, deposits & withdrawals, responsible gaming, and legal provisions for Malaysia's premier gaming platform.",
     },
     {
       name: "keywords",
       content:
-        "OC7 terms conditions, user agreement, casino terms, gaming policies Malaysia, legal terms, account policies, intellectual property, deposit withdrawal terms, responsible gaming policy, casino legal agreement",
+        "EGM8 terms conditions, user agreement, casino terms, gaming policies Malaysia, legal terms, account policies, intellectual property, deposit withdrawal terms, responsible gaming policy, casino legal agreement",
     },
   ],
   htmlAttrs: {
@@ -733,17 +733,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/termscondition",
+      href: "https://www.egm8my.vip/termscondition",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/termscondition",
+      href: "https://www.egm8my.vip/termscondition",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/termscondition",
+      href: "https://www.egm8my.vip/termscondition",
     },
   ],
 });

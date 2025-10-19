@@ -112,7 +112,7 @@
                           class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
-                          ><strong>{{ $t("issued_to") }}:</strong> OC7 ASIA
+                          ><strong>{{ $t("issued_to") }}:</strong> EGM8 ASIA
                           GROUP LIMITED</span
                         >
                       </li>
@@ -359,21 +359,21 @@ const handleAnchorClick = (e, targetId) => {
 
 useHead({
   title:
-    "OC7 | Official PAGCOR Gaming License - Legal & Regulated Malaysia Casino",
+    "EGM8 | Official PAGCOR Gaming License - Legal & Regulated Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | PAGCOR Licensed Gaming Platform - Fully Regulated",
+      content: "EGM8 | PAGCOR Licensed Gaming Platform - Fully Regulated",
     },
     {
       name: "description",
       content:
-        "OC7 operates under official PAGCOR gaming license OSP18-0037-4-B, ensuring legal, regulated, and secure gaming services. Fully licensed by Philippine Amusement & Gaming Corporation for your protection and peace of mind.",
+        "EGM8 operates under official PAGCOR gaming license OSP18-0037-4-B, ensuring legal, regulated, and secure gaming services. Fully licensed by Philippine Amusement & Gaming Corporation for your protection and peace of mind.",
     },
     {
       name: "keywords",
       content:
-        "OC7 PAGCOR license, gaming license Malaysia, PAGCOR regulated casino, legal online casino, licensed gaming platform, OC7 Asia Group Limited, gaming authority, regulated gambling Malaysia, licensed casino operator",
+        "EGM8 PAGCOR license, gaming license Malaysia, PAGCOR regulated casino, legal online casino, licensed gaming platform, EGM8 Asia Group Limited, gaming authority, regulated gambling Malaysia, licensed casino operator",
     },
   ],
   htmlAttrs: {
@@ -382,17 +382,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/license",
+      href: "https://www.egm8my.vip/license",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/license",
+      href: "https://www.egm8my.vip/license",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/license",
+      href: "https://www.egm8my.vip/license",
     },
   ],
 });

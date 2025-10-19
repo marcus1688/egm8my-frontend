@@ -243,21 +243,21 @@ const fetchHelps = async () => {
 };
 
 useHead({
-  title: "OC7 | Frequently Asked Questions & Help Center - Malaysia Casino",
+  title: "EGM8 | Frequently Asked Questions & Help Center - Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | FAQ & Help Center - Get Instant Answers",
+      content: "EGM8 | FAQ & Help Center - Get Instant Answers",
     },
     {
       name: "description",
       content:
-        "Find answers to frequently asked questions about OC7's gaming platform, account management, deposits, withdrawals, bonuses, and more. Get instant help and support for Malaysia's premier online casino.",
+        "Find answers to frequently asked questions about EGM8's gaming platform, account management, deposits, withdrawals, bonuses, and more. Get instant help and support for Malaysia's premier online casino.",
     },
     {
       name: "keywords",
       content:
-        "OC7 FAQ, help center, frequently asked questions, casino support, account help, deposit questions, withdrawal help, bonus questions, gaming support Malaysia, OC7 customer service",
+        "EGM8 FAQ, help center, frequently asked questions, casino support, account help, deposit questions, withdrawal help, bonus questions, gaming support Malaysia, EGM8 customer service",
     },
   ],
   htmlAttrs: {
@@ -266,17 +266,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/faq",
+      href: "https://www.egm8my.vip/faq",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/faq",
+      href: "https://www.egm8my.vip/faq",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/faq",
+      href: "https://www.egm8my.vip/faq",
     },
   ],
 });

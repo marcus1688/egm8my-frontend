@@ -1649,21 +1649,21 @@ const handleAnchorClick = (e, targetId) => {
 };
 
 useHead({
-  title: "OC7 | Responsible Gaming & Player Protection - Safe Gaming Malaysia",
+  title: "EGM8 | Responsible Gaming & Player Protection - Safe Gaming Malaysia",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | Responsible Gaming - Safe & Fair Gaming Environment",
+      content: "EGM8 | Responsible Gaming - Safe & Fair Gaming Environment",
     },
     {
       name: "description",
       content:
-        "OC7 promotes responsible gaming with self-assessment tools, deposit limits, time controls, self-exclusion options, and comprehensive player protection measures. Play safely and responsibly on Malaysia's trusted gaming platform.",
+        "EGM8 promotes responsible gaming with self-assessment tools, deposit limits, time controls, self-exclusion options, and comprehensive player protection measures. Play safely and responsibly on Malaysia's trusted gaming platform.",
     },
     {
       name: "keywords",
       content:
-        "OC7 responsible gaming, safe gaming Malaysia, player protection, self-assessment, deposit limits, gambling addiction help, gaming controls, responsible gambling, player safety, gaming support",
+        "EGM8 responsible gaming, safe gaming Malaysia, player protection, self-assessment, deposit limits, gambling addiction help, gaming controls, responsible gambling, player safety, gaming support",
     },
   ],
   htmlAttrs: {
@@ -1672,17 +1672,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/responsible",
+      href: "https://www.egm8my.vip/responsible",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/responsible",
+      href: "https://www.egm8my.vip/responsible",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/responsible",
+      href: "https://www.egm8my.vip/responsible",
     },
   ],
 });

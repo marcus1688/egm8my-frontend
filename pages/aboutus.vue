@@ -32,7 +32,7 @@
           <div class="max-w-3xl mx-auto">
             <div class="text-center">
               <h1 class="heroTitle1 font-bold text-white !mb-4 tracking-tight">
-                About OC7
+                About EGM8
               </h1>
               <p
                 class="heroTitle2 text-blue-100 leading-relaxed mb-8 max-[480px]:mb-4 max-w-2xl mx-auto"
@@ -106,7 +106,7 @@
                   ></span>
                 </h2>
                 <p class="text-gray-700 mb-6 leading-relaxed homeMainTxt2">
-                  Founded in 2015, OC7 was born from a simple yet powerful
+                  Founded in 2015, EGM8 was born from a simple yet powerful
                   vision: to create the most exciting and trusted online gaming
                   experience in Asia. Our journey began with a small team of
                   gaming enthusiasts and a curated selection of 50 premium
@@ -275,11 +275,11 @@
             <div class="text-center mb-8">
               <div class="chip-badge mx-auto mb-4">
                 <div class="chip-inner">
-                  <span>OC7</span>
+                  <span>EGM8</span>
                 </div>
               </div>
               <h2 class="homeMainTxt3 font-bold text-gray-900 mb-2">
-                The OC7 Experience
+                The EGM8 Experience
               </h2>
               <p class="text-gray-600 max-w-2xl mx-auto homeMainTxt2">
                 What sets us apart from other online casinos
@@ -439,7 +439,7 @@
 
             <div class="mt-12 text-center homeMainTxt2">
               <p class="text-blue-100 max-w-2xl mx-auto">
-                At OC7, we believe that gambling should always be an enjoyable
+                At EGM8, we believe that gambling should always be an enjoyable
                 form of entertainment. If you or someone you know is struggling
                 with gambling problems, please contact our responsible gaming
                 team or reach out to professional help services.
@@ -587,7 +587,7 @@ const trustCards = [
   {
     title: "Licensed & Regulated",
     description:
-      "OC7 operates with full licensing from trusted regulatory authorities, ensuring we meet the highest standards of fair gaming and player protection.",
+      "EGM8 operates with full licensing from trusted regulatory authorities, ensuring we meet the highest standards of fair gaming and player protection.",
     icon: "bi bi-shield-check",
     iconClass: "license-icon",
     gridClass: "license-grid",

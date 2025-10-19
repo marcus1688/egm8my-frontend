@@ -930,7 +930,7 @@
               <!-- Header -->
               <div class="bg-blue-600 p-4">
                 <div class="flex justify-between items-center">
-                  <img src="/images/oc7_trim.png" alt="Logo" class="h-7" />
+                  <img src="/images/egm8my.png" alt="Logo" class="h-7" />
                   <div class="flex items-center gap-2">
                     <!-- Language Button -->
                     <div class="relative language-dropdown">

@@ -42,7 +42,7 @@
       <div class="w-full max-w-sm relative">
         <div class="text-center mb-3">
           <div class="inline-block p-0.5">
-            <NuxtImg src="/images/OC7_whitelogo.png" alt="" class="w-24" />
+            <NuxtImg src="/images/egm8my.png" alt="" class="w-24" />
           </div>
         </div>
 
@@ -794,21 +794,21 @@ const headConfig = computed(() => {
 useHead(headConfig);
 
 useHead({
-  title: "OC7 | Register Free Account & Get Welcome Bonus - Malaysia Casino",
+  title: "EGM8 | Register Free Account & Get Welcome Bonus - Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | Join Malaysia's Premier Gaming Platform Today",
+      content: "EGM8 | Join Malaysia's Premier Gaming Platform Today",
     },
     {
       name: "description",
       content:
-        "Register your free OC7 account now and unlock exclusive welcome bonuses, premium slot games, live casino, sports betting, and instant withdrawals. Join Malaysia's most trusted online gaming platform today.",
+        "Register your free EGM8 account now and unlock exclusive welcome bonuses, premium slot games, live casino, sports betting, and instant withdrawals. Join Malaysia's most trusted online gaming platform today.",
     },
     {
       name: "keywords",
       content:
-        "OC7 register, free casino account, welcome bonus Malaysia, sign up OC7, new member bonus, casino registration, Malaysia gaming signup, online casino join, free account bonus, OC7 membership",
+        "EGM8 register, free casino account, welcome bonus Malaysia, sign up EGM8, new member bonus, casino registration, Malaysia gaming signup, online casino join, free account bonus, EGM8 membership",
     },
   ],
   htmlAttrs: {
@@ -817,17 +817,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/register",
+      href: "https://www.egm8my.vip/register",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/register",
+      href: "https://www.egm8my.vip/register",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/register",
+      href: "https://www.egm8my.vip/register",
     },
   ],
 });

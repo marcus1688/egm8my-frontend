@@ -446,21 +446,21 @@ const filteredContent = computed(() => {
 });
 
 useHead({
-  title: "OC7 | Latest Promotions & Bonuses - Malaysia Online Casino Offers",
+  title: "EGM8 | Latest Promotions & Bonuses - Malaysia Online Casino Offers",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | Exclusive Casino Promotions & Welcome Bonuses",
+      content: "EGM8 | Exclusive Casino Promotions & Welcome Bonuses",
     },
     {
       name: "description",
       content:
-        "Discover OC7's latest promotions and bonuses including welcome bonuses, free spins, cashback offers, sports betting promotions, VIP rewards, and daily specials. Join Malaysia's premier gaming platform for exclusive deals.",
+        "Discover EGM8's latest promotions and bonuses including welcome bonuses, free spins, cashback offers, sports betting promotions, VIP rewards, and daily specials. Join Malaysia's premier gaming platform for exclusive deals.",
     },
     {
       name: "keywords",
       content:
-        "OC7 promotions, casino bonuses Malaysia, welcome bonus, free spins, cashback offers, sports betting bonus, slot promotions, live casino bonus, VIP rewards, daily bonuses, Malaysia casino deals",
+        "EGM8 promotions, casino bonuses Malaysia, welcome bonus, free spins, cashback offers, sports betting bonus, slot promotions, live casino bonus, VIP rewards, daily bonuses, Malaysia casino deals",
     },
   ],
   htmlAttrs: {
@@ -469,17 +469,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/promotions",
+      href: "https://www.egm8my.vip/promotions",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/promotions",
+      href: "https://www.egm8my.vip/promotions",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/promotions",
+      href: "https://www.egm8my.vip/promotions",
     },
   ],
 });

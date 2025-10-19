@@ -545,21 +545,21 @@ const openLiveChat = () => {
 };
 
 useHead({
-  title: "OC7 | Customer Support & Help Center - 24/7 Assistance Malaysia",
+  title: "EGM8 | Customer Support & Help Center - 24/7 Assistance Malaysia",
   meta: [
     {
       property: "og:title",
-      content: "OC7 | 24/7 Customer Support - Live Chat, WhatsApp & More",
+      content: "EGM8 | 24/7 Customer Support - Live Chat, WhatsApp & More",
     },
     {
       name: "description",
       content:
-        "Get instant help from OC7's 24/7 customer support team. Contact us via live chat, WhatsApp, Telegram, or email for account assistance, payment support, technical help, and general inquiries in English, Chinese, and Malay.",
+        "Get instant help from EGM8's 24/7 customer support team. Contact us via live chat, WhatsApp, Telegram, or email for account assistance, payment support, technical help, and general inquiries in English, Chinese, and Malay.",
     },
     {
       name: "keywords",
       content:
-        "OC7 customer support, 24/7 help center, live chat support, WhatsApp support, technical assistance, payment help Malaysia, multilingual support, customer service, account support, gaming help",
+        "EGM8 customer support, 24/7 help center, live chat support, WhatsApp support, technical assistance, payment help Malaysia, multilingual support, customer service, account support, gaming help",
     },
   ],
   htmlAttrs: {
@@ -568,17 +568,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.oc7.me/helpcenter",
+      href: "https://www.egm8my.vip/helpcenter",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.oc7.me/helpcenter",
+      href: "https://www.egm8my.vip/helpcenter",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.oc7.me/helpcenter",
+      href: "https://www.egm8my.vip/helpcenter",
     },
   ],
 });
