@@ -162,16 +162,14 @@ onMounted(async () => {
 :deep(.testimonial-pagination .swiper-pagination-bullet) {
   width: 8px;
   height: 8px;
-  background-color: #e5e7eb;
+  background-color: #3b1c23;
   opacity: 1;
 }
-
 :deep(.testimonial-pagination .swiper-pagination-bullet-active) {
-  background-color: #2563eb;
+  background-color: #ff3344;
   width: 24px;
   border-radius: 4px;
 }
-
 .bi-quote {
   font-size: 3rem;
   line-height: 1;
