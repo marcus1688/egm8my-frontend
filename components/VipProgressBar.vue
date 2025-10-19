@@ -1,0 +1,285 @@
+<template>
+  <div>
+    <NuxtLinkLocale to="/vip">
+      <div
+        class="w-full bg-gradient-to-r from-gray-900 via-yellow-950 to-gray-950 p-3 rounded-lg border border-blue-900/50 shadow-lg lg:hover:border-blue-800/60 transition-all duration-300"
+      >
+        <div class="mb-3 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div
+              v-if="currentLevelInfo"
+              class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
+              :class="getInnerCircleClass(currentLevelInfo.name)"
+            >
+              <img
+                v-if="currentLevelInfo.iconUrl"
+                :src="currentLevelInfo.iconUrl"
+                class="w-5 h-5 drop-shadow-sm"
+                :alt="$t('current_vip_icon')"
+              />
+            </div>
+            <div class="flex flex-col">
+              <span class="text-blue-200 text-xs font-medium">{{
+                $t("current_level")
+              }}</span>
+              <span class="text-white font-bold">{{ userData.viplevel }}</span>
+            </div>
+          </div>
+
+          <div v-if="nextLevelInfo" class="flex items-center gap-2">
+            <div class="flex flex-col items-end">
+              <span class="text-blue-200 text-xs font-medium">{{
+                $t("next_level")
+              }}</span>
+              <span class="text-white font-bold">{{ nextLevelInfo.name }}</span>
+            </div>
+            <div
+              class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg opacity-90"
+              :class="getInnerCircleClass(nextLevelInfo.name)"
+            >
+              <img
+                v-if="nextLevelInfo.iconUrl"
+                :src="nextLevelInfo.iconUrl"
+                class="w-5 h-5 drop-shadow-sm"
+                :alt="$t(`next_vip_icon`)"
+              />
+            </div>
+          </div>
+          <div v-else class="flex items-center gap-2">
+            <div class="flex flex-col items-end">
+              <span class="text-blue-200 text-xs font-medium">{{
+                $t("level_status")
+              }}</span>
+              <span class="text-yellow-300 font-bold">{{
+                $t("max_level")
+              }}</span>
+            </div>
+            <div
+              class="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-600 to-yellow-800 flex items-center justify-center shadow-lg"
+            >
+              <i class="bi bi-trophy-fill text-yellow-300 drop-shadow-md"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="h-2.5 bg-slate-800 rounded-full relative mb-2 overflow-hidden shadow-inner border border-slate-700/50"
+        >
+          <div
+            class="absolute inset-0 w-full h-full shimmer-effect opacity-20"
+          ></div>
+          <div
+            class="h-full rounded-full absolute left-0 transition-all duration-700 ease-out"
+            :style="{ width: `${progressAnimatedWidth}%` }"
+            :class="
+              currentLevelInfo
+                ? getLevelBarClass(currentLevelInfo.name)
+                : 'bg-blue-500'
+            "
+          >
+            <div
+              class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-2 h-2 bg-white rounded-full shadow-glow"
+            ></div>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs mt-2">
+          <div class="text-blue-100/70">
+            <span class="font-medium text-white">{{
+              formatNumber(userData.totaldeposit)
+            }}</span>
+            <span class="mx-1">/</span>
+            <span v-if="nextLevelInfo" class="text-blue-200">{{
+              formatNumber(nextLevelRequirement)
+            }}</span>
+            <span v-else class="text-yellow-300">{{ $t("max_reached") }}</span>
+          </div>
+          <div class="flex items-center gap-1.5 text-blue-100/70">
+            <span
+              class="text-blue-300 lg:hover:text-blue-200 flex items-center gap-0.5 font-medium text-xs group"
+            >
+              {{ $t("view_benefits") }}
+              <i
+                class="bi bi-chevron-right lg:group-hover:translate-x-0.5 transition-transform duration-300"
+              ></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </NuxtLinkLocale>
+  </div>
+</template>
+
+<script setup>
+const { get } = useApiEndpoint();
+const userData = useState("userData");
+const settingsData = ref({
+  tableTitle: "VIP Exclusive Benefits",
+  rowHeaders: [],
+  vipLevels: [],
+  terms: {
+    en: "",
+    zh: "",
+  },
+});
+
+const progressAnimatedWidth = ref(0);
+const fetchSettings = async () => {
+  try {
+    const { data } = await get("vipsettings");
+    if (data?.success) {
+      settingsData.value = data.data[0];
+    }
+  } catch (error) {
+    console.error("Error fetching VIP settings:", error);
+  }
+};
+
+const vipLevels = computed(() => settingsData.value.vipLevels || []);
+
+const currentLevelInfo = computed(() => {
+  if (!vipLevels.value || vipLevels.value.length === 0) return null;
+  return vipLevels.value.find(
+    (level) => level.name === userData.value.viplevel
+  );
+});
+
+const nextLevelInfo = computed(() => {
+  if (!vipLevels.value || vipLevels.value.length === 0) return null;
+  const currentIndex = getUserLevelIndex();
+  if (currentIndex === -1 || currentIndex >= vipLevels.value.length - 1)
+    return null;
+  return vipLevels.value[currentIndex + 1];
+});
+
+const nextLevelRequirement = computed(() => {
+  if (!nextLevelInfo.value || !nextLevelInfo.value.benefits) return 0;
+  return parseFloat(nextLevelInfo.value.benefits["Total Deposit"] || 0);
+});
+
+const remainingAmount = computed(() => {
+  if (!nextLevelRequirement.value) return 0;
+  const remaining = nextLevelRequirement.value - userData.value.totaldeposit;
+  return remaining > 0 ? remaining : 0;
+});
+
+const progressPercentage = computed(() => {
+  if (!nextLevelRequirement.value || nextLevelRequirement.value === 0)
+    return 100;
+  if (!nextLevelInfo.value) return 100;
+  const currentDeposit = userData.value.totaldeposit;
+  const prevLevelRequirement =
+    currentLevelInfo.value?.benefits?.["Total Deposit"] || 0;
+  const rangeSize = nextLevelRequirement.value - prevLevelRequirement;
+  if (rangeSize <= 0) return 100;
+  const progressInRange = currentDeposit - prevLevelRequirement;
+  let percentage = (progressInRange / rangeSize) * 100;
+  return Math.max(Math.min(Math.max(percentage, 0), 100), 5);
+});
+
+function updateProgress() {
+  progressAnimatedWidth.value = 0;
+  const step = 1.5;
+  const animate = () => {
+    if (progressAnimatedWidth.value < progressPercentage.value) {
+      progressAnimatedWidth.value = Math.min(
+        progressAnimatedWidth.value + step,
+        progressPercentage.value
+      );
+      requestAnimationFrame(animate);
+    }
+  };
+  setTimeout(() => {
+    animate();
+  }, 100);
+}
+
+function getUserLevelIndex() {
+  if (!vipLevels.value || vipLevels.value.length === 0) return -1;
+  return vipLevels.value.findIndex(
+    (level) => level.name === userData.value.viplevel
+  );
+}
+
+function getLevelBarClass(levelName) {
+  switch (levelName) {
+    case "Bronze":
+      return "bg-gradient-to-r from-amber-600 to-amber-800";
+    case "Silver":
+      return "bg-gradient-to-r from-gray-300 to-gray-500";
+    case "Gold":
+      return "bg-gradient-to-r from-yellow-400 to-yellow-600";
+    case "Platinum":
+      return "bg-gradient-to-r from-cyan-500 to-cyan-700";
+    case "Diamond":
+      return "bg-gradient-to-r from-indigo-400 to-indigo-600";
+    case "Elite":
+      return "bg-gradient-to-r from-purple-500 to-purple-700";
+    default:
+      return "bg-gradient-to-r from-blue-400 to-blue-600";
+  }
+}
+
+function getInnerCircleClass(levelName) {
+  switch (levelName) {
+    case "Bronze":
+    case "Brozne":
+      return "bg-gradient-to-br from-[#cd7f32] to-[#a45e24] border-2 border-[#cd7f32]/80";
+    case "Silver":
+      return "bg-gradient-to-br from-[#c0c0c0] to-[#a0a0a0] border-2 border-[#c0c0c0]/80";
+    case "Gold":
+      return "bg-gradient-to-br from-[#ffd700] to-[#daa520] border-2 border-[#ffd700]/80";
+    case "Platinum":
+      return "bg-gradient-to-br from-[#71c4cf] to-[#3d898f] border-2 border-[#71c4cf]/80";
+    case "Diamond":
+      return "bg-gradient-to-br from-[#e0e0e0] to-[#b9b9b9] border-2 border-[#e0e0e0]/80";
+    case "Elite":
+      return "bg-gradient-to-br from-[#9370DB] to-[#800080] border-2 border-[#9370DB]/80";
+    default:
+      return "bg-gradient-to-br from-gray-400 to-gray-500 border-2 border-gray-400/80";
+  }
+}
+
+function formatNumber(value) {
+  if (!value && value !== 0) return "";
+  return parseFloat(value).toLocaleString("en-US");
+}
+
+watch(() => userData.value?.totaldeposit, updateProgress, { immediate: true });
+watch(progressPercentage, updateProgress);
+
+onMounted(async () => {
+  try {
+    await fetchSettings();
+    updateProgress();
+  } catch (error) {
+    console.error("Error during initialization:", error);
+  }
+});
+</script>
+
+<style scoped>
+.shimmer-effect {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shadow-glow {
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+</style>

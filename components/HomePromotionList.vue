@@ -1,0 +1,176 @@
+<template>
+  <section class="py-10 containerWid bg-white max-lg:py-4">
+    <div class="mx-auto px-4">
+      <div
+        class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-6 max-lg:mb-2"
+      >
+        <h2 class="homeMainTxt3 font-bold text-gray-900 flex items-center">
+          <i class="bi bi-stars text-yellow-500 mr-2"></i>
+          {{ $t("latest_promotions") }}
+        </h2>
+        <NuxtLinkLocale
+          to="/promotions"
+          class="text-blue-600 homeSubTxt1 lg:hover:underline flex items-center gap-1"
+        >
+          View all
+          <i class="bi bi-chevron-right text-xs"></i>
+        </NuxtLinkLocale>
+      </div>
+
+      <div class="relative">
+        <swiper
+          :modules="[Autoplay, Navigation]"
+          :slidesPerView="1"
+          :spaceBetween="16"
+          :loop="true"
+          :navigation="{
+            nextEl: '.promo-button-next',
+            prevEl: '.promo-button-prev',
+          }"
+          :breakpoints="{
+            540: {
+              slidesPerView: 2,
+              spaceBetween: 16,
+            },
+            850: {
+              slidesPerView: 3,
+              spaceBetween: 20,
+            },
+            1365: {
+              slidesPerView: 4,
+              spaceBetween: 20,
+            },
+          }"
+          class="promotion-swiper"
+        >
+          <swiper-slide
+            v-for="(promo, index) in filteredPromotions"
+            :key="index"
+          >
+            <div
+              class="rounded-lg overflow-hidden shadow-sm lg:hover:shadow-md transition-all duration-300 group bg-white h-full"
+            >
+              <div class="relative overflow-hidden">
+                <NuxtLinkLocale to="/promotions">
+                  <NuxtImg
+                    :src="getPromotionImage(promo)"
+                    alt="Promotion Image"
+                    class="w-full h-auto object-cover lg:group-hover:scale-105 transition-transform duration-500"
+                  />
+                </NuxtLinkLocale>
+              </div>
+              <div class="p-4 hidden">
+                <h3
+                  class="homeMainTxt2 font-medium text-gray-800 mb-2 line-clamp-1"
+                >
+                  {{ promo.maintitleEN }}
+                </h3>
+                <p class="homeSubTxt1 text-gray-500 mb-3 line-clamp-2">
+                  {{ promo.description }}
+                </p>
+                <button
+                  class="w-full py-2 bg-blue-600 lg:hover:bg-blue-700 text-white homeMainTxt2 font-medium rounded transition-colors"
+                >
+                  {{ $t("claim_now") }}
+                </button>
+              </div>
+            </div>
+          </swiper-slide>
+        </swiper>
+
+        <button
+          class="promo-button-prev absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 lg:hover:bg-gray-50 transition-colors border border-gray-100"
+        >
+          <i
+            class="bi bi-chevron-left text-xl max-[1023px]:text-base max-[430px]:text-sm"
+          ></i>
+        </button>
+        <button
+          class="promo-button-next absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 lg:hover:bg-gray-50 transition-colors border border-gray-100"
+        >
+          <i
+            class="bi bi-chevron-right text-xl max-[1023px]:text-base max-[430px]:text-sm"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </section>
+</template>
+
+<script setup>
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination, Navigation, EffectFade } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/effect-fade";
+
+const pageLoading = useState("pageLoading");
+const promotions = ref([]);
+const { get } = useApiEndpoint();
+
+// Chinese image mapping - same as in your main promotions page
+const chineseImageMapping = {
+  "68a8e6095b0b3524a723a8ba": "68ad709c4fa1a2b251ae614a",
+  "68a834e98c7c0b0fd3bfc317": "68ad70a24fa1a2b251ae6179",
+  "6835810cacaed1c845fb72c4": "687a14c4696757f1e34d8d47", // English promo ID -> Chinese promo ID
+  "6815c2930f91b823519dd20b": "687a1050696757f1e34d8354",
+  "6815be950f91b823519dd144": "687a1320696757f1e34d8979",
+  "6815b6a50f91b823519dcf28": "687a1386696757f1e34d8a71",
+  "6815b3900f91b823519dcdf3": "687a13b7696757f1e34d8aeb",
+  "6815aa1e0f91b823519dcb74": "687a13f7696757f1e34d8b83",
+  "68132db2b08436800e2c1cfe": "687a142b696757f1e34d8c05",
+  "6813257c3e85ca8b7abf9246": "687a1450696757f1e34d8c33",
+  "68131b6d3e85ca8b7abf907a": "687a1478696757f1e34d8ca3",
+};
+
+function getPromotionImage(promotion) {
+  if ($locale.value === "zh" && chineseImageMapping[promotion._id]) {
+    const chinesePromo = promotions.value?.find(
+      (p) => p._id === chineseImageMapping[promotion._id]
+    );
+
+    if (chinesePromo && chinesePromo.promotionimage) {
+      return chinesePromo.promotionimage;
+    }
+  }
+
+  return promotion.promotionimage;
+}
+async function fetchPromotion() {
+  try {
+    const { data } = await get("client/getallpromotion");
+    if (data.success) {
+      promotions.value = data.promotions;
+    }
+  } catch (error) {
+    console.error("Error fetching promotions:", error);
+  }
+}
+
+const filteredPromotions = computed(() => {
+  if (!promotions.value) return [];
+
+  const chinesePromotionIds = new Set(Object.values(chineseImageMapping));
+
+  if ($locale.value === "zh") {
+    return promotions.value.filter((promo) => {
+      return (
+        chineseImageMapping[promo._id] && !chinesePromotionIds.has(promo._id)
+      );
+    });
+  } else {
+    return promotions.value.filter((promo) => {
+      return !chinesePromotionIds.has(promo._id);
+    });
+  }
+});
+
+onMounted(async () => {
+  try {
+    await fetchPromotion();
+  } catch (error) {
+    console.error("Error during initialization:", error);
+  }
+});
+</script>

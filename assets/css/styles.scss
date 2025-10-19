@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  background-color: #ffffff;
+}
+* {
+  font-family: "Montserrat";
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+body.keyboard-open {
+  padding-bottom: 300px !important;
+}
+
+.raleway {
+  font-family: "Raleway", sans-serif;
+}
+
+.text_1 {
+  font-size: 1.4rem;
+}
+
+.text_2 {
+  font-size: 0.8rem;
+}
+
+.text_3 {
+  font-size: 0.9rem;
+}
+
+.text_4 {
+  font-size: 1.1rem;
+}
+
+.menuText {
+  font-size: 0.9rem;
+}
+
+.mobileMenuText {
+  font-size: 0.8rem;
+}
+
+.baseTxt {
+  font-size: 1rem;
+}
+
+.subBaseTxt {
+  font-size: 0.85rem;
+}
+
+.homeMainTxt {
+  font-size: 1.35rem;
+}
+
+.homeMainTxt2 {
+  font-size: 1rem;
+}
+
+.homeMainTxt5 {
+  font-size: 1.1rem;
+}
+
+.homeSubTxt1 {
+  font-size: 0.85rem;
+}
+
+.homeMainTxt3 {
+  font-size: 1.6rem;
+}
+
+.homeMainTxt4 {
+  font-size: 1.2rem;
+}
+
+.titletext {
+  font-size: 0.85rem;
+}
+
+.subtitletext {
+  font-size: 0.8rem;
+}
+
+.gameHeroTitle1 {
+  font-size: 0.8rem;
+}
+
+.gameHeroTitle2 {
+  font-size: 2rem;
+}
+
+.gameHeroTitle3 {
+  font-size: 1.1rem;
+}
+
+.heroTitle1 {
+  font-size: 2.6rem;
+}
+
+.heroTitle2 {
+  font-size: 1.2rem;
+}
+
+.heroTitle3 {
+  font-size: 1rem;
+}
+
+.containerWid {
+  padding-left: 6rem !important;
+  padding-right: 6rem !important;
+}
+
+@media (max-width: 1440px) {
+  .containerWid {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+}
+
+@media (max-width: 1120px) {
+  .containerWid {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+}
+
+@media (max-width: 1080px) {
+  .containerWid {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (max-width: 1023px) {
+  .baseTxt {
+    font-size: 0.9rem;
+  }
+
+  .subBaseTxt {
+    font-size: 0.8rem;
+  }
+
+  .homeMainTxt {
+    font-size: 1.2rem;
+  }
+
+  .homeMainTxt2 {
+    font-size: 0.95rem;
+  }
+
+  .homeMainTxt5 {
+    font-size: 1rem;
+  }
+
+  .homeSubTxt1 {
+    font-size: 0.83rem;
+  }
+
+  .homeMainTxt3 {
+    font-size: 1.4rem;
+  }
+
+  .homeMainTxt4 {
+    font-size: 1rem;
+  }
+
+  .titletext {
+    font-size: 0.8rem;
+  }
+
+  .subtitletext {
+    font-size: 0.75rem;
+  }
+
+  .heroTitle1 {
+    font-size: 2.3rem;
+  }
+
+  .heroTitle2 {
+    font-size: 1.1rem;
+  }
+
+  .heroTitle3 {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .text_1 {
+    font-size: 1.2rem;
+  }
+
+  .text_4 {
+    font-size: 1rem;
+  }
+
+  .menuText {
+    font-size: 0.85rem;
+  }
+
+  .homeMainTxt3 {
+    font-size: 1.2rem;
+  }
+
+  .heroTitle1 {
+    font-size: 2rem;
+  }
+
+  .heroTitle2 {
+    font-size: 1rem;
+  }
+
+  .heroTitle3 {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuText {
+    font-size: 0.8rem;
+  }
+
+  .heroTitle1 {
+    font-size: 1.8rem;
+  }
+
+  .heroTitle2 {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .text_1 {
+    font-size: 1.1rem;
+  }
+  .text_3 {
+    font-size: 0.85rem;
+  }
+  .text_4 {
+    font-size: 0.9rem;
+  }
+
+  .homeMainTxt {
+    font-size: 1.1rem;
+  }
+
+  .homeMainTxt2 {
+    font-size: 0.9rem;
+  }
+
+  .homeMainTxt5 {
+    font-size: 0.95rem;
+  }
+
+  .homeSubTxt1 {
+    font-size: 0.75rem;
+  }
+
+  .homeMainTxt3 {
+    font-size: 1.1rem;
+  }
+
+  .titletext {
+    font-size: 0.75rem;
+  }
+
+  .subtitletext {
+    font-size: 0.7rem;
+  }
+
+  .heroTitle1 {
+    font-size: 1.6rem;
+  }
+
+  .heroTitle2 {
+    font-size: 0.9rem;
+  }
+
+  .heroTitle3 {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .text_2 {
+    font-size: 0.7rem;
+  }
+  .text_3 {
+    font-size: 0.8rem;
+  }
+  .text_4 {
+    font-size: 0.85rem;
+  }
+
+  .menuText {
+    font-size: 0.7rem;
+  }
+}
