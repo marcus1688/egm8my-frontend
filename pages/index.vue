@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <div class="bg-gray-50">
+    <div class="text-red-50">
       <section class="relative max-lg:max-w-[100vw]">
         <swiper
           :modules="[Autoplay, Pagination, EffectFade]"
@@ -15,20 +15,26 @@
           class="hero-swiper"
         >
           <swiper-slide v-for="(image, index) in carousel" :key="index">
-            <NuxtImg :src="image" alt="carousel image" class="w-full h-auto" />
+            <NuxtImg
+              :src="image"
+              alt="carousel image"
+              class="w-full h-auto object-cover"
+            />
           </swiper-slide>
         </swiper>
       </section>
 
-      <section class="bg-white shadow-md relative z-10 py-2">
+      <section
+        class="shadow-lg shadow-red-500/20 relative z-10 py-2 border-b-2 border-red-600"
+      >
         <div class="mx-auto containerWid">
           <div
             class="flex justify-between items-center overflow-x-auto scrollbar-hide"
           >
             <div
-              class="baseTxt font-semibold text-blue-600 flex items-center pr-2 text-nowrap"
+              class="font-bold text-red-500 flex items-center pr-2 text-nowrap bg-black px-3 py-1 rounded-md border border-red-600"
             >
-              <i class="bi bi-megaphone mr-2"></i>
+              <i class="bi bi-megaphone mr-2 text-red-400"></i>
               {{ $t("news") }}
             </div>
             <NuxtMarquee
@@ -36,9 +42,9 @@
               direction="left"
               speed="10"
               pauseOnHover
-              class="text-gray-800 text-sm max-lg:text-xs"
+              class="text-sm max-lg:text-xs"
             >
-              <p>
+              <p class="text-red-100">
                 {{ announcement }}
               </p>
             </NuxtMarquee>
@@ -47,23 +53,14 @@
       </section>
 
       <LuckySpin v-if="showLuckySpin" @close="showLuckySpin = false" />
-
       <Sports />
-
       <HomePromotionList />
-
       <Transaction />
-
       <Leaderboard />
-
       <HomeRegistrationSteps />
-
       <HomeGamesSection />
-
       <TrustedPartners />
-
       <HomeTestimonials />
-
       <HomePopup v-if="shouldShowPopup" :popup-data="activePopup" />
 
       <div
@@ -75,7 +72,7 @@
           <img
             src="/images/luckyspin/logo.png"
             alt="Lucky Spin"
-            class="w-32 h-auto object-contain animate-float max-lg:w-20"
+            class="w-32 h-auto object-contain animate-float max-lg:w-20 drop-shadow-[0_0_12px_rgba(239,68,68,0.8)]"
           />
         </div>
       </div>
@@ -108,18 +105,6 @@ const announcement = computed(() => {
     : generalSetting.value.announcementEN;
 });
 
-// async function fetchCarousel() {
-//   try {
-//     const { data } = await get("client/getallcarousels");
-//     console.log(data);
-//     if (data.success) {
-//       carousel.value = data.carousels.map((carousel) => carousel.link);
-//     }
-//   } catch (error) {
-//     console.error("Error fetching promotions:", error);
-//   }
-// }
-
 async function fetchCarousel() {
   try {
     const { data } = await get("client/getallcarousels");
@@ -147,7 +132,6 @@ async function fetchCarousel() {
         );
       }
 
-      // Map to links (no sorting needed as data is already ordered)
       carousel.value = filteredCarousels.map((carousel) => carousel.link);
       if (process.client) {
         carousel.value.forEach((src) => {
@@ -196,8 +180,6 @@ const checkShouldShowPopup = (currentPopupId, lastPopupId, lastPopupTime) => {
   const currentTime = new Date();
   const hoursDiff = (currentTime - lastTime) / (1000 * 60 * 60);
   return hoursDiff >= 1;
-  // const secondsDiff = (currentTime - lastTime) / 1000;
-  // return secondsDiff >= 5;
 };
 
 useHead({
@@ -259,20 +241,22 @@ onMounted(async () => {
 }
 
 :deep(.swiper-pagination-bullet) {
-  width: 8px;
-  height: 8px;
-  background: white;
-  opacity: 0.6;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 0.7;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 :deep(.swiper-pagination-bullet-active) {
   opacity: 1;
-  background: white;
-  width: 10px;
-  height: 10px;
+  background: #ef4444;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #dc2626;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
 }
 
-/* News ticker animation */
 .news-ticker {
   height: 24px;
   width: 100%;
@@ -289,9 +273,9 @@ onMounted(async () => {
 }
 
 .news-animation > div {
-  height: 24px; /* Fixed height for each announcement */
+  height: 24px;
   display: flex;
-  align-items: center; /* Center text vertically */
+  align-items: center;
 }
 
 @keyframes tickerScroll {
@@ -324,15 +308,13 @@ onMounted(async () => {
   }
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* Hide scrollbar for IE, Edge and Firefox */
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @keyframes float {
@@ -349,13 +331,13 @@ onMounted(async () => {
 
 @keyframes pulse-glow {
   0% {
-    filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+    filter: drop-shadow(0 0 16px rgba(239, 68, 68, 1));
   }
   100% {
-    filter: drop-shadow(0 0 2px rgba(255, 215, 0, 0.6));
+    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
   }
 }
 

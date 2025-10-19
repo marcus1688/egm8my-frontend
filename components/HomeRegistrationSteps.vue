@@ -1,13 +1,13 @@
 <template>
   <section
-    class="py-16 max-[768px]:hidden containerWid bg-gray-50 text-gray-800 relative overflow-hidden"
+    class="py-4 max-[768px]:hidden containerWid text-[#f0eaea] relative overflow-hidden"
   >
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div class="particles-container">
         <div
           v-for="i in 20"
           :key="i"
-          class="particle absolute rounded-full bg-blue-500 opacity-10"
+          class="particle absolute rounded-full bg-[#ff3344] opacity-10"
           :style="{
             width: `${Math.random() * 12 + 5}px`,
             height: `${Math.random() * 12 + 5}px`,
@@ -21,41 +21,43 @@
     </div>
     <div class="mx-auto px-4 relative z-10">
       <div class="text-center mb-12">
-        <div class="inline-block px-3 py-1 bg-blue-100 rounded-full mb-3">
-          <span class="homeSubTxt1 font-medium text-blue-700 uppercase">{{
+        <div
+          class="inline-block px-3 py-1 bg-[#241017] rounded-full mb-3 border border-[#3b1c23]"
+        >
+          <span class="homeSubTxt1 font-medium text-[#ff3344] uppercase">{{
             $t("get_started_in_minutes")
           }}</span>
         </div>
-        <h2 class="homeMainTxt3 font-bold mb-2 text-gray-900">
+        <h2 class="homeMainTxt3 font-bold mb-2 text-[#f0eaea]">
           {{ $t("how_to_start_winning") }}
         </h2>
-        <p class="text-gray-600 homeMainTxt2 max-w-2xl mx-auto">
+        <p class="text-[#b37a7a] homeMainTxt2 max-w-2xl mx-auto">
           {{ $t("winning_journey_description") }}
         </p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div v-for="(step, index) in registrationSteps" :key="index" class="">
           <div
-            class="relative bg-white rounded-lg p-6 text-center group h-full border border-gray-200 shadow-sm lg:hover:shadow-md transition-shadow duration-300"
+            class="relative bg-[#241017] rounded-lg p-6 text-center group h-full border border-[#3b1c23] shadow-sm lg:hover:shadow-md lg:hover:shadow-[#ff3344]/20 transition-all duration-300"
           >
             <div
-              class="absolute -top-5 -left-5 w-12 h-12 max-[1023px]:w-9 max-[1023px]:h-9 rounded-full bg-blue-600 text-white flex items-center justify-center homeMainTxt4 font-bold"
+              class="absolute -top-5 -left-5 w-12 h-12 max-[1023px]:w-9 max-[1023px]:h-9 rounded-full bg-[#a1122d] text-white flex items-center justify-center homeMainTxt4 font-bold border border-[#3b1c23]"
             >
               {{ index + 1 }}
             </div>
             <div
-              class="mb-4 mx-auto w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center"
+              class="mb-4 mx-auto w-16 h-16 bg-[#15090e] rounded-full flex items-center justify-center border border-[#3b1c23]"
             >
-              <i :class="step.icon + ' text-3xl text-blue-600'"></i>
+              <i :class="step.icon + ' text-3xl text-[#ff3344]'"></i>
             </div>
-            <h3 class="homeMainTxt4 font-bold mb-2 text-gray-800">
+            <h3 class="homeMainTxt4 font-bold mb-2 text-[#f0eaea]">
               {{ step.title }}
             </h3>
-            <p class="homeSubTxt1 text-gray-600">
+            <p class="homeSubTxt1 text-[#b37a7a]">
               {{ step.description }}
             </p>
             <div
-              class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-blue-400 scale-x-0 lg:group-hover:scale-x-100 transition-transform duration-500 rounded-b-lg"
+              class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#a1122d] to-[#ff3344] scale-x-0 lg:group-hover:scale-x-100 transition-transform duration-500 rounded-b-lg"
             ></div>
           </div>
         </div>
@@ -63,7 +65,7 @@
       <div class="mt-12 text-center">
         <NuxtLinkLocale :to="isUserLoggedIn ? '/games/slots' : '/register'">
           <button
-            class="pulse-button homeMainTxt2 px-8 py-3.5 bg-blue-600 text-white lg:hover:bg-blue-700 rounded-lg font-bold transition-all duration-300 inline-flex items-center gap-2 lg:hover:gap-3 shadow-lg shadow-blue-900/20 lg:hover:shadow-xl lg:hover:shadow-blue-900/30 lg:hover:-translate-y-1"
+            class="pulse-button homeMainTxt2 px-8 py-3.5 bg-[#a1122d] text-white lg:hover:bg-[#c21b3a] rounded-lg font-bold transition-all duration-300 inline-flex items-center gap-2 lg:hover:gap-3 shadow-lg shadow-[#a1122d]/20 lg:hover:shadow-xl lg:hover:shadow-[#c21b3a]/30 lg:hover:-translate-y-1 border border-[#ff3344]"
           >
             {{ isUserLoggedIn ? $t("play_now") : $t("sign_up_now") }}
             <i
@@ -75,6 +77,7 @@
     </div>
   </section>
 </template>
+
 <script setup>
 const isUserLoggedIn = useState("isUserLoggedIn");
 const registrationSteps = ref([

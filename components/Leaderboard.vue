@@ -1,27 +1,27 @@
 <template>
-  <section class="pb-6 bg-white">
+  <section class="py-4">
     <div class="mx-auto containerWid">
-      <div class="rounded-lg overflow-hidden shadow-md border border-gray-200">
+      <div class="rounded-lg overflow-hidden shadow-md border border-[#3b1c23]">
         <div
-          class="bg-gradient-to-r from-blue-600 to-indigo-700 p-3 flex justify-between items-center"
+          class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] p-3 flex justify-between items-center"
         >
           <div class="flex items-center gap-2">
             <i class="bi bi-trophy text-yellow-300"></i>
-            <h3 class="text-white font-bold">
+            <h3 class="text-[#f0eaea] font-bold">
               {{ $t("weekly_turnover_leaderboard") }}
             </h3>
           </div>
           <div
-            class="bg-blue-500 text-white text-xs rounded-lg px-3 py-1 font-medium max-lg:hidden"
+            class="bg-[#241017] text-[#f0eaea] text-xs rounded-lg px-3 py-1 font-medium max-lg:hidden border border-[#3b1c23]"
           >
             {{ formatDatePeriod(metadata.startDate, metadata.endDate) }}
           </div>
         </div>
 
         <div
-          class="lg:hidden bg-gray-50 border-b border-gray-200 p-2 text-center"
+          class="lg:hidden bg-[#1a0c0f] border-b border-[#3b1c23] p-2 text-center"
         >
-          <div class="text-indigo-700 text-xs font-medium inline-block">
+          <div class="text-[#ff3344] text-xs font-medium inline-block">
             {{ formatDatePeriod(metadata.startDate, metadata.endDate) }}
           </div>
         </div>
@@ -29,48 +29,51 @@
         <div class="overflow-hidden">
           <div
             v-if="isLoading"
-            class="py-16 flex flex-col items-center justify-center"
+            class="py-16 flex flex-col items-center justify-center bg-[#1a0c0f]"
           >
             <div
-              class="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mb-4"
+              class="w-12 h-12 border-4 border-[#ff3344] border-t-transparent rounded-full animate-spin mb-4"
             ></div>
-            <p class="text-gray-500">{{ $t("loading") }}...</p>
+            <p class="text-[#b37a7a]">{{ $t("loading") }}...</p>
           </div>
 
-          <div v-else-if="error" class="py-16 text-center">
+          <div v-else-if="error" class="py-16 text-center bg-[#1a0c0f]">
             <div
-              class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-4"
+              class="w-16 h-16 mx-auto bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] mb-4 border border-[#3b1c23]"
             >
               <i class="bi bi-exclamation-triangle text-2xl"></i>
             </div>
-            <h4 class="text-xl font-medium text-gray-800 mb-2">
+            <h4 class="text-xl font-medium text-[#f0eaea] mb-2">
               {{ $t("error") }}
             </h4>
-            <p class="text-gray-600 max-w-md mx-auto">{{ error }}</p>
+            <p class="text-[#b37a7a] max-w-md mx-auto">{{ error }}</p>
             <button
               @click="fetchLeaderboardData"
-              class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg lg:hover:bg-blue-600 transition-colors"
+              class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg hover:bg-[#c21b3a] transition-colors"
             >
               {{ $t("try_again") }}
             </button>
           </div>
 
-          <div v-else-if="!leaderboardData.length" class="py-16 text-center">
+          <div
+            v-else-if="!leaderboardData.length"
+            class="py-16 text-center bg-[#1a0c0f]"
+          >
             <div
-              class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mb-4"
+              class="w-16 h-16 mx-auto bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] mb-4 border border-[#3b1c23]"
             >
               <i class="bi bi-info-circle text-2xl"></i>
             </div>
-            <h4 class="text-xl font-medium text-gray-800 mb-2">
+            <h4 class="text-xl font-medium text-[#f0eaea] mb-2">
               {{ $t("no_data_available") }}
             </h4>
-            <p class="text-gray-600 max-w-md mx-auto">
+            <p class="text-[#b37a7a] max-w-md mx-auto">
               {{ $t("no_data_message") }}
             </p>
           </div>
 
           <div v-else>
-            <div class="grid grid-cols-1 divide-y divide-gray-100">
+            <div class="grid grid-cols-1 divide-y divide-[#3b1c23]">
               <div
                 v-for="(user, index) in leaderboardData"
                 :key="user.username"
@@ -81,12 +84,12 @@
                     index < 3
                       ? 'bg-gradient-to-r'
                       : index % 2 === 0
-                      ? 'bg-white'
-                      : 'bg-gray-50',
-                    index === 0 ? 'from-amber-50 to-amber-100' : '',
-                    index === 1 ? 'from-slate-50 to-slate-100' : '',
-                    index === 2 ? 'from-orange-50 to-orange-100' : '',
-                    'lg:hover:bg-blue-50',
+                      ? 'bg-[#1a0c0f]'
+                      : 'bg-[#1f0e13]',
+                    index === 0 ? 'from-[#2a1810] to-[#3d2817]' : '',
+                    index === 1 ? 'from-[#1c1c1c] to-[#2d2d2d]' : '',
+                    index === 2 ? 'from-[#2a1610] to-[#3d2415]' : '',
+                    'lg:hover:bg-[#2a0f14]',
                   ]"
                 >
                   <div
@@ -102,7 +105,7 @@
                         ? 'bg-gradient-to-br from-orange-400 to-orange-600'
                         : '',
                       index > 2
-                        ? 'bg-gradient-to-br from-blue-500 to-indigo-600'
+                        ? 'bg-gradient-to-br from-[#a1122d] to-[#c21b3a]'
                         : '',
                     ]"
                   >
@@ -121,18 +124,18 @@
                     ></i>
                   </div>
                   <div class="flex-grow min-w-0">
-                    <div class="font-medium text-gray-800 truncate">
+                    <div class="font-medium text-[#f0eaea] truncate">
                       {{ maskUsername(user.username) }}
                     </div>
-                    <div class="text-xs text-gray-500">
+                    <div class="text-xs text-[#b37a7a]">
                       {{ $t("player_id") }}
                     </div>
                   </div>
                   <div class="text-right flex-shrink-0">
-                    <div class="font-bold text-blue-600">
+                    <div class="font-bold text-[#ff3344]">
                       MYR {{ formatNumber(user.totalValidTurnover) }}
                     </div>
-                    <div class="text-xs text-gray-500">
+                    <div class="text-xs text-[#b37a7a]">
                       {{ $t("valid_turnover") }}
                     </div>
                   </div>
@@ -140,9 +143,9 @@
               </div>
             </div>
 
-            <div class="bg-gray-50 border-t border-gray-200 p-3 text-center">
+            <div class="bg-[#15090e] border-t border-[#3b1c23] p-3 text-center">
               <div
-                class="text-sm text-gray-500 flex items-center justify-center gap-2 max-lg:text-xs"
+                class="text-sm text-[#b37a7a] flex items-center justify-center gap-2 max-lg:text-xs"
               >
                 <i class="bi bi-info-circle"></i>
                 <span>{{ $t("leaderboard_update_message") }}</span>

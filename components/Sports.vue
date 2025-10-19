@@ -1,32 +1,32 @@
 <template>
   <ClientOnly>
-    <div class="bg-slate-50 py-4 px-4 sm:px-6 lg:px-8">
+    <div class="py-4 containerWid">
       <div
-        class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center max-lg:mb-2"
+        class="flex flex-col sm:flex-row justify-between items-start sm:items-center"
       >
-        <div>
+        <div class="mb-4">
           <h2
-            class="text-2xl font-bold text-gray-900 flex items-center max-lg:text-lg"
+            class="homeMainTxt3 font-bold text-gray-200 flex items-center max-lg:text-lg"
           >
-            <Icon icon="mdi:soccer" class="mr-2 text-blue-600" />
+            <Icon icon="mdi:soccer" class="mr-2 text-red-500" />
             {{ $t("football_matches") }}
           </h2>
-          <p class="text-sm text-gray-500 mt-1 max-lg:text-xs">
+          <p class="text-sm text-gray-400 mt-1 max-lg:text-xs">
             {{ $t("football_matches_subtitle") }}
           </p>
         </div>
 
         <!-- <div class="mt-4 sm:mt-0 flex items-center">
-          <span v-if="isLoading" class="text-blue-600 flex items-center">
+          <span v-if="isLoading" class="text-red-400 flex items-center">
             <Icon icon="mdi:loading" class="animate-spin mr-2" />
             Loading...
           </span>
-          <span v-else-if="lastUpdated" class="text-sm text-gray-500">
+          <span v-else-if="lastUpdated" class="text-sm text-gray-400">
             Updated: {{ formatDateTime(lastUpdated) }}
           </span>
           <button
             @click="fetchPremierLeagueData"
-            class="ml-2 p-2 text-blue-600 rounded-full lg:hover:bg-blue-50"
+            class="ml-2 p-2 text-red-400 rounded-full lg:hover:bg-gray-800"
             :disabled="isLoading"
           >
             <Icon icon="mdi:refresh" :class="{ 'animate-spin': isLoading }" />
@@ -36,35 +36,35 @@
 
       <div
         v-if="isLoading && !matches.length"
-        class="bg-white rounded-xl shadow-sm p-8 text-center"
+        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] p-8 text-center"
       >
         <div
-          class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4"
+          class="w-16 h-16 mx-auto bg-[#2a0f14]/60 rounded-full flex items-center justify-center text-[#ff3344] mb-4"
         >
           <Icon icon="mdi:loading" class="text-3xl animate-spin" />
         </div>
-        <h3 class="text-lg font-medium text-gray-800 mb-2">
+        <h3 class="text-lg font-medium text-[#f0eaea] mb-2">
           {{ $t("loading") }}
         </h3>
-        <p class="text-gray-500">{{ $t("fetching_match_data") }}...</p>
+        <p class="text-[#b37a7a]">{{ $t("fetching_match_data") }}...</p>
       </div>
 
       <div
         v-else-if="error"
-        class="bg-white rounded-xl shadow-sm p-8 text-center"
+        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] p-8 text-center"
       >
         <div
-          class="w-16 h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center text-red-600 mb-4"
+          class="w-16 h-16 mx-auto bg-[#2a0f14]/60 rounded-full flex items-center justify-center text-[#ff3344] mb-4"
         >
           <Icon icon="mdi:alert" class="text-3xl" />
         </div>
-        <h3 class="text-lg font-medium text-gray-800 mb-2">
+        <h3 class="text-lg font-medium text-[#f0eaea] mb-2">
           {{ $t("failed_to_fetch_data") }}
         </h3>
-        <p class="text-gray-500">{{ error }}</p>
+        <p class="text-[#b37a7a]">{{ error }}</p>
         <button
           @click="fetchPremierLeagueData"
-          class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors"
+          class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors"
         >
           {{ $t("try_again") }}
         </button>
@@ -75,15 +75,15 @@
           <div
             v-for="match in matches"
             :key="match.fixtureId"
-            class="bg-white rounded-xl shadow-sm overflow-hidden border border-slate-100 lg:hover:shadow-md transition-shadow"
+            class="bg-[#241017] rounded-xl shadow-sm overflow-hidden border border-[#3b1c23] lg:hover:shadow-md lg:hover:border-[#4e252d] transition-all"
           >
-            <div class="bg-gray-50 px-4 py-2 border-b border-gray-100">
+            <div class="bg-[#15090e] px-4 py-2 border-b border-[#3b1c23]">
               <div class="flex justify-between items-center">
-                <div class="flex items-center text-sm text-gray-600">
-                  <Icon icon="mdi:stadium" class="mr-1 text-blue-500" />
+                <div class="flex items-center text-sm text-[#f0eaea]">
+                  <Icon icon="mdi:stadium" class="mr-1 text-[#b37a7a]" />
                   <span>{{ match.venue?.name || $t("tbd") }}</span>
                 </div>
-                <div class="text-xs text-gray-500">
+                <div class="text-xs text-[#f0eaea]">
                   {{ match.venue?.city || "" }}
                 </div>
               </div>
@@ -91,6 +91,7 @@
 
             <div class="p-4 max-lg:p-3">
               <div class="flex items-center justify-between">
+                <!-- 主队 -->
                 <div class="w-5/12 flex flex-col items-center text-center px-2">
                   <div class="w-16 h-16 flex items-center justify-center mb-2">
                     <img
@@ -101,7 +102,7 @@
                     />
                   </div>
                   <p
-                    class="font-medium text-gray-800 line-clamp-2 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] line-clamp-2 max-lg:text-xs"
                   >
                     {{ match.teams.home.name }}
                   </p>
@@ -110,14 +111,14 @@
                 <div class="w-2/12 flex flex-col items-center justify-center">
                   <div
                     v-if="match.status.short !== 'NS'"
-                    class="bg-red-100 text-red-600 px-2 py-0.5 rounded-full text-xs font-medium mb-2 flex items-center gap-1"
+                    class="bg-[#2a0f14]/50 text-[#f0eaea] px-2 py-0.5 rounded-full text-xs font-medium mb-2 flex items-center gap-1 border border-[#3b1c23]"
                   >
                     <span class="relative flex h-2 w-2">
                       <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ff3344] opacity-75"
                       ></span>
                       <span
-                        class="relative inline-flex rounded-full h-2 w-2 bg-red-600"
+                        class="relative inline-flex rounded-full h-2 w-2 bg-[#ff3344]"
                       ></span>
                     </span>
                     <span
@@ -134,19 +135,19 @@
 
                   <div
                     v-if="match.status.short !== 'NS'"
-                    class="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-100"
+                    class="bg-[#15090e] px-4 py-2 rounded-lg shadow-sm border border-[#3b1c23]"
                   >
                     <div class="flex items-center justify-center gap-2">
-                      <span class="text-xl font-bold text-gray-900">{{
+                      <span class="text-xl font-bold text-[#f0eaea]">{{
                         match.goals.home ?? 0
                       }}</span>
-                      <span class="text-sm text-gray-300">-</span>
-                      <span class="text-xl font-bold text-gray-900">{{
+                      <span class="text-sm text-[#b37a7a]">-</span>
+                      <span class="text-xl font-bold text-[#f0eaea]">{{
                         match.goals.away ?? 0
                       }}</span>
                     </div>
                   </div>
-                  <div v-else class="text-xl font-bold text-gray-300">vs</div>
+                  <div v-else class="text-xl font-bold text-[#b37a7a]">vs</div>
                 </div>
 
                 <div class="w-5/12 flex flex-col items-center text-center px-2">
@@ -159,7 +160,7 @@
                     />
                   </div>
                   <p
-                    class="font-medium text-gray-800 line-clamp-2 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] line-clamp-2 max-lg:text-xs"
                   >
                     {{ match.teams.away.name }}
                   </p>
@@ -167,7 +168,7 @@
               </div>
 
               <div
-                class="text-xs text-center text-gray-500 mt-4 pt-3 border-t border-gray-100 max-lg:mt-2"
+                class="text-xs text-center text-[#f0eaea] mt-4 pt-3 border-t border-[#3b1c23] max-lg:mt-2"
               >
                 {{ formatDate(match.date) }}
               </div>
@@ -176,34 +177,28 @@
         </div>
       </div>
 
-      <div v-else class="bg-white rounded-xl shadow-sm p-8 text-center">
+      <div
+        v-else
+        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] p-8 text-center"
+      >
         <div
-          class="w-16 h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mb-4"
+          class="w-16 h-16 mx-auto bg-[#2a0f14]/60 rounded-full flex items-center justify-center text-[#ff3344] mb-4"
         >
           <Icon icon="mdi:calendar" class="text-3xl" />
         </div>
-        <h3 class="text-lg font-medium text-gray-800 mb-2">
+        <h3 class="text-lg font-medium text-[#f0eaea] mb-2">
           {{ $t("no_upcoming_matches") }}
         </h3>
-        <p class="text-gray-500">
+        <p class="text-[#b37a7a]">
           {{ $t("no_matches_scheduled") }}
         </p>
         <button
           @click="fetchPremierLeagueData"
-          class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors"
+          class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors"
         >
           {{ $t("refresh") }}
         </button>
       </div>
-
-      <!-- <div
-        v-if="refreshInterval > 0"
-        class="mt-4 text-center text-sm text-gray-500 flex items-center justify-center gap-2"
-      >
-        <Icon icon="mdi:clock-outline" />
-        Live matches are automatically refreshed every
-        {{ refreshInterval }} seconds
-      </div> -->
     </div>
   </ClientOnly>
 </template>

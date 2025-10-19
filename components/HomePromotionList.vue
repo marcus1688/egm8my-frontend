@@ -1,22 +1,21 @@
 <template>
-  <section class="py-10 containerWid bg-white max-lg:py-4">
-    <div class="mx-auto px-4">
+  <section class="py-4 containerWid max-lg:py-4">
+    <div class="mx-auto">
       <div
-        class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-6 max-lg:mb-2"
+        class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4"
       >
-        <h2 class="homeMainTxt3 font-bold text-gray-900 flex items-center">
-          <i class="bi bi-stars text-yellow-500 mr-2"></i>
+        <h2 class="homeMainTxt3 font-bold text-[#f0eaea] flex items-center">
+          <i class="bi bi-stars text-[#ff3344] mr-2"></i>
           {{ $t("latest_promotions") }}
         </h2>
         <NuxtLinkLocale
           to="/promotions"
-          class="text-blue-600 homeSubTxt1 lg:hover:underline flex items-center gap-1"
+          class="text-[#b37a7a] homeSubTxt1 lg:hover:text-[#f0eaea] lg:hover:underline flex items-center gap-1 transition-colors"
         >
           View all
           <i class="bi bi-chevron-right text-xs"></i>
         </NuxtLinkLocale>
       </div>
-
       <div class="relative">
         <swiper
           :modules="[Autoplay, Navigation]"
@@ -48,7 +47,7 @@
             :key="index"
           >
             <div
-              class="rounded-lg overflow-hidden shadow-sm lg:hover:shadow-md transition-all duration-300 group bg-white h-full"
+              class="rounded-lg overflow-hidden shadow-sm lg:hover:shadow-md transition-all duration-300 group bg-[#241017] h-full border border-[#3b1c23] lg:hover:border-[#4e252d]"
             >
               <div class="relative overflow-hidden">
                 <NuxtLinkLocale to="/promotions">
@@ -61,15 +60,15 @@
               </div>
               <div class="p-4 hidden">
                 <h3
-                  class="homeMainTxt2 font-medium text-gray-800 mb-2 line-clamp-1"
+                  class="homeMainTxt2 font-medium text-[#f0eaea] mb-2 line-clamp-1"
                 >
                   {{ promo.maintitleEN }}
                 </h3>
-                <p class="homeSubTxt1 text-gray-500 mb-3 line-clamp-2">
+                <p class="homeSubTxt1 text-[#b37a7a] mb-3 line-clamp-2">
                   {{ promo.description }}
                 </p>
                 <button
-                  class="w-full py-2 bg-blue-600 lg:hover:bg-blue-700 text-white homeMainTxt2 font-medium rounded transition-colors"
+                  class="w-full py-2 bg-[#a1122d] lg:hover:bg-[#c21b3a] text-white homeMainTxt2 font-medium rounded transition-colors"
                 >
                   {{ $t("claim_now") }}
                 </button>
@@ -77,16 +76,15 @@
             </div>
           </swiper-slide>
         </swiper>
-
         <button
-          class="promo-button-prev absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 lg:hover:bg-gray-50 transition-colors border border-gray-100"
+          class="promo-button-prev absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
         >
           <i
             class="bi bi-chevron-left text-xl max-[1023px]:text-base max-[430px]:text-sm"
           ></i>
         </button>
         <button
-          class="promo-button-next absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-white rounded-full shadow-md flex items-center justify-center text-blue-600 lg:hover:bg-gray-50 transition-colors border border-gray-100"
+          class="promo-button-next absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
         >
           <i
             class="bi bi-chevron-right text-xl max-[1023px]:text-base max-[430px]:text-sm"

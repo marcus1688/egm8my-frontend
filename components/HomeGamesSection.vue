@@ -6,9 +6,7 @@
     :type="alertType"
     @close="alertVisible = false"
   />
-  <section
-    class="py-10 containerWid bg-gradient-to-b from-gray-50 to-white max-lg:py-2 max-lg:px-1"
-  >
+  <section class="py-4 containerWid max-lg:py-2 max-lg:px-1">
     <div class="mx-auto px-4 max-lg:px-2">
       <div class="mb-8 max-lg:mb-4">
         <div class="block lg:hidden">
@@ -24,16 +22,19 @@
               ]"
               :key="category"
               @click="selectCategory(index)"
-              class="relative py-2 px-1 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center justify-center max-lg:py-1.5"
+              class="relative py-2 px-1 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center justify-center max-lg:py-1.5 border"
               :class="
                 activeCategory === index
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 lg:hover:bg-gray-100'
+                  ? 'bg-[#a1122d] text-white border-[#ff3344]'
+                  : 'bg-[#241017] text-[#f0eaea] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
               "
             >
               <i
-                :class="getCategoryIcon(category)"
-                class="text-lg mb-1 max-lg:text-base max-lg:mb-0.5"
+                :class="[
+                  getCategoryIcon(category),
+                  'text-lg mb-1 max-lg:text-base max-lg:mb-0.5',
+                  activeCategory === index ? 'text-white' : 'text-[#ff3344]',
+                ]"
               ></i>
               <span class="menuText max-lg:text-[10px]">{{ category }}</span>
               <div
@@ -56,15 +57,20 @@
               ]"
               :key="category"
               @click="selectCategory(index)"
-              class="relative px-4 py-3 rounded-lg font-medium whitespace-nowrap transition-all duration-200"
+              class="relative px-4 py-3 rounded-lg font-medium whitespace-nowrap transition-all duration-200 border"
               :class="
                 activeCategory === index
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700 lg:hover:bg-gray-100'
+                  ? 'bg-[#a1122d] text-white border-[#ff3344]'
+                  : 'bg-[#241017] text-[#f0eaea] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
               "
             >
               <div class="flex items-center space-x-2 menuText">
-                <i :class="getCategoryIcon(category)"></i>
+                <i
+                  :class="[
+                    getCategoryIcon(category),
+                    activeCategory === index ? 'text-white' : 'text-[#ff3344]',
+                  ]"
+                ></i>
                 <span>{{ category }}</span>
               </div>
               <div
@@ -77,7 +83,7 @@
       </div>
 
       <div class="flex justify-between items-center mb-6 max-lg:mb-3">
-        <h2 class="text-xl font-bold text-gray-900 max-lg:text-lg">
+        <h2 class="text-xl font-bold text-[#f0eaea] max-lg:text-lg">
           {{
             ["Slots", "Casino", "Sports", "E-Sports", "Fishing", "Lottery"][
               activeCategory
@@ -88,22 +94,22 @@
         <div class="flex space-x-2 max-lg:space-x-1">
           <button
             @click="viewMode = 'grid'"
-            class="p-2 rounded-md transition-colors max-lg:p-1.5"
+            class="p-2 rounded-md transition-colors max-lg:p-1.5 border"
             :class="
               viewMode === 'grid'
-                ? 'bg-blue-100 text-blue-600'
-                : 'bg-gray-100 text-gray-600 lg:hover:bg-gray-200'
+                ? 'bg-[#a1122d] text-white border-[#ff3344]'
+                : 'bg-[#241017] text-[#b37a7a] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
             "
           >
             <i class="bi bi-grid-3x3-gap"></i>
           </button>
           <button
             @click="viewMode = 'list'"
-            class="p-2 rounded-md transition-colors max-lg:p-1.5"
+            class="p-2 rounded-md transition-colors max-lg:p-1.5 border"
             :class="
               viewMode === 'list'
-                ? 'bg-blue-100 text-blue-600'
-                : 'bg-gray-100 text-gray-600 lg:hover:bg-gray-200'
+                ? 'bg-[#a1122d] text-white border-[#ff3344]'
+                : 'bg-[#241017] text-[#b37a7a] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
             "
           >
             <i class="bi bi-list"></i>
@@ -161,7 +167,7 @@
       <!-- List View -->
       <div
         v-else
-        class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden max-lg:rounded-lg"
+        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] overflow-hidden max-lg:rounded-lg"
       >
         <template v-if="activeCategory === 0">
           <GameListItem
@@ -230,16 +236,16 @@
         class="py-12 text-center max-lg:py-8"
       >
         <div
-          class="w-16 h-16 mx-auto mb-4 rounded-full bg-gray-100 flex items-center justify-center max-lg:w-12 max-lg:h-12 max-lg:mb-3"
+          class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#241017] flex items-center justify-center max-lg:w-12 max-lg:h-12 max-lg:mb-3 border border-[#3b1c23]"
         >
-          <i class="bi bi-search text-gray-400 text-xl max-lg:text-lg"></i>
+          <i class="bi bi-search text-[#b37a7a] text-xl max-lg:text-lg"></i>
         </div>
         <h3
-          class="text-lg font-medium text-gray-700 mb-2 max-lg:text-base max-lg:mb-1.5"
+          class="text-lg font-medium text-[#f0eaea] mb-2 max-lg:text-base max-lg:mb-1.5"
         >
           {{ $t("no_games_found") }}
         </h3>
-        <p class="text-gray-500 max-w-md mx-auto max-lg:text-sm">
+        <p class="text-[#b37a7a] max-w-md mx-auto max-lg:text-sm">
           {{ $t("no_games_message") }}
         </p>
       </div>

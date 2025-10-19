@@ -1,16 +1,16 @@
 <template>
-  <section class="pb-6 bg-white">
+  <section class="py-4">
     <div class="mx-auto containerWid">
-      <div class="rounded-lg overflow-hidden shadow-md border border-gray-200">
+      <div class="rounded-lg overflow-hidden shadow-md border border-[#3b1c23]">
         <div
-          class="bg-gradient-to-r from-blue-600 to-indigo-700 p-3 flex justify-between items-center"
+          class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] p-3 flex justify-between items-center"
         >
-          <h3 class="text-white font-bold flex items-center">
+          <h3 class="text-[#f0eaea] font-bold flex items-center">
             <i class="bi bi-graph-up-arrow mr-2"></i>
             {{ $t("live_transactions") }}
           </h3>
           <div
-            class="flex items-center gap-1 px-2 py-0.5 bg-red-600 text-white uppercase text-xs rounded-full font-medium animate-pulse"
+            class="flex items-center gap-1 px-2 py-0.5 bg-[#ff3344] text-white uppercase text-xs rounded-full font-medium animate-pulse"
           >
             {{ $t("live") }}
             <span class="h-2 w-2 bg-white rounded-full opacity-75"></span>
@@ -22,13 +22,13 @@
             <thead>
               <tr class="text-sm">
                 <th
-                  class="p-2 text-left border-r border-b border-gray-200 bg-blue-500 text-white font-medium w-1/2"
+                  class="p-2 text-left border-r border-b border-[#3b1c23] bg-[#241017] text-[#f0eaea] font-medium w-1/2"
                   colspan="2"
                 >
                   {{ $t("deposit") }}
                 </th>
                 <th
-                  class="p-2 text-left border-b border-gray-200 bg-indigo-600 text-white font-medium w-1/2"
+                  class="p-2 text-left border-b border-[#3b1c23] bg-[#15090e] text-[#f0eaea] font-medium w-1/2"
                   colspan="2"
                 >
                   {{ $t("withdraw") }}
@@ -39,58 +39,58 @@
               <tr
                 v-for="(transaction, index) in transactions"
                 :key="index"
-                class="text-sm lg:hover:bg-blue-50 transition-colors"
-                :class="index % 2 === 0 ? 'bg-white' : 'bg-gray-50'"
+                class="text-sm lg:hover:bg-[#2a0f14] transition-colors"
+                :class="index % 2 === 0 ? 'bg-[#1a0c0f]' : 'bg-[#1f0e13]'"
               >
                 <td
-                  class="p-2 border-r border-b border-gray-200 max-lg:w-[30%]"
+                  class="p-2 border-r border-b border-[#3b1c23] max-lg:w-[30%]"
                 >
                   <div class="flex items-center">
                     <div
-                      class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-2 max-lg:hidden"
+                      class="w-8 h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] mr-2 max-lg:hidden border border-[#3b1c23]"
                     >
                       <i class="bi bi-person-fill"></i>
                     </div>
                     <div>
-                      <div class="font-medium text-gray-800">
+                      <div class="font-medium text-[#f0eaea]">
                         {{ maskUsername(transaction.depositUsername) }}
                       </div>
-                      <div class="text-xs text-gray-500">
+                      <div class="text-xs text-[#b37a7a]">
                         {{ formatTime(transaction.depositTime) }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td
-                  class="p-2 border-r border-b border-gray-200 text-right max-lg:w-[20%]"
+                  class="p-2 border-r border-b border-[#3b1c23] text-right max-lg:w-[20%]"
                 >
-                  <span class="font-bold text-green-600 max-lg:text-xs"
+                  <span class="font-bold text-[#4ade80] max-lg:text-xs"
                     >+ MYR {{ transaction.depositAmount.toFixed(2) }}</span
                   >
                 </td>
                 <td
-                  class="p-2 border-r border-b border-gray-200 max-lg:w-[30%]"
+                  class="p-2 border-r border-b border-[#3b1c23] max-lg:w-[30%]"
                 >
                   <div class="flex items-center">
                     <div
-                      class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 mr-2 max-lg:hidden"
+                      class="w-8 h-8 bg-[#15090e] rounded-full flex items-center justify-center text-[#ff3344] mr-2 max-lg:hidden border border-[#3b1c23]"
                     >
                       <i class="bi bi-person-fill"></i>
                     </div>
                     <div>
-                      <div class="font-medium text-gray-800">
+                      <div class="font-medium text-[#f0eaea]">
                         {{ maskUsername(transaction.withdrawUsername) }}
                       </div>
-                      <div class="text-xs text-gray-500">
+                      <div class="text-xs text-[#b37a7a]">
                         {{ formatTime(transaction.withdrawTime) }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td
-                  class="p-2 border-b border-gray-200 text-right max-lg:w-[20%]"
+                  class="p-2 border-b border-[#3b1c23] text-right max-lg:w-[20%]"
                 >
-                  <span class="font-bold text-indigo-600 max-lg:text-xs"
+                  <span class="font-bold text-[#ff3344] max-lg:text-xs"
                     >- MYR {{ transaction.withdrawAmount.toFixed(2) }}</span
                   >
                 </td>

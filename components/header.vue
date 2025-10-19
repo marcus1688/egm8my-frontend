@@ -17,7 +17,7 @@
 
     <div>
       <header
-        class="relative w-full h-[80px] max-lg:h-[60px] bg-[#1A0D13] shadow-md border-b border-gray-800 z-50"
+        class="relative w-full h-[80px] max-lg:h-[60px] bg-[#1A0D13] shadow-2xl shadow-black z-50"
       >
         <div
           class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-xl:px-4 max-lg:p-2"

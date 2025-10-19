@@ -1,8 +1,8 @@
 <template>
-  <section class="py-10 containerWid bg-gray-50 max-lg:py-2">
+  <section class="py-4 containerWid">
     <div class="mx-auto px-4 max-lg:px-0">
       <h2
-        class="homeMainTxt3 font-bold text-gray-900 mb-4 max-lg:mb-2 text-center"
+        class="homeMainTxt3 font-bold text-[#f0eaea] mb-4 max-lg:mb-2 text-center"
       >
         {{ $t("our_trusted_partners") }}
       </h2>
@@ -12,7 +12,7 @@
             <div
               v-for="(partner, index) in partners"
               :key="'a-' + index"
-              class="bg-white rounded-lg p-4 h-20 flex items-center justify-center border border-gray-100 mx-2"
+              class="bg-[#241017] rounded-lg p-4 h-20 flex items-center justify-center border border-[#3b1c23] mx-2"
               style="min-width: 180px"
             >
               <img
@@ -22,12 +22,11 @@
               />
             </div>
           </div>
-
           <div class="marquee flex animate-marquee">
             <div
               v-for="(partner, index) in partners"
               :key="'b-' + index"
-              class="bg-white rounded-lg p-4 h-20 flex items-center justify-center border border-gray-100 mx-2"
+              class="bg-[#241017] rounded-lg p-4 h-20 flex items-center justify-center border border-[#3b1c23] mx-2"
               style="min-width: 180px"
             >
               <img
