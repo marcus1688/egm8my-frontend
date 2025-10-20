@@ -355,22 +355,6 @@
 </template>
 
 <script setup>
-const handleAnchorClick = (e, targetId) => {
-  e.preventDefault();
-  const targetElement = document.getElementById(targetId);
-
-  if (targetElement) {
-    const headerHeight = 80;
-    const elementPosition = targetElement.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
-  }
-};
-
 useHead({
   title:
     "EGM8 | Official PAGCOR Gaming License - Legal & Regulated Malaysia Casino",

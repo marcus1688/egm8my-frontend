@@ -525,19 +525,11 @@
 const searchQuery = ref("");
 const generalSetting = useState("generalSetting");
 
+const scrollToElement = inject("scrollToElement");
+
 const handleAnchorClick = (e, targetId) => {
   e.preventDefault();
-  const targetElement = document.getElementById(targetId);
-  if (targetElement) {
-    const headerHeight = 80;
-    const elementPosition = targetElement.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
-  }
+  scrollToElement(targetId);
 };
 
 const openLiveChat = () => {
