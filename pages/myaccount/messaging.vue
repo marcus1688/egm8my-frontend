@@ -1,11 +1,11 @@
 <template>
   <UserAccountLayout>
-    <div class="bg-white text-gray-800 rounded-lg">
+    <div class="text-[#f0eaea]">
       <div class="mb-4 max-lg:mb-3">
         <h1 class="text-lg font-bold max-lg:text-base">
           {{ $t("messaging") }}
         </h1>
-        <p class="text-gray-500 text-sm max-lg:text-xs">
+        <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("view_messages") }}
         </p>
       </div>
@@ -13,13 +13,13 @@
       <div>
         <!-- Tab navigations -->
         <div class="mb-6 max-lg:mb-4">
-          <div class="flex border-b border-gray-200">
+          <div class="flex border-b border-[#3b1c23]">
             <button
               class="py-3 px-6 max-lg:py-2 max-lg:px-4 font-medium text-sm max-lg:text-xs transition-colors"
               :class="
                 activeTab === 'notification'
-                  ? 'text-blue-600 border-b-2 border-blue-600'
-                  : 'text-gray-500 lg:hover:text-gray-700'
+                  ? 'text-[#ff3344] border-b-2 border-[#ff3344]'
+                  : 'text-[#b37a7a] lg:hover:text-[#f0eaea]'
               "
               @click="activeTab = 'notification'"
             >
@@ -35,8 +35,8 @@
               class="py-3 px-6 max-lg:py-2 max-lg:px-4 font-medium text-sm max-lg:text-xs transition-colors"
               :class="
                 activeTab === 'announcement'
-                  ? 'text-blue-600 border-b-2 border-blue-600'
-                  : 'text-gray-500 lg:hover:text-gray-700'
+                  ? 'text-[#ff3344] border-b-2 border-[#ff3344]'
+                  : 'text-[#b37a7a] lg:hover:text-[#f0eaea]'
               "
               @click="activeTab = 'announcement'"
             >
@@ -54,7 +54,7 @@
             <div class="relative">
               <button
                 @click="showFilter = !showFilter"
-                class="flex items-center gap-2 text-gray-600 lg:hover:text-blue-600 bg-gray-100 lg:hover:bg-gray-200 px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-md transition-colors max-lg:text-sm"
+                class="flex items-center gap-2 text-[#b37a7a] lg:hover:text-[#ff3344] bg-[#15090e]/50 lg:hover:bg-[#15090e]/70 px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-lg transition-colors max-lg:text-sm border border-[#3b1c23]"
               >
                 <Icon
                   icon="mdi:filter-variant"
@@ -74,16 +74,16 @@
               </button>
               <div
                 v-if="showFilter"
-                class="absolute left-0 top-full mt-1 bg-white rounded-md shadow-lg z-10 border border-gray-200 w-48 max-lg:w-full"
+                class="absolute left-0 top-full mt-1 bg-[#241017]/95 backdrop-blur-sm rounded-lg shadow-lg z-10 border border-[#3b1c23] w-48 max-lg:w-full"
               >
                 <button
                   @click="
                     filterMails('all');
                     showFilter = false;
                   "
-                  class="block w-full text-left px-4 py-2 max-lg:px-3 max-lg:py-1.5 text-sm max-lg:text-xs text-gray-700 lg:hover:bg-blue-50 lg:hover:text-blue-600"
+                  class="block w-full text-left px-4 py-2 max-lg:px-3 max-lg:py-1.5 text-sm max-lg:text-xs text-[#f0eaea] lg:hover:bg-[#ff3344]/20 lg:hover:text-[#ff3344] rounded-t-lg transition-colors"
                   :class="{
-                    'bg-blue-50 text-blue-600': currentFilter === 'all',
+                    'bg-[#ff3344]/20 text-[#ff3344]': currentFilter === 'all',
                   }"
                 >
                   {{ $t("all_messages") }}
@@ -93,9 +93,9 @@
                     filterMails('read');
                     showFilter = false;
                   "
-                  class="block w-full text-left px-4 py-2 max-lg:px-3 max-lg:py-1.5 text-sm max-lg:text-xs text-gray-700 lg:hover:bg-blue-50 lg:hover:text-blue-600"
+                  class="block w-full text-left px-4 py-2 max-lg:px-3 max-lg:py-1.5 text-sm max-lg:text-xs text-[#f0eaea] lg:hover:bg-[#ff3344]/20 lg:hover:text-[#ff3344] transition-colors"
                   :class="{
-                    'bg-blue-50 text-blue-600': currentFilter === 'read',
+                    'bg-[#ff3344]/20 text-[#ff3344]': currentFilter === 'read',
                   }"
                 >
                   {{ $t("read_messages") }}
@@ -105,9 +105,10 @@
                     filterMails('unread');
                     showFilter = false;
                   "
-                  class="block w-full text-left px-4 py-2 max-lg:px-3 max-lg:py-1.5 text-sm max-lg:text-xs text-gray-700 lg:hover:bg-blue-50 lg:hover:text-blue-600"
+                  class="block w-full text-left px-4 py-2 max-lg:px-3 max-lg:py-1.5 text-sm max-lg:text-xs text-[#f0eaea] lg:hover:bg-[#ff3344]/20 lg:hover:text-[#ff3344] rounded-b-lg transition-colors"
                   :class="{
-                    'bg-blue-50 text-blue-600': currentFilter === 'unread',
+                    'bg-[#ff3344]/20 text-[#ff3344]':
+                      currentFilter === 'unread',
                   }"
                 >
                   {{ $t("unread_messages") }}
@@ -117,7 +118,7 @@
 
             <button
               @click="markAllAsRead"
-              class="flex items-center gap-2 text-blue-600 lg:hover:text-blue-700 max-lg:text-sm"
+              class="flex items-center gap-2 text-[#ff3344] lg:hover:text-[#c21b3a] max-lg:text-sm transition-colors"
             >
               <Icon
                 icon="mdi:check-all"
@@ -129,29 +130,29 @@
 
           <!-- Messages Table -->
           <div
-            class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm mb-6 max-lg:mb-4"
+            class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mb-6 max-lg:mb-4"
           >
             <div class="overflow-x-auto">
               <table class="w-full text-left">
                 <thead>
-                  <tr class="bg-gray-50 border-b border-gray-200">
+                  <tr class="bg-[#241017]/80 border-b border-[#3b1c23]">
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-1/4"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-1/4"
                     >
                       {{ $t("time") }}
                     </th>
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-1/4"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-1/4"
                     >
                       {{ $t("title") }}
                     </th>
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-2/5 hidden md:table-cell"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-2/5 hidden md:table-cell"
                     >
                       {{ $t("content") }}
                     </th>
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-1/6 text-center"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-1/6 text-center"
                     >
                       {{ $t("status") }}
                     </th>
@@ -162,24 +163,24 @@
                     v-for="(mail, index) in paginatedMails"
                     :key="mail._id"
                     :class="[
-                      'border-b border-gray-200 lg:hover:bg-blue-50 transition-colors cursor-pointer',
-                      index % 2 === 0 ? 'bg-white' : 'bg-gray-50',
+                      'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors cursor-pointer',
+                      index % 2 === 0 ? 'bg-[#15090e]/30' : 'bg-[#15090e]/50',
                       !mail.isRead ? 'font-medium' : '',
                     ]"
                     @click="openMail(mail)"
                   >
                     <td
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-gray-700"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-[#f0eaea]"
                     >
                       {{ formatDate(mail.createdAt) }}
                     </td>
                     <td
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-gray-700"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-[#f0eaea]"
                     >
                       {{ truncateText(getLocalizedTitle(mail), 30) }}
                     </td>
                     <td
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-gray-500 hidden md:table-cell"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-[#b37a7a] hidden md:table-cell"
                     >
                       {{ truncateText(getLocalizedContent(mail), 50) }}
                     </td>
@@ -188,8 +189,8 @@
                         class="px-2 py-1 max-lg:px-1.5 max-lg:py-0.5 rounded-full text-xs max-lg:text-[10px] font-medium"
                         :class="
                           mail.isRead
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-green-500/20 text-green-400'
+                            : 'bg-amber-500/20 text-amber-400'
                         "
                       >
                         {{ mail.isRead ? $t("read") : $t("unread") }}
@@ -208,25 +209,25 @@
           >
             <div class="flex flex-col items-center">
               <div
-                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
+                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-[#ff3344]/20 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
               >
                 <Icon
                   icon="mdi:email-outline"
-                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-gray-400"
+                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
                 />
               </div>
-              <h3 class="text-gray-500 font-medium mb-1 max-lg:text-sm">
+              <h3 class="text-[#f0eaea] font-medium mb-1 max-lg:text-sm">
                 {{ $t("no_messages_found") }}
               </h3>
               <p
-                class="text-gray-400 text-sm max-lg:text-xs mb-4 max-lg:mb-3 max-lg:px-4"
+                class="text-[#b37a7a] text-sm max-lg:text-xs mb-4 max-lg:mb-3 max-lg:px-4"
               >
                 {{ $t("no_messages_category") }}
               </p>
               <button
                 v-if="currentFilter !== 'all'"
                 @click="filterMails('all')"
-                class="px-4 py-2 max-lg:px-3 max-lg:py-1.5 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors max-lg:text-sm"
+                class="px-4 py-2 max-lg:px-3 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
               >
                 {{ $t("view_all_messages") }}
               </button>
@@ -239,7 +240,7 @@
             class="flex justify-between items-center mt-4 max-lg:flex-col max-lg:gap-3"
           >
             <div
-              class="text-gray-500 text-sm max-lg:text-xs max-lg:order-2 max-lg:hidden"
+              class="text-[#b37a7a] text-sm max-lg:text-xs max-lg:order-2 max-lg:hidden"
             >
               {{
                 $t("showing_entries_messages", {
@@ -256,7 +257,7 @@
               <button
                 @click="prevPage"
                 :disabled="currentPage === 1"
-                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
               >
                 <Icon
                   icon="mdi:chevron-left"
@@ -269,10 +270,10 @@
                 :key="page"
                 @click="currentPage = page"
                 :class="[
-                  'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-md font-medium cursor-pointer text-sm max-lg:text-xs',
+                  'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-lg font-medium cursor-pointer text-sm max-lg:text-xs',
                   currentPage === page
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 border border-gray-300 lg:hover:bg-gray-50',
+                    ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
+                    : 'bg-[#15090e]/50 text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#15090e]/70',
                 ]"
               >
                 {{ page }}
@@ -281,7 +282,7 @@
               <button
                 @click="nextPage"
                 :disabled="currentPage === totalPages"
-                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
               >
                 <Icon
                   icon="mdi:chevron-right"
@@ -295,7 +296,7 @@
         <!-- Announcements Tab Content -->
         <div v-if="activeTab === 'announcement'">
           <!-- Category Tabs -->
-          <div class="mb-6 max-lg:mb-4 border-b border-gray-200">
+          <div class="mb-6 max-lg:mb-4 border-b border-[#3b1c23]">
             <div
               class="flex overflow-x-auto pb-2 gap-2 max-lg:pb-1 max-lg:gap-1 max-lg:scrollbar-hide"
             >
@@ -303,11 +304,11 @@
                 v-for="category in ['All', ...categories.map((c) => c.name)]"
                 :key="category"
                 @click="selectedAnnouncementTab = category"
-                class="py-2 px-4 max-lg:py-1.5 max-lg:px-3 text-sm max-lg:text-xs font-medium whitespace-nowrap"
+                class="py-2 px-4 max-lg:py-1.5 max-lg:px-3 text-sm max-lg:text-xs font-medium whitespace-nowrap transition-colors"
                 :class="
                   selectedAnnouncementTab === category
-                    ? 'text-blue-600 border-b-2 border-blue-600'
-                    : 'text-gray-500 lg:hover:text-gray-700 lg:hover:border-b-2 lg:hover:border-gray-200'
+                    ? 'text-[#ff3344] border-b-2 border-[#ff3344]'
+                    : 'text-[#b37a7a] lg:hover:text-[#f0eaea] lg:hover:border-b-2 lg:hover:border-[#3b1c23]'
                 "
               >
                 {{ category }}
@@ -317,24 +318,24 @@
 
           <!-- Announcements Table -->
           <div
-            class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm mb-6 max-lg:mb-4"
+            class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mb-6 max-lg:mb-4"
           >
             <div class="overflow-x-auto">
               <table class="w-full text-left">
                 <thead>
-                  <tr class="bg-gray-50 border-b border-gray-200">
+                  <tr class="bg-[#241017]/80 border-b border-[#3b1c23]">
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-1/4"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-1/4"
                     >
                       {{ $t("date") }}
                     </th>
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-2/3"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-2/3"
                     >
                       {{ $t("title") }}
                     </th>
                     <th
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-gray-600 uppercase w-1/6 text-center"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs font-medium text-[#b37a7a] uppercase w-1/6 text-center"
                     >
                       {{ $t("action") }}
                     </th>
@@ -345,17 +346,17 @@
                     v-for="(announcement, index) in paginatedAnnouncements"
                     :key="announcement._id"
                     :class="[
-                      'border-b border-gray-200 lg:hover:bg-blue-50 transition-colors',
-                      index % 2 === 0 ? 'bg-white' : 'bg-gray-50',
+                      'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors',
+                      index % 2 === 0 ? 'bg-[#15090e]/30' : 'bg-[#15090e]/50',
                     ]"
                   >
                     <td
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-gray-700"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-[#f0eaea]"
                     >
                       {{ formatDate(announcement.createdAt) }}
                     </td>
                     <td
-                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-gray-700"
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-sm max-lg:text-xs text-[#f0eaea]"
                     >
                       {{
                         truncateText(
@@ -367,7 +368,7 @@
                     <td class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-center">
                       <button
                         @click="openMailModal(announcement)"
-                        class="px-3 py-2 max-lg:px-2 max-lg:py-1 text-xs max-lg:text-[10px] bg-blue-600 text-white rounded lg:hover:bg-blue-700 transition-colors"
+                        class="px-3 py-2 max-lg:px-2 max-lg:py-1 text-xs max-lg:text-[10px] bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all"
                       >
                         {{ $t("view") }}
                       </button>
@@ -385,25 +386,25 @@
           >
             <div class="flex flex-col items-center">
               <div
-                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
+                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-[#ff3344]/20 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
               >
                 <Icon
                   icon="mdi:bullhorn-outline"
-                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-gray-400"
+                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
                 />
               </div>
-              <h3 class="text-gray-500 font-medium mb-1 max-lg:text-sm">
+              <h3 class="text-[#f0eaea] font-medium mb-1 max-lg:text-sm">
                 {{ $t("no_announcements_found") }}
               </h3>
               <p
-                class="text-gray-400 text-sm max-lg:text-xs mb-4 max-lg:mb-3 max-lg:px-4"
+                class="text-[#b37a7a] text-sm max-lg:text-xs mb-4 max-lg:mb-3 max-lg:px-4"
               >
                 {{ $t("no_announcements_category") }}
               </p>
               <button
                 v-if="selectedAnnouncementTab !== 'All'"
                 @click="selectedAnnouncementTab = 'All'"
-                class="px-4 py-2 max-lg:px-3 max-lg:py-1.5 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors max-lg:text-sm"
+                class="px-4 py-2 max-lg:px-3 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
               >
                 {{ $t("view_all_announcements") }}
               </button>
@@ -416,7 +417,7 @@
             class="flex justify-between items-center mt-4 max-lg:flex-col max-lg:gap-3"
           >
             <div
-              class="text-gray-500 text-sm max-lg:text-xs max-lg:order-2 max-lg:hidden"
+              class="text-[#b37a7a] text-sm max-lg:text-xs max-lg:order-2 max-lg:hidden"
             >
               {{
                 $t("showing_entries_announcements", {
@@ -433,7 +434,7 @@
               <button
                 @click="prevAnnouncementPage"
                 :disabled="announcementCurrentPage === 1"
-                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
               >
                 <Icon
                   icon="mdi:chevron-left"
@@ -446,10 +447,10 @@
                 :key="page"
                 @click="announcementCurrentPage = page"
                 :class="[
-                  'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-md font-medium cursor-pointer text-sm max-lg:text-xs',
+                  'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-lg font-medium cursor-pointer text-sm max-lg:text-xs',
                   announcementCurrentPage === page
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-gray-600 border border-gray-300 lg:hover:bg-gray-50',
+                    ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
+                    : 'bg-[#15090e]/50 text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#15090e]/70',
                 ]"
               >
                 {{ page }}
@@ -458,7 +459,7 @@
               <button
                 @click="nextAnnouncementPage"
                 :disabled="announcementCurrentPage === announcementTotalPages"
-                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+                class="px-3 py-2 max-lg:px-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
               >
                 <Icon
                   icon="mdi:chevron-right"
@@ -479,7 +480,6 @@
     />
   </UserAccountLayout>
 </template>
-
 <script setup>
 import { Icon } from "@iconify/vue";
 import UserAccountLayout from "~/layouts/UserAccountLayout.vue";

@@ -1,9 +1,9 @@
 <template>
   <UserAccountLayout>
-    <div class="bg-white text-gray-800 rounded-lg">
+    <div class="text-[#f0eaea]">
       <div class="mb-6 max-lg:mb-2">
         <h1 class="text-lg font-bold">{{ $t("transaction_history") }}</h1>
-        <p class="text-gray-500 text-sm max-lg:text-xs">
+        <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("view_track_transactions") }}
         </p>
       </div>
@@ -11,7 +11,7 @@
       <div>
         <!-- Transaction Type Selection -->
         <div class="mb-6 max-lg:mb-2">
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-[#f0eaea] mb-2">
             {{ $t("transaction_type") }}
           </label>
           <div class="flex gap-2 overflow-x-auto pb-2">
@@ -20,10 +20,10 @@
               :key="type.key"
               @click="selectedType = type.key"
               :class="[
-                'py-2 px-4 rounded-md text-center text-sm font-medium whitespace-nowrap transition-colors',
+                'py-2 px-4 rounded-lg text-center text-sm font-medium whitespace-nowrap transition-colors',
                 selectedType === type.key
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               {{ type.en }}
@@ -33,7 +33,7 @@
 
         <!-- Transaction Time Selection -->
         <div class="mb-6 max-lg:mb-2">
-          <label class="block text-sm font-medium text-gray-700 mb-2">
+          <label class="block text-sm font-medium text-[#f0eaea] mb-2">
             {{ $t("transaction_time") }}
           </label>
           <div class="flex gap-2 overflow-x-auto pb-2">
@@ -42,10 +42,10 @@
               :key="time.key"
               @click="selectedTime = time.key"
               :class="[
-                'py-2 px-4 rounded-md text-center text-sm font-medium whitespace-nowrap transition-colors',
+                'py-2 px-4 rounded-lg text-center text-sm font-medium whitespace-nowrap transition-colors',
                 selectedTime === time.key
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               {{ time.en }}
@@ -54,40 +54,42 @@
         </div>
 
         <!-- Note -->
-        <p class="text-sm text-gray-500 my-4 italic max-lg:text-xs max-lg:my-2">
+        <p
+          class="text-sm text-[#b37a7a] my-4 italic max-lg:text-xs max-lg:my-2"
+        >
           {{ $t("transactions_local_time") }}
         </p>
 
         <!-- Transaction Table -->
         <div
-          class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm mb-6 max-lg:mb-2"
+          class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mb-6 max-lg:mb-2"
         >
           <div class="overflow-x-auto">
             <table class="w-full text-center max-lg:text-nowrap">
               <thead>
-                <tr class="bg-gray-50 border-b border-gray-200">
+                <tr class="bg-[#241017]/80 border-b border-[#3b1c23]">
                   <th
-                    class="py-3 px-4 text-sm font-medium text-gray-600 uppercase max-lg:text-xs"
+                    class="py-3 px-4 text-sm font-medium text-[#b37a7a] uppercase max-lg:text-xs"
                   >
                     {{ $t("date") }}
                   </th>
                   <th
-                    class="py-3 px-4 text-sm font-medium text-gray-600 uppercase max-lg:text-xs"
+                    class="py-3 px-4 text-sm font-medium text-[#b37a7a] uppercase max-lg:text-xs"
                   >
                     {{ $t("type") }}
                   </th>
                   <th
-                    class="py-3 px-4 text-sm font-medium text-gray-600 uppercase max-lg:text-xs"
+                    class="py-3 px-4 text-sm font-medium text-[#b37a7a] uppercase max-lg:text-xs"
                   >
                     {{ $t("amount") }}
                   </th>
                   <th
-                    class="py-3 px-4 text-sm font-medium text-gray-600 uppercase max-lg:text-xs"
+                    class="py-3 px-4 text-sm font-medium text-[#b37a7a] uppercase max-lg:text-xs"
                   >
                     {{ $t("status") }}
                   </th>
                   <th
-                    class="py-3 px-4 text-sm font-medium text-gray-600 uppercase max-lg:text-xs"
+                    class="py-3 px-4 text-sm font-medium text-[#b37a7a] uppercase max-lg:text-xs"
                   >
                     {{ $t("remark") }}
                   </th>
@@ -98,11 +100,11 @@
                   v-for="(transaction, index) in paginatedTransactions"
                   :key="transaction.id"
                   :class="[
-                    'border-b border-gray-200 lg:hover:bg-blue-50 transition-colors ',
-                    index % 2 === 0 ? 'bg-white' : 'bg-gray-50',
+                    'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors',
+                    index % 2 === 0 ? 'bg-[#15090e]/30' : 'bg-[#15090e]/50',
                   ]"
                 >
-                  <td class="py-3 px-4 text-sm text-gray-700 max-lg:text-xs">
+                  <td class="py-3 px-4 text-sm text-[#f0eaea] max-lg:text-xs">
                     {{ formatDate(transaction.createdAt) }}
                   </td>
                   <td
@@ -111,15 +113,15 @@
                     <span
                       class="px-2 py-1 rounded-full text-xs font-medium"
                       :class="{
-                        'bg-green-100 text-green-800':
+                        'bg-green-500/20 text-green-400':
                           transaction.transactiontype === 'deposit',
-                        'bg-red-100 text-red-800':
+                        'bg-red-500/20 text-red-400':
                           transaction.transactiontype === 'withdraw',
-                        'bg-purple-100 text-purple-800':
+                        'bg-purple-500/20 text-purple-400':
                           transaction.transactiontype === 'bonus',
-                        'bg-blue-100 text-blue-800':
+                        'bg-blue-500/20 text-blue-400':
                           transaction.transactiontype === 'agent commission',
-                        'bg-gray-100 text-gray-800': ![
+                        'bg-[#b37a7a]/20 text-[#b37a7a]': ![
                           'deposit',
                           'withdraw',
                           'bonus',
@@ -135,11 +137,11 @@
                   <td
                     class="py-3 px-4 text-sm max-lg:text-xs"
                     :class="{
-                      'text-green-600 font-medium':
+                      'text-green-400 font-medium':
                         parseFloat(transaction.amount) > 0,
-                      'text-red-600 font-medium':
+                      'text-red-400 font-medium':
                         parseFloat(transaction.amount) < 0,
-                      'text-gray-700': parseFloat(transaction.amount) === 0,
+                      'text-[#f0eaea]': parseFloat(transaction.amount) === 0,
                     }"
                   >
                     ${{ parseFloat(transaction.amount).toFixed(2) }}
@@ -148,13 +150,13 @@
                     <span
                       class="px-2 py-1 rounded-full text-xs font-medium"
                       :class="{
-                        'bg-green-100 text-green-800':
+                        'bg-green-500/20 text-green-400':
                           transaction.status === 'approved',
-                        'bg-red-100 text-red-800':
+                        'bg-red-500/20 text-red-400':
                           transaction.status === 'rejected',
-                        'bg-gray-100 text-gray-800':
+                        'bg-[#b37a7a]/20 text-[#b37a7a]':
                           transaction.status === 'cancel',
-                        'bg-yellow-100 text-yellow-800':
+                        'bg-amber-500/20 text-amber-400':
                           transaction.status === 'pending',
                       }"
                     >
@@ -162,7 +164,7 @@
                     </span>
                   </td>
                   <td
-                    class="py-3 px-4 text-sm text-gray-700 uppercase max-lg:text-xs"
+                    class="py-3 px-4 text-sm text-[#f0eaea] uppercase max-lg:text-xs"
                   >
                     {{ transaction.promotionnameEN || "-" }}
                   </td>
@@ -176,19 +178,19 @@
         <div v-if="filteredTransactions.length === 0" class="py-16">
           <div class="flex flex-col items-center">
             <div
-              class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mb-4"
+              class="w-20 h-20 bg-[#ff3344]/20 rounded-full flex items-center justify-center mb-4"
             >
-              <Icon icon="mdi:receipt" class="w-10 h-10 text-gray-400" />
+              <Icon icon="mdi:receipt" class="w-10 h-10 text-[#ff3344]" />
             </div>
-            <h3 class="text-gray-500 font-medium mb-1">
+            <h3 class="text-[#f0eaea] font-medium mb-1">
               {{ $t("no_transactions_found") }}
             </h3>
-            <p class="text-gray-400 text-sm mb-4">
+            <p class="text-[#b37a7a] text-sm mb-4">
               {{ $t("no_transactions_matching") }}
             </p>
             <button
               @click="resetFilters"
-              class="px-4 py-2 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors"
+              class="px-4 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all"
             >
               {{ $t("reset_filters") }}
             </button>
@@ -200,7 +202,7 @@
           v-if="filteredTransactions.length > 0"
           class="flex justify-between items-center gap-4 px-2 max-lg:flex-col max-lg:items-end"
         >
-          <div class="text-gray-500 text-sm max-lg:hidden">
+          <div class="text-[#b37a7a] text-sm max-lg:hidden">
             {{
               $t("showing_entries", {
                 start: getStartEntry(),
@@ -214,7 +216,7 @@
             <button
               @click="prevPage"
               :disabled="currentPage === 1"
-              class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+              class="px-3 py-2 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
             >
               <Icon icon="ooui:previous-ltr" class="w-4 h-4" />
             </button>
@@ -224,10 +226,10 @@
               :key="page"
               @click="currentPage = page"
               :class="[
-                'w-8 h-8 flex items-center justify-center rounded-md font-medium cursor-pointer text-sm max-lg:text-xs',
+                'w-8 h-8 flex items-center justify-center rounded-lg font-medium cursor-pointer text-sm max-lg:text-xs',
                 currentPage === page
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-600 border border-gray-300 lg:hover:bg-gray-50',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#15090e]/70',
               ]"
             >
               {{ page }}
@@ -236,7 +238,7 @@
             <button
               @click="nextPage"
               :disabled="currentPage === totalPages"
-              class="px-3 py-2 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+              class="px-3 py-2 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
             >
               <Icon icon="ooui:next-ltr" class="w-4 h-4" />
             </button>

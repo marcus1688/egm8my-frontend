@@ -1,41 +1,41 @@
 <template>
   <UserAccountLayout>
-    <div class="bg-white text-gray-800 rounded-lg">
+    <div class="text-[#f0eaea]">
       <div class="mb-6 max-lg:mb-4">
         <h1 class="text-lg font-bold max-lg:text-base">
           {{ $t("position_taking") }}
         </h1>
-        <p class="text-gray-500 text-sm max-lg:text-xs">
+        <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("track_earnings") }}
         </p>
       </div>
 
       <div>
         <div
-          class="mb-6 max-lg:mb-4 p-4 max-lg:p-3 bg-blue-50 border border-blue-200 rounded-lg"
+          class="mb-6 max-lg:mb-4 p-4 max-lg:p-3 bg-[#ff3344]/10 border border-[#ff3344]/30 rounded-lg"
         >
           <div class="flex items-start gap-3 max-lg:gap-2">
             <div
-              class="w-10 h-10 max-lg:w-8 max-lg:h-8 bg-blue-100 rounded-full flex-shrink-0 flex items-center justify-center"
+              class="w-10 h-10 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex-shrink-0 flex items-center justify-center"
             >
               <Icon
                 icon="mdi:chart-timeline-variant"
-                class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-blue-600"
+                class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-[#ff3344]"
               />
             </div>
 
             <div>
-              <h3 class="font-medium text-blue-700 mb-1 max-lg:text-sm">
+              <h3 class="font-medium text-[#ff3344] mb-1 max-lg:text-sm">
                 {{ $t("your_position_taking") }}
               </h3>
-              <p class="text-blue-600 text-sm max-lg:text-xs">
+              <p class="text-[#f0eaea] text-sm max-lg:text-xs">
                 {{ $t("current_position_rate_1") }}
-                <span class="font-bold"
+                <span class="font-bold text-[#ff3344]"
                   >{{ userData?.positionTaking || "0" }}%</span
                 >
                 {{ $t("current_position_rate_2") }}
               </p>
-              <p class="text-blue-600 text-sm max-lg:text-xs mt-1">
+              <p class="text-[#b37a7a] text-sm max-lg:text-xs mt-1">
                 {{ $t("earnings_calculated") }}
               </p>
             </div>
@@ -47,10 +47,10 @@
             <button
               @click="selectedTime = 'All'"
               :class="[
-                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-md text-center transition-colors',
+                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'All'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <p class="whitespace-nowrap font-medium text-sm max-lg:text-xs">
@@ -61,10 +61,10 @@
             <button
               @click="selectedTime = 'Today'"
               :class="[
-                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-md text-center transition-colors',
+                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Today'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <p class="whitespace-nowrap font-medium text-sm max-lg:text-xs">
@@ -75,10 +75,10 @@
             <button
               @click="selectedTime = 'Yesterday'"
               :class="[
-                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-md text-center transition-colors',
+                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Yesterday'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <p class="whitespace-nowrap font-medium text-sm max-lg:text-xs">
@@ -89,10 +89,10 @@
             <button
               @click="selectedTime = 'Last 7 Days'"
               :class="[
-                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-md text-center transition-colors',
+                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Last 7 Days'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <p class="whitespace-nowrap font-medium text-sm max-lg:text-xs">
@@ -103,10 +103,10 @@
             <button
               @click="selectedTime = 'Last 30 Days'"
               :class="[
-                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-md text-center transition-colors',
+                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Last 30 Days'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <p class="whitespace-nowrap font-medium text-sm max-lg:text-xs">
@@ -117,10 +117,10 @@
             <button
               @click="selectedTime = 'Last Month'"
               :class="[
-                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-md text-center transition-colors',
+                'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Last Month'
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-700 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <p class="whitespace-nowrap font-medium text-sm max-lg:text-xs">
@@ -131,54 +131,56 @@
         </div>
 
         <div
-          class="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm mb-6 max-lg:mb-4"
+          class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mb-6 max-lg:mb-4"
         >
           <div class="overflow-x-auto">
             <table class="w-full text-center">
               <thead>
-                <tr class="bg-gray-50 border-b border-gray-200 text-nowrap">
+                <tr
+                  class="bg-[#241017]/80 border-b border-[#3b1c23] text-nowrap"
+                >
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("date") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("total_deposit") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("total_withdraw") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("total_bonus") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("net_winloss") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("position_taking_rate") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("commission") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("status") }}
                   </th>
                   <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-gray-600 uppercase"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
                     {{ $t("formula") }}
                   </th>
@@ -189,27 +191,27 @@
                   v-for="(report, index) in paginatedReports"
                   :key="index"
                   :class="[
-                    'border-b border-gray-200 lg:hover:bg-blue-50 transition-colors',
-                    index % 2 === 0 ? 'bg-white' : 'bg-gray-50',
+                    'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors',
+                    index % 2 === 0 ? 'bg-[#15090e]/30' : 'bg-[#15090e]/50',
                   ]"
                 >
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-700"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     {{ formatDate(report.createdAt) }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-700"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     ${{ formatAmount(report.totalDeposit) }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-700"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     ${{ formatAmount(report.totalWithdraw) }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-700"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     ${{ formatAmount(report.totalBonus) }}
                   </td>
@@ -217,14 +219,14 @@
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-medium"
                     :class="
                       parseFloat(report.netWinlose) >= 0
-                        ? 'text-green-600'
-                        : 'text-red-600'
+                        ? 'text-green-400'
+                        : 'text-red-400'
                     "
                   >
                     ${{ formatAmount(report.netWinlose) }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-medium text-gray-700"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-medium text-[#f0eaea]"
                   >
                     {{ report.positionTaking }}%
                   </td>
@@ -232,8 +234,8 @@
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-bold"
                     :class="
                       parseFloat(calculateCommission(report)) >= 0
-                        ? 'text-green-600'
-                        : 'text-red-600'
+                        ? 'text-green-400'
+                        : 'text-red-400'
                     "
                   >
                     ${{ formatAmount(calculateCommission(report)) }}
@@ -245,8 +247,8 @@
                       class="px-2 max-lg:px-1.5 py-1 max-lg:py-0.5 rounded-full text-xs max-lg:text-[10px] font-medium"
                       :class="
                         report.status === 'paid'
-                          ? 'bg-green-100 text-green-800'
-                          : 'bg-yellow-100 text-yellow-800'
+                          ? 'bg-green-500/20 text-green-400'
+                          : 'bg-amber-500/20 text-amber-400'
                       "
                     >
                       {{
@@ -259,7 +261,7 @@
                   >
                     <button
                       @click="() => openFormulaModal(report)"
-                      class="px-3 max-lg:px-2 py-1.5 max-lg:py-1 text-xs max-lg:text-[10px] bg-blue-600 text-white lg:hover:bg-blue-700 rounded-md transition-colors"
+                      class="px-3 max-lg:px-2 py-1.5 max-lg:py-1 text-xs max-lg:text-[10px] bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white lg:hover:brightness-110 rounded-lg transition-all"
                     >
                       {{ $t("view") }}
                     </button>
@@ -267,25 +269,25 @@
                 </tr>
                 <tr
                   v-if="filteredReports.length > 0"
-                  class="bg-gray-100 border-t-2 border-gray-300 font-medium"
+                  class="bg-[#ff3344]/10 border-t-2 border-[#ff3344] font-medium"
                 >
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     {{ $t("total") }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     ${{ calculateTotal("totalDeposit") }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     ${{ calculateTotal("totalWithdraw") }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     ${{ calculateTotal("totalBonus") }}
                   </td>
@@ -293,14 +295,14 @@
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-medium"
                     :class="
                       parseFloat(calculateNetWinloseTotal()) >= 0
-                        ? 'text-green-600'
-                        : 'text-red-600'
+                        ? 'text-green-400'
+                        : 'text-red-400'
                     "
                   >
                     ${{ calculateNetWinloseTotal() }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     -
                   </td>
@@ -308,19 +310,19 @@
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-bold"
                     :class="
                       parseFloat(calculateCommissionTotal()) >= 0
-                        ? 'text-green-600'
-                        : 'text-red-600'
+                        ? 'text-green-400'
+                        : 'text-red-400'
                     "
                   >
                     ${{ calculateCommissionTotal() }}
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     -
                   </td>
                   <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-gray-800"
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     -
                   </td>
@@ -332,24 +334,24 @@
           <div v-if="filteredReports.length === 0" class="py-16 max-lg:py-12">
             <div class="flex flex-col items-center">
               <div
-                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
+                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-[#ff3344]/20 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
               >
                 <Icon
                   icon="mdi:chart-timeline-variant"
-                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-gray-400"
+                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
                 />
               </div>
-              <h3 class="text-gray-500 font-medium mb-1 max-lg:text-sm">
+              <h3 class="text-[#f0eaea] font-medium mb-1 max-lg:text-sm">
                 {{ $t("no_position_taking_data") }}
               </h3>
               <p
-                class="text-gray-400 text-sm max-lg:text-xs mb-6 max-lg:mb-4 max-lg:text-center max-lg:px-4"
+                class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-4 max-lg:text-center max-lg:px-4"
               >
                 {{ $t("no_earnings_yet") }}
               </p>
               <button
                 @click="$router.push('/myaccount/referral')"
-                class="px-6 max-lg:px-4 py-2 max-lg:py-1.5 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors flex items-center gap-2 max-lg:text-sm"
+                class="px-6 max-lg:px-4 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all flex items-center gap-2 max-lg:text-sm"
               >
                 <Icon
                   icon="mdi:share-variant"
@@ -365,7 +367,7 @@
           v-if="filteredReports.length > 0"
           class="flex justify-between items-center gap-4 px-2 max-lg:flex-col max-lg:items-end"
         >
-          <div class="text-gray-500 text-sm max-lg:text-xs max-lg:hidden">
+          <div class="text-[#b37a7a] text-sm max-lg:text-xs max-lg:hidden">
             {{
               $t("showing_entries", {
                 start: (currentPage - 1) * itemsPerPage + 1,
@@ -382,7 +384,7 @@
             <button
               @click="currentPage--"
               :disabled="currentPage === 1"
-              class="px-3 max-lg:px-2 py-2 max-lg:py-1.5 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+              class="px-3 max-lg:px-2 py-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
             >
               <Icon
                 icon="ooui:previous-ltr"
@@ -395,10 +397,10 @@
               :key="page"
               @click="currentPage = page"
               :class="[
-                'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-md font-medium cursor-pointer text-sm max-lg:text-xs',
+                'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-lg font-medium cursor-pointer text-sm max-lg:text-xs',
                 currentPage === page
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-600 border border-gray-300 lg:hover:bg-gray-50',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#15090e]/70',
               ]"
             >
               {{ page }}
@@ -407,7 +409,7 @@
             <button
               @click="currentPage++"
               :disabled="currentPage === totalPages"
-              class="px-3 max-lg:px-2 py-2 max-lg:py-1.5 rounded-md border border-gray-300 bg-white text-gray-700 shadow-sm transition-colors lg:hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
+              class="px-3 max-lg:px-2 py-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
             >
               <Icon
                 icon="ooui:next-ltr"
@@ -421,36 +423,36 @@
 
     <div
       v-if="showFormulaModal"
-      class="fixed inset-0 z-50 overflow-auto bg-black bg-opacity-50 flex items-center justify-center"
+      class="fixed inset-0 z-50 overflow-auto bg-black/70 flex items-center justify-center"
       @click="showFormulaModal = false"
     >
       <div
-        class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 p-6 max-lg:p-4"
+        class="bg-[#241017]/95 backdrop-blur-sm rounded-xl shadow-2xl shadow-red-500/20 border border-[#3b1c23] max-w-lg w-full mx-4 p-6 max-lg:p-4"
         @click.stop
       >
         <div class="flex justify-between items-center mb-4 max-lg:mb-3">
-          <h3 class="text-lg max-lg:text-base font-bold text-gray-800">
+          <h3 class="text-lg max-lg:text-base font-bold text-[#f0eaea]">
             {{ $t("position_taking_formula") }}
           </h3>
           <button
             @click="showFormulaModal = false"
-            class="text-gray-500 lg:hover:text-gray-700"
+            class="text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
           >
             <Icon icon="mdi:close" class="w-5 h-5 max-lg:w-4 max-lg:h-4" />
           </button>
         </div>
         <div
-          class="bg-gray-50 p-4 max-lg:p-3 rounded-md border border-gray-200 max-h-96 overflow-y-auto"
+          class="bg-[#15090e]/50 p-4 max-lg:p-3 rounded-lg border border-[#3b1c23] max-h-96 overflow-y-auto"
         >
           <pre
-            class="text-gray-700 whitespace-pre-wrap text-sm max-lg:text-xs font-mono"
+            class="text-[#f0eaea] whitespace-pre-wrap text-sm max-lg:text-xs font-mono"
             >{{ selectedFormula }}</pre
           >
         </div>
         <div class="mt-6 max-lg:mt-4 flex justify-end">
           <button
             @click="showFormulaModal = false"
-            class="px-4 max-lg:px-3 py-2 max-lg:py-1.5 bg-blue-600 text-white rounded-md lg:hover:bg-blue-700 transition-colors max-lg:text-sm"
+            class="px-4 max-lg:px-3 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
           >
             {{ $t("close") }}
           </button>

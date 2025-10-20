@@ -1,11 +1,11 @@
 <template>
   <UserAccountLayout>
-    <div class="bg-white text-gray-800 rounded-lg">
+    <div class="text-[#f0eaea]">
       <div class="mb-6 max-lg:mb-4">
         <h1 class="text-lg font-bold max-lg:text-base">
           {{ $t("checkin_bonus") }}
         </h1>
-        <p class="text-gray-500 text-sm max-lg:text-xs">
+        <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("checkin_bonus_description") }}
         </p>
       </div>
@@ -15,10 +15,10 @@
       <div class="space-y-6 max-lg:space-y-4">
         <!-- Main Action Card -->
         <div
-          class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-6 max-lg:p-4 border border-green-100 relative overflow-hidden"
+          class="bg-gradient-to-r from-green-500/10 to-emerald-500/20 rounded-xl p-6 max-lg:p-4 border border-green-500/30 relative overflow-hidden shadow-lg shadow-green-500/10"
         >
           <div class="absolute right-0 bottom-0 opacity-10">
-            <Icon icon="mdi:calendar-check" class="w-32 h-32 text-green-500" />
+            <Icon icon="mdi:calendar-check" class="w-32 h-32 text-green-400" />
           </div>
 
           <div class="relative z-10">
@@ -26,13 +26,13 @@
               class="flex flex-col md:flex-row gap-6 items-center justify-between"
             >
               <div>
-                <h3 class="text-xl font-bold text-gray-800 mb-2">
+                <h3 class="text-xl font-bold text-[#f0eaea] mb-2">
                   {{ $t("checkin_bonus_ready") }}
                 </h3>
-                <p class="text-gray-600 mb-2 max-w-2xl max-lg:text-sm">
+                <p class="text-[#b37a7a] mb-2 max-w-2xl max-lg:text-sm">
                   {{ $t("checkin_bonus_reward") }}
                 </p>
-                <p class="text-sm text-green-600 mb-0">
+                <p class="text-sm text-green-400 mb-0">
                   <Icon
                     icon="mdi:information-outline"
                     class="inline-block mr-1"
@@ -45,7 +45,7 @@
                 <LoadingButton
                   :loading="claimButtonLoading"
                   @click="claimCheckinBonus"
-                  class="w-full md:w-auto px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-green-600 to-emerald-600 lg:hover:from-green-700 lg:hover:to-emerald-700 text-white font-medium rounded-lg transition-all shadow-md lg:hover:shadow-lg"
+                  class="w-full md:w-auto px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-green-600 to-emerald-600 lg:hover:brightness-110 text-white font-medium rounded-lg transition-all shadow-lg shadow-green-500/20 lg:hover:shadow-green-500/30"
                 >
                   <div class="flex items-center justify-center gap-2">
                     <Icon
@@ -66,36 +66,36 @@
         <!-- Info Cards Grid -->
         <div class="grid md:grid-cols-2 gap-4">
           <div
-            class="bg-blue-50 border border-blue-100 rounded-lg p-4 flex items-start gap-3"
+            class="bg-[#ff3344]/10 border border-[#ff3344]/30 rounded-lg p-4 flex items-start gap-3"
           >
             <div
-              class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 flex-shrink-0"
+              class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
             >
               <Icon icon="mdi:numeric-7-circle" class="w-5 h-5" />
             </div>
             <div>
-              <h3 class="font-medium text-gray-800 mb-1">
+              <h3 class="font-medium text-[#f0eaea] mb-1">
                 {{ $t("seven_day_requirement") }}
               </h3>
-              <p class="text-sm text-gray-600">
+              <p class="text-sm text-[#b37a7a]">
                 {{ $t("seven_day_requirement_description") }}
               </p>
             </div>
           </div>
 
           <div
-            class="bg-purple-50 border border-purple-100 rounded-lg p-4 flex items-start gap-3"
+            class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 flex items-start gap-3"
           >
             <div
-              class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0"
+              class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0"
             >
               <Icon icon="mdi:cash-multiple" class="w-5 h-5" />
             </div>
             <div>
-              <h3 class="font-medium text-gray-800 mb-1">
+              <h3 class="font-medium text-[#f0eaea] mb-1">
                 {{ $t("bonus_amount") }}
               </h3>
-              <p class="text-sm text-gray-600">
+              <p class="text-sm text-[#b37a7a]">
                 {{ $t("bonus_amount_description") }}
               </p>
             </div>
@@ -104,41 +104,43 @@
 
         <!-- Important Notice -->
         <div
-          class="bg-amber-50 border border-amber-100 rounded-lg p-4 flex items-start gap-3"
+          class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 flex items-start gap-3"
         >
           <div
-            class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 flex-shrink-0"
+            class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0"
           >
             <Icon icon="mdi:information" class="w-5 h-5" />
           </div>
           <div>
-            <h3 class="font-medium text-gray-800 mb-1">
+            <h3 class="font-medium text-[#f0eaea] mb-1">
               {{ $t("important_notice") }}
             </h3>
-            <p class="text-sm text-gray-600">
+            <p class="text-sm text-[#b37a7a]">
               {{ $t("checkin_terms_notice") }}
             </p>
           </div>
         </div>
 
         <!-- How It Works Section -->
-        <div class="bg-white rounded-lg p-6 max-lg:p-4 border border-gray-200">
-          <h3 class="text-lg font-medium text-gray-800 mb-4">
+        <div
+          class="bg-[#15090e]/50 rounded-xl p-6 max-lg:p-4 border border-[#3b1c23] shadow-lg shadow-red-500/10"
+        >
+          <h3 class="text-lg font-medium text-[#f0eaea] mb-4">
             {{ $t("how_checkin_works") }}
           </h3>
 
           <div class="space-y-4">
             <div class="flex items-start gap-3">
               <div
-                class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
+                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
               >
                 1
               </div>
               <div>
-                <h4 class="font-medium text-gray-700">
+                <h4 class="font-medium text-[#f0eaea]">
                   {{ $t("make_deposits") }}
                 </h4>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-[#b37a7a]">
                   {{ $t("make_deposits_description") }}
                 </p>
               </div>
@@ -146,15 +148,15 @@
 
             <div class="flex items-start gap-3">
               <div
-                class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
+                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
               >
                 2
               </div>
               <div>
-                <h4 class="font-medium text-gray-700">
+                <h4 class="font-medium text-[#f0eaea]">
                   {{ $t("maintain_streak") }}
                 </h4>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-[#b37a7a]">
                   {{ $t("maintain_streak_description") }}
                 </p>
               </div>
@@ -162,15 +164,15 @@
 
             <div class="flex items-start gap-3">
               <div
-                class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
+                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
               >
                 3
               </div>
               <div>
-                <h4 class="font-medium text-gray-700">
+                <h4 class="font-medium text-[#f0eaea]">
                   {{ $t("claim_bonus") }}
                 </h4>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-[#b37a7a]">
                   {{ $t("claim_bonus_description") }}
                 </p>
               </div>
@@ -178,15 +180,15 @@
 
             <div class="flex items-start gap-3">
               <div
-                class="w-6 h-6 rounded-full bg-green-500 text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
+                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
               >
                 4
               </div>
               <div>
-                <h4 class="font-medium text-gray-700">
+                <h4 class="font-medium text-[#f0eaea]">
                   {{ $t("continue_earning") }}
                 </h4>
-                <p class="text-sm text-gray-600">
+                <p class="text-sm text-[#b37a7a]">
                   {{ $t("continue_earning_description") }}
                 </p>
               </div>

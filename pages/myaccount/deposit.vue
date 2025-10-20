@@ -7,10 +7,10 @@
     @close="alertVisible = false"
   />
   <UserAccountLayout>
-    <div class="bg-white text-gray-800 rounded-lg">
+    <div class="text-[#f0eaea]">
       <div class="mb-6 max-lg:mb-2">
         <h1 class="text-lg font-bold max-lg:text-base">{{ $t("deposit") }}</h1>
-        <p class="text-gray-500 text-sm max-lg:text-xs">
+        <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("add_funds_description") }}
         </p>
       </div>
@@ -22,36 +22,36 @@
             userData.luckySpinAmount > 0 &&
             userData.luckySpinClaim === false
           "
-          class="bg-blue-50 border border-blue-200 text-sm text-gray-700 rounded-md p-4 max-lg:p-3 mb-4 max-lg:mb-3 relative max-lg:text-xs"
+          class="bg-green-500/10 border border-green-500/30 text-sm text-[#f0eaea] rounded-lg p-4 max-lg:p-3 mb-4 max-lg:mb-3 relative max-lg:text-xs"
         >
           <div class="flex items-start gap-2 max-lg:gap-1.5">
-            <div class="text-blue-600 mt-0.5 flex-shrink-0">
+            <div class="text-green-400 mt-0.5 flex-shrink-0">
               <Icon icon="mdi:gift" class="w-5 h-5 max-lg:w-4 max-lg:h-4" />
             </div>
             <div class="w-full">
-              <strong class="text-blue-600 block mb-2 max-lg:mb-1.5">{{
+              <strong class="text-green-400 block mb-2 max-lg:mb-1.5">{{
                 $t("lucky_spin_reward")
               }}</strong>
               <p class="mb-2 max-lg:mb-1.5">
                 {{ $t("lucky_spin_waiting_1") }}
-                <span class="font-bold text-blue-600"
+                <span class="font-bold text-green-400"
                   >${{ userData.luckySpinAmount }}</span
                 >
                 {{ $t("lucky_spin_waiting_2") }}
               </p>
               <p class="mb-2 max-lg:mb-1.5">
                 {{ $t("claim_instructions_1") }}
-                <span class="font-bold text-blue-600">$30</span>
+                <span class="font-bold text-green-400">$30</span>
                 {{ $t("claim_instructions_2") }}
               </p>
-              <p class="text-xs max-lg:text-[10px] text-gray-500">
+              <p class="text-xs max-lg:text-[10px] text-[#b37a7a]">
                 {{ $t("turnover_note") }}
               </p>
 
               <div class="mt-3 max-lg:mt-2">
                 <button
                   @click="selectDepositAmount(30)"
-                  class="px-4 py-1.5 max-lg:px-3 max-lg:py-1 rounded-md font-medium transition-colors bg-blue-600 text-white lg:hover:bg-blue-700 max-lg:text-xs"
+                  class="px-4 py-1.5 max-lg:px-3 max-lg:py-1 rounded-lg font-medium transition-all bg-green-600 text-white lg:hover:brightness-110 max-lg:text-xs"
                 >
                   {{ $t("deposit_30_now") }}
                 </button>
@@ -62,21 +62,21 @@
 
         <div v-if="selectedOption === 'bank_transfer'" class="mb-4">
           <div
-            class="bg-red-50 border border-red-200 text-sm max-lg:text-xs text-gray-700 rounded-md p-4 max-lg:p-3"
+            class="bg-red-500/10 border border-red-500/30 text-sm max-lg:text-xs text-[#f0eaea] rounded-lg p-4 max-lg:p-3"
           >
             <div class="flex items-start gap-2">
               <Icon
                 icon="mdi:information-outline"
-                class="text-red-600 mt-0.5 w-5 h-5 max-lg:w-4 max-lg:h-4 flex-shrink-0"
+                class="text-red-400 mt-0.5 w-5 h-5 max-lg:w-4 max-lg:h-4 flex-shrink-0"
               />
               <div class="w-full">
-                <strong class="text-red-600 block mb-2 max-lg:mb-1.5">{{
+                <strong class="text-red-400 block mb-2 max-lg:mb-1.5">{{
                   $t("notice")
                 }}</strong>
                 <p class="mb-2 max-lg:mb-1.5">
                   {{ $t("bank_transfer_notice_1") }}
                 </p>
-                <p class="text-blue-600 font-medium">
+                <p class="text-[#ff3344] font-medium">
                   {{ $t("bank_transfer_notice_2") }}
                 </p>
               </div>
@@ -95,10 +95,10 @@
               :key="option.name"
               @click="selectOption(option.name)"
               :class="[
-                'py-3 px-6 rounded-md text-center text-sm flex items-center gap-2 transition-colors duration-200 font-medium max-lg:text-xs max-lg:px-4 max-lg:py-2',
+                'py-3 px-6 rounded-lg text-center text-sm flex items-center gap-2 transition-colors duration-200 font-medium max-lg:text-xs max-lg:px-4 max-lg:py-2',
                 selectedOption === option.name
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-gray-100 text-gray-800 lg:hover:bg-gray-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
               <Icon :icon="option.icon" class="text-xl max-lg:text-lg" />
@@ -117,7 +117,7 @@
             v-model="selectedDepositAmount"
             :placeholder="$t('amount_placeholder')"
             @input="onlyNumbers"
-            class="w-full p-3 max-lg:p-2.5 mb-4 max-lg:mb-3 bg-white text-gray-800 rounded-md placeholder-gray-400 border border-gray-200 focus:border-blue-600 focus:outline-none max-lg:text-sm"
+            class="w-full p-3 max-lg:p-2.5 mb-4 max-lg:mb-3 bg-[#15090e]/50 text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 focus:outline-none max-lg:text-sm"
           />
           <div class="flex gap-2 flex-wrap">
             <button
@@ -125,10 +125,10 @@
               :key="amount"
               @click="selectDepositAmount(amount)"
               :class="[
-                'px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-md font-medium transition-colors max-lg:text-xs',
+                'px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-lg font-medium transition-colors max-lg:text-xs',
                 selectedDepositAmount === amount.toString()
-                  ? 'bg-blue-600 text-white shadow-sm'
-                  : 'bg-blue-100 text-gray-800 lg:hover:bg-blue-200',
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  : 'bg-[#ff3344]/20 text-[#f0eaea] lg:hover:bg-[#ff3344]/30 border border-[#ff3344]/30',
               ]"
             >
               {{ amount }}
@@ -149,10 +149,10 @@
               :key="bank._id"
               @click="selectBank(bank)"
               :class="[
-                'flex flex-col p-4 max-lg:p-3 rounded-md cursor-pointer transition-colors',
+                'flex flex-col p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors',
                 selectedBank && selectedBank.bankaccount === bank.bankaccount
-                  ? 'bg-blue-50 border-2 border-blue-600'
-                  : 'bg-white lg:hover:bg-blue-50 border border-gray-200',
+                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
               ]"
             >
               <div class="w-full flex justify-center mb-3 max-lg:mb-2">
@@ -173,15 +173,17 @@
                 <p class="text-md font-semibold mb-1 max-lg:text-sm">
                   {{ $t("bank") }}: {{ bank.bankname }}
                 </p>
-                <p class="text-sm mb-1 max-lg:text-xs">
+                <p class="text-sm mb-1 max-lg:text-xs text-[#b37a7a]">
                   {{ $t("name") }}: {{ bank.ownername }}
                 </p>
-                <p class="text-sm flex items-center gap-1 max-lg:text-xs">
+                <p
+                  class="text-sm flex items-center gap-1 max-lg:text-xs text-[#b37a7a]"
+                >
                   {{ $t("account_number") }}: {{ bank.bankaccount }}
                   <button
                     type="button"
                     @click.stop="copyToClipboard(bank.bankaccount)"
-                    class="text-blue-600 lg:hover:text-blue-800"
+                    class="text-[#ff3344] lg:hover:text-[#c21b3a] transition-colors"
                     title="Copy"
                   >
                     <Icon
@@ -209,10 +211,10 @@
               :key="gateway._id"
               @click="selectPaymentGateway(gateway)"
               :class="[
-                'py-4 max-lg:py-3 px-6 max-lg:px-4 rounded-md text-center flex flex-col items-center gap-2 transition-colors',
+                'py-4 max-lg:py-3 px-6 max-lg:px-4 rounded-lg text-center flex flex-col items-center gap-2 transition-colors',
                 selectedPaymentGateway === gateway
-                  ? 'bg-blue-50 border-2 border-blue-600'
-                  : 'bg-white lg:hover:bg-blue-50 border border-gray-200',
+                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
               ]"
             >
               <img
@@ -245,10 +247,10 @@
               :key="bank.code"
               @click="selectDGPayBank(bank)"
               :class="[
-                'p-4 max-lg:p-3 rounded-md cursor-pointer transition-colors flex flex-col items-center',
+                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
                 selectedDGPayBank && selectedDGPayBank.code === bank.code
-                  ? 'bg-blue-50 border-2 border-blue-600'
-                  : 'bg-white lg:hover:bg-blue-50 border border-gray-200',
+                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
               ]"
             >
               <img
@@ -283,10 +285,10 @@
               :key="bank.code"
               @click="selectTruePayBank(bank)"
               :class="[
-                'p-4 max-lg:p-3 rounded-md cursor-pointer transition-colors flex flex-col items-center',
+                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
                 selectedTruePayBank && selectedTruePayBank.code === bank.code
-                  ? 'bg-blue-50 border-2 border-blue-600'
-                  : 'bg-white lg:hover:bg-blue-50 border border-gray-200',
+                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
               ]"
             >
               <img
@@ -321,10 +323,10 @@
               :key="bank.code"
               @click="selectLuxePayBank(bank)"
               :class="[
-                'p-4 max-lg:p-3 rounded-md cursor-pointer transition-colors flex flex-col items-center',
+                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
                 selectedLuxePayBank && selectedLuxePayBank.code === bank.code
-                  ? 'bg-blue-50 border-2 border-blue-600'
-                  : 'bg-white lg:hover:bg-blue-50 border border-gray-200',
+                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
               ]"
             >
               <img
@@ -359,10 +361,10 @@
               :key="bank.code"
               @click="selectSKL99Bank(bank)"
               :class="[
-                'p-4 max-lg:p-3 rounded-md cursor-pointer transition-colors flex flex-col items-center',
+                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
                 selectedSKL99Bank && selectedSKL99Bank.code === bank.code
-                  ? 'bg-blue-50 border-2 border-blue-600'
-                  : 'bg-white lg:hover:bg-blue-50 border border-gray-200',
+                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
               ]"
             >
               <img
@@ -384,16 +386,24 @@
           </label>
           <select
             v-model="selectedPromotion"
-            class="w-full p-3 max-lg:p-2.5 bg-white text-gray-800 rounded-md border border-gray-300 focus:border-blue-600 focus:outline-none appearance-none max-lg:text-sm"
+            class="w-full p-3 max-lg:p-2.5 bg-[#15090e]/50 text-[#f0eaea] rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 focus:outline-none appearance-none max-lg:text-sm"
           >
-            <option :value="null" disabled selected>
+            <option
+              :value="null"
+              disabled
+              selected
+              class="bg-[#241017] text-[#b37a7a]"
+            >
               {{ $t("select_promotion") }}
             </option>
-            <option value="">{{ $t("without_promotion") }}</option>
+            <option value="" class="bg-[#241017] text-[#f0eaea]">
+              {{ $t("without_promotion") }}
+            </option>
             <option
               v-for="promotion in promotionlist"
               :key="promotion._id"
               :value="promotion"
+              class="bg-[#241017] text-[#f0eaea]"
             >
               {{ promotion.maintitleEN }}
             </option>
@@ -406,7 +416,7 @@
             {{ $t("upload_receipt") }}
           </label>
           <div
-            class="flex flex-col items-center justify-center p-6 max-lg:p-4 border-2 border-dashed border-gray-300 rounded-md bg-gray-50 cursor-pointer lg:hover:bg-blue-50 transition-colors"
+            class="flex flex-col items-center justify-center p-6 max-lg:p-4 border-2 border-dashed border-[#3b1c23] rounded-lg bg-[#15090e]/30 cursor-pointer lg:hover:bg-[#ff3344]/10 transition-colors"
             @click="$refs.fileInput.click()"
           >
             <input
@@ -420,9 +430,9 @@
             <div v-if="!receipt" class="text-center">
               <Icon
                 icon="mdi:cloud-upload"
-                class="w-12 h-12 max-lg:w-8 max-lg:h-8 mx-auto mb-2 text-gray-400"
+                class="w-12 h-12 max-lg:w-8 max-lg:h-8 mx-auto mb-2 text-[#b37a7a]"
               />
-              <p class="text-gray-500 max-lg:text-sm">
+              <p class="text-[#b37a7a] max-lg:text-sm">
                 {{ $t("upload_receipt") }}
               </p>
             </div>
@@ -430,7 +440,7 @@
             <div v-else class="w-full relative">
               <img
                 :src="receiptPreview"
-                class="w-full h-40 max-lg:h-32 object-contain rounded-md"
+                class="w-full h-40 max-lg:h-32 object-contain rounded-lg"
               />
               <button
                 @click.stop="removeReceipt"
@@ -449,22 +459,22 @@
         <LoadingButton
           :loading="depositButtonLoading"
           @click="submitDeposit"
-          class="w-full py-3 max-lg:py-2.5 uppercase bg-blue-600 lg:hover:bg-blue-700 rounded-md text-lg max-lg:text-base font-semibold text-white transition-colors"
+          class="w-full py-3 max-lg:py-2.5 uppercase bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 rounded-lg text-lg max-lg:text-base font-semibold text-white transition-all shadow-lg shadow-red-500/20"
         >
           {{ $t("submit") }}
         </LoadingButton>
 
         <!-- Important Notice -->
         <div
-          class="bg-red-50 border border-red-200 text-sm max-lg:text-xs text-gray-700 rounded-md p-4 max-lg:p-3 mt-8 max-lg:mt-4 relative"
+          class="bg-red-500/10 border border-red-500/30 text-sm max-lg:text-xs text-[#f0eaea] rounded-lg p-4 max-lg:p-3 mt-8 max-lg:mt-4 relative"
         >
           <div class="flex items-start gap-2">
             <Icon
               icon="mdi:alert-circle-outline"
-              class="text-red-500 mt-0.5 w-5 h-5 max-lg:w-4 max-lg:h-4"
+              class="text-red-400 mt-0.5 w-5 h-5 max-lg:w-4 max-lg:h-4"
             />
             <div class="w-full">
-              <strong class="text-red-600 block mb-2 max-lg:mb-1.5">{{
+              <strong class="text-red-400 block mb-2 max-lg:mb-1.5">{{
                 $t("important_notice")
               }}</strong>
               <ul
@@ -489,7 +499,7 @@
                   </li>
                   <li>
                     {{ $t("notice_7_1") }}
-                    <strong>{{ $t("notice_7_2") }}</strong>
+                    <strong class="text-red-300">{{ $t("notice_7_2") }}</strong>
                     {{ $t("notice_7_3") }}
                   </li>
                 </template>
@@ -497,7 +507,7 @@
 
               <div class="text-right mt-2">
                 <button
-                  class="text-blue-600 lg:hover:underline text-sm max-lg:text-xs"
+                  class="text-[#ff3344] lg:hover:underline text-sm max-lg:text-xs transition-colors"
                   @click="showFullNotice = !showFullNotice"
                 >
                   {{ showFullNotice ? $t("show_less") : $t("show_more") }}
