@@ -2,10 +2,12 @@
   <ClientOnly>
     <div>
       <!-- Hero Section with Parallax Effect -->
-      <section class="relative containerWid overflow-hidden bg-blue-700">
+      <section
+        class="relative containerWid overflow-hidden bg-gradient-to-r from-[#a1122d] to-[#c21b3a]"
+      >
         <!-- Background gradient overlay (reduced opacity to let symbols show through) -->
         <div
-          class="absolute inset-0 bg-gradient-to-r from-blue-800/80 to-indigo-900/80 z-10"
+          class="absolute inset-0 bg-gradient-to-r from-[#a1122d]/80 to-[#c21b3a]/80 z-10"
         ></div>
 
         <!-- Casino symbol elements with stronger visibility -->
@@ -35,7 +37,7 @@
                 About EGM8
               </h1>
               <p
-                class="heroTitle2 text-blue-100 leading-relaxed mb-8 max-[480px]:mb-4 max-w-2xl mx-auto"
+                class="heroTitle2 text-red-100 leading-relaxed mb-8 max-[480px]:mb-4 max-w-2xl mx-auto"
               >
                 Your premier destination for online gaming entertainment with
                 world-class games, exciting bonuses, and a secure gaming
@@ -82,10 +84,10 @@
                   <i :class="stat.icon"></i>
                 </span>
               </div>
-              <h3 class="homeMainTxt3 font-bold text-gray-900 mb-2">
+              <h3 class="homeMainTxt3 font-bold text-[#f0eaea] mb-2">
                 {{ stat.value }}
               </h3>
-              <p class="text-gray-600 font-medium homeSubTxt1">
+              <p class="text-[#b37a7a] font-medium homeSubTxt1">
                 {{ stat.label }}
               </p>
             </div>
@@ -94,25 +96,25 @@
       </section>
 
       <!-- Our Story Section -->
-      <section class="py-16 max-[660px]:py-12 containerWid bg-white">
+      <section class="py-16 max-[660px]:py-12 containerWid bg-[#1A0D13]">
         <div class="mx-auto px-4">
           <div class="max-w-6xl mx-auto">
             <div class="grid min-[900px]:grid-cols-2 gap-12 items-center">
               <div>
-                <h2 class="homeMainTxt3 font-bold text-gray-900 mb-6 relative">
+                <h2 class="homeMainTxt3 font-bold text-[#f0eaea] mb-6 relative">
                   Our Story
                   <span
-                    class="absolute -bottom-3 left-0 w-20 h-1 bg-blue-600"
+                    class="absolute -bottom-3 left-0 w-20 h-1 bg-[#ff3344]"
                   ></span>
                 </h2>
-                <p class="text-gray-700 mb-6 leading-relaxed homeMainTxt2">
+                <p class="text-[#b37a7a] mb-6 leading-relaxed homeMainTxt2">
                   Founded in 2015, EGM8 was born from a simple yet powerful
                   vision: to create the most exciting and trusted online gaming
                   experience in Asia. Our journey began with a small team of
                   gaming enthusiasts and a curated selection of 50 premium
                   games.
                 </p>
-                <p class="text-gray-700 mb-6 leading-relaxed homeMainTxt2">
+                <p class="text-[#b37a7a] mb-6 leading-relaxed homeMainTxt2">
                   Fast forward to today, and we've grown into one of Asia's
                   leading online casino platforms, serving over 5 million
                   players with a library of 2,000+ games from the world's top
@@ -120,7 +122,7 @@
                   excellent service, innovative gaming solutions, and the trust
                   we've built with our player community.
                 </p>
-                <p class="text-gray-700 leading-relaxed homeMainTxt2">
+                <p class="text-[#b37a7a] leading-relaxed homeMainTxt2">
                   Along the way, we've received numerous industry awards and
                   recognitions for our platform, customer service excellence,
                   and dedication to responsible gaming practices. But what
@@ -134,10 +136,10 @@
               >
                 <div class="timeline-item">
                   <div class="timeline-year homeSubTxt1">2015</div>
-                  <h3 class="homeMainTxt4 font-bold text-gray-900 mb-2">
+                  <h3 class="homeMainTxt4 font-bold text-[#f0eaea] mb-2">
                     The Beginning
                   </h3>
-                  <p class="text-gray-600 homeMainTxt2">
+                  <p class="text-[#b37a7a] homeMainTxt2">
                     Launched with 50 games and a vision to revolutionize online
                     gaming in Asia
                   </p>
@@ -145,10 +147,10 @@
 
                 <div class="timeline-item">
                   <div class="timeline-year homeSubTxt1">2017</div>
-                  <h3 class="homeMainTxt4 font-bold text-gray-900 mb-2">
+                  <h3 class="homeMainTxt4 font-bold text-[#f0eaea] mb-2">
                     Expansion
                   </h3>
-                  <p class="text-gray-600 homeMainTxt2">
+                  <p class="text-[#b37a7a] homeMainTxt2">
                     Added live dealer games and sports betting, partnering with
                     industry leaders
                   </p>
@@ -156,10 +158,10 @@
 
                 <div class="timeline-item">
                   <div class="timeline-year homeSubTxt1">2019</div>
-                  <h3 class="homeMainTxt4 font-bold text-gray-900 mb-2">
+                  <h3 class="homeMainTxt4 font-bold text-[#f0eaea] mb-2">
                     Innovation
                   </h3>
-                  <p class="text-gray-600 homeMainTxt2">
+                  <p class="text-[#b37a7a] homeMainTxt2">
                     Released our mobile platform and improved security
                     infrastructure
                   </p>
@@ -167,10 +169,10 @@
 
                 <div class="timeline-item">
                   <div class="timeline-year homeSubTxt1">2023</div>
-                  <h3 class="homeMainTxt4 font-bold text-gray-900 mb-2">
+                  <h3 class="homeMainTxt4 font-bold text-[#f0eaea] mb-2">
                     Recognition
                   </h3>
-                  <p class="text-gray-600 homeMainTxt2">
+                  <p class="text-[#b37a7a] homeMainTxt2">
                     Reached 5M+ active players and received multiple industry
                     awards
                   </p>
@@ -182,14 +184,14 @@
       </section>
 
       <!-- Mission & Values Section -->
-      <section class="py-16 max-[660px]:py-12 containerWid bg-gray-50">
+      <section class="py-16 max-[660px]:py-12 containerWid">
         <div class="mx-auto px-4">
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-14 max-[1023px]:mb-8">
-              <h2 class="homeMainTxt3 font-bold text-gray-900 mb-2">
+              <h2 class="homeMainTxt3 font-bold text-[#f0eaea] mb-2">
                 Our Mission & Values
               </h2>
-              <p class="text-gray-600 max-w-2xl mx-auto homeMainTxt2">
+              <p class="text-[#b37a7a] max-w-2xl mx-auto homeMainTxt2">
                 Guiding principles that define everything we do
               </p>
             </div>
@@ -198,24 +200,26 @@
               class="grid grid-cols-2 max-[900px]:grid-cols-1 gap-12 max-[1023px]:gap-4 items-center"
             >
               <!-- Mission Side -->
-              <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
-                <div class="h-3 bg-blue-600"></div>
+              <div
+                class="bg-[#1A0D13] rounded-2xl shadow-xl shadow-red-500/20 overflow-hidden border border-[#3b1c23]"
+              >
+                <div class="h-3 bg-[#ff3344]"></div>
                 <div class="p-8">
                   <div
-                    class="w-16 h-16 max-[1023px]:w-14 max-[1023px]:h-14 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mb-6"
+                    class="w-16 h-16 max-[1023px]:w-14 max-[1023px]:h-14 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] mb-6"
                   >
                     <i class="bi bi-rocket-takeoff homeMainTxt"></i>
                   </div>
-                  <h3 class="homeMainTxt font-bold text-gray-900 mb-3">
+                  <h3 class="homeMainTxt font-bold text-[#f0eaea] mb-3">
                     Our Mission
                   </h3>
-                  <p class="text-gray-700 leading-relaxed mb-4 homeMainTxt2">
+                  <p class="text-[#b37a7a] leading-relaxed mb-4 homeMainTxt2">
                     To provide the most exciting, fair, and secure online gaming
                     experience in Asia, delivering innovative gaming solutions
                     that exceed player expectations while maintaining the
                     highest standards of integrity and customer service.
                   </p>
-                  <p class="text-gray-700 leading-relaxed homeMainTxt2">
+                  <p class="text-[#b37a7a] leading-relaxed homeMainTxt2">
                     We're committed to promoting responsible gaming practices
                     and creating an environment where players can enjoy their
                     favorite games with confidence, knowing they're supported by
@@ -235,13 +239,16 @@
                     <div
                       class="value-icon max-[1023px]:!w-10 max-[1023px]:!h-10"
                     >
-                      <i :class="value.icon" class="homeMainTxt5"></i>
+                      <i
+                        :class="value.icon"
+                        class="homeMainTxt5 text-[#ff3344]"
+                      ></i>
                     </div>
                     <div>
-                      <h3 class="homeMainTxt5 font-bold text-gray-900 mb-2">
+                      <h3 class="homeMainTxt5 font-bold text-[#f0eaea] mb-2">
                         {{ value.title }}
                       </h3>
-                      <p class="text-gray-600 homeMainTxt2">
+                      <p class="text-[#b37a7a] homeMainTxt2">
                         {{ value.description }}
                       </p>
                     </div>
@@ -254,11 +261,11 @@
       </section>
 
       <section
-        class="py-16 max-[660px]:py-12 containerWid bg-white relative overflow-hidden"
+        class="py-16 max-[660px]:py-12 containerWid bg-[#1A0D13] relative overflow-hidden"
       >
         <!-- Subtle background pattern -->
         <div
-          class="absolute inset-0 bg-gradient-to-b from-blue-50 to-white"
+          class="absolute inset-0 bg-gradient-to-b from-[#ff3344]/5 to-transparent"
         ></div>
 
         <!-- Subtle playing card symbols background -->
@@ -278,10 +285,10 @@
                   <span>EGM8</span>
                 </div>
               </div>
-              <h2 class="homeMainTxt3 font-bold text-gray-900 mb-2">
+              <h2 class="homeMainTxt3 font-bold text-[#f0eaea] mb-2">
                 The EGM8 Experience
               </h2>
-              <p class="text-gray-600 max-w-2xl mx-auto homeMainTxt2">
+              <p class="text-[#b37a7a] max-w-2xl mx-auto homeMainTxt2">
                 What sets us apart from other online casinos
               </p>
             </div>
@@ -298,10 +305,10 @@
                 <div class="feature-icon" :class="feature.iconBg">
                   <i :class="feature.icon" class="homeMainTxt"></i>
                 </div>
-                <h3 class="homeMainTxt5 font-bold text-gray-900 mb-2">
+                <h3 class="homeMainTxt5 font-bold text-[#f0eaea] mb-2">
                   {{ feature.title }}
                 </h3>
-                <p class="text-gray-600 mb-4 homeMainTxt2">
+                <p class="text-[#b37a7a] mb-4 homeMainTxt2">
                   {{ feature.description }}
                 </p>
 
@@ -323,26 +330,26 @@
       </section>
 
       <!-- Trust & Security Section - Minimalist Modern Design -->
-      <section class="py-16 max-[660px]:py-12 containerWid bg-gray-50 relative">
+      <section class="py-16 max-[660px]:py-12 containerWid relative">
         <div class="mx-auto px-4">
           <div class="max-w-6xl mx-auto">
             <!-- Clean header with subtle accent -->
             <div class="text-center mb-8">
               <div
-                class="inline-block p-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg mb-4"
+                class="inline-block p-1 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-lg mb-4"
               >
-                <div class="bg-white px-4 py-1 rounded">
+                <div class="bg-[#1A0D13] px-4 py-1 rounded">
                   <span
-                    class="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 font-semibold"
+                    class="bg-clip-text text-transparent bg-gradient-to-r from-[#ff3344] to-[#c21b3a] font-semibold"
                   >
                     SECURE & TRUSTED
                   </span>
                 </div>
               </div>
-              <h2 class="homeMainTxt3 font-bold text-gray-900 mb-2">
+              <h2 class="homeMainTxt3 font-bold text-[#f0eaea] mb-2">
                 Trust & Security
               </h2>
-              <p class="text-gray-600 max-w-2xl mx-auto homeMainTxt2">
+              <p class="text-[#b37a7a] max-w-2xl mx-auto homeMainTxt2">
                 Your safety and security are our top priorities
               </p>
             </div>
@@ -362,7 +369,7 @@
                   </div>
                 </div>
 
-                <p class="text-gray-600 my-4 homeMainTxt2">
+                <p class="text-[#b37a7a] my-4 homeMainTxt2">
                   {{ card.description }}
                 </p>
 
@@ -394,7 +401,7 @@
 
       <!-- Responsible Gaming Section -->
       <section
-        class="py-16 max-[660px]:py-12 containerWid bg-gradient-to-r from-blue-700 to-indigo-800 text-white relative overflow-hidden"
+        class="py-16 max-[660px]:py-12 containerWid bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white relative overflow-hidden"
       >
         <!-- Decorative background elements -->
         <div class="absolute inset-0 overflow-hidden opacity-10">
@@ -412,7 +419,7 @@
           <div class="max-w-6xl mx-auto">
             <div class="text-center mb-8">
               <h2 class="homeMainTxt3 font-bold mb-2">Responsible Gaming</h2>
-              <p class="text-blue-100 max-w-2xl mx-auto homeMainTxt2">
+              <p class="text-red-100 max-w-2xl mx-auto homeMainTxt2">
                 We promote safe and responsible gambling practices
               </p>
             </div>
@@ -431,14 +438,14 @@
                 <h3 class="homeMainTxt5 font-bold text-white mb-2">
                   {{ item.title }}
                 </h3>
-                <p class="text-blue-100 homeMainTxt2">
+                <p class="text-red-100 homeMainTxt2">
                   {{ item.description }}
                 </p>
               </div>
             </div>
 
             <div class="mt-12 text-center homeMainTxt2">
-              <p class="text-blue-100 max-w-2xl mx-auto">
+              <p class="text-red-100 max-w-2xl mx-auto">
                 At EGM8, we believe that gambling should always be an enjoyable
                 form of entertainment. If you or someone you know is struggling
                 with gambling problems, please contact our responsible gaming
@@ -458,25 +465,25 @@ const stats = [
     value: "5M+",
     label: "Active Players",
     icon: "bi bi-people-fill",
-    class: "bg-blue-50 text-blue-600",
+    class: "bg-[#ff3344]/10 text-[#ff3344] border border-[#ff3344]/20",
   },
   {
     value: "2000+",
     label: "Premium Games",
     icon: "bi bi-controller",
-    class: "bg-indigo-50 text-indigo-600",
+    class: "bg-[#ff3344]/10 text-[#ff3344] border border-[#ff3344]/20",
   },
   {
     value: "12+",
     label: "Years Experience",
     icon: "bi bi-calendar-check",
-    class: "bg-purple-50 text-purple-600",
+    class: "bg-[#ff3344]/10 text-[#ff3344] border border-[#ff3344]/20",
   },
   {
     value: "24/7",
     label: "Support Service",
     icon: "bi bi-headset",
-    class: "bg-pink-50 text-pink-600",
+    class: "bg-[#ff3344]/10 text-[#ff3344] border border-[#ff3344]/20",
   },
 ];
 
@@ -513,7 +520,7 @@ const gamingFeatures = [
     description:
       "Enjoy our massive library of 2,000+ games from the world's top providers.",
     icon: "bi bi-controller",
-    iconBg: "bg-blue-50",
+    iconBg: "bg-[#ff3344]/20",
     highlights: ["2,000+ Games", "Top Providers", "Live Casino", "High RTP"],
   },
   {
@@ -521,7 +528,7 @@ const gamingFeatures = [
     description:
       "Join our exclusive VIP program with personalized service and premium rewards.",
     icon: "bi bi-gem",
-    iconBg: "bg-purple-50",
+    iconBg: "bg-[#ff3344]/20",
     highlights: [
       "Personal Manager",
       "Exclusive Bonuses",
@@ -534,7 +541,7 @@ const gamingFeatures = [
     description:
       "Play your favorite games anytime, anywhere with our seamless mobile platform.",
     icon: "bi bi-phone",
-    iconBg: "bg-pink-50",
+    iconBg: "bg-[#ff3344]/20",
     highlights: [
       "iOS & Android",
       "Instant Play",
@@ -547,7 +554,7 @@ const gamingFeatures = [
     description:
       "Experience lightning-fast deposits and withdrawals with multiple payment options.",
     icon: "bi bi-wallet2",
-    iconBg: "bg-green-50",
+    iconBg: "bg-[#ff3344]/20",
     highlights: ["E-wallets", "Credit Cards", "Crypto", "Bank Transfer"],
   },
   {
@@ -555,7 +562,7 @@ const gamingFeatures = [
     description:
       "Our professional support team is available around the clock in multiple languages.",
     icon: "bi bi-headset",
-    iconBg: "bg-orange-50",
+    iconBg: "bg-[#ff3344]/20",
     highlights: ["Live Chat", "Email", "Phone", "Multi-language"],
   },
   {
@@ -563,7 +570,7 @@ const gamingFeatures = [
     description:
       "Enjoy our generous welcome packages, daily bonuses, and exciting tournaments.",
     icon: "bi bi-gift",
-    iconBg: "bg-red-50",
+    iconBg: "bg-[#ff3344]/20",
     highlights: ["Welcome Bonus", "Free Spins", "Cashback", "Tournaments"],
   },
 ];
@@ -595,19 +602,19 @@ const trustCards = [
     items: [
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=MGA",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=MGA",
         alt: "Malta Gaming Authority",
         label: "MGA",
       },
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=PAGCOR",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=PAGCOR",
         alt: "PAGCOR",
         label: "PAGCOR",
       },
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=GRA",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=GRA",
         alt: "Gaming Regulatory Authority",
         label: "GRA",
       },
@@ -639,25 +646,25 @@ const trustCards = [
     items: [
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=RNG",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=RNG",
         alt: "Random Number Generation",
         label: "Certified RNG",
       },
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=eCOGRA",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=eCOGRA",
         alt: "eCOGRA",
         label: "eCOGRA",
       },
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=iTech",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=iTech",
         alt: "iTech Labs",
         label: "iTech Labs",
       },
       {
         type: "image",
-        src: "https://placehold.co/60x60/4f46e5/FFFFFF/png?text=GLI",
+        src: "https://placehold.co/60x60/ff3344/FFFFFF/png?text=GLI",
         alt: "Gaming Laboratories International",
         label: "GLI Tested",
       },
@@ -699,23 +706,23 @@ const responsibleFeatures = [
 .timeline-item {
   position: relative;
   padding: 1.5rem;
-  background-color: white;
+  background-color: #241017;
   border-radius: 1rem;
-  border: 1px solid #f3f4f6;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #3b1c23;
+  box-shadow: 0 4px 6px -1px rgba(255, 51, 68, 0.1);
   transition: all 0.3s ease;
 }
 
 .timeline-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border-color: #dbeafe;
+  box-shadow: 0 10px 15px -3px rgba(255, 51, 68, 0.2);
+  border-color: #ff3344;
 }
 
 .timeline-year {
   display: inline-block;
   padding: 0.25rem 1rem;
-  background-color: #3b82f6;
+  background-color: #ff3344;
   color: white;
   border-radius: 9999px;
   font-weight: 600;
@@ -728,9 +735,10 @@ const responsibleFeatures = [
   align-items: flex-start;
   gap: 1rem;
   padding: 1.5rem;
-  background-color: white;
+  background-color: #241017;
   border-radius: 1rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px -1px rgba(255, 51, 68, 0.1);
+  border: 1px solid #3b1c23;
 }
 
 .value-icon {
@@ -739,259 +747,11 @@ const responsibleFeatures = [
   justify-content: center;
   width: 3rem;
   height: 3rem;
-  background-color: #dbeafe;
-  color: #3b82f6;
+  background-color: rgba(255, 51, 68, 0.2);
+  color: #ff3344;
   border-radius: 9999px;
   font-size: 1.25rem;
   flex-shrink: 0;
-}
-
-/* Gaming Experience Cards */
-.experience-card {
-  height: 280px;
-  margin-bottom: 1.5rem;
-  perspective: 1000px;
-}
-
-.experience-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
-}
-
-.experience-card:hover .experience-card-inner {
-  transform: rotateY(180deg);
-}
-
-.card-front,
-.card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 2rem;
-}
-
-.card-front {
-  background-color: white;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border: 1px solid #f3f4f6;
-}
-
-.card-back {
-  color: white;
-  transform: rotateY(180deg);
-  padding: 1.5rem;
-}
-
-.experience-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 4rem;
-  height: 4rem;
-  background-color: white;
-  border-radius: 9999px;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-}
-
-/* License and Security Badges */
-.license-badge,
-.fair-play-badge {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0.75rem;
-  background-color: #f3f4f6;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.license-badge:hover,
-.fair-play-badge:hover {
-  background-color: #e5e7eb;
-}
-
-.license-badge img,
-.fair-play-badge img {
-  width: 2.5rem;
-  height: 2.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.license-badge span,
-.fair-play-badge span {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: #374151;
-}
-
-.security-feature {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem;
-  background-color: #f3f4f6;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
-}
-
-.security-feature:hover {
-  background-color: #e5e7eb;
-}
-
-.security-feature i {
-  color: #3b82f6;
-  font-size: 1.25rem;
-  margin-right: 0.75rem;
-}
-
-.security-feature span {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #374151;
-}
-
-/* Game Providers Carousel */
-.providers-carousel {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-
-.providers-track {
-  display: flex;
-  width: fit-content;
-  animation: scrollProviders 30s linear infinite;
-}
-
-.provider-item {
-  flex: 0 0 200px;
-  margin: 0 1rem;
-}
-
-@keyframes scrollProviders {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
-/* Decorative Background Pattern */
-.pattern-background {
-  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-}
-
-/* Animation Utilities */
-.animate-fade-in {
-  opacity: 0;
-  animation: fadeIn 0.8s forwards;
-}
-
-.animate-float-slow {
-  animation: float 8s ease-in-out infinite;
-}
-
-.animate-float-medium {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-fast {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin 15s linear infinite;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .experience-card {
-    height: 300px;
-  }
-}
-
-@media (max-width: 640px) {
-  .casino-symbol {
-    font-size: 3rem;
-  }
-
-  .timeline-item {
-    margin-bottom: 1rem;
-  }
-}
-
-.card-symbol {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  opacity: 0.05;
-  z-index: 0;
-}
-
-.card-symbol::before {
-  font-size: 60px;
-  position: absolute;
-}
-
-.spade::before {
-  content: "♠";
-}
-
-.heart::before {
-  content: "♥";
-  color: #f87171;
-}
-
-.club::before {
-  content: "♣";
-}
-
-.diamond::before {
-  content: "♦";
-  color: #f87171;
 }
 
 /* Casino chip badge */
@@ -1000,8 +760,8 @@ const responsibleFeatures = [
   height: 60px;
   background: repeating-conic-gradient(
     from 0deg,
-    #3b82f6 0deg 30deg,
-    #1d4ed8 30deg 60deg
+    #ff3344 0deg 30deg,
+    #a1122d 30deg 60deg
   );
   border-radius: 50%;
   display: flex;
@@ -1014,29 +774,31 @@ const responsibleFeatures = [
 .chip-inner {
   width: 70%;
   height: 70%;
-  background: white;
+  background: #1a0d13;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  color: #1e40af;
+  color: #ff3344;
 }
 
 /* Feature boxes */
 .feature-box {
-  background: white;
+  background: #241017;
   border-radius: 0.75rem;
   padding: 2rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(255, 51, 68, 0.1);
   transition: all 0.3s ease;
   height: 100%;
   position: relative;
+  border: 1px solid #3b1c23;
 }
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(255, 51, 68, 0.2);
+  border-color: #ff3344;
 }
 
 .feature-icon {
@@ -1048,12 +810,12 @@ const responsibleFeatures = [
   justify-content: center;
   margin-bottom: 1rem;
   font-size: 1.25rem;
-  color: #3b82f6;
+  color: #ff3344;
 }
 
 .divider {
   height: 1px;
-  background: linear-gradient(to right, #e5e7eb 0%, #dbeafe 50%, #e5e7eb 100%);
+  background: linear-gradient(to right, #3b1c23 0%, #ff3344 50%, #3b1c23 100%);
   margin: 1rem 0;
 }
 
@@ -1065,36 +827,38 @@ const responsibleFeatures = [
 
 .highlight-item {
   padding: 0.25rem 0.75rem;
-  background: #f3f4f6;
+  background: #15090e;
   border-radius: 9999px;
-  color: #4b5563;
+  color: #b37a7a;
   transition: all 0.2s ease;
 }
 
 .highlight-item:hover {
-  background: #dbeafe;
-  color: #1e40af;
+  background: #ff3344;
+  color: white;
 }
 
 /* Trust cards */
 .trust-card {
-  background: white;
+  background: #241017;
   border-radius: 0.75rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(255, 51, 68, 0.1);
   overflow: hidden;
   transition: all 0.3s ease;
   height: 100%;
+  border: 1px solid #3b1c23;
 }
 
 .trust-card:hover {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 25px -5px rgba(255, 51, 68, 0.2);
+  border-color: #ff3344;
 }
 
 .trust-card-header {
   display: flex;
   align-items: center;
   padding: 1.5rem;
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid #3b1c23;
 }
 
 .trust-icon {
@@ -1110,23 +874,26 @@ const responsibleFeatures = [
 }
 
 .license-icon {
-  background: #dbeafe;
-  color: #2563eb;
+  background: #ff3344;
+  background-opacity: 0.2;
+  color: #ff3344;
 }
 
 .security-icon {
-  background: #e0e7ff;
-  color: #4f46e5;
+  background: #ff3344;
+  background-opacity: 0.2;
+  color: #ff3344;
 }
 
 .fairplay-icon {
-  background: #ddd6fe;
-  color: #7c3aed;
+  background: #ff3344;
+  background-opacity: 0.2;
+  color: #ff3344;
 }
 
 .trust-title h3 {
   font-weight: 600;
-  color: #111827;
+  color: #f0eaea;
 }
 
 .trust-card p {
@@ -1154,7 +921,7 @@ const responsibleFeatures = [
   flex-direction: column;
   align-items: center;
   padding: 0.75rem;
-  background: #f9fafb;
+  background: #15090e;
   border-radius: 0.5rem;
   transition: all 0.2s ease;
 }
@@ -1162,7 +929,7 @@ const responsibleFeatures = [
 .license-item:hover,
 .fairplay-item:hover,
 .security-item:hover {
-  background: #f3f4f6;
+  background: #3b1c23;
 }
 
 .license-item img,
@@ -1176,14 +943,80 @@ const responsibleFeatures = [
 .fairplay-item span,
 .security-item span {
   font-size: 0.75rem;
-  color: #4b5563;
+  color: #b37a7a;
   text-align: center;
 }
 
 .security-item i {
   font-size: 1.25rem;
-  color: #4f46e5;
+  color: #ff3344;
   margin-bottom: 0.5rem;
+}
+
+.card-symbol {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  opacity: 0.05;
+  z-index: 0;
+}
+
+.card-symbol::before {
+  font-size: 60px;
+  position: absolute;
+  color: #ff3344;
+}
+
+.spade::before {
+  content: "♠";
+}
+
+.heart::before {
+  content: "♥";
+}
+
+.club::before {
+  content: "♣";
+}
+
+.diamond::before {
+  content: "♦";
+}
+
+/* Animation definitions */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float-slow {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-medium {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-fast {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin 15s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Responsive adjustments */
@@ -1212,61 +1045,6 @@ const responsibleFeatures = [
   .security-grid {
     grid-template-columns: repeat(2, 1fr);
     padding: 0 1rem 1rem;
-  }
-}
-.casino-symbol {
-  font-size: 6rem; /* Larger size to ensure visibility */
-  color: white; /* Make sure they're white for contrast */
-  z-index: 5; /* Should be above the background but below the content */
-}
-
-/* Animation definitions */
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes float-medium {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes float-fast {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
   }
 }
 </style>

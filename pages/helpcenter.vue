@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-700 relative">
+    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
       <div class="absolute inset-0 opacity-10">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs>
@@ -27,7 +27,7 @@
           {{ $t("how_can_we_help") }}
         </h1>
         <p
-          class="text-blue-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto mb-10 max-lg:mb-6 animate-fadeIn animate-delay-200"
+          class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto mb-10 max-lg:mb-6 animate-fadeIn animate-delay-200"
         >
           {{ $t("support_team_assist") }}
         </p>
@@ -35,10 +35,10 @@
     </div>
 
     <!-- Support Categories Section -->
-    <div class="bg-gray-50 py-16 max-lg:py-12">
+    <div class="py-16 max-lg:py-12">
       <div class="container mx-auto px-4">
         <h2
-          class="text-3xl max-lg:text-2xl font-bold text-center text-gray-800 mb-12 max-lg:mb-8"
+          class="text-3xl max-lg:text-2xl font-bold text-center text-[#f0eaea] mb-12 max-lg:mb-8"
         >
           {{ $t("how_we_assist") }}
         </h2>
@@ -48,25 +48,25 @@
         >
           <!-- Account Support -->
           <div
-            class="bg-white rounded-xl shadow-sm p-6 max-lg:p-4 text-center lg:hover:shadow-md transition-shadow"
+            class="bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 p-6 max-lg:p-4 text-center lg:hover:shadow-[#ff3344]/20 transition-all border border-[#3b1c23]"
           >
             <div
-              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mx-auto mb-4 max-lg:mb-3"
+              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mx-auto mb-4 max-lg:mb-3"
             >
               <i class="bi bi-person-circle text-2xl max-lg:text-xl"></i>
             </div>
             <h3
-              class="text-xl max-lg:text-lg font-semibold text-gray-800 mb-3 max-lg:mb-2"
+              class="text-xl max-lg:text-lg font-semibold text-[#f0eaea] mb-3 max-lg:mb-2"
             >
               {{ $t("account_support") }}
             </h3>
-            <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+            <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
               {{ $t("account_support_desc") }}
             </p>
             <a
               href="#contact-support"
               @click.prevent="handleAnchorClick($event, 'contact-support')"
-              class="text-blue-600 font-medium max-lg:text-sm lg:hover:text-blue-700 inline-flex items-center"
+              class="text-[#ff3344] font-medium max-lg:text-sm lg:hover:text-[#c21b3a] inline-flex items-center"
             >
               {{ $t("get_help") }}
               <i class="bi bi-arrow-right ml-1"></i>
@@ -75,25 +75,25 @@
 
           <!-- Payment Issues -->
           <div
-            class="bg-white rounded-xl shadow-sm p-6 max-lg:p-4 text-center lg:hover:shadow-md transition-shadow"
+            class="bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 p-6 max-lg:p-4 text-center lg:hover:shadow-[#ff3344]/20 transition-all border border-[#3b1c23]"
           >
             <div
-              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-green-100 rounded-full flex items-center justify-center text-green-600 mx-auto mb-4 max-lg:mb-3"
+              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mx-auto mb-4 max-lg:mb-3"
             >
               <i class="bi bi-credit-card text-2xl max-lg:text-xl"></i>
             </div>
             <h3
-              class="text-xl max-lg:text-lg font-semibold text-gray-800 mb-3 max-lg:mb-2"
+              class="text-xl max-lg:text-lg font-semibold text-[#f0eaea] mb-3 max-lg:mb-2"
             >
               {{ $t("payment_support") }}
             </h3>
-            <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+            <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
               {{ $t("payment_support_desc") }}
             </p>
             <a
               href="#contact-support"
               @click.prevent="handleAnchorClick($event, 'contact-support')"
-              class="text-green-600 font-medium max-lg:text-sm lg:hover:text-green-700 inline-flex items-center"
+              class="text-[#ff3344] font-medium max-lg:text-sm lg:hover:text-[#c21b3a] inline-flex items-center"
             >
               Get Help
               <i class="bi bi-arrow-right ml-1"></i>
@@ -102,25 +102,25 @@
 
           <!-- Technical Support -->
           <div
-            class="bg-white rounded-xl shadow-sm p-6 max-lg:p-4 text-center lg:hover:shadow-md transition-shadow"
+            class="bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 p-6 max-lg:p-4 text-center lg:hover:shadow-[#ff3344]/20 transition-all border border-[#3b1c23]"
           >
             <div
-              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 mx-auto mb-4 max-lg:mb-3"
+              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mx-auto mb-4 max-lg:mb-3"
             >
               <i class="bi bi-gear text-2xl max-lg:text-xl"></i>
             </div>
             <h3
-              class="text-xl max-lg:text-lg font-semibold text-gray-800 mb-3 max-lg:mb-2"
+              class="text-xl max-lg:text-lg font-semibold text-[#f0eaea] mb-3 max-lg:mb-2"
             >
               {{ $t("technical_support") }}
             </h3>
-            <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+            <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
               {{ $t("technical_support_desc") }}
             </p>
             <a
               href="#contact-support"
               @click.prevent="handleAnchorClick($event, 'contact-support')"
-              class="text-purple-600 font-medium max-lg:text-sm lg:hover:text-purple-700 inline-flex items-center"
+              class="text-[#ff3344] font-medium max-lg:text-sm lg:hover:text-[#c21b3a] inline-flex items-center"
             >
               {{ $t("get_help") }}
               <i class="bi bi-arrow-right ml-1"></i>
@@ -129,25 +129,25 @@
 
           <!-- General Inquiries -->
           <div
-            class="bg-white rounded-xl shadow-sm p-6 max-lg:p-4 text-center lg:hover:shadow-md transition-shadow"
+            class="bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 p-6 max-lg:p-4 text-center lg:hover:shadow-[#ff3344]/20 transition-all border border-[#3b1c23]"
           >
             <div
-              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mx-auto mb-4 max-lg:mb-3"
+              class="w-16 h-16 max-lg:w-14 max-lg:h-14 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mx-auto mb-4 max-lg:mb-3"
             >
               <i class="bi bi-chat-dots text-2xl max-lg:text-xl"></i>
             </div>
             <h3
-              class="text-xl max-lg:text-lg font-semibold text-gray-800 mb-3 max-lg:mb-2"
+              class="text-xl max-lg:text-lg font-semibold text-[#f0eaea] mb-3 max-lg:mb-2"
             >
               {{ $t("general_inquiries") }}
             </h3>
-            <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+            <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
               {{ $t("general_inquiries_desc") }}
             </p>
             <a
               href="#contact-support"
               @click.prevent="handleAnchorClick($event, 'contact-support')"
-              class="text-orange-600 font-medium max-lg:text-sm lg:hover:text-orange-700 inline-flex items-center"
+              class="text-[#ff3344] font-medium max-lg:text-sm lg:hover:text-[#c21b3a] inline-flex items-center"
             >
               {{ $t("get_help") }}
               <i class="bi bi-arrow-right ml-1"></i>
@@ -161,49 +161,51 @@
     <div id="contact-support" class="container mx-auto px-4">
       <div class="grid grid-cols-2 max-lg:grid-cols-1 gap-10 max-lg:gap-6">
         <div>
-          <div class="bg-white rounded-2xl shadow-sm p-8 max-lg:p-5">
+          <div
+            class="bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-8 max-lg:p-5 border border-[#3b1c23]"
+          >
             <div class="flex items-center gap-3 mb-8 max-lg:mb-5">
               <div
-                class="w-10 h-10 max-lg:w-8 max-lg:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                class="w-10 h-10 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
               >
                 <i class="bi bi-headset text-xl max-lg:text-lg"></i>
               </div>
-              <h2 class="text-2xl max-lg:text-xl font-bold text-gray-800">
+              <h2 class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
                 {{ $t("contact_support_team") }}
               </h2>
             </div>
 
-            <p class="text-gray-600 max-lg:text-sm mb-8 max-lg:mb-5">
+            <p class="text-[#b37a7a] max-lg:text-sm mb-8 max-lg:mb-5">
               {{ $t("support_availability") }} :
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-lg:gap-3">
               <!-- Live Chat -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-4 lg:hover:shadow-md transition-all lg:hover:border-blue-100"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all lg:hover:border-[#ff3344]/50 bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-4 max-lg:gap-3 mb-4 max-lg:mb-3"
                 >
                   <div
-                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-chat-dots-fill text-xl max-lg:text-lg"></i>
                   </div>
                   <div>
-                    <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                    <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                       {{ $t("live_chat") }}
                     </h3>
-                    <p class="text-sm max-lg:text-xs text-gray-500">
+                    <p class="text-sm max-lg:text-xs text-[#b37a7a]">
                       {{ $t("available_24_7") }}
                     </p>
                   </div>
                 </div>
-                <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+                <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
                   {{ $t("available_24_7") }}
                 </p>
                 <button
-                  class="w-full py-2 max-lg:py-1.5 max-lg:text-sm bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors"
+                  class="w-full py-2 max-lg:py-1.5 max-lg:text-sm bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all"
                   @click="openLiveChat"
                 >
                   {{ $t("start_chat") }}
@@ -213,26 +215,26 @@
               <!-- WhatsApp -->
               <div
                 v-if="generalSetting?.whatsapp"
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-4 lg:hover:shadow-md transition-all lg:hover:border-green-100"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all lg:hover:border-[#ff3344]/50 bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-4 max-lg:gap-3 mb-4 max-lg:mb-3"
                 >
                   <div
-                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600"
+                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-400"
                   >
                     <i class="bi bi-whatsapp text-xl max-lg:text-lg"></i>
                   </div>
                   <div>
-                    <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                    <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                       {{ $t("whatsapp") }}
                     </h3>
-                    <p class="text-sm max-lg:text-xs text-gray-500">
+                    <p class="text-sm max-lg:text-xs text-[#b37a7a]">
                       {{ $t("quick_responses") }}
                     </p>
                   </div>
                 </div>
-                <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+                <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
                   {{ $t("whatsapp_desc") }}
                 </p>
                 <a
@@ -248,26 +250,26 @@
               <!-- WeChat -->
               <div
                 v-if="generalSetting?.wechat"
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-4 lg:hover:shadow-md transition-all lg:hover:border-green-100"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all lg:hover:border-[#ff3344]/50 bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-4 max-lg:gap-3 mb-4 max-lg:mb-3"
                 >
                   <div
-                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600"
+                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-green-500/20 rounded-full flex items-center justify-center text-green-400"
                   >
                     <i class="bi bi-wechat text-xl max-lg:text-lg"></i>
                   </div>
                   <div>
-                    <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                    <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                       {{ $t("wechat") }}
                     </h3>
-                    <p class="text-sm max-lg:text-xs text-gray-500">
+                    <p class="text-sm max-lg:text-xs text-[#b37a7a]">
                       {{ $t("chinese_support") }}
                     </p>
                   </div>
                 </div>
-                <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+                <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
                   {{ $t("wechat_desc") }}
                 </p>
                 <a
@@ -283,26 +285,26 @@
               <!-- Telegram -->
               <div
                 v-if="generalSetting?.telegram"
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-4 lg:hover:shadow-md transition-all lg:hover:border-blue-100"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all lg:hover:border-[#ff3344]/50 bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-4 max-lg:gap-3 mb-4 max-lg:mb-3"
                 >
                   <div
-                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400"
                   >
                     <i class="bi bi-telegram text-xl max-lg:text-lg"></i>
                   </div>
                   <div>
-                    <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                    <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                       {{ $t("telegram") }}
                     </h3>
-                    <p class="text-sm max-lg:text-xs text-gray-500">
+                    <p class="text-sm max-lg:text-xs text-[#b37a7a]">
                       {{ $t("fast_secure") }}
                     </p>
                   </div>
                 </div>
-                <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+                <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
                   {{ $t("telegram_desc") }}
                 </p>
                 <a
@@ -317,26 +319,26 @@
 
               <!-- Email Support -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-4 lg:hover:shadow-md transition-all lg:hover:border-indigo-100"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all lg:hover:border-[#ff3344]/50 bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-4 max-lg:gap-3 mb-4 max-lg:mb-3"
                 >
                   <div
-                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600"
+                    class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-indigo-500/20 rounded-full flex items-center justify-center text-indigo-400"
                   >
                     <i class="bi bi-envelope-fill text-xl max-lg:text-lg"></i>
                   </div>
                   <div>
-                    <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                    <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                       {{ $t("email") }}
                     </h3>
-                    <p class="text-sm max-lg:text-xs text-gray-500">
+                    <p class="text-sm max-lg:text-xs text-[#b37a7a]">
                       {{ $t("hour_response") }}
                     </p>
                   </div>
                 </div>
-                <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-3">
+                <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-3">
                   {{ $t("email_desc") }}
                 </p>
                 <a
@@ -355,65 +357,69 @@
         <!-- Right Column: Support Info -->
         <div>
           <div
-            class="bg-white rounded-2xl shadow-sm p-8 max-lg:p-5 mb-6 sticky top-6"
+            class="bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-8 max-lg:p-5 mb-6 sticky top-6 border border-[#3b1c23]"
           >
             <div class="flex items-center gap-3 mb-6 max-lg:mb-4">
               <div
-                class="w-10 h-10 max-lg:w-8 max-lg:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                class="w-10 h-10 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
               >
                 <i class="bi bi-info-circle text-xl max-lg:text-lg"></i>
               </div>
-              <h2 class="text-2xl max-lg:text-xl font-bold text-gray-800">
+              <h2 class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
                 {{ $t("support_info") }}
               </h2>
             </div>
 
             <div class="space-y-6 max-lg:space-y-4">
               <!-- Support Hours -->
-              <div class="p-4 max-lg:p-3 bg-blue-50 rounded-xl">
+              <div
+                class="p-4 max-lg:p-3 bg-[#ff3344]/10 rounded-xl border border-[#ff3344]/20"
+              >
                 <div class="flex items-center gap-2 mb-2 max-lg:mb-1">
-                  <i class="bi bi-clock text-blue-500"></i>
-                  <h3 class="font-medium text-gray-800 max-lg:text-sm">
+                  <i class="bi bi-clock text-[#ff3344]"></i>
+                  <h3 class="font-medium text-[#f0eaea] max-lg:text-sm">
                     {{ $t("support_hours") }}
                   </h3>
                 </div>
-                <p class="text-sm max-lg:text-xs text-gray-600">
+                <p class="text-sm max-lg:text-xs text-[#b37a7a]">
                   {{ $t("support_hours_desc") }}
                 </p>
               </div>
 
               <!-- Response Times -->
-              <div class="p-4 max-lg:p-3 bg-green-50 rounded-xl">
+              <div
+                class="p-4 max-lg:p-3 bg-green-500/10 rounded-xl border border-green-500/20"
+              >
                 <div class="flex items-center gap-2 mb-2 max-lg:mb-1">
-                  <i class="bi bi-lightning-charge text-green-500"></i>
-                  <h3 class="font-medium text-gray-800 max-lg:text-sm">
+                  <i class="bi bi-lightning-charge text-green-400"></i>
+                  <h3 class="font-medium text-[#f0eaea] max-lg:text-sm">
                     {{ $t("response_times") }}
                   </h3>
                 </div>
                 <ul
-                  class="text-sm max-lg:text-xs text-gray-600 space-y-2 max-lg:space-y-1.5"
+                  class="text-sm max-lg:text-xs text-[#b37a7a] space-y-2 max-lg:space-y-1.5"
                 >
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-chat-dots text-green-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-chat-dots text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("live_chat_immediate") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-whatsapp text-green-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-whatsapp text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("whatsapp_response") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-telegram text-green-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-telegram text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("telegram_response") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-envelope text-green-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-envelope text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("email_response") }}</span>
                   </li>
@@ -421,31 +427,33 @@
               </div>
 
               <!-- Language Support -->
-              <div class="p-4 max-lg:p-3 bg-purple-50 rounded-xl">
+              <div
+                class="p-4 max-lg:p-3 bg-purple-500/10 rounded-xl border border-purple-500/20"
+              >
                 <div class="flex items-center gap-2 mb-2 max-lg:mb-1">
-                  <i class="bi bi-translate text-purple-500"></i>
-                  <h3 class="font-medium text-gray-800 max-lg:text-sm">
+                  <i class="bi bi-translate text-purple-400"></i>
+                  <h3 class="font-medium text-[#f0eaea] max-lg:text-sm">
                     {{ $t("languages_supported") }}
                   </h3>
                 </div>
                 <ul
-                  class="text-sm max-lg:text-xs text-gray-600 space-y-2 max-lg:space-y-1.5"
+                  class="text-sm max-lg:text-xs text-[#b37a7a] space-y-2 max-lg:space-y-1.5"
                 >
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-check-circle text-purple-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-check-circle text-purple-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("english") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-check-circle text-purple-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-check-circle text-purple-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("chinese_mandarin") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-check-circle text-purple-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-check-circle text-purple-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("malay") }}</span>
                   </li>
@@ -453,30 +461,30 @@
               </div>
 
               <!-- Support Policies -->
-              <div class="border-t border-gray-100 pt-6 max-lg:pt-4">
+              <div class="border-t border-[#3b1c23] pt-6 max-lg:pt-4">
                 <h3
-                  class="font-medium text-gray-800 max-lg:text-sm mb-3 max-lg:mb-2"
+                  class="font-medium text-[#f0eaea] max-lg:text-sm mb-3 max-lg:mb-2"
                 >
                   {{ $t("support_policies") }}
                 </h3>
                 <ul
-                  class="text-sm max-lg:text-xs text-gray-600 space-y-3 max-lg:space-y-2"
+                  class="text-sm max-lg:text-xs text-[#b37a7a] space-y-3 max-lg:space-y-2"
                 >
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-shield-check text-blue-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-shield-check text-[#ff3344] mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("policy_verification") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-shield-check text-blue-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-shield-check text-[#ff3344] mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("policy_confidential") }}</span>
                   </li>
                   <li class="flex items-start gap-2">
                     <i
-                      class="bi bi-shield-check text-blue-500 mt-1 max-lg:mt-0.5"
+                      class="bi bi-shield-check text-[#ff3344] mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("policy_sensitive") }}</span>
                   </li>
@@ -489,21 +497,21 @@
     </div>
 
     <!-- FAQ Link Section -->
-    <div class="bg-gray-50 border-gray-100 py-16 max-lg:py-12">
+    <div class="bg-[#1A0D13] border-[#3b1c23] py-16 max-lg:py-12">
       <div class="container mx-auto px-4 text-center">
         <h2
-          class="text-2xl max-lg:text-xl font-bold text-gray-800 mb-4 max-lg:mb-3"
+          class="text-2xl max-lg:text-xl font-bold text-[#f0eaea] mb-4 max-lg:mb-3"
         >
           {{ $t("looking_for_answers") }}?
         </h2>
         <p
-          class="text-gray-600 max-lg:text-sm mb-8 max-lg:mb-6 max-w-2xl mx-auto"
+          class="text-[#b37a7a] max-lg:text-sm mb-8 max-lg:mb-6 max-w-2xl mx-auto"
         >
           {{ $t("visit_faq_description") }}
         </p>
         <NuxtLinkLocale
           to="/faq"
-          class="inline-flex items-center justify-center gap-2 bg-blue-600 text-white px-6 max-lg:px-5 py-3 max-lg:py-2.5 max-lg:text-sm rounded-lg lg:hover:bg-blue-700 transition-colors"
+          class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white px-6 max-lg:px-5 py-3 max-lg:py-2.5 max-lg:text-sm rounded-lg lg:hover:brightness-110 transition-all"
         >
           <i class="bi bi-question-circle"></i>
           {{ $t("visit_faq_page") }}

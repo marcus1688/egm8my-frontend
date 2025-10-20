@@ -8,7 +8,7 @@
       @close="alertVisible = false"
     />
     <PageLoading v-if="pageLoading" />
-    <div class="bg-slate-50">
+    <div>
       <section class="relative max-lg:max-w-[100vw]">
         <NuxtImg
           src="/images/banner/slot_banner.png"
@@ -22,16 +22,14 @@
         />
       </section>
 
-      <section
-        class="py-4 px-16 max-lg:p-4 bg-slate-50 border-t border-slate-100"
-      >
+      <section class="py-4 px-16 max-lg:p-4 border-t border-[#3b1c23]">
         <div>
           <div class="flex justify-between items-center">
             <div>
-              <h2 class="homeMainTxt3 font-bold text-gray-900">
+              <h2 class="homeMainTxt3 font-bold text-[#f0eaea]">
                 {{ $t("slot_games") }}
               </h2>
-              <p class="text-gray-500 mt-1 titletext">
+              <p class="text-[#b37a7a] mt-1 titletext">
                 {{ $t("choose_gaming_providers") }}
               </p>
             </div>
@@ -41,7 +39,7 @@
 
       <!-- Slot Kiosks-->
       <section
-        class="py-4 px-8 bg-white border-t border-b border-slate-100 shadow-sm max-lg:py-2 max-lg:px-3"
+        class="py-4 px-8 bg-[#241017] border-t border-b border-[#3b1c23] shadow-sm max-lg:py-2 max-lg:px-3"
       >
         <div
           class="flex flex-wrap gap-4 justify-center max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:justify-start max-lg:scrollbar-hide max-lg:-mx-2 max-lg:px-2 max-lg:pb-2"
@@ -56,8 +54,8 @@
               class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 max-lg:px-3 max-lg:py-1.5"
               :class="
                 currentKiosk?._id === provider._id
-                  ? 'bg-blue-50 border-2 border-blue-500'
-                  : 'bg-white lg:hover:bg-slate-50 border-2 border-transparent'
+                  ? 'bg-[#a1122d] border-2 border-[#ff3344]'
+                  : 'bg-[#15090e] lg:hover:bg-[#2a0f14] border-2 border-[#3b1c23]'
               "
             >
               <div
@@ -73,8 +71,8 @@
                 class="text-sm font-medium max-lg:text-xs max-lg:whitespace-nowrap"
                 :class="
                   currentKiosk?._id === provider._id
-                    ? 'text-blue-600'
-                    : 'text-gray-600'
+                    ? 'text-white'
+                    : 'text-[#b37a7a]'
                 "
               >
                 {{ provider.name }}
@@ -95,17 +93,17 @@
         v-if="
           currentKiosk && !currentKiosk.isManualGame && !currentKiosk.isHTMLGame
         "
-        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-slate-50"
+        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-[#1A0D13]"
       >
         <div>
           <div
             class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-6 max-lg:mb-4 max-lg:gap-3"
           >
             <div>
-              <h2 class="text-2xl font-bold text-gray-900 max-lg:text-base">
+              <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-base">
                 {{ currentKiosk.name }} {{ $t("games") }}
               </h2>
-              <p class="text-gray-500 mt-1 max-lg:text-xs">
+              <p class="text-[#b37a7a] mt-1 max-lg:text-xs">
                 {{
                   $t("showing_games", {
                     shown: paginatedGames.length,
@@ -120,10 +118,10 @@
                   type="text"
                   v-model="searchTerm"
                   :placeholder="$t('search_games')"
-                  class="w-full px-5 py-3 max-lg:py-2 rounded-lg bg-white border border-slate-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-12 shadow-sm"
+                  class="w-full px-5 py-3 max-lg:py-2 rounded-lg bg-[#241017] border border-[#3b1c23] text-[#f0eaea] focus:outline-none focus:ring-2 focus:ring-[#ff3344] focus:border-transparent pl-12 shadow-sm placeholder:text-[#b37a7a]"
                 />
                 <i
-                  class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-[#b37a7a]"
                 ></i>
               </div>
             </div>
@@ -143,12 +141,12 @@
                   gameType: game.GameType,
                 })
               "
-              class="bg-white rounded-xl overflow-hidden cursor-pointer shadow-sm transition-all duration-300 group"
+              class="bg-[#241017] rounded-xl overflow-hidden cursor-pointer shadow-sm transition-all duration-300 group border border-[#3b1c23]"
             >
               <!-- Image container with Play Now overlay on hover -->
               <div class="relative overflow-hidden">
                 <div
-                  class="w-full aspect-square flex items-center justify-center bg-gray-100"
+                  class="w-full aspect-square flex items-center justify-center bg-[#15090e]"
                 >
                   <img
                     :src="
@@ -168,7 +166,7 @@
                     class="max-lg:hidden absolute inset-0 bg-black/30 opacity-0 lg:group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-xl"
                   >
                     <button
-                      class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-lg transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
+                      class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-semibold rounded-lg shadow-lg transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
                     >
                       <Icon
                         icon="mdi:lightning-bolt"
@@ -179,7 +177,7 @@
                   </div>
                   <div
                     v-if="game.Hot"
-                    class="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1 z-10"
+                    class="absolute top-0 right-0 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1 z-10"
                   >
                     <Icon icon="mdi:star" class="text-yellow-300" />
                     {{ $t("top") }}
@@ -187,10 +185,10 @@
                 </div>
               </div>
 
-              <div class="border-t border-gray-100">
+              <div class="border-t border-[#3b1c23]">
                 <div class="p-2 pt-3 text-center">
                   <h4
-                    class="text-sm max-md:text-xs font-medium text-gray-800 break-words hyphens-auto"
+                    class="text-sm max-md:text-xs font-medium text-[#f0eaea] break-words hyphens-auto"
                   >
                     {{ getLocalizedGameName(game) }}
                   </h4>
@@ -199,9 +197,9 @@
                 <!-- RTP row - only shows if RTP exists -->
                 <div v-if="game.RTP" class="px-2 pb-2.5 flex justify-center">
                   <div class="flex items-center justify-center gap-2">
-                    <div class="h-0.5 w-4 bg-gray-200 rounded-full"></div>
+                    <div class="h-0.5 w-4 bg-[#3b1c23] rounded-full"></div>
                     <div
-                      class="flex items-center bg-gray-100 rounded-full px-2 py-0.5"
+                      class="flex items-center bg-[#15090e] rounded-full px-2 py-0.5 border border-[#3b1c23]"
                     >
                       <span
                         class="text-xs font-medium text-amber-600 flex items-center gap-1"
@@ -213,7 +211,7 @@
                         {{ game.RTP }}
                       </span>
                     </div>
-                    <div class="h-0.5 w-4 bg-gray-200 rounded-full"></div>
+                    <div class="h-0.5 w-4 bg-[#3b1c23] rounded-full"></div>
                   </div>
                 </div>
               </div>
@@ -221,21 +219,24 @@
           </div>
 
           <!-- No Games Found  -->
-          <div v-else class="text-center py-20 bg-white rounded-xl shadow-sm">
+          <div
+            v-else
+            class="text-center py-20 bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23]"
+          >
             <div
-              class="w-24 h-24 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mb-6"
+              class="w-24 h-24 mx-auto bg-[#15090e] rounded-full flex items-center justify-center text-[#b37a7a] mb-6 border border-[#3b1c23]"
             >
               <i class="bi bi-search text-4xl"></i>
             </div>
-            <h3 class="text-xl font-medium text-gray-700 mb-3">
+            <h3 class="text-xl font-medium text-[#f0eaea] mb-3">
               {{ $t("no_games_found") }}
             </h3>
-            <p class="text-gray-500 max-w-lg mx-auto">
+            <p class="text-[#b37a7a] max-w-lg mx-auto">
               {{ $t("no_games_message") }}
             </p>
             <button
               @click="searchTerm = ''"
-              class="mt-6 px-6 py-2.5 bg-blue-500 text-white rounded-lg font-medium lg:hover:bg-blue-600 transition-colors"
+              class="mt-6 px-6 py-2.5 bg-[#a1122d] text-white rounded-lg font-medium lg:hover:bg-[#c21b3a] transition-colors"
             >
               {{ $t("clear_search") }}
             </button>
@@ -249,13 +250,13 @@
               <button
                 @click="currentPage > 1 && currentPage--"
                 :disabled="currentPage === 1"
-                class="px-4 py-2.5 border border-slate-200 rounded-l-lg text-gray-600 lg:hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="px-4 py-2.5 border border-[#3b1c23] rounded-l-lg text-[#b37a7a] lg:hover:bg-[#2a0f14] disabled:opacity-50 disabled:cursor-not-allowed bg-[#241017]"
               >
                 <i class="bi bi-chevron-left"></i>
               </button>
 
               <div
-                class="px-6 py-2.5 border-t border-b border-slate-200 text-gray-700 flex items-center"
+                class="px-6 py-2.5 border-t border-b border-[#3b1c23] text-[#f0eaea] flex items-center bg-[#241017]"
               >
                 <span class="font-medium">{{ currentPage }}</span>
                 <span class="mx-1">/</span>
@@ -265,7 +266,7 @@
               <button
                 @click="currentPage < totalPages && currentPage++"
                 :disabled="currentPage === totalPages"
-                class="px-4 py-2.5 border border-slate-200 rounded-r-lg text-gray-600 lg:hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="px-4 py-2.5 border border-[#3b1c23] rounded-r-lg text-[#b37a7a] lg:hover:bg-[#2a0f14] disabled:opacity-50 disabled:cursor-not-allowed bg-[#241017]"
               >
                 <i class="bi bi-chevron-right"></i>
               </button>
@@ -277,16 +278,16 @@
       <!-- HTML Game -->
       <section
         v-if="currentKiosk && currentKiosk.isHTMLGame"
-        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-md:px-3 max-md:py-4 max-sm:py-3 bg-slate-50"
+        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-md:px-3 max-md:py-4 max-sm:py-3 bg-[#1A0D13]"
       >
         <div class="max-w-7xl mx-auto">
           <div class="flex flex-col lg:flex-row gap-6 max-md:gap-4">
             <div class="w-full lg:w-1/2">
               <div
-                class="bg-white rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full flex flex-col"
+                class="bg-[#241017] rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-[#3b1c23]"
               >
                 <div
-                  class="p-6 max-md:p-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                  class="p-6 max-md:p-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white"
                 >
                   <div class="flex items-center gap-4 max-md:gap-3">
                     <div
@@ -302,7 +303,7 @@
                       <h2 class="text-2xl max-md:text-xl font-bold">
                         {{ currentKiosk.name }} {{ $t("wallet") }}
                       </h2>
-                      <p class="text-blue-100 max-md:text-sm">
+                      <p class="text-red-100 max-md:text-sm">
                         {{ $t("manage_game_balance") }}
                       </p>
                     </div>
@@ -317,35 +318,35 @@
                     >
                       <!-- Balance Display -->
                       <div
-                        class="flex items-center justify-between bg-blue-50 p-4 max-md:p-3 rounded-lg"
+                        class="flex items-center justify-between bg-[#15090e] p-4 max-md:p-3 rounded-lg border border-[#3b1c23]"
                       >
                         <div class="flex items-center gap-3 max-md:gap-2">
                           <div
-                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                           >
                             <i class="bi bi-wallet2 text-xl max-md:text-lg"></i>
                           </div>
                           <div>
-                            <p class="text-sm max-md:text-xs text-gray-500">
+                            <p class="text-sm max-md:text-xs text-[#b37a7a]">
                               {{ $t("game_balance") }}
                             </p>
                             <div class="flex items-center">
                               <p
-                                class="font-medium text-gray-800 max-md:text-sm"
+                                class="font-medium text-[#f0eaea] max-md:text-sm"
                                 v-if="!isBalanceLoading"
                               >
                                 {{ gameBalance || "0.00" }}
                               </p>
                               <div
                                 v-else
-                                class="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin ml-1"
+                                class="w-4 h-4 border-2 border-[#ff3344] border-t-transparent rounded-full animate-spin ml-1"
                               ></div>
                             </div>
                           </div>
                         </div>
                         <button
                           @click="fetchGameBalance"
-                          class="text-blue-500 lg:hover:text-blue-700"
+                          class="text-[#ff3344] lg:hover:text-[#f0eaea]"
                           :disabled="isBalanceLoading"
                         >
                           <i
@@ -361,21 +362,23 @@
 
                       <!-- Username Info -->
                       <div
-                        class="flex items-center justify-between bg-blue-50 p-4 max-md:p-3 rounded-lg"
+                        class="flex items-center justify-between bg-[#15090e] p-4 max-md:p-3 rounded-lg border border-[#3b1c23]"
                       >
                         <div class="flex items-center gap-3 max-md:gap-2">
                           <div
-                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                           >
                             <i
                               class="bi bi-person-fill text-xl max-md:text-lg"
                             ></i>
                           </div>
                           <div>
-                            <p class="text-sm max-md:text-xs text-gray-500">
+                            <p class="text-sm max-md:text-xs text-[#b37a7a]">
                               {{ $t("username") }}
                             </p>
-                            <p class="font-medium text-gray-800 max-md:text-sm">
+                            <p
+                              class="font-medium text-[#f0eaea] max-md:text-sm"
+                            >
                               {{ userData.lionKingGameID }}
                             </p>
                           </div>
@@ -385,7 +388,7 @@
                       <!-- Transfer Button -->
                       <button
                         @click="openTransferModal"
-                        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 max-md:py-2.5 px-6 max-md:px-4 rounded-lg font-medium lg:hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                        class="w-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white py-3 max-md:py-2.5 px-6 max-md:px-4 rounded-lg font-medium lg:hover:shadow-lg transition-all flex items-center justify-center gap-2"
                       >
                         <i class="bi bi-arrow-left-right text-xl"></i>
                         <span class="font-bold max-md:text-sm">{{
@@ -393,7 +396,7 @@
                         }}</span>
                       </button>
 
-                      <div class="text-xs text-gray-500 text-center">
+                      <div class="text-xs text-[#b37a7a] text-center">
                         {{ $t("transfer_funds_description") }}
                       </div>
                     </div>
@@ -404,7 +407,7 @@
                       class="text-center py-8 max-md:py-6 space-y-6 max-md:space-y-4"
                     >
                       <div
-                        class="w-20 h-20 max-md:w-16 max-md:h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-500"
+                        class="w-20 h-20 max-md:w-16 max-md:h-16 mx-auto bg-[#15090e] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                       >
                         <i
                           class="bi bi-person-plus text-3xl max-md:text-2xl"
@@ -412,12 +415,12 @@
                       </div>
                       <div>
                         <h3
-                          class="text-xl max-md:text-lg font-semibold text-gray-800"
+                          class="text-xl max-md:text-lg font-semibold text-[#f0eaea]"
                         >
                           {{ $t("account_required") }}
                         </h3>
                         <p
-                          class="text-gray-600 mt-2 max-md:mt-1 max-md:text-sm"
+                          class="text-[#b37a7a] mt-2 max-md:mt-1 max-md:text-sm"
                         >
                           {{
                             $t("account_required_description", {
@@ -431,7 +434,7 @@
                           <LoadingButton
                             :loading="isLoading"
                             @click="registerGameAccount"
-                            class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
+                            class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
                           >
                             <i class="bi bi-plus-circle"></i>
                             {{ $t("create_account") }}
@@ -440,7 +443,7 @@
                         <div v-else>
                           <NuxtLinkLocale
                             to="/login"
-                            class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
+                            class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
                           >
                             <i class="bi bi-box-arrow-in-right"></i>
                             {{ $t("login_now") }}
@@ -451,15 +454,17 @@
                   </div>
                 </div>
 
-                <div class="p-6 max-md:p-4 bg-gray-50 border-t border-gray-100">
+                <div
+                  class="p-6 max-md:p-4 bg-[#15090e] border-t border-[#3b1c23]"
+                >
                   <h4
-                    class="font-medium text-gray-700 mb-3 max-md:mb-2 flex items-center gap-2 max-md:text-sm"
+                    class="font-medium text-[#f0eaea] mb-3 max-md:mb-2 flex items-center gap-2 max-md:text-sm"
                   >
-                    <i class="bi bi-info-circle text-blue-500"></i>
+                    <i class="bi bi-info-circle text-[#ff3344]"></i>
                     {{ $t("transfer_instructions") }}
                   </h4>
                   <ul
-                    class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-gray-600"
+                    class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-[#b37a7a]"
                   >
                     <li class="flex items-start gap-2 max-md:gap-1.5">
                       <i
@@ -486,10 +491,10 @@
 
             <div class="w-full lg:w-1/2">
               <div
-                class="bg-white rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full flex flex-col"
+                class="bg-[#241017] rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-[#3b1c23]"
               >
                 <div
-                  class="p-6 max-md:p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white"
+                  class="p-6 max-md:p-4 bg-gradient-to-r from-[#c21b3a] to-[#ff3344] text-white"
                 >
                   <div class="flex items-center gap-4 max-md:gap-3">
                     <div
@@ -503,7 +508,7 @@
                       <h2 class="text-2xl max-md:text-xl font-bold">
                         {{ $t("play_online", { provider: currentKiosk.name }) }}
                       </h2>
-                      <p class="text-indigo-100 max-md:text-sm">
+                      <p class="text-red-100 max-md:text-sm">
                         {{ $t("launch_in_app") }}
                       </p>
                     </div>
@@ -515,11 +520,11 @@
                 >
                   <div class="text-center mb-6 max-md:mb-4">
                     <h3
-                      class="text-xl max-md:text-lg font-semibold text-gray-800 mb-2 max-md:mb-1"
+                      class="text-xl max-md:text-lg font-semibold text-[#f0eaea] mb-2 max-md:mb-1"
                     >
                       {{ $t("instant_app_play") }}
                     </h3>
-                    <p class="text-gray-600 max-md:text-sm">
+                    <p class="text-[#b37a7a] max-md:text-sm">
                       {{
                         $t("download_required", {
                           provider: currentKiosk.name,
@@ -531,7 +536,7 @@
                   <div class="w-full flex justify-center mt-4">
                     <button
                       @click="launchHTMLGame"
-                      class="px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 lg:hover:from-purple-700 lg:hover:to-indigo-700 text-white font-medium rounded-lg transition-all shadow-md lg:hover:shadow-lg flex items-center gap-3 max-w-xs w-full justify-center"
+                      class="px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-[#c21b3a] to-[#ff3344] lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] text-white font-medium rounded-lg transition-all shadow-md lg:hover:shadow-lg flex items-center gap-3 max-w-xs w-full justify-center"
                     >
                       <i class="bi bi-play-circle-fill text-2xl"></i>
                       <span class="font-bold uppercase">{{
@@ -540,16 +545,18 @@
                     </button>
                   </div>
 
-                  <p class="text-sm text-gray-500 mt-4 text-center">
+                  <p class="text-sm text-[#b37a7a] mt-4 text-center">
                     {{ $t("new_window_notice2") }}
                   </p>
                 </div>
 
-                <div class="p-6 max-md:p-4 bg-gray-50 border-t border-gray-100">
+                <div
+                  class="p-6 max-md:p-4 bg-[#15090e] border-t border-[#3b1c23]"
+                >
                   <h4
-                    class="font-medium text-gray-700 mb-4 max-md:mb-3 flex items-center gap-2 max-md:text-sm"
+                    class="font-medium text-[#f0eaea] mb-4 max-md:mb-3 flex items-center gap-2 max-md:text-sm"
                   >
-                    <i class="bi bi-info-circle text-purple-500"></i>
+                    <i class="bi bi-info-circle text-[#ff3344]"></i>
                     {{ $t("browser_play_tips") }}
                   </h4>
 
@@ -557,7 +564,7 @@
                   <div class="space-y-3 max-md:space-y-2 mb-4 max-md:text-xs">
                     <!-- Mobile Only Requirement -->
                     <div
-                      class="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-red-500 p-3 max-md:p-2 rounded-r-lg"
+                      class="bg-gradient-to-r from-[#2a0f14] to-[#1f0e13] border-l-4 border-red-500 p-3 max-md:p-2 rounded-r-lg"
                     >
                       <div class="flex items-start gap-3 max-md:gap-2">
                         <div
@@ -568,14 +575,14 @@
                         <div>
                           <div class="flex items-center gap-2 mb-1">
                             <span
-                              class="text-xs font-semibold text-red-600 uppercase tracking-wide"
+                              class="text-xs font-semibold text-red-400 uppercase tracking-wide"
                               >{{ $t("important") }}</span
                             >
                             <span
                               class="w-2 h-2 bg-red-500 rounded-full animate-pulse"
                             ></span>
                           </div>
-                          <span class="font-medium text-gray-800">{{
+                          <span class="font-medium text-[#f0eaea]">{{
                             $t("alert_game_only_available_on_mobile")
                           }}</span>
                         </div>
@@ -584,34 +591,34 @@
 
                     <!-- App Installation Requirement -->
                     <div
-                      class="bg-gradient-to-r from-blue-50 to-indigo-50 border-l-4 border-blue-500 p-3 max-md:p-2 rounded-r-lg"
+                      class="bg-gradient-to-r from-[#2a0f14] to-[#1f0e13] border-l-4 border-[#ff3344] p-3 max-md:p-2 rounded-r-lg"
                     >
                       <div
                         class="flex items-start gap-3 max-md:gap-2 max-md:text-xs"
                       >
                         <div
-                          class="flex-shrink-0 w-6 h-6 max-md:w-5 max-md:h-5 bg-blue-500 rounded-full flex items-center justify-center mt-0.5"
+                          class="flex-shrink-0 w-6 h-6 max-md:w-5 max-md:h-5 bg-[#ff3344] rounded-full flex items-center justify-center mt-0.5"
                         >
                           <i class="bi bi-download text-white text-xs"></i>
                         </div>
                         <div>
                           <div class="flex items-center gap-2 mb-1">
                             <span
-                              class="text-xs font-semibold text-blue-600 uppercase tracking-wide"
+                              class="text-xs font-semibold text-[#ff3344] uppercase tracking-wide"
                               >{{ $t("required") }}</span
                             >
                             <span
-                              class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"
+                              class="w-2 h-2 bg-[#ff3344] rounded-full animate-pulse"
                             ></span>
                           </div>
                           <div class="space-y-1">
-                            <span class="font-medium text-gray-800 block">{{
+                            <span class="font-medium text-[#f0eaea] block">{{
                               $t("install_lion_king_app_first")
                             }}</span>
                             <a
                               href="https://dl.lk4u.xyz"
                               target="_blank"
-                              class="inline-flex items-center gap-1 text-blue-600 lg:hover:text-blue-700 text-xs font-medium underline"
+                              class="inline-flex items-center gap-1 text-[#ff3344] lg:hover:text-[#c21b3a] text-xs font-medium underline"
                             >
                               <i class="bi bi-box-arrow-up-right"></i>
                               {{ $t("download_from_google") }}
@@ -623,14 +630,14 @@
                   </div>
 
                   <!-- Additional Tips -->
-                  <div class="border-t border-gray-200 pt-3">
+                  <div class="border-t border-[#3b1c23] pt-3">
                     <h5
-                      class="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2"
+                      class="text-xs font-medium text-[#b37a7a] uppercase tracking-wide mb-2"
                     >
                       {{ $t("additional_tips") }}
                     </h5>
                     <ul
-                      class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-gray-600"
+                      class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-[#b37a7a]"
                     >
                       <li class="flex items-start gap-2 max-md:gap-1.5">
                         <i
@@ -656,16 +663,16 @@
       <!-- Manual Game -->
       <section
         v-if="currentKiosk && currentKiosk.isManualGame"
-        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-md:px-3 max-md:py-4 max-sm:py-3 bg-slate-50"
+        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-md:px-3 max-md:py-4 max-sm:py-3 bg-[#1A0D13]"
       >
         <div class="max-w-7xl mx-auto">
           <div class="flex flex-col lg:flex-row gap-6 max-md:gap-4">
             <div class="w-full lg:w-1/2">
               <div
-                class="bg-white rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full"
+                class="bg-[#241017] rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full border border-[#3b1c23]"
               >
                 <div
-                  class="p-6 max-md:p-4 bg-gradient-to-r from-blue-500 to-indigo-600 text-white"
+                  class="p-6 max-md:p-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white"
                 >
                   <div class="flex items-center gap-4 max-md:gap-3">
                     <div
@@ -681,7 +688,7 @@
                       <h2 class="text-2xl max-md:text-xl font-bold">
                         {{ currentKiosk.name }}
                       </h2>
-                      <p class="text-blue-100 max-md:text-sm">
+                      <p class="text-red-100 max-md:text-sm">
                         {{ $t("manual_login_required") }}
                       </p>
                     </div>
@@ -695,35 +702,35 @@
                       class="space-y-6 max-md:space-y-4"
                     >
                       <div
-                        class="flex items-center justify-between bg-blue-50 p-4 max-md:p-3 rounded-lg"
+                        class="flex items-center justify-between bg-[#15090e] p-4 max-md:p-3 rounded-lg border border-[#3b1c23]"
                       >
                         <div class="flex items-center gap-3 max-md:gap-2">
                           <div
-                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                           >
                             <i class="bi bi-wallet2 text-xl max-md:text-lg"></i>
                           </div>
                           <div>
-                            <p class="text-sm max-md:text-xs text-gray-500">
+                            <p class="text-sm max-md:text-xs text-[#b37a7a]">
                               {{ $t("balance") }}
                             </p>
                             <div class="flex items-center">
                               <p
-                                class="font-medium text-gray-800 max-md:text-sm"
+                                class="font-medium text-[#f0eaea] max-md:text-sm"
                                 v-if="!isBalanceLoading"
                               >
                                 {{ gameBalance || "0.00" }}
                               </p>
                               <div
                                 v-else
-                                class="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin ml-1"
+                                class="w-4 h-4 border-2 border-[#ff3344] border-t-transparent rounded-full animate-spin ml-1"
                               ></div>
                             </div>
                           </div>
                         </div>
                         <button
                           @click="fetchGameBalance"
-                          class="text-blue-500 lg:hover:text-blue-700"
+                          class="text-[#ff3344] lg:hover:text-[#f0eaea]"
                           :disabled="isBalanceLoading"
                         >
                           <i
@@ -738,56 +745,60 @@
                       </div>
 
                       <div
-                        class="flex items-center justify-between bg-blue-50 p-4 max-md:p-3 rounded-lg"
+                        class="flex items-center justify-between bg-[#15090e] p-4 max-md:p-3 rounded-lg border border-[#3b1c23]"
                       >
                         <div class="flex items-center gap-3 max-md:gap-2">
                           <div
-                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                           >
                             <i
                               class="bi bi-person-fill text-xl max-md:text-lg"
                             ></i>
                           </div>
                           <div>
-                            <p class="text-sm max-md:text-xs text-gray-500">
+                            <p class="text-sm max-md:text-xs text-[#b37a7a]">
                               {{ $t("username") }}
                             </p>
-                            <p class="font-medium text-gray-800 max-md:text-sm">
+                            <p
+                              class="font-medium text-[#f0eaea] max-md:text-sm"
+                            >
                               {{ userData.gw99GameID }}
                             </p>
                           </div>
                         </div>
                         <button
                           @click="copyToClipboard(userData.gw99GameID)"
-                          class="text-blue-500 lg:hover:text-blue-700"
+                          class="text-[#ff3344] lg:hover:text-[#f0eaea]"
                         >
                           <i class="bi bi-clipboard text-lg"></i>
                         </button>
                       </div>
 
                       <div
-                        class="flex items-center justify-between bg-blue-50 p-4 max-md:p-3 rounded-lg"
+                        class="flex items-center justify-between bg-[#15090e] p-4 max-md:p-3 rounded-lg border border-[#3b1c23]"
                       >
                         <div class="flex items-center gap-3 max-md:gap-2">
                           <div
-                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                            class="w-10 h-10 max-md:w-8 max-md:h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                           >
                             <i
                               class="bi bi-key-fill text-xl max-md:text-lg"
                             ></i>
                           </div>
                           <div>
-                            <p class="text-sm max-md:text-xs text-gray-500">
+                            <p class="text-sm max-md:text-xs text-[#b37a7a]">
                               {{ $t("password") }}
                             </p>
-                            <p class="font-medium text-gray-800 max-md:text-sm">
+                            <p
+                              class="font-medium text-[#f0eaea] max-md:text-sm"
+                            >
                               {{ userData.gw99GamePW }}
                             </p>
                           </div>
                         </div>
                         <button
                           @click="copyToClipboard(userData.gw99GamePW)"
-                          class="text-blue-500 lg:hover:text-blue-700"
+                          class="text-[#ff3344] lg:hover:text-[#f0eaea]"
                         >
                           <i class="bi bi-clipboard text-lg"></i>
                         </button>
@@ -796,7 +807,7 @@
                       <div class="mt-6 max-md:mt-4 flex gap-4 max-md:gap-2">
                         <button
                           @click="openTransferModal"
-                          class="flex-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 max-md:py-2.5 px-6 max-md:px-4 rounded-lg font-medium lg:hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                          class="flex-1 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white py-3 max-md:py-2.5 px-6 max-md:px-4 rounded-lg font-medium lg:hover:shadow-lg transition-all flex items-center justify-center gap-2"
                         >
                           <i class="bi bi-arrow-left-right"></i>
                           <span class="max-md:text-sm">{{
@@ -806,7 +817,7 @@
 
                         <button
                           @click="refreshGameAccount"
-                          class="bg-gray-100 text-gray-700 py-3 max-md:py-2.5 px-6 max-md:px-4 rounded-lg font-medium lg:hover:bg-gray-200 transition-all flex items-center justify-center"
+                          class="bg-[#15090e] text-[#b37a7a] py-3 max-md:py-2.5 px-6 max-md:px-4 rounded-lg font-medium lg:hover:bg-[#2a0f14] transition-all flex items-center justify-center border border-[#3b1c23]"
                         >
                           <i class="bi bi-arrow-clockwise"></i>
                         </button>
@@ -818,7 +829,7 @@
                       class="text-center py-8 max-md:py-6 space-y-6 max-md:space-y-4"
                     >
                       <div
-                        class="w-20 h-20 max-md:w-16 max-md:h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-500"
+                        class="w-20 h-20 max-md:w-16 max-md:h-16 mx-auto bg-[#15090e] rounded-full flex items-center justify-center text-[#ff3344] border border-[#3b1c23]"
                       >
                         <i
                           class="bi bi-person-plus text-3xl max-md:text-2xl"
@@ -826,12 +837,12 @@
                       </div>
                       <div>
                         <h3
-                          class="text-xl max-md:text-lg font-semibold text-gray-800"
+                          class="text-xl max-md:text-lg font-semibold text-[#f0eaea]"
                         >
                           {{ $t("account_required") }}
                         </h3>
                         <p
-                          class="text-gray-600 mt-2 max-md:mt-1 max-md:text-sm"
+                          class="text-[#b37a7a] mt-2 max-md:mt-1 max-md:text-sm"
                         >
                           {{
                             $t("account_required_description", {
@@ -845,7 +856,7 @@
                           <LoadingButton
                             :loading="isLoading"
                             @click="registerGameAccount"
-                            class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
+                            class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
                           >
                             <i class="bi bi-plus-circle"></i>
                             {{ $t("create_account") }}
@@ -854,7 +865,7 @@
                         <div v-else>
                           <NuxtLinkLocale
                             to="/login"
-                            class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
+                            class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white py-3 max-md:py-2.5 px-8 max-md:px-6 rounded-lg font-medium lg:hover:shadow-lg transition-all inline-flex items-center gap-2 max-md:text-sm"
                           >
                             <i class="bi bi-box-arrow-in-right"></i>
                             {{ $t("login_now") }}
@@ -865,15 +876,17 @@
                   </div>
                 </div>
 
-                <div class="p-6 max-md:p-4 bg-gray-50 border-t border-gray-100">
+                <div
+                  class="p-6 max-md:p-4 bg-[#15090e] border-t border-[#3b1c23]"
+                >
                   <h4
-                    class="font-medium text-gray-700 mb-3 max-md:mb-2 flex items-center gap-2 max-md:text-sm"
+                    class="font-medium text-[#f0eaea] mb-3 max-md:mb-2 flex items-center gap-2 max-md:text-sm"
                   >
-                    <i class="bi bi-info-circle text-blue-500"></i>
+                    <i class="bi bi-info-circle text-[#ff3344]"></i>
                     {{ $t("instructions") }}
                   </h4>
                   <ul
-                    class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-gray-600"
+                    class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-[#b37a7a]"
                   >
                     <li class="flex items-start gap-2 max-md:gap-1.5">
                       <i
@@ -900,10 +913,10 @@
 
             <div class="w-full lg:w-1/2">
               <div
-                class="bg-white rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full flex flex-col"
+                class="bg-[#241017] rounded-2xl max-md:rounded-xl shadow-md overflow-hidden h-full flex flex-col border border-[#3b1c23]"
               >
                 <div
-                  class="p-6 max-md:p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white"
+                  class="p-6 max-md:p-4 bg-gradient-to-r from-[#c21b3a] to-[#ff3344] text-white"
                 >
                   <div class="flex items-center gap-4 max-md:gap-3">
                     <div
@@ -921,7 +934,7 @@
                           })
                         }}
                       </h2>
-                      <p class="text-indigo-100 max-md:text-sm">
+                      <p class="text-red-100 max-md:text-sm">
                         {{ $t("get_app_for_better_experience") }}
                       </p>
                     </div>
@@ -931,11 +944,11 @@
                 <div class="p-8 max-md:p-4 flex-1">
                   <div class="text-center mb-6 max-md:mb-4">
                     <h3
-                      class="text-xl max-md:text-lg font-semibold text-gray-800 mb-2 max-md:mb-1"
+                      class="text-xl max-md:text-lg font-semibold text-[#f0eaea] mb-2 max-md:mb-1"
                     >
                       {{ $t("choose_your_platform") }}
                     </h3>
-                    <p class="text-gray-600 max-md:text-sm">
+                    <p class="text-[#b37a7a] max-md:text-sm">
                       {{
                         $t("download_app_experience", {
                           provider: currentKiosk.name,
@@ -950,7 +963,7 @@
                     <!-- Android 下载 -->
                     <div
                       @click="downloadApp('android')"
-                      class="group bg-gradient-to-br from-green-50 to-teal-50 border border-green-100 rounded-xl max-md:rounded-lg p-6 max-md:p-4 cursor-pointer lg:hover:shadow-md transition-all duration-300 flex flex-col items-center"
+                      class="group bg-gradient-to-br from-[#2a0f14] to-[#1f0e13] border border-[#3b1c23] rounded-xl max-md:rounded-lg p-6 max-md:p-4 cursor-pointer lg:hover:shadow-md transition-all duration-300 flex flex-col items-center"
                     >
                       <div
                         class="w-24 h-24 max-md:w-20 max-md:h-20 mb-4 max-md:mb-3 relative"
@@ -968,12 +981,12 @@
                         </div>
                       </div>
                       <h4
-                        class="font-semibold text-lg max-md:text-base text-gray-800 mb-1"
+                        class="font-semibold text-lg max-md:text-base text-[#f0eaea] mb-1"
                       >
                         {{ $t("android_app") }}
                       </h4>
                       <p
-                        class="text-sm max-md:text-xs text-gray-600 mb-4 max-md:mb-3"
+                        class="text-sm max-md:text-xs text-[#b37a7a] mb-4 max-md:mb-3"
                       >
                         {{ $t("apk_direct_download") }}
                       </p>
@@ -988,7 +1001,7 @@
                     <!-- iOS 下载 -->
                     <div
                       @click="downloadApp('ios')"
-                      class="group bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100 rounded-xl max-md:rounded-lg p-6 max-md:p-4 cursor-pointer lg:hover:shadow-md transition-all duration-300 flex flex-col items-center"
+                      class="group bg-gradient-to-br from-[#2a0f14] to-[#1f0e13] border border-[#3b1c23] rounded-xl max-md:rounded-lg p-6 max-md:p-4 cursor-pointer lg:hover:shadow-md transition-all duration-300 flex flex-col items-center"
                     >
                       <div
                         class="w-24 h-24 max-md:w-20 max-md:h-20 mb-4 max-md:mb-3 relative"
@@ -1000,23 +1013,23 @@
                           onerror="this.src='https://placehold.co/200/3b82f6/FFF?text=iOS'"
                         />
                         <div
-                          class="absolute -right-2 -bottom-2 w-8 h-8 max-md:w-6 max-md:h-6 max-md:-right-1 max-md:-bottom-1 bg-blue-500 rounded-full flex items-center justify-center text-white transform scale-0 lg:group-hover:scale-100 transition-transform"
+                          class="absolute -right-2 -bottom-2 w-8 h-8 max-md:w-6 max-md:h-6 max-md:-right-1 max-md:-bottom-1 bg-[#ff3344] rounded-full flex items-center justify-center text-white transform scale-0 lg:group-hover:scale-100 transition-transform"
                         >
                           <i class="bi bi-download max-md:text-sm"></i>
                         </div>
                       </div>
                       <h4
-                        class="font-semibold text-lg max-md:text-base text-gray-800 mb-1"
+                        class="font-semibold text-lg max-md:text-base text-[#f0eaea] mb-1"
                       >
                         {{ $t("ios_app") }}
                       </h4>
                       <p
-                        class="text-sm max-md:text-xs text-gray-600 mb-4 max-md:mb-3"
+                        class="text-sm max-md:text-xs text-[#b37a7a] mb-4 max-md:mb-3"
                       >
                         {{ $t("app_store_installation") }}
                       </p>
                       <button
-                        class="w-full py-2 max-md:py-1.5 bg-blue-600 text-white rounded-lg font-medium lg:hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 lg:group-hover:shadow-lg max-md:text-sm"
+                        class="w-full py-2 max-md:py-1.5 bg-[#a1122d] text-white rounded-lg font-medium lg:hover:bg-[#c21b3a] transition-colors flex items-center justify-center gap-2 lg:group-hover:shadow-lg max-md:text-sm"
                       >
                         <i class="bi bi-apple text-lg max-md:text-base"></i>
                         {{ $t("download_ios") }}
@@ -1025,15 +1038,17 @@
                   </div>
                 </div>
 
-                <div class="p-6 max-md:p-4 bg-gray-50 border-t border-gray-100">
+                <div
+                  class="p-6 max-md:p-4 bg-[#15090e] border-t border-[#3b1c23]"
+                >
                   <h4
-                    class="font-medium text-gray-700 mb-3 max-md:mb-2 flex items-center gap-2 max-md:text-sm"
+                    class="font-medium text-[#f0eaea] mb-3 max-md:mb-2 flex items-center gap-2 max-md:text-sm"
                   >
-                    <i class="bi bi-info-circle text-purple-500"></i>
+                    <i class="bi bi-info-circle text-[#ff3344]"></i>
                     {{ $t("download_help") }}
                   </h4>
                   <ul
-                    class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-gray-600"
+                    class="space-y-2 max-md:space-y-1.5 text-sm max-md:text-xs text-[#b37a7a]"
                   >
                     <li class="flex items-start gap-2 max-md:gap-1.5">
                       <i

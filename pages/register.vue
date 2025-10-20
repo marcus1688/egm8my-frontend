@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <div
-      class="bg-gradient-to-r from-red-500 via-pink-500 to-red-500 text-white text-center py-2 shadow-lg"
+      class="bg-gradient-to-r from-[#a1122d] via-[#c21b3a] to-[#a1122d] text-white text-center py-2 shadow-lg hidden"
     >
       <div class="flex items-center justify-center gap-2 animate-pulse">
         <span>🎁</span>
@@ -11,7 +11,7 @@
       </div>
     </div>
     <div
-      class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-700 to-indigo-800 p-4 relative overflow-hidden"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#1A0D13] to-[#241017] p-4 relative overflow-hidden"
     >
       <div class="absolute inset-0 overflow-hidden">
         <div class="absolute inset-0">
@@ -42,26 +42,26 @@
       <div class="w-full max-w-sm relative">
         <div class="text-center mb-3">
           <div class="inline-block p-0.5">
-            <NuxtImg src="/images/egm8my.png" alt="" class="w-24" />
+            <NuxtImg src="/images/egm8my.png" alt="" class="w-36" />
           </div>
         </div>
 
         <div
-          class="bg-white/10 rounded-xl overflow-hidden border border-white/20 shadow-lg lg:hover:shadow-blue-500/20 transition-all duration-300 card-reveal"
+          class="bg-[#241017]/60 rounded-xl overflow-hidden border border-[#3b1c23] shadow-lg lg:hover:shadow-[#ff3344]/20 transition-all duration-300 card-reveal"
         >
           <div
-            class="p-0.5 bg-gradient-to-b from-blue-500/50 via-transparent to-transparent z-10"
+            class="p-0.5 bg-gradient-to-b from-[#ff3344]/50 via-transparent to-transparent z-10"
           >
             <div class="pt-4 px-6 flex justify-between items-center">
               <h1 class="text-white font-bold relative">
                 <span class="bg-clip-text text_1">{{ $t("register") }}</span>
                 <span
-                  class="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 title-line-reveal"
+                  class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#ff3344] title-line-reveal"
                 ></span>
               </h1>
               <NuxtLinkLocale
                 to="/"
-                class="text_2 flex items-center text-blue-400 lg:hover:text-white transition-colors text-sm"
+                class="text_2 flex items-center text-[#ff3344] lg:hover:text-white transition-colors text-sm"
               >
                 <i class="bi bi-arrow-left mr-2"></i>
                 <span>{{ $t("back") }}</span>
@@ -76,11 +76,11 @@
                       type="text"
                       v-model="form.fullname"
                       :placeholder="$t('fullname')"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                       required
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-person-fill"></i>
                     </div>
@@ -92,11 +92,11 @@
                       type="text"
                       v-model="form.username"
                       :placeholder="$t('username')"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                       required
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-person-fill"></i>
                     </div>
@@ -108,18 +108,18 @@
                       :type="passwordVisible ? 'text' : 'password'"
                       v-model="form.password"
                       :placeholder="$t('password')"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                       required
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-lock-fill"></i>
                     </div>
                     <button
                       type="button"
                       @click="togglePasswordVisibility('password')"
-                      class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400"
+                      class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#b37a7a]"
                     >
                       <Icon
                         :icon="passwordVisible ? 'mdi:eye-off' : 'mdi:eye'"
@@ -152,12 +152,12 @@
                       type="text"
                       v-model="form.mobileNumber"
                       :placeholder="$t('mobile_number')"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                       :disabled="form.isPhoneVerified"
                       required
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-phone-fill"></i>
                     </div>
@@ -182,7 +182,7 @@
                           v-model="otpCode"
                           type="text"
                           :placeholder="$t('verification_code')"
-                          class="w-full h-11 pl-4 text-sm bg-slate-800/50 border-0 rounded text-white focus:outline-none placeholder:text-slate-400"
+                          class="w-full h-11 pl-4 text-sm bg-[#15090e]/50 border-0 rounded text-white focus:outline-none placeholder:text-[#b37a7a]"
                           maxlength="6"
                         />
                       </div>
@@ -192,7 +192,7 @@
                           :loading="sendOtpButtonLoading"
                           :disabled="!canSendOtp"
                           @click="handleSendOtp"
-                          class="w-full h-full px-2 py-2 bg-blue-600 rounded text-white text-sm whitespace-nowrap"
+                          class="w-full h-full px-2 py-2 bg-[#a1122d] rounded text-white text-sm whitespace-nowrap"
                         >
                           {{
                             !canSendOtp
@@ -225,12 +225,12 @@
                       type="text"
                       v-model="form.referralCode"
                       :placeholder="$t(`referrer_optional`)"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                       :readonly="props.referralId !== null"
                       :disabled="isReferralCodeFromProps"
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-link-45deg"></i>
                     </div>
@@ -240,7 +240,7 @@
                 <!-- Terms and Conditions -->
                 <div>
                   <label
-                    class="flex items-center text-blue-100 text_2 cursor-pointer"
+                    class="flex items-center text-[#f0eaea] text_2 cursor-pointer"
                   >
                     <div class="relative flex items-center mr-2">
                       <input
@@ -250,9 +250,9 @@
                         required
                       />
                       <div
-                        class="w-5 h-5 bg-slate-800/70 rounded flex items-center justify-center transition-colors duration-200"
+                        class="w-5 h-5 bg-[#15090e]/70 rounded flex items-center justify-center transition-colors duration-200"
                         :class="{
-                          'bg-blue-600/50 border-blue-500': acceptTerms,
+                          'bg-[#a1122d]/50 border-[#ff3344]': acceptTerms,
                         }"
                       >
                         <i
@@ -265,7 +265,7 @@
                       {{ $t("accept_terms") }}
                       <NuxtLinkLocale
                         to="/termscondition"
-                        class="text-blue-400 underline"
+                        class="text-[#ff3344] underline"
                         >{{ $t("terms_of_service") }}</NuxtLinkLocale
                       >
                     </span>
@@ -275,7 +275,7 @@
                   :loading="registerButtonLoading"
                   type="submit"
                   :disabled="registerButtonLoading"
-                  class="w-full h-11 text_4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-lg relative overflow-hidden"
+                  class="w-full h-11 text_4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-medium rounded-lg relative overflow-hidden"
                 >
                   <span class="flex items-center justify-center">
                     <span>{{ $t("register") }}</span>
@@ -283,10 +283,10 @@
                 </LoadingButton>
               </form>
               <div
-                class="pt-2 text_3 text-[#fff] mt-4 max-[314px]:!mt-0 text-center border-t border-blue-900/30"
+                class="pt-2 text_3 text-[#f0eaea] mt-4 max-[314px]:!mt-0 text-center border-t border-[#3b1c23]"
               >
                 {{ $t("already_have_account") }}?
-                <NuxtLinkLocale to="/login" class="text-blue-400 text-sm">
+                <NuxtLinkLocale to="/login" class="text-[#ff3344] text-sm">
                   <span class="underline">{{ $t("login_here") }}</span>
                 </NuxtLinkLocale>
               </div>
@@ -853,7 +853,6 @@ onMounted(() => {
 });
 </script>
 <style scoped>
-/* Particle styles */
 .particle {
   width: 4px;
   height: 4px;
@@ -863,7 +862,7 @@ onMounted(() => {
 .particle-1 {
   left: 10%;
   top: 10%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 15s ease-in-out infinite;
 }
 
@@ -878,7 +877,7 @@ onMounted(() => {
 .particle-3 {
   left: 35%;
   top: 30%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 20s ease-in-out infinite;
   animation-delay: 2s;
 }
@@ -894,7 +893,7 @@ onMounted(() => {
 .particle-5 {
   left: 65%;
   top: 20%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 19s ease-in-out infinite;
   animation-delay: 1.5s;
 }
@@ -910,7 +909,7 @@ onMounted(() => {
 .particle-7 {
   left: 90%;
   top: 40%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 21s ease-in-out infinite;
   animation-delay: 2.5s;
 }
@@ -923,7 +922,6 @@ onMounted(() => {
   animation-delay: 1.2s;
 }
 
-/* Clean and efficient animations */
 @keyframes particle-float {
   0%,
   100% {
@@ -1006,12 +1004,10 @@ onMounted(() => {
   animation-delay: 0.3s;
 }
 
-/* Make sure date input has white text in all browsers */
 input[type="date"] {
   color-scheme: dark;
 }
 
-/* Mobile responsiveness improvements */
 @media (max-width: 640px) {
   .pt-5 {
     padding-top: 1rem;
@@ -1026,7 +1022,6 @@ input[type="date"] {
   }
 }
 
-/* Extra small device adjustments */
 @media (max-width: 370px) {
   .particle {
     display: none;
@@ -1054,19 +1049,19 @@ input[type="date"] {
 }
 
 .dp__theme_light {
-  --dp-background-color: #1e293b80;
+  --dp-background-color: #15090e80;
   --dp-text-color: #fff;
   --dp-hover-color: #f3f3f3;
   --dp-hover-text-color: #212121;
   --dp-hover-icon-color: #959595;
-  --dp-primary-color: #1976d2;
-  --dp-primary-disabled-color: #6bacea;
+  --dp-primary-color: #ff3344;
+  --dp-primary-disabled-color: #c21b3a;
   --dp-primary-text-color: #f8f5f5;
   --dp-secondary-color: #c0c4cc;
-  --dp-border-color: #4b5563;
-  --dp-menu-border-color: #4b5563;
-  --dp-border-color-lg:hover: #4b5563;
-  --dp-border-color-focus: #4b5563;
+  --dp-border-color: #3b1c23;
+  --dp-menu-border-color: #3b1c23;
+  --dp-border-color-lg:hover: #3b1c23;
+  --dp-border-color-focus: #3b1c23;
   --dp-disabled-color: #f6f6f6;
   --dp-scroll-bar-background: #f3f3f3;
   --dp-scroll-bar-color: #959595;
@@ -1077,7 +1072,7 @@ input[type="date"] {
   --dp-marker-color: #ff6f60;
   --dp-tooltip-color: #fafafa;
   --dp-disabled-color-text: #8e8e8e;
-  --dp-highlight-color: rgb(25 118 210 / 10%);
+  --dp-highlight-color: rgb(255 51 68 / 10%);
   --dp-range-between-dates-background-color: var(--dp-hover-color, #f3f3f3);
   --dp-range-between-dates-text-color: var(--dp-hover-text-color, #212121);
   --dp-range-between-border-color: var(--dp-hover-color, #f3f3f3);
@@ -1095,11 +1090,11 @@ input[type="date"] {
 }
 
 :deep(.dp__input_icon) {
-  color: #94a3b8 !important;
+  color: #b37a7a !important;
 }
 
 ::v-deep(.dp__input::placeholder) {
-  color: #94a3b8 !important;
+  color: #b37a7a !important;
   opacity: 0.9;
 }
 </style>

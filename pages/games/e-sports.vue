@@ -7,7 +7,7 @@
       :type="alertType"
       @close="alertVisible = false"
     />
-    <div class="bg-slate-50">
+    <div>
       <section class="relative max-lg:max-w-[100vw]">
         <NuxtImg
           src="/images/banner/esport_banner.png"
@@ -20,17 +20,14 @@
           class="w-full h-auto lg:hidden block"
         />
       </section>
-
-      <section
-        class="py-4 px-16 max-lg:p-4 bg-slate-50 border-t border-slate-100"
-      >
+      <section class="py-4 px-16 max-lg:p-4 border-t border-[#3b1c23]">
         <div>
           <div class="flex justify-between items-center mb-4">
             <div>
-              <h2 class="homeMainTxt3 font-bold text-gray-900">
+              <h2 class="homeMainTxt3 font-bold text-[#f0eaea]">
                 {{ $t("e_sports") }}
               </h2>
-              <p class="text-gray-500 mt-1 titletext">
+              <p class="text-[#b37a7a] mt-1 titletext">
                 {{ $t("choose_gaming_providers") }}
               </p>
             </div>
@@ -48,13 +45,13 @@
                 <img
                   :src="game.icon || fallback(game.name)"
                   :alt="game.name"
-                  class="w-48 h-auto object-contain rounded-xl shadow"
+                  class="w-48 h-auto object-contain rounded-xl shadow-lg shadow-red-500/20"
                 />
                 <div
                   class="max-lg:hidden absolute inset-0 bg-black/30 opacity-0 lg:group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-xl"
                 >
                   <button
-                    class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-lg transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
+                    class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-semibold rounded-lg shadow-lg transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
                   >
                     <Icon
                       icon="mdi:play-circle-outline"

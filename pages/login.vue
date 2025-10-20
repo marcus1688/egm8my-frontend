@@ -8,7 +8,7 @@
       @close="alertVisible = false"
     />
     <div
-      class="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-700 to-indigo-800 p-4 relative overflow-hidden"
+      class="min-h-screen flex items-center justify-center bg-gradient-to-r from-[#1A0D13] to-[#241017] p-4 relative overflow-hidden"
     >
       <!-- Optimized Background Effects -->
       <div class="absolute inset-0 overflow-hidden">
@@ -44,27 +44,27 @@
         <!-- Logo with animation -->
         <div class="text-center mb-3">
           <div class="inline-block p-0.5">
-            <NuxtImg src="/images/egm8my.png" alt="" class="w-24" />
+            <NuxtImg src="/images/egm8my.png" alt="" class="w-36" />
           </div>
         </div>
 
         <div
-          class="bg-white/10 rounded-xl overflow-hidden border border-white/20 shadow-lg transition-all duration-300 card-reveal"
+          class="bg-[#241017]/60 rounded-xl overflow-hidden border border-[#3b1c23] shadow-lg transition-all duration-300 card-reveal"
         >
           <div
-            class="p-0.5 bg-gradient-to-b from-blue-500/50 via-transparent to-transparent"
+            class="p-0.5 bg-gradient-to-b from-[#ff3344]/50 via-transparent to-transparent"
           >
             <!-- Header -->
             <div class="pt-4 px-6 flex justify-between items-center">
               <h1 class="text-white font-bold relative">
                 <span class="text_1 bg-clip-text">{{ $t("login") }}</span>
                 <span
-                  class="absolute -bottom-1 left-0 w-full h-0.5 bg-blue-500 title-line-reveal"
+                  class="absolute -bottom-1 left-0 w-full h-0.5 bg-[#ff3344] title-line-reveal"
                 ></span>
               </h1>
               <NuxtLinkLocale
                 to="/"
-                class="text_2 flex items-center text-blue-400 lg:hover:text-white transition-colors text-sm"
+                class="text_2 flex items-center text-[#ff3344] lg:hover:text-white transition-colors text-sm"
               >
                 <i class="bi bi-arrow-left mr-2"></i>
                 <span>{{ $t("back") }}</span>
@@ -81,10 +81,10 @@
                       type="text"
                       v-model="username"
                       :placeholder="$t('username')"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-person-fill"></i>
                     </div>
@@ -98,17 +98,17 @@
                       :type="passwordVisible ? 'text' : 'password'"
                       v-model="password"
                       :placeholder="$t('password')"
-                      class="w-full h-11 px-8 pl-10 bg-slate-800/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-slate-400"
+                      class="w-full h-11 px-8 pl-10 bg-[#15090e]/50 border-0 rounded-lg text-white focus:outline-none placeholder:text-[#b37a7a]"
                     />
                     <div
-                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400"
+                      class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[#b37a7a]"
                     >
                       <i class="bi bi-lock-fill"></i>
                     </div>
                     <button
                       type="button"
                       @click="togglePasswordVisibility()"
-                      class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400"
+                      class="absolute inset-y-0 right-0 pr-3 flex items-center text-[#b37a7a]"
                     >
                       <i
                         :class="
@@ -133,15 +133,15 @@
                         class="sr-only peer"
                       />
                       <div
-                        class="w-10 h-5 bg-slate-800/70 rounded-full peer peer-checked:bg-blue-600 relative after:content-[''] after:absolute after:top-[2px] after:left-[1px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 after:shadow-md peer-checked:after:transform peer-checked:after:translate-x-[22px] peer-focus:ring-2 peer-focus:ring-blue-400/50"
+                        class="w-10 h-5 bg-[#15090e]/70 rounded-full peer peer-checked:bg-[#a1122d] relative after:content-[''] after:absolute after:top-[2px] after:left-[1px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 after:shadow-md peer-checked:after:transform peer-checked:after:translate-x-[22px] peer-focus:ring-2 peer-focus:ring-[#ff3344]/50"
                       ></div>
                       <span
-                        class="ml-3 text-blue-100 text-sm font-medium select-none transition-colors lg:group-hover:text-white"
+                        class="ml-3 text-[#f0eaea] text-sm font-medium select-none transition-colors lg:group-hover:text-white"
                         >{{ $t("remember_me") }}</span
                       >
                     </label>
                   </div>
-                  <a href="/forgot-password" class="text-blue-400 text_2"
+                  <a href="/forgot-password" class="text-[#ff3344] text_2"
                     >{{ $t("forgot_password") }}?</a
                   >
                 </div>
@@ -149,7 +149,7 @@
                 <LoadingButton
                   :loading="loginButtonLoading"
                   type="submit"
-                  class="w-full h-11 text_4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-medium rounded-lg relative overflow-hidden"
+                  class="w-full h-11 text_4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-medium rounded-lg relative overflow-hidden"
                 >
                   <span class="flex items-center justify-center uppercase">
                     <span>{{ $t("login") }}</span>
@@ -158,12 +158,12 @@
               </form>
 
               <div
-                class="mt-4 max-[314px]:!mt-0 border-t text_3 border-blue-900/30"
+                class="mt-4 max-[314px]:!mt-0 border-t text_3 border-[#3b1c23]"
               >
                 <div class="mt-4 text-center">
                   <NuxtLinkLocale
                     to="/register"
-                    class="inline-block py-2.5 px-5 bg-blue-900/30 lg:hover:bg-blue-900/50 text-blue-200 font-medium rounded-lg transition-colors border border-blue-800/30 pulse-on-hover"
+                    class="inline-block py-2.5 px-5 bg-[#241017]/30 lg:hover:bg-[#241017]/50 text-[#f0eaea] font-medium rounded-lg transition-colors border border-[#3b1c23] pulse-on-hover"
                   >
                     {{ $t("sign_up_bonus") }}
                   </NuxtLinkLocale>
@@ -328,7 +328,7 @@ onMounted(() => {
 .particle-1 {
   left: 10%;
   top: 10%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 15s ease-in-out infinite;
 }
 
@@ -343,7 +343,7 @@ onMounted(() => {
 .particle-3 {
   left: 35%;
   top: 30%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 20s ease-in-out infinite;
   animation-delay: 2s;
 }
@@ -359,7 +359,7 @@ onMounted(() => {
 .particle-5 {
   left: 65%;
   top: 20%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 19s ease-in-out infinite;
   animation-delay: 1.5s;
 }
@@ -375,7 +375,7 @@ onMounted(() => {
 .particle-7 {
   left: 90%;
   top: 40%;
-  background-color: rgba(59, 130, 246, 0.6);
+  background-color: rgba(255, 51, 68, 0.6);
   animation: particle-float 21s ease-in-out infinite;
   animation-delay: 2.5s;
 }
@@ -388,7 +388,6 @@ onMounted(() => {
   animation-delay: 1.2s;
 }
 
-/* Clean and efficient animations */
 @keyframes particle-float {
   0%,
   100% {
@@ -485,8 +484,8 @@ onMounted(() => {
   bottom: 0;
   background: radial-gradient(
     circle,
-    rgba(59, 130, 246, 0.3) 0%,
-    rgba(59, 130, 246, 0) 70%
+    rgba(255, 51, 68, 0.3) 0%,
+    rgba(255, 51, 68, 0) 70%
   );
   z-index: -1;
   opacity: 0;
@@ -497,13 +496,12 @@ onMounted(() => {
   opacity: 1;
 }
 
-/* Pulse effect on hover */
 .pulse-on-hover {
   transition: all 0.3s ease;
 }
 
 .pulse-on-lg:hover:lg:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 5px 15px rgba(255, 51, 68, 0.4);
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-blue-800 to-indigo-900 relative">
+    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
       <div class="absolute inset-0 opacity-10">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs>
@@ -33,7 +33,7 @@
             {{ $t("official_gaming_license") }}
           </h1>
           <p
-            class="text-blue-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto"
+            class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto"
           >
             {{ $t("fully_licensed") }}
           </p>
@@ -42,11 +42,11 @@
     </div>
 
     <!-- Main Content -->
-    <div class="bg-white py-16 max-lg:py-10">
+    <div class="py-16 max-lg:py-10">
       <div class="container mx-auto px-4">
         <div class="mx-auto">
           <div
-            class="p-8 md:p-12 max-lg:p-4 rounded-lg shadow-lg border border-amber-100"
+            class="p-8 md:p-12 max-lg:p-4 rounded-lg shadow-lg shadow-red-500/20 border border-[#3b1c23] bg-[#241017]/60"
           >
             <!-- License Info Section -->
             <div
@@ -58,18 +58,18 @@
                   <img
                     src="/images/license.png"
                     alt="PAGCOR License Certificate"
-                    class="rounded-lg shadow-lg max-w-full object-contain"
+                    class="rounded-lg shadow-lg shadow-red-500/20 max-w-full object-contain border border-[#3b1c23]"
                     style="max-height: 500px"
-                    onerror="this.src='https://placehold.co/400x600/FCFBE7/333?text=PAGCOR+License'"
+                    onerror="this.src='https://placehold.co/400x600/241017/f0eaea?text=PAGCOR+License'"
                   />
                   <div
-                    class="absolute -bottom-4 -right-4 max-lg:-bottom-2 max-lg:-right-2 w-24 h-24 max-lg:w-16 max-lg:h-16 bg-blue-100 rounded-full p-2 flex items-center justify-center shadow-md"
+                    class="absolute -bottom-4 -right-4 max-lg:-bottom-2 max-lg:-right-2 w-24 h-24 max-lg:w-16 max-lg:h-16 bg-[#ff3344]/20 rounded-full p-2 flex items-center justify-center shadow-md border border-[#3b1c23]"
                   >
                     <img
                       src="/images/pagcor.png"
                       alt="PAGCOR Logo"
                       class="max-w-full max-h-full object-contain"
-                      onerror="this.src='https://placehold.co/80x80/fff/333?text=PAGCOR'"
+                      onerror="this.src='https://placehold.co/80x80/ff3344/fff?text=PAGCOR'"
                     />
                   </div>
                 </div>
@@ -78,10 +78,10 @@
               <!-- License Details -->
               <div class="lg:w-1/2">
                 <h2
-                  class="text-2xl max-lg:text-xl font-bold text-gray-800 mb-6 max-lg:mb-4 flex items-center"
+                  class="text-2xl max-lg:text-xl font-bold text-[#f0eaea] mb-6 max-lg:mb-4 flex items-center"
                 >
                   <span
-                    class="w-10 h-10 max-lg:w-8 max-lg:h-8 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full mr-3 max-lg:mr-2"
+                    class="w-10 h-10 max-lg:w-8 max-lg:h-8 flex items-center justify-center bg-[#ff3344]/20 text-[#ff3344] rounded-full mr-3 max-lg:mr-2"
                   >
                     <i class="bi bi-shield-check max-lg:text-sm"></i>
                   </span>
@@ -91,16 +91,16 @@
                 <div class="space-y-6 max-lg:space-y-4">
                   <div>
                     <h3
-                      class="text-lg max-lg:text-base font-semibold text-gray-700 mb-1"
+                      class="text-lg max-lg:text-base font-semibold text-[#f0eaea] mb-1"
                     >
                       {{ $t("official_pagcor_license") }}
                     </h3>
                     <ul
-                      class="space-y-3 max-lg:space-y-2 text-gray-600 max-lg:text-sm"
+                      class="space-y-3 max-lg:space-y-2 text-[#b37a7a] max-lg:text-sm"
                     >
                       <li class="flex items-start">
                         <i
-                          class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
+                          class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
                           ><strong>{{ $t("license_number") }}:</strong>
@@ -109,7 +109,7 @@
                       </li>
                       <li class="flex items-start">
                         <i
-                          class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
+                          class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
                           ><strong>{{ $t("issued_to") }}:</strong> EGM8 ASIA
@@ -118,7 +118,7 @@
                       </li>
                       <li class="flex items-start">
                         <i
-                          class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
+                          class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
                           ><strong>{{ $t("type") }}:</strong> Gaming Support
@@ -127,7 +127,7 @@
                       </li>
                       <li class="flex items-start">
                         <i
-                          class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
+                          class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
                           ><strong>{{ $t("effective_date") }}:</strong> February
@@ -136,7 +136,7 @@
                       </li>
                       <li class="flex items-start">
                         <i
-                          class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
+                          class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
                           ><strong>{{ $t("issued_by") }}:</strong> Philippine
@@ -145,7 +145,7 @@
                       </li>
                       <li class="flex items-start">
                         <i
-                          class="bi bi-check-circle-fill text-green-500 mt-1 mr-2 max-lg:text-xs"
+                          class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
                           ><strong>{{ $t("legal_authority") }}:</strong>
@@ -158,18 +158,18 @@
 
                   <div>
                     <h3
-                      class="text-lg max-lg:text-base font-semibold text-gray-700 mb-1"
+                      class="text-lg max-lg:text-base font-semibold text-[#f0eaea] mb-1"
                     >
                       {{ $t("business_address") }}
                     </h3>
-                    <p class="text-gray-600 max-lg:text-sm">
+                    <p class="text-[#b37a7a] max-lg:text-sm">
                       14th Floor, Burgundy Corporate Tower, Sen. G. Puyat
                       Avenue, Makati City, Philippines
                     </p>
                   </div>
 
-                  <div class="pt-4 max-lg:pt-2 border-t border-amber-200">
-                    <p class="text-gray-600 max-lg:text-sm italic">
+                  <div class="pt-4 max-lg:pt-2 border-t border-[#3b1c23]">
+                    <p class="text-[#b37a7a] max-lg:text-sm italic">
                       {{ $t("certificate_effective") }}
                     </p>
                   </div>
@@ -179,33 +179,35 @@
 
             <!-- PAGCOR Info Section -->
             <div
-              class="bg-white p-6 max-lg:p-4 rounded-lg shadow-sm mb-8 max-lg:mb-5"
+              class="bg-[#15090e]/50 p-6 max-lg:p-4 rounded-lg shadow-sm mb-8 max-lg:mb-5 border border-[#3b1c23]"
             >
               <h3
-                class="text-xl max-lg:text-lg font-bold text-gray-800 mb-4 max-lg:mb-2 flex items-center"
+                class="text-xl max-lg:text-lg font-bold text-[#f0eaea] mb-4 max-lg:mb-2 flex items-center"
               >
                 <span
-                  class="w-8 h-8 max-lg:w-6 max-lg:h-6 flex items-center justify-center bg-amber-100 text-amber-700 rounded-full mr-2 max-lg:mr-1.5"
+                  class="w-8 h-8 max-lg:w-6 max-lg:h-6 flex items-center justify-center bg-[#ff3344]/20 text-[#ff3344] rounded-full mr-2 max-lg:mr-1.5"
                 >
                   <i class="bi bi-info-circle max-lg:text-xs"></i>
                 </span>
                 {{ $t("about_pagcor") }}
               </h3>
-              <p class="text-gray-600 max-lg:text-sm mb-4 max-lg:mb-2">
+              <p class="text-[#b37a7a] max-lg:text-sm mb-4 max-lg:mb-2">
                 {{ $t("pagcor_description_1") }}
               </p>
-              <p class="text-gray-600 max-lg:text-sm">
+              <p class="text-[#b37a7a] max-lg:text-sm">
                 {{ $t("pagcor_description_2") }}
               </p>
             </div>
 
             <!-- What This Means For You -->
-            <div class="bg-blue-50 p-6 max-lg:p-4 rounded-lg shadow-sm">
+            <div
+              class="bg-[#ff3344]/10 p-6 max-lg:p-4 rounded-lg shadow-sm border border-[#ff3344]/20"
+            >
               <h3
-                class="text-xl max-lg:text-lg font-bold text-gray-800 mb-4 max-lg:mb-2 flex items-center"
+                class="text-xl max-lg:text-lg font-bold text-[#f0eaea] mb-4 max-lg:mb-2 flex items-center"
               >
                 <span
-                  class="w-8 h-8 max-lg:w-6 max-lg:h-6 flex items-center justify-center bg-blue-100 text-blue-700 rounded-full mr-2 max-lg:mr-1.5"
+                  class="w-8 h-8 max-lg:w-6 max-lg:h-6 flex items-center justify-center bg-[#ff3344]/20 text-[#ff3344] rounded-full mr-2 max-lg:mr-1.5"
                 >
                   <i class="bi bi-shield-lock max-lg:text-xs"></i>
                 </span>
@@ -216,15 +218,17 @@
               >
                 <div class="flex items-start">
                   <div
-                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 max-lg:mr-2 flex-shrink-0"
+                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mr-3 max-lg:mr-2 flex-shrink-0"
                   >
                     <i class="bi bi-check-lg max-lg:text-xs"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-800 mb-1 max-lg:text-sm">
+                    <h4
+                      class="font-semibold text-[#f0eaea] mb-1 max-lg:text-sm"
+                    >
                       {{ $t("legal_regulated") }}
                     </h4>
-                    <p class="text-gray-600 text-sm max-lg:text-xs">
+                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
                       {{ $t("legal_regulated_desc") }}
                     </p>
                   </div>
@@ -232,15 +236,17 @@
 
                 <div class="flex items-start">
                   <div
-                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 max-lg:mr-2 flex-shrink-0"
+                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mr-3 max-lg:mr-2 flex-shrink-0"
                   >
                     <i class="bi bi-check-lg max-lg:text-xs"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-800 mb-1 max-lg:text-sm">
+                    <h4
+                      class="font-semibold text-[#f0eaea] mb-1 max-lg:text-sm"
+                    >
                       {{ $t("fair_play") }}
                     </h4>
-                    <p class="text-gray-600 text-sm max-lg:text-xs">
+                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
                       {{ $t("fair_play_desc") }}
                     </p>
                   </div>
@@ -248,15 +254,17 @@
 
                 <div class="flex items-start">
                   <div
-                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 max-lg:mr-2 flex-shrink-0"
+                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mr-3 max-lg:mr-2 flex-shrink-0"
                   >
                     <i class="bi bi-check-lg max-lg:text-xs"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-800 mb-1 max-lg:text-sm">
+                    <h4
+                      class="font-semibold text-[#f0eaea] mb-1 max-lg:text-sm"
+                    >
                       {{ $t("secure_transactions") }}
                     </h4>
-                    <p class="text-gray-600 text-sm max-lg:text-xs">
+                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
                       {{ $t("secure_transactions_desc") }}
                     </p>
                   </div>
@@ -264,15 +272,17 @@
 
                 <div class="flex items-start">
                   <div
-                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 max-lg:mr-2 flex-shrink-0"
+                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mr-3 max-lg:mr-2 flex-shrink-0"
                   >
                     <i class="bi bi-check-lg max-lg:text-xs"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-800 mb-1 max-lg:text-sm">
+                    <h4
+                      class="font-semibold text-[#f0eaea] mb-1 max-lg:text-sm"
+                    >
                       {{ $t("responsible_gaming") }}
                     </h4>
-                    <p class="text-gray-600 text-sm max-lg:text-xs">
+                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
                       {{ $t("responsible_gaming_desc") }}
                     </p>
                   </div>
@@ -280,15 +290,17 @@
 
                 <div class="flex items-start">
                   <div
-                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 max-lg:mr-2 flex-shrink-0"
+                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mr-3 max-lg:mr-2 flex-shrink-0"
                   >
                     <i class="bi bi-check-lg max-lg:text-xs"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-800 mb-1 max-lg:text-sm">
+                    <h4
+                      class="font-semibold text-[#f0eaea] mb-1 max-lg:text-sm"
+                    >
                       {{ $t("dispute_resolution") }}
                     </h4>
-                    <p class="text-gray-600 text-sm max-lg:text-xs">
+                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
                       {{ $t("dispute_resolution_desc") }}
                     </p>
                   </div>
@@ -296,15 +308,17 @@
 
                 <div class="flex items-start">
                   <div
-                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 mr-3 max-lg:mr-2 flex-shrink-0"
+                    class="w-10 h-10 max-lg:w-7 max-lg:h-7 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mr-3 max-lg:mr-2 flex-shrink-0"
                   >
                     <i class="bi bi-check-lg max-lg:text-xs"></i>
                   </div>
                   <div>
-                    <h4 class="font-semibold text-gray-800 mb-1 max-lg:text-sm">
+                    <h4
+                      class="font-semibold text-[#f0eaea] mb-1 max-lg:text-sm"
+                    >
                       {{ $t("regular_audits") }}
                     </h4>
-                    <p class="text-gray-600 text-sm max-lg:text-xs">
+                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
                       {{ $t("regular_audits_desc") }}
                     </p>
                   </div>
@@ -315,21 +329,21 @@
 
           <!-- Verification Notice -->
           <div class="mt-10 max-lg:mt-6 text-center">
-            <p class="text-gray-600 max-lg:text-sm">
+            <p class="text-[#b37a7a] max-lg:text-sm">
               {{ $t("verification_notice") }}
               <a
                 href="https://www.pagcor.ph/regulatory/index.php"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-blue-600 lg:hover:underline"
+                class="text-[#ff3344] lg:hover:underline"
                 >{{ $t("official_pagcor_website") }}</a
               >.
             </p>
-            <p class="text-gray-500 text-sm max-lg:text-xs mt-2">
+            <p class="text-[#b37a7a] text-sm max-lg:text-xs mt-2">
               {{ $t("questions_licensing") }}
               <NuxtLinkLocale
                 href="/helpcenter"
-                class="text-blue-600 lg:hover:underline"
+                class="text-[#ff3344] lg:hover:underline"
                 >{{ $t("contact_support") }}</NuxtLinkLocale
               >.
             </p>

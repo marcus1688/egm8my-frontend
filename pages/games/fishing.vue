@@ -8,7 +8,7 @@
       @close="alertVisible = false"
     />
     <PageLoading v-if="pageLoading" />
-    <div class="bg-slate-50">
+    <div>
       <section class="relative max-lg:max-w-[100vw]">
         <NuxtImg
           src="/images/banner/fishing_banner.png"
@@ -22,16 +22,14 @@
         />
       </section>
 
-      <section
-        class="py-4 px-16 max-lg:p-4 bg-slate-50 border-t border-slate-100"
-      >
+      <section class="py-4 px-16 max-lg:p-4 border-t border-[#3b1c23]">
         <div>
           <div class="flex justify-between items-center">
             <div>
-              <h2 class="homeMainTxt3 font-bold text-gray-900">
+              <h2 class="homeMainTxt3 font-bold text-[#f0eaea]">
                 {{ $t("fishing") }}
               </h2>
-              <p class="text-gray-500 mt-1 titletext">
+              <p class="text-[#b37a7a] mt-1 titletext">
                 {{ $t("choose_gaming_providers") }}
               </p>
             </div>
@@ -41,7 +39,7 @@
 
       <!-- Fishing Kiosks-->
       <section
-        class="py-4 px-8 bg-white border-t border-b border-slate-100 shadow-sm max-lg:py-2 max-lg:px-3"
+        class="py-4 px-8 bg-[#241017]/60 border-t border-b border-[#3b1c23] shadow-lg shadow-red-500/10 max-lg:py-2 max-lg:px-3"
       >
         <div
           class="flex flex-wrap gap-4 justify-center max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:justify-start max-lg:scrollbar-hide max-lg:-mx-2 max-lg:px-2 max-lg:pb-1"
@@ -56,8 +54,8 @@
               class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 max-lg:px-3 max-lg:py-1.5"
               :class="
                 currentKiosk?._id === provider._id
-                  ? 'bg-blue-50 border-2 border-blue-500'
-                  : 'bg-white lg:hover:bg-slate-50 border-2 border-transparent'
+                  ? 'bg-[#ff3344]/10 border-2 border-[#ff3344]'
+                  : 'bg-[#15090e]/50 lg:hover:bg-[#3b1c23]/50 border-2 border-transparent'
               "
             >
               <div
@@ -73,15 +71,15 @@
                 class="text-sm font-medium max-lg:text-xs max-lg:whitespace-nowrap"
                 :class="
                   currentKiosk?._id === provider._id
-                    ? 'text-blue-600'
-                    : 'text-gray-600'
+                    ? 'text-[#ff3344]'
+                    : 'text-[#f0eaea]'
                 "
               >
                 {{ provider.name }}
               </span>
               <div
                 v-if="provider.isHotGame"
-                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-semibold px-1.5 py-0.5 rounded shadow-sm max-lg:text-[10px] max-lg:px-1 max-lg:py-0 max-lg:top-0 max-lg:right-0 max-lg:z-10"
+                class="absolute -top-1 -right-1 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-1.5 py-0.5 rounded shadow-sm max-lg:text-[10px] max-lg:px-1 max-lg:py-0 max-lg:top-0 max-lg:right-0 max-lg:z-10"
               >
                 {{ $t("hot") }}
               </div>
@@ -93,17 +91,17 @@
       <!-- Game List -->
       <section
         v-if="currentKiosk && !currentKiosk.isManualGame"
-        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-slate-50"
+        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-gradient-to-r from-[#1A0D13] to-[#241017]"
       >
         <div>
           <div
             class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-6 max-lg:mb-4 max-lg:gap-3"
           >
             <div>
-              <h2 class="text-2xl font-bold text-gray-900 max-lg:text-base">
+              <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-base">
                 {{ currentKiosk.name }} {{ $t("games") }}
               </h2>
-              <p class="text-gray-500 mt-1 max-lg:text-xs">
+              <p class="text-[#b37a7a] mt-1 max-lg:text-xs">
                 {{
                   $t("showing_games", {
                     shown: paginatedGames.length,
@@ -118,10 +116,10 @@
                   type="text"
                   v-model="searchTerm"
                   :placeholder="$t('search_games')"
-                  class="w-full px-5 py-3 max-lg:py-2 rounded-lg bg-white border border-slate-200 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent pl-12 shadow-sm"
+                  class="w-full px-5 py-3 max-lg:py-2 rounded-lg bg-[#15090e]/50 border border-[#3b1c23] text-[#f0eaea] focus:outline-none focus:ring-2 focus:ring-[#ff3344] focus:border-[#ff3344] pl-12 shadow-sm placeholder:text-[#b37a7a]"
                 />
                 <i
-                  class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                  class="bi bi-search absolute left-4 top-1/2 -translate-y-1/2 text-[#b37a7a]"
                 ></i>
               </div>
             </div>
@@ -140,18 +138,18 @@
                   gameType: game.GameType,
                 })
               "
-              class="bg-white rounded-xl overflow-hidden cursor-pointer shadow-sm transition-all duration-300 group"
+              class="bg-[#241017]/60 rounded-xl overflow-hidden cursor-pointer shadow-lg shadow-red-500/20 transition-all duration-300 group border border-[#3b1c23] lg:hover:shadow-[#ff3344]/20 lg:hover:border-[#ff3344]/50"
             >
               <div class="relative overflow-hidden">
                 <div
-                  class="w-full aspect-square flex items-center justify-center bg-gray-100"
+                  class="w-full aspect-square flex items-center justify-center bg-[#15090e]/50"
                 >
                   <img
                     :src="
                       ($i18n.locale === 'zh' && game.GameImageZH) ||
                       ($i18n.locale === 'ms' && game.GameImageMS) ||
                       game.GameImage ||
-                      `https://placehold.co/300x300/e2e8f0/475569?text=${encodeURIComponent(
+                      `https://placehold.co/300x300/241017/f0eaea?text=${encodeURIComponent(
                         getLocalizedGameName(game)
                       )}`
                     "
@@ -163,7 +161,7 @@
                     class="max-lg:hidden absolute inset-0 bg-black/30 opacity-0 lg:group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-xl"
                   >
                     <button
-                      class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-semibold rounded-lg shadow-lg transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
+                      class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-semibold rounded-lg shadow-lg transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
                     >
                       <Icon
                         icon="mdi:lightning-bolt"
@@ -174,7 +172,7 @@
                   </div>
                   <div
                     v-if="game.Hot"
-                    class="absolute top-0 right-0 bg-gradient-to-r from-blue-600 to-indigo-500 text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1 z-10"
+                    class="absolute top-0 right-0 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1 z-10"
                   >
                     <Icon icon="mdi:star" class="text-yellow-300" />
                     {{ $t("top") }}
@@ -182,10 +180,10 @@
                 </div>
               </div>
 
-              <div class="border-t border-gray-100">
+              <div class="border-t border-[#3b1c23]">
                 <div class="p-2 pt-3 text-center">
                   <h4
-                    class="text-sm max-md:text-xs font-medium text-gray-800 break-words hyphens-auto"
+                    class="text-sm max-md:text-xs font-medium text-[#f0eaea] break-words hyphens-auto"
                   >
                     {{ getLocalizedGameName(game) }}
                   </h4>
@@ -194,21 +192,21 @@
                 <!-- RTP row - only shows if RTP exists -->
                 <div v-if="game.RTP" class="px-2 pb-2.5 flex justify-center">
                   <div class="flex items-center justify-center gap-2">
-                    <div class="h-0.5 w-4 bg-gray-200 rounded-full"></div>
+                    <div class="h-0.5 w-4 bg-[#3b1c23] rounded-full"></div>
                     <div
-                      class="flex items-center bg-gray-100 rounded-full px-2 py-0.5"
+                      class="flex items-center bg-[#15090e]/50 rounded-full px-2 py-0.5"
                     >
                       <span
-                        class="text-xs font-medium text-amber-600 flex items-center gap-1"
+                        class="text-xs font-medium text-amber-400 flex items-center gap-1"
                       >
                         <Icon
                           icon="mdi:trophy"
-                          class="text-amber-500 text-2xs"
+                          class="text-amber-400 text-2xs"
                         />
                         {{ game.RTP }}
                       </span>
                     </div>
-                    <div class="h-0.5 w-4 bg-gray-200 rounded-full"></div>
+                    <div class="h-0.5 w-4 bg-[#3b1c23] rounded-full"></div>
                   </div>
                 </div>
               </div>
@@ -216,21 +214,24 @@
           </div>
 
           <!-- No Games Found  -->
-          <div v-else class="text-center py-20 bg-white rounded-xl shadow-sm">
+          <div
+            v-else
+            class="text-center py-20 bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23]"
+          >
             <div
-              class="w-24 h-24 mx-auto bg-slate-100 rounded-full flex items-center justify-center text-slate-400 mb-6"
+              class="w-24 h-24 mx-auto bg-[#15090e]/50 rounded-full flex items-center justify-center text-[#b37a7a] mb-6"
             >
               <i class="bi bi-search text-4xl"></i>
             </div>
-            <h3 class="text-xl font-medium text-gray-700 mb-3">
+            <h3 class="text-xl font-medium text-[#f0eaea] mb-3">
               {{ $t("no_games_found") }}
             </h3>
-            <p class="text-gray-500 max-w-lg mx-auto">
+            <p class="text-[#b37a7a] max-w-lg mx-auto">
               {{ $t("no_games_message") }}
             </p>
             <button
               @click="searchTerm = ''"
-              class="mt-6 px-6 py-2.5 bg-blue-500 text-white rounded-lg font-medium lg:hover:bg-blue-600 transition-colors"
+              class="mt-6 px-6 py-2.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg font-medium lg:hover:brightness-110 transition-all duration-300"
             >
               {{ $t("clear_search") }}
             </button>
@@ -240,17 +241,17 @@
             v-if="filteredGameList.length > gamesPerPage"
             class="flex justify-center mt-4"
           >
-            <div class="inline-flex rounded-lg shadow-sm">
+            <div class="inline-flex rounded-lg shadow-lg shadow-red-500/20">
               <button
                 @click="currentPage > 1 && currentPage--"
                 :disabled="currentPage === 1"
-                class="px-4 py-2.5 border border-slate-200 rounded-l-lg text-gray-600 lg:hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="px-4 py-2.5 border border-[#3b1c23] rounded-l-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#15090e]/50"
               >
                 <i class="bi bi-chevron-left"></i>
               </button>
 
               <div
-                class="px-6 py-2.5 border-t border-b border-slate-200 text-gray-700 flex items-center"
+                class="px-6 py-2.5 border-t border-b border-[#3b1c23] text-[#f0eaea] flex items-center bg-[#15090e]/50"
               >
                 <span class="font-medium">{{ currentPage }}</span>
                 <span class="mx-1">/</span>
@@ -260,7 +261,7 @@
               <button
                 @click="currentPage < totalPages && currentPage++"
                 :disabled="currentPage === totalPages"
-                class="px-4 py-2.5 border border-slate-200 rounded-r-lg text-gray-600 lg:hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                class="px-4 py-2.5 border border-[#3b1c23] rounded-r-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#15090e]/50"
               >
                 <i class="bi bi-chevron-right"></i>
               </button>

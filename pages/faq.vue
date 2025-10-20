@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-gradient-to-r from-blue-600 to-indigo-700">
+    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a]">
       <!-- Header/Banner Section -->
       <div
         class="container mx-auto px-6 max-lg:px-4 py-16 max-lg:py-12 text-center"
@@ -11,7 +11,7 @@
           {{ $t("frequently_asked_questions") }}
         </h1>
         <p
-          class="text-blue-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto"
+          class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto"
         >
           {{ $t("find_answers") }}
         </p>
@@ -22,10 +22,10 @@
             v-model="searchQuery"
             type="text"
             :placeholder="$t('search_for_questions')"
-            class="w-full px-5 max-lg:px-4 py-3 max-lg:py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-blue-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent shadow-lg max-lg:text-sm"
+            class="w-full px-5 max-lg:px-4 py-3 max-lg:py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-red-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent shadow-lg max-lg:text-sm"
           />
           <i
-            class="bi bi-search absolute right-4 top-1/2 -translate-y-1/2 text-blue-100"
+            class="bi bi-search absolute right-4 top-1/2 -translate-y-1/2 text-red-100"
           ></i>
         </div>
       </div>
@@ -39,9 +39,9 @@
         class="flex flex-col items-center justify-center py-20 max-lg:py-16"
       >
         <div
-          class="w-16 h-16 max-lg:w-12 max-lg:h-12 border-4 max-lg:border-3 border-blue-500 border-t-transparent rounded-full animate-spin"
+          class="w-16 h-16 max-lg:w-12 max-lg:h-12 border-4 max-lg:border-3 border-[#ff3344] border-t-transparent rounded-full animate-spin"
         ></div>
-        <p class="mt-4 max-lg:mt-3 text-gray-600 max-lg:text-sm">
+        <p class="mt-4 max-lg:mt-3 text-[#b37a7a] max-lg:text-sm">
           {{ $t("loading_faq") }}...
         </p>
       </div>
@@ -49,19 +49,19 @@
       <!-- Error state -->
       <div v-else-if="error" class="text-center py-20 max-lg:py-16">
         <div
-          class="w-20 h-20 max-lg:w-16 max-lg:h-16 mx-auto bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-4 max-lg:mb-3"
+          class="w-20 h-20 max-lg:w-16 max-lg:h-16 mx-auto bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mb-4 max-lg:mb-3"
         >
           <i class="bi bi-exclamation-triangle text-3xl max-lg:text-2xl"></i>
         </div>
-        <h3 class="text-xl max-lg:text-lg font-semibold text-gray-800 mb-2">
+        <h3 class="text-xl max-lg:text-lg font-semibold text-[#f0eaea] mb-2">
           {{ $t("error_title") }}
         </h3>
-        <p class="text-gray-600 max-lg:text-sm">
+        <p class="text-[#b37a7a] max-lg:text-sm">
           {{ $t("error_message") }}
         </p>
         <button
           @click="fetchHelps"
-          class="mt-6 max-lg:mt-4 px-6 max-lg:px-5 py-2 max-lg:py-1.5 bg-blue-500 text-white rounded-lg lg:hover:bg-blue-600 transition-colors max-lg:text-sm"
+          class="mt-6 max-lg:mt-4 px-6 max-lg:px-5 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
         >
           {{ $t("try_again") }}
         </button>
@@ -73,19 +73,19 @@
         class="text-center py-20 max-lg:py-16"
       >
         <div
-          class="w-20 h-20 max-lg:w-16 max-lg:h-16 mx-auto bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mb-4 max-lg:mb-3"
+          class="w-20 h-20 max-lg:w-16 max-lg:h-16 mx-auto bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mb-4 max-lg:mb-3"
         >
           <i class="bi bi-search text-3xl max-lg:text-2xl"></i>
         </div>
-        <h3 class="text-xl max-lg:text-lg font-semibold text-gray-800 mb-2">
+        <h3 class="text-xl max-lg:text-lg font-semibold text-[#f0eaea] mb-2">
           {{ $t("no_results_found") }}
         </h3>
-        <p class="text-gray-600 max-lg:text-sm">
+        <p class="text-[#b37a7a] max-lg:text-sm">
           {{ $t("no_results_message") }}
         </p>
         <button
           @click="searchQuery = ''"
-          class="mt-6 max-lg:mt-4 px-6 max-lg:px-5 py-2 max-lg:py-1.5 bg-blue-500 text-white rounded-lg lg:hover:bg-blue-600 transition-colors max-lg:text-sm"
+          class="mt-6 max-lg:mt-4 px-6 max-lg:px-5 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
         >
           {{ $t("clear_search") }}
         </button>
@@ -97,7 +97,7 @@
           <li
             v-for="(faq, index) in filteredFaqs"
             :key="faq._id"
-            class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 lg:hover:shadow-md"
+            class="bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23] overflow-hidden transition-all duration-300 lg:hover:shadow-[#ff3344]/20 lg:hover:border-[#ff3344]/50"
             :class="{ 'animate-fadeIn': true }"
             :style="{ animationDelay: `${index * 0.05}s` }"
           >
@@ -107,7 +107,7 @@
             >
               <div>
                 <h3
-                  class="text-xl max-lg:text-base font-semibold text-gray-800"
+                  class="text-xl max-lg:text-base font-semibold text-[#f0eaea]"
                 >
                   {{
                     $i18n.locale === "zh"
@@ -118,7 +118,7 @@
                   }}
                 </h3>
               </div>
-              <div class="text-blue-500 flex-shrink-0 mt-1">
+              <div class="text-[#ff3344] flex-shrink-0 mt-1">
                 <i
                   class="bi transition-transform duration-300"
                   :class="[
@@ -132,9 +132,9 @@
 
             <div
               v-show="openFaqs.includes(faq._id)"
-              class="px-6 max-lg:px-4 pb-6 max-lg:pb-4 text-gray-600"
+              class="px-6 max-lg:px-4 pb-6 max-lg:pb-4 text-[#b37a7a]"
             >
-              <div class="border-t border-gray-100 pt-4 max-lg:pt-3">
+              <div class="border-t border-[#3b1c23] pt-4 max-lg:pt-3">
                 <p class="max-lg:text-sm">
                   {{
                     $i18n.locale === "zh"
@@ -152,16 +152,16 @@
     </div>
 
     <!-- Contact Section -->
-    <div class="bg-gray-50 border-t border-gray-100">
+    <div class="bg-[#1A0D13] border-t border-[#3b1c23]">
       <div
         class="container mx-auto px-4 py-16 max-lg:py-12 text-center max-w-3xl"
       >
         <h2
-          class="text-2xl md:text-3xl max-lg:text-xl font-bold text-gray-800 mb-4 max-lg:mb-3"
+          class="text-2xl md:text-3xl max-lg:text-xl font-bold text-[#f0eaea] mb-4 max-lg:mb-3"
         >
           {{ $t("still_have_questions") }}?
         </h2>
-        <p class="text-gray-600 max-lg:text-sm mb-8 max-lg:mb-6">
+        <p class="text-[#b37a7a] max-lg:text-sm mb-8 max-lg:mb-6">
           {{ $t("contact_support_message") }}
         </p>
         <div
@@ -169,7 +169,7 @@
         >
           <a
             :href="`mailto:${generalSetting?.gmail || 'support@example.com'}`"
-            class="inline-flex items-center justify-center gap-2 bg-blue-500 text-white px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg lg:hover:bg-blue-600 transition-colors max-lg:text-sm"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
           >
             <i class="bi bi-envelope"></i>
             {{ $t("email_support") }}
@@ -178,7 +178,7 @@
             :href="`${generalSetting?.telegram || 'https://t.me/support'}`"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center justify-center gap-2 bg-blue-100 text-blue-600 px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg lg:hover:bg-blue-200 transition-colors max-lg:text-sm"
+            class="inline-flex items-center justify-center gap-2 bg-[#ff3344]/20 text-[#ff3344] px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg lg:hover:bg-[#ff3344]/30 transition-all max-lg:text-sm border border-[#ff3344]/30"
           >
             <i class="bi bi-telegram"></i>
             {{ $t("telegram_support") }}

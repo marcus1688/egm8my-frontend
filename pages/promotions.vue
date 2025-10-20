@@ -14,22 +14,22 @@
         />
       </section>
 
-      <section class="py-16 containerWid max-lg:py-4">
+      <section class="py-8 containerWid max-lg:py-4">
         <div class="mx-auto">
           <div
-            class="mb-8 pt-4 pb-3 bg-slate-50 max-lg:mb-2 max-lg:pt-2 max-lg:pb-2"
+            class="mb-8 pt-4 pb-3 bg-[#241017] max-lg:mb-2 max-lg:pt-2 max-lg:pb-2 border border-[#3b1c23] rounded-lg"
           >
             <div
               class="flex justify-between items-center max-[430px]:flex-col max-[430px]:items-start max-[430px]:gap-2 mb-4 max-[430px]:!mb-3 max-lg:mb-2 px-4"
             >
               <h2
-                class="homeMainTxt3 font-bold text-gray-900 flex items-center gap-2 max-lg:text-lg"
+                class="homeMainTxt3 font-bold text-[#f0eaea] flex items-center gap-2 max-lg:text-lg"
               >
                 <i
                   :class="[
                     getCategoryIcon(selectedTab),
                     selectedTab === 'All'
-                      ? 'text-blue-600'
+                      ? 'text-[#ff3344]'
                       : getCategoryColor(selectedTab),
                   ]"
                   class="max-[430px]:hidden max-lg:text-base"
@@ -38,9 +38,9 @@
                   >{{ selectedTab }} {{ $t("promotion") }}</span
                 >
               </h2>
-              <p class="text-sm max-[630px]:text-xs text-gray-500">
+              <p class="text-sm max-[630px]:text-xs text-[#b37a7a]">
                 {{ $t("showing") }}
-                <span class="font-semibold text-blue-600">{{
+                <span class="font-semibold text-[#ff3344]">{{
                   filteredContent.length
                 }}</span>
                 {{ $t("promotions") }}
@@ -61,8 +61,8 @@
                     class="px-4 py-2.5 max-[630px]:!px-4 max-[630px]:py-2 max-lg:px-3 max-lg:py-2 rounded-lg whitespace-nowrap transition-all text-sm max-[630px]:text-xs max-lg:text-xs font-medium flex items-center gap-2 max-lg:gap-1.5"
                     :class="
                       selectedTab === tab.key
-                        ? 'bg-blue-600 text-white shadow-md'
-                        : 'bg-white text-gray-700 lg:hover:bg-gray-100 border border-gray-200'
+                        ? 'bg-[#a1122d] text-white shadow-md !border-transparent'
+                        : 'bg-[#15090e] text-[#b37a7a] lg:hover:bg-[#2a0f14] border border-[#3b1c23]'
                     "
                   >
                     <i
@@ -83,7 +83,7 @@
             <div
               v-for="(promotion, index) in filteredContent"
               :key="index"
-              class="bg-white rounded-xl overflow-hidden border border-gray-100 h-full"
+              class="bg-[#241017] rounded-xl overflow-hidden border border-[#3b1c23] h-full"
             >
               <div class="flex flex-col h-full">
                 <div class="relative overflow-hidden">
@@ -94,7 +94,7 @@
                   />
 
                   <div
-                    class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-60"
+                    class="absolute inset-0 bg-gradient-to-t from-[#1A0D13]/80 via-[#1A0D13]/20 to-transparent opacity-60"
                   ></div>
                 </div>
 
@@ -110,12 +110,12 @@
                           ? promotion?.maintitleMS
                           : promotion?.maintitleEN
                       "
-                      class="font-bold text-gray-800 mb-2 line-clamp-1 max-lg:text-text-xs"
+                      class="font-bold text-[#f0eaea] mb-2 line-clamp-1 max-lg:text-text-xs"
                     ></h2>
                     <div class="w-[30%] flex justify-end max-lg:w-full">
                       <button
                         @click="openPromotionModal(promotion)"
-                        class="w-full py-2 px-4 bg-gray-100 text-gray-700 lg:hover:bg-gray-200 rounded-lg transition-colors font-medium flex items-center justify-center gap-1"
+                        class="w-full py-2 px-4 bg-[#15090e] text-[#b37a7a] lg:hover:bg-[#2a0f14] rounded-lg transition-colors font-medium flex items-center justify-center gap-1 border border-[#3b1c23]"
                       >
                         <i class="bi bi-info-circle"></i>
                         <span class="text-xs">{{ $t("details") }}</span>
@@ -128,24 +128,24 @@
           </div>
           <div
             v-else
-            class="bg-white rounded-xl p-12 text-center border border-gray-200 shadow-sm"
+            class="bg-[#241017] rounded-xl p-12 text-center border border-[#3b1c23] shadow-sm"
           >
             <div
-              class="w-16 h-16 rounded-full bg-blue-100 text-blue-500 flex items-center justify-center text-xl mx-auto mb-4"
+              class="w-16 h-16 rounded-full bg-[#15090e] text-[#ff3344] flex items-center justify-center text-xl mx-auto mb-4 border border-[#3b1c23]"
             >
               <i class="bi bi-search"></i>
             </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-2">
+            <h3 class="text-xl font-bold text-[#f0eaea] mb-2">
               {{ $t("no_promotions_found") }}
             </h3>
-            <p class="text-gray-600 mb-6 max-w-md mx-auto">
+            <p class="text-[#b37a7a] mb-6 max-w-md mx-auto">
               {{ $t("no_promotions_available") }}
               <span class="font-medium">{{ selectedTab }}</span
               >.
             </p>
             <button
               @click="selectTab('All')"
-              class="px-6 py-3 bg-blue-600 text-white rounded-lg lg:hover:bg-blue-700 transition-colors text-sm font-medium inline-flex items-center gap-2"
+              class="px-6 py-3 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors text-sm font-medium inline-flex items-center gap-2"
             >
               <i class="bi bi-grid"></i>
               {{ $t("view_all_promotions") }}
