@@ -68,6 +68,27 @@ function handleConfirmClose(confirmed) {
 }
 const isUserLoggedIn = useState("isUserLoggedIn");
 
+const scrollToElement = (targetId, headerOffset = 80) => {
+  const targetElement = document.getElementById(targetId);
+
+  if (targetElement && scrollContainer.value) {
+    const containerRect = scrollContainer.value.getBoundingClientRect();
+    const elementRect = targetElement.getBoundingClientRect();
+    const offsetPosition =
+      elementRect.top -
+      containerRect.top +
+      scrollContainer.value.scrollTop -
+      headerOffset;
+
+    scrollContainer.value.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  }
+};
+
+provide("scrollToElement", scrollToElement);
+
 watch(
   () => route.path,
   (newPath, oldPath) => {
