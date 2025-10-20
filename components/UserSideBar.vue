@@ -1,8 +1,8 @@
 <template>
   <div
-    class="w-full h-[700px] bg-white rounded-lg shadow-md border border-gray-100 overflow-hidden"
+    class="w-full h-[700px] bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23] overflow-hidden"
   >
-    <div class="p-4 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <div class="p-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white">
       <div class="flex items-center gap-3">
         <div
           class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center"
@@ -13,7 +13,7 @@
           <h3 class="font-medium uppercase">
             {{ userData?.username || "User" }}
           </h3>
-          <p class="text-xs text-blue-100 uppercase">
+          <p class="text-xs text-red-100 uppercase">
             {{ userData?.viplevel || "Standard" }}
           </p>
         </div>
@@ -25,19 +25,19 @@
       <!-- Cashier Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-gray-50 cursor-pointer transition-colors"
-          :class="{ 'bg-blue-50': activeMenuItem === 'cashier' }"
+          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'cashier' }"
           @click="
             activeMenuItem = activeMenuItem === 'cashier' ? null : 'cashier'
           "
         >
           <div class="flex items-center gap-3">
             <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-blue-50 text-blue-600"
+              class="w-8 h-8 flex items-center justify-center rounded-md bg-[#ff3344]/20 text-[#ff3344]"
             >
               <Icon icon="mdi:wallet" class="text-xl" />
             </div>
-            <span class="text-gray-800 font-medium uppercase">{{
+            <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("cashier")
             }}</span>
           </div>
@@ -47,21 +47,22 @@
                 ? 'mdi:chevron-up'
                 : 'mdi:chevron-down'
             "
-            class="text-gray-400 w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5"
           />
         </div>
 
         <!-- Cashier Sub Items -->
         <div
           v-if="activeMenuItem === 'cashier'"
-          class="mt-1 py-1 border-l-2 border-blue-400"
+          class="mt-1 py-1 border-l-2 border-[#ff3344]"
         >
           <NuxtLinkLocale
             to="/myaccount/deposit"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('deposit'),
-              'text-gray-600': !isActiveRoute('deposit'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('deposit'),
+              'text-[#b37a7a]': !isActiveRoute('deposit'),
             }"
           >
             <div class="flex items-center w-full">
@@ -74,10 +75,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/withdraw"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('withdraw'),
-              'text-gray-600': !isActiveRoute('withdraw'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('withdraw'),
+              'text-[#b37a7a]': !isActiveRoute('withdraw'),
             }"
           >
             <div class="flex items-center w-full">
@@ -90,11 +92,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/bankaccount"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white':
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
                 isActiveRoute('bankaccount'),
-              'text-gray-600': !isActiveRoute('bankaccount'),
+              'text-[#b37a7a]': !isActiveRoute('bankaccount'),
             }"
           >
             <div class="flex items-center w-full">
@@ -107,10 +109,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/rebate"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('rebate'),
-              'text-gray-600': !isActiveRoute('rebate'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('rebate'),
+              'text-[#b37a7a]': !isActiveRoute('rebate'),
             }"
           >
             <div class="flex items-center w-full">
@@ -123,10 +126,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/rescue"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('rescue'),
-              'text-gray-600': !isActiveRoute('rescue'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('rescue'),
+              'text-[#b37a7a]': !isActiveRoute('rescue'),
             }"
           >
             <div class="flex items-center w-full">
@@ -139,10 +143,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/checkin"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('checkin'),
-              'text-gray-600': !isActiveRoute('checkin'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('checkin'),
+              'text-[#b37a7a]': !isActiveRoute('checkin'),
             }"
           >
             <div class="flex items-center w-full">
@@ -158,17 +163,17 @@
       <!-- Agent Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-gray-50 cursor-pointer transition-colors"
-          :class="{ 'bg-blue-50': activeMenuItem === 'agent' }"
+          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'agent' }"
           @click="activeMenuItem = activeMenuItem === 'agent' ? null : 'agent'"
         >
           <div class="flex items-center gap-3">
             <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-green-50 text-green-600"
+              class="w-8 h-8 flex items-center justify-center rounded-md bg-green-500/20 text-green-400"
             >
               <Icon icon="mdi:account-group" class="text-xl" />
             </div>
-            <span class="text-gray-800 font-medium uppercase">{{
+            <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("agent")
             }}</span>
           </div>
@@ -176,7 +181,7 @@
             :icon="
               activeMenuItem === 'agent' ? 'mdi:chevron-up' : 'mdi:chevron-down'
             "
-            class="text-gray-400 w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5"
           />
         </div>
 
@@ -187,10 +192,11 @@
         >
           <NuxtLinkLocale
             to="/myaccount/referral"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('referral'),
-              'text-gray-600': !isActiveRoute('referral'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('referral'),
+              'text-[#b37a7a]': !isActiveRoute('referral'),
             }"
           >
             <div class="flex items-center w-full">
@@ -203,10 +209,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/downline"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('downline'),
-              'text-gray-600': !isActiveRoute('downline'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('downline'),
+              'text-[#b37a7a]': !isActiveRoute('downline'),
             }"
           >
             <div class="flex items-center w-full">
@@ -219,10 +226,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/commission"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('commission'),
-              'text-gray-600': !isActiveRoute('commission'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('commission'),
+              'text-[#b37a7a]': !isActiveRoute('commission'),
             }"
           >
             <div class="flex items-center w-full">
@@ -236,10 +244,11 @@
           <NuxtLinkLocale
             v-if="userData.positionTaking > 0"
             to="/myaccount/agentpt"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('agentpt'),
-              'text-gray-600': !isActiveRoute('agentpt'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('agentpt'),
+              'text-[#b37a7a]': !isActiveRoute('agentpt'),
             }"
           >
             <div class="flex items-center w-full">
@@ -255,19 +264,19 @@
       <!-- Profile Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-gray-50 cursor-pointer transition-colors"
-          :class="{ 'bg-blue-50': activeMenuItem === 'profile' }"
+          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'profile' }"
           @click="
             activeMenuItem = activeMenuItem === 'profile' ? null : 'profile'
           "
         >
           <div class="flex items-center gap-3">
             <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-purple-50 text-purple-600"
+              class="w-8 h-8 flex items-center justify-center rounded-md bg-purple-500/20 text-purple-400"
             >
               <Icon icon="mdi:account-circle" class="text-xl" />
             </div>
-            <span class="text-gray-800 font-medium uppercase">{{
+            <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("profile")
             }}</span>
           </div>
@@ -277,7 +286,7 @@
                 ? 'mdi:chevron-up'
                 : 'mdi:chevron-down'
             "
-            class="text-gray-400 w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5"
           />
         </div>
 
@@ -288,10 +297,11 @@
         >
           <NuxtLinkLocale
             to="/myaccount/profile"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('profile'),
-              'text-gray-600': !isActiveRoute('profile'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('profile'),
+              'text-[#b37a7a]': !isActiveRoute('profile'),
             }"
           >
             <div class="flex items-center w-full">
@@ -304,10 +314,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/messaging"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute('messaging'),
-              'text-gray-600': !isActiveRoute('messaging'),
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
+                isActiveRoute('messaging'),
+              'text-[#b37a7a]': !isActiveRoute('messaging'),
             }"
           >
             <div class="flex items-center w-full">
@@ -320,11 +331,11 @@
 
           <NuxtLinkLocale
             to="/myaccount/change-password"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white':
+              'text-[#ff3344] font-medium bg-[#15090e]/50':
                 isActiveRoute('change-password'),
-              'text-gray-600': !isActiveRoute('change-password'),
+              'text-[#b37a7a]': !isActiveRoute('change-password'),
             }"
           >
             <div class="flex items-center w-full">
@@ -340,19 +351,19 @@
       <!-- History Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-gray-50 cursor-pointer transition-colors"
-          :class="{ 'bg-blue-50': activeMenuItem === 'history' }"
+          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'history' }"
           @click="
             activeMenuItem = activeMenuItem === 'history' ? null : 'history'
           "
         >
           <div class="flex items-center gap-3">
             <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-amber-50 text-amber-600"
+              class="w-8 h-8 flex items-center justify-center rounded-md bg-amber-500/20 text-amber-400"
             >
               <Icon icon="mdi:clock" class="text-xl" />
             </div>
-            <span class="text-gray-800 font-medium uppercase">{{
+            <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("history")
             }}</span>
           </div>
@@ -362,7 +373,7 @@
                 ? 'mdi:chevron-up'
                 : 'mdi:chevron-down'
             "
-            class="text-gray-400 w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5"
           />
         </div>
 
@@ -373,12 +384,12 @@
         >
           <NuxtLinkLocale
             to="/myaccount/transaction-history"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-white transition-colors text-sm"
+            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
-              'text-blue-600 font-medium bg-white': isActiveRoute(
+              'text-[#ff3344] font-medium bg-[#15090e]/50': isActiveRoute(
                 'transaction-history'
               ),
-              'text-gray-600': !isActiveRoute('transaction-history'),
+              'text-[#b37a7a]': !isActiveRoute('transaction-history'),
             }"
           >
             <div class="flex items-center w-full">

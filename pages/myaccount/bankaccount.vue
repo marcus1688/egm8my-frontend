@@ -1,19 +1,19 @@
 <template>
   <UserAccountLayout>
-    <div class="bg-white rounded-md">
+    <div>
       <div
         class="flex justify-between items-center mb-6 max-lg:mb-4 max-lg:flex-col max-lg:items-start max-lg:gap-3"
       >
         <div>
-          <h1 class="text-lg font-bold max-lg:text-base">
+          <h1 class="text-lg font-bold max-lg:text-base text-[#f0eaea]">
             {{ $t("bank_accounts") }}
           </h1>
-          <p class="text-gray-500 text-sm max-lg:text-xs">
+          <p class="text-[#b37a7a] text-sm max-lg:text-xs">
             {{ $t("manage_bank_accounts") }}
           </p>
         </div>
         <button
-          class="bg-blue-600 text-white px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-md lg:hover:bg-blue-700 transition max-lg:text-sm"
+          class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
           @click="showModal = true"
         >
           {{ $t("add_bank_account") }}
@@ -28,28 +28,28 @@
           <div
             v-for="bank in userbank"
             :key="bank._id"
-            class="bg-white shadow-md lg:hover:shadow-lg border border-gray-100 rounded-xl p-6 max-lg:p-4 relative transition-all duration-300 overflow-hidden group"
+            class="bg-[#15090e]/50 shadow-lg shadow-red-500/20 lg:hover:shadow-[#ff3344]/20 border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 relative transition-all duration-300 overflow-hidden group lg:hover:border-[#ff3344]/50"
           >
             <div class="flex justify-between items-start relative z-10">
               <div>
                 <div class="flex items-center mb-3 max-lg:mb-2">
                   <div
-                    class="w-8 h-8 max-lg:w-7 max-lg:h-7 rounded-full bg-blue-50 flex items-center justify-center mr-3 max-lg:mr-2"
+                    class="w-8 h-8 max-lg:w-7 max-lg:h-7 rounded-full bg-[#ff3344]/20 flex items-center justify-center mr-3 max-lg:mr-2"
                   >
                     <Icon
                       icon="mdi:bank"
-                      class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5 text-blue-600"
+                      class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5 text-[#ff3344]"
                     />
                   </div>
                   <h2
-                    class="text-base max-lg:text-sm font-semibold text-gray-800"
+                    class="text-base max-lg:text-sm font-semibold text-[#f0eaea]"
                   >
                     {{ bank.bankname }}
                   </h2>
                 </div>
 
                 <div class="mt-2 max-lg:mt-1.5 pl-11 max-lg:pl-9">
-                  <p class="text-sm max-lg:text-xs text-gray-600 font-mono">
+                  <p class="text-sm max-lg:text-xs text-[#b37a7a] font-mono">
                     <span>
                       {{
                         showFullAccount[bank._id]
@@ -59,7 +59,7 @@
                     </span>
                     <button
                       @click="toggleAccountVisibility(bank._id)"
-                      class="ml-2 text-blue-600 text-xs max-lg:text-[10px] lg:hover:text-blue-800 lg:hover:underline transition-colors duration-200"
+                      class="ml-2 text-[#ff3344] text-xs max-lg:text-[10px] lg:hover:text-[#c21b3a] lg:hover:underline transition-colors duration-200"
                     >
                       <span class="flex items-center">
                         <Icon
@@ -80,7 +80,7 @@
               </div>
               <button
                 @click="confirmRemoveAccount(bank._id)"
-                class="w-8 h-8 hidden max-lg:w-7 max-lg:h-7 rounded-full items-center justify-center bg-white lg:hover:bg-red-50 text-gray-400 lg:hover:text-red-600 transition-all duration-200 border border-transparent lg:hover:border-red-100"
+                class="w-8 h-8 hidden max-lg:w-7 max-lg:h-7 rounded-full items-center justify-center bg-[#241017]/60 lg:hover:bg-red-500/20 text-[#b37a7a] lg:hover:text-red-400 transition-all duration-200 border border-[#3b1c23] lg:hover:border-red-400/50"
                 :title="$t(`delete_account_tooltip`)"
               >
                 <Icon
@@ -91,12 +91,12 @@
             </div>
 
             <div
-              class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-blue-500 to-indigo-600 opacity-70"
+              class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] opacity-70"
             ></div>
           </div>
         </div>
 
-        <p v-else class="text-gray-500 max-lg:text-sm">
+        <p v-else class="text-[#b37a7a] max-lg:text-sm">
           {{ $t("no_bank_accounts") }}
         </p>
       </div>
