@@ -1,25 +1,25 @@
 <template>
   <ClientOnly>
     <div
-      class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50"
+      class="min-h-screen bg-gradient-to-br from-[#1A0D13] via-gray-950 to-[#241017]"
     >
       <div class="containerWid py-8 max-lg:py-4 max-lg:px-4">
         <div class="max-w-lg mx-auto">
           <div
-            class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-blue-100 mb-6 lg:hover:shadow-2xl transition-all duration-300"
+            class="bg-[#241017]/80 backdrop-blur-sm rounded-2xl shadow-xl shadow-red-500/20 border border-[#3b1c23] mb-6 lg:hover:shadow-[#ff3344]/20 transition-all duration-300"
           >
             <div class="text-center p-6 pb-4">
               <div
-                class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mb-2 shadow-lg"
+                class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-[#a1122d] to-[#c21b3a] rounded-full mb-2 shadow-lg"
               >
                 <i class="bi bi-dice-5-fill text-2xl text-white"></i>
               </div>
               <h2
-                class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2"
+                class="text-2xl font-bold bg-gradient-to-r from-[#ff3344] to-[#c21b3a] bg-clip-text text-transparent mb-2"
               >
                 {{ $t("lucky_draw") }}
               </h2>
-              <p class="text-gray-600 text-sm">
+              <p class="text-[#b37a7a] text-sm">
                 {{ $t("lucky_draw_desc") }}
               </p>
             </div>
@@ -27,10 +27,10 @@
             <div class="px-6">
               <div class="relative mb-6">
                 <div
-                  class="absolute -inset-3 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 rounded-2xl opacity-20 animate-pulse-slow"
+                  class="absolute -inset-3 bg-gradient-to-r from-[#ff3344] via-[#a1122d] to-[#c21b3a] rounded-2xl opacity-20 animate-pulse-slow"
                 ></div>
                 <div
-                  class="relative grid grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-br from-yellow-50 to-red-50 rounded-xl border-2 border-yellow-200"
+                  class="relative grid grid-cols-3 gap-2 sm:gap-3 p-3 sm:p-4 bg-gradient-to-br from-[#ff3344]/10 to-[#a1122d]/10 rounded-xl border-2 border-[#ff3344]/30"
                 >
                   <div
                     v-for="(prize, index) in displayPrizes"
@@ -38,7 +38,7 @@
                     class="aspect-square relative rounded-lg overflow-hidden transition-all duration-300"
                     :class="[
                       currentIndex === index
-                        ? 'ring-4 ring-yellow-400  shadow-xl animate-bounce-light'
+                        ? 'ring-4 ring-[#ff3344] shadow-xl animate-bounce-light'
                         : '',
                       index === 4 ? 'col-start-2 row-start-2' : '',
                     ]"
@@ -47,11 +47,11 @@
                       <button
                         @click="startSpin"
                         :disabled="isSpinning"
-                        class="w-full h-full bg-gradient-to-br from-yellow-400 to-orange-500 text-white font-bold rounded-xl shadow-lg transition-all duration-300 relative overflow-hidden group border-2 border-yellow-300"
+                        class="w-full h-full bg-gradient-to-br from-[#a1122d] to-[#c21b3a] text-white font-bold rounded-xl shadow-lg transition-all duration-300 relative overflow-hidden group border-2 border-[#ff3344]/50"
                         :class="[
                           isSpinning
                             ? 'opacity-50 cursor-not-allowed'
-                            : 'lg:hover:from-yellow-300 lg:hover:to-orange-400',
+                            : 'lg:hover:brightness-110',
                         ]"
                       >
                         <div
@@ -82,7 +82,7 @@
                     </div>
                     <div
                       v-else
-                      class="w-full h-full bg-white rounded-lg shadow-md border-2 border-gray-100 p-1 sm:p-2 flex flex-col items-center justify-center relative overflow-hidden"
+                      class="w-full h-full bg-[#15090e]/80 rounded-lg shadow-md border-2 border-[#3b1c23] p-1 sm:p-2 flex flex-col items-center justify-center relative overflow-hidden"
                     >
                       <div class="w-full h-12 sm:h-16 mb-1 sm:mb-2 relative">
                         <img
@@ -93,7 +93,7 @@
                       </div>
 
                       <p
-                        class="text-[10px] sm:text-xs text-center text-gray-700 font-medium leading-tight px-1"
+                        class="text-[10px] sm:text-xs text-center text-[#f0eaea] font-medium leading-tight px-1"
                         :class="{
                           'line-clamp-1': prize?.name.length > 8,
                           'line-clamp-2': prize?.name.length <= 8,
@@ -103,7 +103,7 @@
                       </p>
                       <div
                         v-if="currentIndex === index"
-                        class="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-shine"
+                        class="absolute inset-0 bg-gradient-to-r from-transparent via-[#ff3344]/50 to-transparent animate-shine"
                       ></div>
                     </div>
                   </div>
@@ -112,11 +112,11 @@
             </div>
             <div class="px-6 pb-6 hidden">
               <div
-                class="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 border border-blue-100"
+                class="text-center bg-gradient-to-r from-[#ff3344]/10 to-[#c21b3a]/10 rounded-xl p-4 border border-[#ff3344]/20"
               >
-                <p class="text-blue-700 text-sm font-medium">
+                <p class="text-[#ff3344] text-sm font-medium">
                   {{ $t("draw_cost") }}
-                  <span class="font-bold text-red-500 text-lg mx-1">1</span>
+                  <span class="font-bold text-[#ff3344] text-lg mx-1">1</span>
                   {{ $t("chance") }}
                 </p>
               </div>
@@ -126,7 +126,7 @@
         <!-- Terms and Conditions Card -->
         <div class="flex justify-center">
           <div
-            class="relative lg:min-w-[800px] bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-gray-200 mb-6"
+            class="relative lg:min-w-[800px] bg-[#241017]/80 backdrop-blur-sm rounded-xl p-6 shadow-lg shadow-red-500/20 border border-[#3b1c23] mb-6"
           >
             <div
               class="absolute -right-0 -top-[42%] transform -translate-y-1/2 z-10 max-lg:hidden"
@@ -139,52 +139,52 @@
             </div>
 
             <div class="flex items-center mb-4">
-              <i class="bi bi-info-circle text-blue-500 text-xl mr-3"></i>
-              <h3 class="text-lg font-bold text-gray-800">
+              <i class="bi bi-info-circle text-[#ff3344] text-xl mr-3"></i>
+              <h3 class="text-lg font-bold text-[#f0eaea]">
                 {{ $t("terms_conditions") }}
               </h3>
             </div>
-            <div class="space-y-3 text-sm text-gray-700">
+            <div class="space-y-3 text-sm text-[#b37a7a]">
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_daily_topup") }}</p>
               </div>
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_auto_credit") }}</p>
               </div>
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_high_value") }}</p>
               </div>
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_wallet_requirement") }}</p>
               </div>
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_once_daily") }}</p>
               </div>
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_verification") }}</p>
               </div>
 
               <div class="flex items-center">
                 <i
-                  class="bi bi-dot text-blue-500 text-xl mr-2 mt-0.5 flex-shrink-0"
+                  class="bi bi-dot text-[#ff3344] text-xl mr-2 mt-0.5 flex-shrink-0"
                 ></i>
                 <p>{{ $t("term_general") }}</p>
               </div>
@@ -201,21 +201,21 @@
       @click.self="closeResult"
     >
       <div
-        class="bg-white rounded-2xl p-6 max-w-sm w-full mx-auto relative animate-fade-in-up shadow-2xl border border-blue-100"
+        class="bg-[#241017]/95 backdrop-blur-sm rounded-2xl p-6 max-w-sm w-full mx-auto relative animate-fade-in-up shadow-2xl border border-[#3b1c23]"
       >
         <div class="text-center">
           <div
-            class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full flex items-center justify-center animate-bounce-slow shadow-lg"
+            class="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-full flex items-center justify-center animate-bounce-slow shadow-lg"
           >
             <i class="bi bi-trophy-fill text-3xl text-white"></i>
           </div>
-          <h3 class="text-2xl font-bold text-blue-700 mb-2">
+          <h3 class="text-2xl font-bold text-[#ff3344] mb-2">
             {{ $t("congratulations") }}
           </h3>
 
           <div class="mb-4">
             <div
-              class="w-28 h-28 mx-auto mb-3 bg-blue-50 rounded-xl p-2 border-2 border-blue-200"
+              class="w-28 h-28 mx-auto mb-3 bg-[#15090e]/50 rounded-xl p-2 border-2 border-[#ff3344]/30"
             >
               <img
                 :src="`/images/luckydraw/image_${result.gridPosition + 1}.png`"
@@ -223,10 +223,12 @@
                 class="w-full h-full object-contain rounded-lg"
               />
             </div>
-            <p class="text-lg font-bold text-blue-600">{{ result.name }}</p>
+            <p class="text-lg font-bold text-[#ff3344]">{{ result.name }}</p>
           </div>
-          <div class="bg-blue-50 rounded-lg p-3 mb-6 border border-blue-100">
-            <p class="text-blue-700 text-sm">
+          <div
+            class="bg-[#ff3344]/10 rounded-lg p-3 mb-6 border border-[#ff3344]/20"
+          >
+            <p class="text-[#f0eaea] text-sm">
               {{ $t("prize_desc") }}
             </p>
           </div>
@@ -234,7 +236,7 @@
           <div class="space-y-3">
             <button
               @click="closeResult"
-              class="w-full py-2 text-blue-600 lg:hover:text-blue-700 transition-colors font-medium"
+              class="w-full py-2 text-[#ff3344] lg:hover:text-[#c21b3a] transition-colors font-medium"
             >
               {{ $t("close") }}
             </button>

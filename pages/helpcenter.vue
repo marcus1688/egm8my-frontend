@@ -399,25 +399,25 @@
                 <ul
                   class="text-sm max-lg:text-xs text-[#b37a7a] space-y-2 max-lg:space-y-1.5"
                 >
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-chat-dots text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("live_chat_immediate") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-whatsapp text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("whatsapp_response") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-telegram text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("telegram_response") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-envelope text-green-400 mt-1 max-lg:mt-0.5"
                     ></i>
@@ -439,19 +439,19 @@
                 <ul
                   class="text-sm max-lg:text-xs text-[#b37a7a] space-y-2 max-lg:space-y-1.5"
                 >
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-check-circle text-purple-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("english") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-check-circle text-purple-400 mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("chinese_mandarin") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-check-circle text-purple-400 mt-1 max-lg:mt-0.5"
                     ></i>
@@ -470,19 +470,19 @@
                 <ul
                   class="text-sm max-lg:text-xs text-[#b37a7a] space-y-3 max-lg:space-y-2"
                 >
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-shield-check text-[#ff3344] mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("policy_verification") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-shield-check text-[#ff3344] mt-1 max-lg:mt-0.5"
                     ></i>
                     <span>{{ $t("policy_confidential") }}</span>
                   </li>
-                  <li class="flex items-start gap-2">
+                  <li class="flex items-center gap-2">
                     <i
                       class="bi bi-shield-check text-[#ff3344] mt-1 max-lg:mt-0.5"
                     ></i>

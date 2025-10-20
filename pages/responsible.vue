@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 relative">
+    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
       <div class="absolute inset-0 opacity-10">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs>
@@ -28,7 +28,7 @@
             {{ $t("responsible_gaming") }}
           </h1>
           <p
-            class="text-emerald-100 text-lg md:text-xl max-lg:text-base mb-8 max-lg:mb-6 animate-fadeIn animate-delay-200"
+            class="text-red-100 text-lg md:text-xl max-lg:text-base mb-8 max-lg:mb-6 animate-fadeIn animate-delay-200"
           >
             {{ $t("safe_fair_environment") }}
           </p>
@@ -36,7 +36,7 @@
             <a
               href="#self-assessment"
               @click.prevent="handleAnchorClick($event, 'self-assessment')"
-              class="inline-flex items-center bg-white text-emerald-700 px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg font-medium lg:hover:bg-emerald-50 transition-colors shadow-lg max-lg:text-sm"
+              class="inline-flex items-center bg-white text-[#a1122d] px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg font-medium lg:hover:bg-red-50 transition-colors shadow-lg max-lg:text-sm"
             >
               <i class="bi bi-clipboard-check mr-2"></i>
               {{ $t("take_self_assessment") }}
@@ -47,48 +47,50 @@
     </div>
 
     <!-- Quick Links -->
-    <div class="bg-white shadow-md border-b border-gray-100 overflow-x-auto">
+    <div
+      class="bg-[#241017]/60 border-b border-[#3b1c23] overflow-x-auto shadow-lg"
+    >
       <div class="container mx-auto px-4">
         <div class="flex flex-nowrap justify-start md:justify-center">
           <a
             href="#understanding"
             @click.prevent="handleAnchorClick($event, 'understanding')"
-            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-gray-700 lg:hover:text-emerald-600 font-medium transition-colors border-b-2 border-transparent lg:hover:border-emerald-600 max-lg:text-xs whitespace-nowrap shrink-0"
+            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-[#b37a7a] lg:hover:text-[#ff3344] font-medium transition-colors border-b-2 border-transparent lg:hover:border-[#ff3344] max-lg:text-xs whitespace-nowrap shrink-0"
           >
             {{ $t("understanding") }}
           </a>
           <a
             href="#tools"
             @click.prevent="handleAnchorClick($event, 'tools')"
-            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-gray-700 lg:hover:text-emerald-600 font-medium transition-colors border-b-2 border-transparent lg:hover:border-emerald-600 max-lg:text-xs whitespace-nowrap shrink-0"
+            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-[#b37a7a] lg:hover:text-[#ff3344] font-medium transition-colors border-b-2 border-transparent lg:hover:border-[#ff3344] max-lg:text-xs whitespace-nowrap shrink-0"
           >
             {{ $t("tools_controls") }}
           </a>
           <a
             href="#signs"
             @click.prevent="handleAnchorClick($event, 'signs')"
-            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-gray-700 lg:hover:text-emerald-600 font-medium transition-colors border-b-2 border-transparent lg:hover:border-emerald-600 max-lg:text-xs whitespace-nowrap shrink-0"
+            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-[#b37a7a] lg:hover:text-[#ff3344] font-medium transition-colors border-b-2 border-transparent lg:hover:border-[#ff3344] max-lg:text-xs whitespace-nowrap shrink-0"
           >
             {{ $t("signs_warning") }}
           </a>
           <a
             href="#tips"
             @click.prevent="handleAnchorClick($event, 'tips')"
-            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-gray-700 lg:hover:text-emerald-600 font-medium transition-colors border-b-2 border-transparent lg:hover:border-emerald-600 max-lg:text-xs whitespace-nowrap shrink-0"
+            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-[#b37a7a] lg:hover:text-[#ff3344] font-medium transition-colors border-b-2 border-transparent lg:hover:border-[#ff3344] max-lg:text-xs whitespace-nowrap shrink-0"
           >
             {{ $t("tips_healthy_gaming") }}
           </a>
           <a
             href="#support"
             @click.prevent="handleAnchorClick($event, 'support')"
-            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-gray-700 lg:hover:text-emerald-600 font-medium transition-colors border-b-2 border-transparent lg:hover:border-emerald-600 max-lg:text-xs whitespace-nowrap shrink-0"
+            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-[#b37a7a] lg:hover:text-[#ff3344] font-medium transition-colors border-b-2 border-transparent lg:hover:border-[#ff3344] max-lg:text-xs whitespace-nowrap shrink-0"
           >
             {{ $t("support_resources") }}
           </a>
           <a
             href="#protect"
             @click.prevent="handleAnchorClick($event, 'protect')"
-            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-gray-700 lg:hover:text-emerald-600 font-medium transition-colors border-b-2 border-transparent lg:hover:border-emerald-600 max-lg:text-xs whitespace-nowrap shrink-0"
+            class="px-5 max-lg:px-3 py-4 max-lg:py-2.5 text-[#b37a7a] lg:hover:text-[#ff3344] font-medium transition-colors border-b-2 border-transparent lg:hover:border-[#ff3344] max-lg:text-xs whitespace-nowrap shrink-0"
           >
             {{ $t("protect_minors") }}
           </a>
@@ -97,24 +99,26 @@
     </div>
 
     <!-- Main Content -->
-    <div class="bg-gray-50 py-16">
+    <div
+      class="bg-gradient-to-br from-[#1A0D13] via-gray-950 to-[#241017] py-16"
+    >
       <div class="container mx-auto px-4">
         <!-- Our Philosophy Section -->
         <div class="max-w-4xl mx-auto text-center mb-20 max-lg:mb-12">
           <div
-            class="w-16 h-16 max-lg:w-12 max-lg:h-12 mx-auto bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-6 max-lg:mb-3"
+            class="w-16 h-16 max-lg:w-12 max-lg:h-12 mx-auto bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mb-6 max-lg:mb-3"
           >
             <i class="bi bi-heart-fill text-2xl max-lg:text-lg"></i>
           </div>
           <h2
-            class="text-3xl max-lg:text-xl font-bold text-gray-800 mb-6 max-lg:mb-3"
+            class="text-3xl max-lg:text-xl font-bold text-[#f0eaea] mb-6 max-lg:mb-3"
           >
             {{ $t("our_philosophy") }}
           </h2>
-          <p class="text-lg max-lg:text-sm text-gray-600 mb-6 max-lg:mb-3">
+          <p class="text-lg max-lg:text-sm text-[#b37a7a] mb-6 max-lg:mb-3">
             {{ $t("philosophy_description_1") }}
           </p>
-          <p class="text-lg max-lg:text-sm text-gray-600">
+          <p class="text-lg max-lg:text-sm text-[#b37a7a]">
             {{ $t("philosophy_description_2") }}
           </p>
         </div>
@@ -122,52 +126,65 @@
         <!-- Understanding Responsible Gaming -->
         <div
           id="understanding"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 border border-[#3b1c23]"
         >
           <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
             <div
-              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
             >
               <i class="bi bi-book text-2xl max-lg:text-lg"></i>
             </div>
-            <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+            <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
               {{ $t("understanding_responsible_gaming") }}
             </h2>
           </div>
 
-          <div class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600">
+          <div class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]">
             <p>
               {{ $t("understanding_description") }}
             </p>
 
             <h3
-              class="text-gray-800 font-semibold mt-6 max-lg:mt-4 mb-3 max-lg:mb-2"
+              class="text-[#f0eaea] font-semibold mt-6 max-lg:mt-4 mb-3 max-lg:mb-2"
             >
               {{ $t("key_principles") }}:
             </h3>
 
             <ul class="space-y-2 max-lg:space-y-1">
               <li class="max-lg:text-sm">
-                <strong>{{ $t("entertainment_first") }}</strong> -
+                <strong class="text-[#ff3344]">{{
+                  $t("entertainment_first")
+                }}</strong>
+                -
                 {{ $t("entertainment_first_desc") }}
               </li>
               <li class="max-lg:text-sm">
-                <strong>{{ $t("informed_decisions") }}</strong> -
+                <strong class="text-[#ff3344]">{{
+                  $t("informed_decisions")
+                }}</strong>
+                -
                 {{ $t("informed_decisions_desc") }}
               </li>
               <li class="max-lg:text-sm">
-                <strong>{{ $t("budget_management") }}</strong> -
+                <strong class="text-[#ff3344]">{{
+                  $t("budget_management")
+                }}</strong>
+                -
                 {{ $t("budget_management_desc") }}
               </li>
               <li class="max-lg:text-sm">
-                <strong>{{ $t("balance") }}</strong> - {{ $t("balance_desc") }}
+                <strong class="text-[#ff3344]">{{ $t("balance") }}</strong> -
+                {{ $t("balance_desc") }}
               </li>
               <li class="max-lg:text-sm">
-                <strong>{{ $t("emotional_control") }}</strong> -
+                <strong class="text-[#ff3344]">{{
+                  $t("emotional_control")
+                }}</strong>
+                -
                 {{ $t("emotional_control_desc") }}
               </li>
               <li class="max-lg:text-sm">
-                <strong>{{ $t("awareness") }}</strong> -
+                <strong class="text-[#ff3344]">{{ $t("awareness") }}</strong> -
                 {{ $t("awareness_desc") }}
               </li>
             </ul>
@@ -181,20 +198,20 @@
         <!-- Tools and Controls -->
         <div
           id="tools"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 border border-[#3b1c23]"
         >
           <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
             <div
-              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
             >
               <i class="bi bi-tools text-2xl max-lg:text-lg"></i>
             </div>
-            <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+            <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
               {{ $t("tools_and_controls") }}
             </h2>
           </div>
 
-          <div class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600">
+          <div class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]">
             <p class="max-lg:text-sm">
               {{ $t("tools_description") }}
             </p>
@@ -204,17 +221,17 @@
             >
               <!-- Deposit Limits -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-3 lg:hover:shadow-md transition-all"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-3 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-wallet2 max-lg:text-xs"></i>
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("deposit_limits") }}
                   </h3>
                 </div>
@@ -225,17 +242,17 @@
 
               <!-- Time Limits -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-3 lg:hover:shadow-md transition-all"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-3 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-clock max-lg:text-xs"></i>
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("session_time_limits") }}
                   </h3>
                 </div>
@@ -246,17 +263,17 @@
 
               <!-- Loss Limits -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-3 lg:hover:shadow-md transition-all"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-3 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-graph-down max-lg:text-xs"></i>
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("loss_limits") }}
                   </h3>
                 </div>
@@ -267,17 +284,17 @@
 
               <!-- Self-Exclusion -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-3 lg:hover:shadow-md transition-all"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-3 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-pause-circle max-lg:text-xs"></i>
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("self_exclusion") }}
                   </h3>
                 </div>
@@ -288,17 +305,17 @@
 
               <!-- Reality Checks -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-3 lg:hover:shadow-md transition-all"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-3 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-bell max-lg:text-xs"></i>
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("reality_checks") }}
                   </h3>
                 </div>
@@ -309,17 +326,17 @@
 
               <!-- Account History -->
               <div
-                class="border border-gray-100 rounded-xl p-6 max-lg:p-3 lg:hover:shadow-md transition-all"
+                class="border border-[#3b1c23] rounded-xl p-6 max-lg:p-3 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-all bg-[#15090e]/50"
               >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
                   >
                     <i class="bi bi-file-earmark-text max-lg:text-xs"></i>
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("account_history") }}
                   </h3>
                 </div>
@@ -338,29 +355,29 @@
         <!-- Warning Signs -->
         <div
           id="signs"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 border border-[#3b1c23]"
         >
           <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
             <div
-              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-orange-100 rounded-full flex items-center justify-center text-orange-600"
+              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-orange-500/20 rounded-full flex items-center justify-center text-orange-400"
             >
               <i class="bi bi-exclamation-triangle text-2xl max-lg:text-lg"></i>
             </div>
-            <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+            <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
               {{ $t("warning_signs") }}
             </h2>
           </div>
 
-          <div class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600">
+          <div class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]">
             <p class="max-lg:text-sm">
               {{ $t("warning_signs_description") }}
             </p>
 
             <div
-              class="bg-orange-50 border border-orange-100 rounded-xl p-6 max-lg:p-3 my-8 max-lg:my-4"
+              class="bg-orange-500/10 border border-orange-500/20 rounded-xl p-6 max-lg:p-3 my-8 max-lg:my-4"
             >
               <h3
-                class="text-gray-800 font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
+                class="text-[#f0eaea] font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
               >
                 {{ $t("common_warning_signs") }}:
               </h3>
@@ -371,15 +388,15 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
-                    <span>S{{ $t("warning_sign_1") }}</span>
+                    <span>{{ $t("warning_sign_1") }}</span>
                   </li>
                   <li
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_2") }}</span>
                   </li>
@@ -387,7 +404,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_3") }}</span>
                   </li>
@@ -395,7 +412,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_4") }}</span>
                   </li>
@@ -403,7 +420,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_5") }}</span>
                   </li>
@@ -414,7 +431,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_6") }}</span>
                   </li>
@@ -422,7 +439,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_7") }}</span>
                   </li>
@@ -430,7 +447,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_8") }}</span>
                   </li>
@@ -438,7 +455,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_9") }}</span>
                   </li>
@@ -446,7 +463,7 @@
                     class="flex items-start gap-2 max-lg:gap-1 max-lg:text-xs"
                   >
                     <i
-                      class="bi bi-exclamation-circle text-orange-500 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
+                      class="bi bi-exclamation-circle text-orange-400 mt-1 max-lg:mt-0.5 max-lg:text-[10px]"
                     ></i>
                     <span>{{ $t("warning_sign_10") }}</span>
                   </li>
@@ -463,29 +480,29 @@
         <!-- Self-Assessment -->
         <div
           id="self-assessment"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8 relative overflow-hidden"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 relative overflow-hidden border border-[#3b1c23]"
         >
           <div
-            class="absolute top-0 right-0 w-40 h-40 max-lg:w-24 max-lg:h-24 bg-emerald-100 rounded-full -mr-20 -mt-20 opacity-50"
+            class="absolute top-0 right-0 w-40 h-40 max-lg:w-24 max-lg:h-24 bg-[#ff3344]/10 rounded-full -mr-20 -mt-20 opacity-50"
           ></div>
           <div
-            class="absolute bottom-0 left-0 w-40 h-40 max-lg:w-24 max-lg:h-24 bg-emerald-100 rounded-full -ml-20 -mb-20 opacity-50"
+            class="absolute bottom-0 left-0 w-40 h-40 max-lg:w-24 max-lg:h-24 bg-[#ff3344]/10 rounded-full -ml-20 -mb-20 opacity-50"
           ></div>
 
           <div class="relative z-10">
             <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
               <div
-                class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+                class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
               >
                 <i class="bi bi-clipboard-check text-2xl max-lg:text-lg"></i>
               </div>
-              <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+              <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
                 {{ $t("self_assessment_questionnaire") }}
               </h2>
             </div>
 
             <div
-              class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600"
+              class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]"
             >
               <p class="max-lg:text-xs">
                 {{ $t("self_assessment_description") }}
@@ -503,20 +520,23 @@
                 <div
                   class="p-6 max-lg:p-3 rounded-xl border"
                   :class="{
-                    'bg-green-50 border-green-100': riskLevel === 'Low Risk',
-                    'bg-yellow-50 border-yellow-100':
+                    'bg-green-500/10 border-green-500/20':
+                      riskLevel === 'Low Risk',
+                    'bg-yellow-500/10 border-yellow-500/20':
                       riskLevel === 'Moderate Risk',
-                    'bg-orange-50 border-orange-100': riskLevel === 'High Risk',
+                    'bg-orange-500/10 border-orange-500/20':
+                      riskLevel === 'High Risk',
                   }"
                 >
                   <div class="flex items-center mb-4 max-lg:mb-2">
                     <div
                       class="w-12 h-12 max-lg:w-6 max-lg:h-6 rounded-full flex items-center justify-center mr-4 max-lg:mr-2"
                       :class="{
-                        'bg-green-100 text-green-600': riskLevel === 'Low Risk',
-                        'bg-yellow-100 text-yellow-600':
+                        'bg-green-500/20 text-green-400':
+                          riskLevel === 'Low Risk',
+                        'bg-yellow-500/20 text-yellow-400':
                           riskLevel === 'Moderate Risk',
-                        'bg-orange-100 text-orange-600':
+                        'bg-orange-500/20 text-orange-400':
                           riskLevel === 'High Risk',
                       }"
                     >
@@ -533,9 +553,9 @@
                     <h3
                       class="text-xl max-lg:text-base font-semibold"
                       :class="{
-                        'text-green-700': riskLevel === 'Low Risk',
-                        'text-yellow-700': riskLevel === 'Moderate Risk',
-                        'text-orange-700': riskLevel === 'High Risk',
+                        'text-green-400': riskLevel === 'Low Risk',
+                        'text-yellow-400': riskLevel === 'Moderate Risk',
+                        'text-orange-400': riskLevel === 'High Risk',
                       }"
                     >
                       {{ $t("assessment_results") }}: {{ riskLevel }}
@@ -544,7 +564,7 @@
 
                   <div class="mb-6 max-lg:mb-3">
                     <div
-                      class="w-full bg-gray-200 rounded-full h-2.5 max-lg:h-1.5 mb-1"
+                      class="w-full bg-[#3b1c23] rounded-full h-2.5 max-lg:h-1.5 mb-1"
                     >
                       <div
                         class="h-2.5 max-lg:h-1.5 rounded-full"
@@ -569,7 +589,7 @@
                     {{ resultMessage }}
                   </p>
 
-                  <p class="mb-2 text-gray-700 font-medium max-lg:text-xs">
+                  <p class="mb-2 text-[#f0eaea] font-medium max-lg:text-xs">
                     {{ $t("your_risk_score") }}: {{ score }}/{{
                       maxPossibleScore
                     }}
@@ -577,7 +597,9 @@
                   </p>
 
                   <div class="mt-6 max-lg:mt-3">
-                    <h4 class="font-medium mb-2 max-lg:mb-1 max-lg:text-xs">
+                    <h4
+                      class="font-medium mb-2 max-lg:mb-1 max-lg:text-xs text-[#f0eaea]"
+                    >
                       {{ $t("recommended_next_steps") }}:
                     </h4>
                     <ul class="space-y-1 max-lg:text-xs">
@@ -595,7 +617,7 @@
                   <div class="mt-6 max-lg:mt-3 text-center">
                     <button
                       @click="resetAssessment"
-                      class="px-6 max-lg:px-3 py-2 max-lg:py-1 rounded-lg bg-gray-200 text-gray-700 lg:hover:bg-gray-300 transition-colors max-lg:text-xs"
+                      class="px-6 max-lg:px-3 py-2 max-lg:py-1 rounded-lg bg-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#4a2129] transition-colors max-lg:text-xs"
                     >
                       {{ $t("retake_assessment") }}
                     </button>
@@ -608,9 +630,11 @@
                 class="mt-8 max-lg:mt-4 space-y-6 max-lg:space-y-3"
               >
                 <!-- Question 1 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_1") }}
                   </p>
@@ -620,8 +644,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[1] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -631,8 +655,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[1] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -642,8 +666,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[1] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -653,8 +677,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[1] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -663,9 +687,11 @@
                 </div>
 
                 <!-- Question 2 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_2") }}
                   </p>
@@ -675,8 +701,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[2] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -686,8 +712,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[2] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -697,8 +723,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[2] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -708,8 +734,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[2] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -718,9 +744,11 @@
                 </div>
 
                 <!-- Question 3 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_3") }}
                   </p>
@@ -730,8 +758,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[3] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -741,8 +769,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[3] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -752,8 +780,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[3] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -763,8 +791,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[3] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -773,9 +801,11 @@
                 </div>
 
                 <!-- Question 4 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_4") }}
                   </p>
@@ -785,8 +815,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[4] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -796,8 +826,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[4] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -807,8 +837,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[4] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -818,8 +848,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[4] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -828,9 +858,11 @@
                 </div>
 
                 <!-- Question 5 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_5") }}
                   </p>
@@ -840,8 +872,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[5] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -851,8 +883,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[5] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -862,8 +894,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[5] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -873,8 +905,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[5] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -883,9 +915,11 @@
                 </div>
 
                 <!-- Question 6 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_6") }}
                   </p>
@@ -895,8 +929,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[6] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -906,8 +940,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[6] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -917,8 +951,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[6] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -928,8 +962,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[6] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -938,9 +972,11 @@
                 </div>
 
                 <!-- Question 7 -->
-                <div class="p-6 max-lg:p-3 border border-gray-100 rounded-xl">
+                <div
+                  class="p-6 max-lg:p-3 border border-[#3b1c23] rounded-xl bg-[#15090e]/50"
+                >
                   <p
-                    class="font-medium text-gray-800 mb-3 max-lg:mb-1.5 max-lg:text-xs"
+                    class="font-medium text-[#f0eaea] mb-3 max-lg:mb-1.5 max-lg:text-xs"
                   >
                     {{ $t("question_7") }}
                   </p>
@@ -950,8 +986,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[7] === 0
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("never") }}
@@ -961,8 +997,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[7] === 1
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("sometimes") }}
@@ -972,8 +1008,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[7] === 2
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("often") }}
@@ -983,8 +1019,8 @@
                       :class="[
                         'px-4 max-lg:px-2 py-2 max-lg:py-1 border rounded-lg transition-colors max-lg:text-xs',
                         answers[7] === 3
-                          ? 'bg-emerald-100 border-emerald-300 text-emerald-700'
-                          : 'border-gray-200 text-gray-700 lg:hover:bg-emerald-50 lg:hover:border-emerald-200',
+                          ? 'bg-[#ff3344]/20 border-[#ff3344] text-[#ff3344]'
+                          : 'border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#ff3344]/10 lg:hover:border-[#ff3344]/50',
                       ]"
                     >
                       {{ $t("always") }}
@@ -1000,7 +1036,7 @@
                   <div class="mt-6 max-lg:mt-3 text-center">
                     <button
                       @click="getResults"
-                      class="px-6 max-lg:px-4 py-3 max-lg:py-1.5 bg-emerald-600 text-white rounded-lg font-medium lg:hover:bg-emerald-700 transition-colors shadow-sm disabled:opacity-60 disabled:cursor-not-allowed max-lg:text-xs"
+                      class="px-6 max-lg:px-4 py-3 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg font-medium lg:hover:brightness-110 transition-all shadow-sm disabled:opacity-60 disabled:cursor-not-allowed max-lg:text-xs"
                       :disabled="!allQuestionsAnswered"
                     >
                       {{ $t("get_assessment_results") }}
@@ -1015,20 +1051,20 @@
         <!-- Healthy Gaming Tips -->
         <div
           id="tips"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 border border-[#3b1c23]"
         >
           <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
             <div
-              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600"
+              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344]"
             >
               <i class="bi bi-lightbulb text-2xl max-lg:text-lg"></i>
             </div>
-            <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+            <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
               {{ $t("healthy_gaming_tips") }}
             </h2>
           </div>
 
-          <div class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600">
+          <div class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]">
             <p class="max-lg:text-sm">
               {{ $t("healthy_gaming_tips_description") }}:
             </p>
@@ -1037,16 +1073,18 @@
               class="grid grid-cols-1 md:grid-cols-2 gap-6 max-lg:gap-3 mt-8 max-lg:mt-4"
             >
               <!-- Tip 1 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     1
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_1") }}
                   </h3>
                 </div>
@@ -1056,16 +1094,18 @@
               </div>
 
               <!-- Tip 2 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     2
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_2") }}
                   </h3>
                 </div>
@@ -1075,16 +1115,18 @@
               </div>
 
               <!-- Tip 3 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     3
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_3") }}
                   </h3>
                 </div>
@@ -1094,16 +1136,18 @@
               </div>
 
               <!-- Tip 4 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     4
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_4") }}
                   </h3>
                 </div>
@@ -1113,16 +1157,18 @@
               </div>
 
               <!-- Tip 5 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     5
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_5") }}
                   </h3>
                 </div>
@@ -1132,16 +1178,18 @@
               </div>
 
               <!-- Tip 6 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     6
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_6") }}
                   </h3>
                 </div>
@@ -1151,16 +1199,18 @@
               </div>
 
               <!-- Tip 7 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     7
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_7") }}
                   </h3>
                 </div>
@@ -1170,16 +1220,18 @@
               </div>
 
               <!-- Tip 8 -->
-              <div class="bg-emerald-50 rounded-xl p-6 max-lg:p-3">
+              <div
+                class="bg-[#ff3344]/10 rounded-xl p-6 max-lg:p-3 border border-[#ff3344]/20"
+              >
                 <div
                   class="flex items-center gap-3 max-lg:gap-2 mb-4 max-lg:mb-2"
                 >
                   <div
-                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-semibold max-lg:text-xs"
+                    class="w-10 h-10 max-lg:w-6 max-lg:h-6 bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] font-semibold max-lg:text-xs"
                   >
                     8
                   </div>
-                  <h3 class="font-semibold text-gray-800 max-lg:text-sm">
+                  <h3 class="font-semibold text-[#f0eaea] max-lg:text-sm">
                     {{ $t("tip_8") }}
                   </h3>
                 </div>
@@ -1198,20 +1250,20 @@
         <!-- Support and Resources -->
         <div
           id="support"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 border border-[#3b1c23]"
         >
           <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
             <div
-              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-blue-500/20 rounded-full flex items-center justify-center text-blue-400"
             >
               <i class="bi bi-life-preserver text-2xl max-lg:text-lg"></i>
             </div>
-            <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+            <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
               {{ $t("support_resources") }}
             </h2>
           </div>
 
-          <div class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600">
+          <div class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]">
             <p class="max-lg:text-sm">
               {{ $t("support_description") }}
             </p>
@@ -1219,10 +1271,10 @@
             <div class="mt-8 max-lg:mt-4 space-y-6 max-lg:space-y-3">
               <!-- Our Support -->
               <div
-                class="border border-blue-100 rounded-xl p-6 max-lg:p-3 bg-blue-50"
+                class="border border-blue-500/20 rounded-xl p-6 max-lg:p-3 bg-blue-500/10"
               >
                 <h3
-                  class="text-gray-800 font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
+                  class="text-[#f0eaea] font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
                 >
                   {{ $t("our_support_team") }}
                 </h3>
@@ -1232,7 +1284,7 @@
                 <div class="mt-4 max-lg:mt-2">
                   <NuxtLinkLocale
                     to="/helpcenter"
-                    class="inline-flex items-center text-blue-600 lg:hover:text-blue-700 font-medium max-lg:text-xs"
+                    class="inline-flex items-center text-blue-400 lg:hover:text-blue-300 font-medium max-lg:text-xs"
                   >
                     <i class="bi bi-headset mr-2 max-lg:mr-1"></i>
                     {{ $t("contact_support") }}
@@ -1243,69 +1295,77 @@
               <!-- Helplines -->
               <div>
                 <h3
-                  class="text-gray-800 font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
+                  class="text-[#f0eaea] font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
                 >
                   {{ $t("national_helplines") }}
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-lg:gap-2">
-                  <div class="border border-gray-100 rounded-xl p-4 max-lg:p-2">
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                  <div
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 bg-[#15090e]/50"
+                  >
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("national_problem_gambling_helpline") }}
                     </h4>
-                    <p class="text-gray-600 mb-2 max-lg:mb-1 max-lg:text-xs">
+                    <p class="text-[#b37a7a] mb-2 max-lg:mb-1 max-lg:text-xs">
                       {{ $t("confidential_support") }}
                     </p>
                     <a
                       href="tel:1-800-522-4700"
-                      class="text-blue-600 lg:hover:text-blue-700 font-medium max-lg:text-xs"
+                      class="text-blue-400 lg:hover:text-blue-300 font-medium max-lg:text-xs"
                       >1-800-522-4700</a
                     >
                   </div>
 
-                  <div class="border border-gray-100 rounded-xl p-4 max-lg:p-2">
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                  <div
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 bg-[#15090e]/50"
+                  >
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("gamblers_anonymous") }}
                     </h4>
-                    <p class="text-gray-600 mb-2 max-lg:mb-1 max-lg:text-xs">
+                    <p class="text-[#b37a7a] mb-2 max-lg:mb-1 max-lg:text-xs">
                       {{ $t("peer_support_network") }}
                     </p>
                     <a
                       href="https://www.gamblersanonymous.org"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-blue-600 lg:hover:text-blue-700 font-medium max-lg:text-xs"
+                      class="text-blue-400 lg:hover:text-blue-300 font-medium max-lg:text-xs"
                       >www.gamblersanonymous.org</a
                     >
                   </div>
 
-                  <div class="border border-gray-100 rounded-xl p-4 max-lg:p-2">
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                  <div
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 bg-[#15090e]/50"
+                  >
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("gamcare") }}
                     </h4>
-                    <p class="text-gray-600 mb-2 max-lg:mb-1 max-lg:text-xs">
+                    <p class="text-[#b37a7a] mb-2 max-lg:mb-1 max-lg:text-xs">
                       {{ $t("information_advice_support") }}
                     </p>
                     <a
                       href="https://www.gamcare.org.uk"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-blue-600 lg:hover:text-blue-700 font-medium max-lg:text-xs"
+                      class="text-blue-400 lg:hover:text-blue-300 font-medium max-lg:text-xs"
                       >www.gamcare.org.uk</a
                     >
                   </div>
 
-                  <div class="border border-gray-100 rounded-xl p-4 max-lg:p-2">
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                  <div
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 bg-[#15090e]/50"
+                  >
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("begambleaware") }}
                     </h4>
-                    <p class="text-gray-600 mb-2 max-lg:mb-1 max-lg:text-xs">
+                    <p class="text-[#b37a7a] mb-2 max-lg:mb-1 max-lg:text-xs">
                       {{ $t("guidance_free_resources") }}
                     </p>
                     <a
                       href="https://www.begambleaware.org"
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="text-blue-600 lg:hover:text-blue-700 font-medium max-lg:text-xs"
+                      class="text-blue-400 lg:hover:text-blue-300 font-medium max-lg:text-xs"
                       >www.begambleaware.org</a
                     >
                   </div>
@@ -1315,7 +1375,7 @@
               <!-- Filtering Software -->
               <div>
                 <h3
-                  class="text-gray-800 font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
+                  class="text-[#f0eaea] font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
                 >
                   {{ $t("blocking_software") }}
                 </h3>
@@ -1329,12 +1389,12 @@
                     href="https://gamban.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow text-center"
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow text-center bg-[#15090e]/50"
                   >
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("gamban") }}
                     </h4>
-                    <p class="text-sm max-lg:text-[10px] text-gray-600">
+                    <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                       {{ $t("gamban_desc") }}
                     </p>
                   </a>
@@ -1343,12 +1403,12 @@
                     href="https://betblocker.org/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow text-center"
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow text-center bg-[#15090e]/50"
                   >
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("betblocker") }}
                     </h4>
-                    <p class="text-sm max-lg:text-[10px] text-gray-600">
+                    <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                       {{ $t("betblocker_desc") }}
                     </p>
                   </a>
@@ -1357,12 +1417,12 @@
                     href="https://gamblock.com/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow text-center"
+                    class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow text-center bg-[#15090e]/50"
                   >
-                    <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                    <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                       {{ $t("gamblock") }}
                     </h4>
-                    <p class="text-sm max-lg:text-[10px] text-gray-600">
+                    <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                       {{ $t("gamblock_desc") }}
                     </p>
                   </a>
@@ -1372,7 +1432,7 @@
               <!-- Professional Help -->
               <div>
                 <h3
-                  class="text-gray-800 font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
+                  class="text-[#f0eaea] font-semibold mb-4 max-lg:mb-2 max-lg:text-sm"
                 >
                   {{ $t("professional_counseling") }}
                 </h3>
@@ -1397,26 +1457,26 @@
         <!-- Protecting Minors -->
         <div
           id="protect"
-          class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-10 max-lg:p-4 mb-16 max-lg:mb-8"
+          class="max-w-4xl mx-auto bg-[#241017]/60 rounded-2xl shadow-lg shadow-red-500/20 p-10 max-lg:p-4 mb-16 max-lg:mb-8 border border-[#3b1c23]"
         >
           <div class="flex items-center gap-4 max-lg:gap-2 mb-8 max-lg:mb-4">
             <div
-              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-purple-100 rounded-full flex items-center justify-center text-purple-600"
+              class="w-12 h-12 max-lg:w-8 max-lg:h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400"
             >
               <i class="bi bi-shield-lock text-2xl max-lg:text-lg"></i>
             </div>
-            <h2 class="text-2xl max-lg:text-lg font-bold text-gray-800">
+            <h2 class="text-2xl max-lg:text-lg font-bold text-[#f0eaea]">
               {{ $t("protecting_minors") }}
             </h2>
           </div>
 
-          <div class="prose prose-lg max-lg:prose-sm max-w-none text-gray-600">
+          <div class="prose prose-lg max-lg:prose-sm max-w-none text-[#b37a7a]">
             <p class="max-lg:text-sm">
               {{ $t("protecting_minors_desc") }}
             </p>
 
             <h3
-              class="text-gray-800 font-semibold mt-6 max-lg:mt-4 mb-4 max-lg:mb-2 max-lg:text-base"
+              class="text-[#f0eaea] font-semibold mt-6 max-lg:mt-4 mb-4 max-lg:mb-2 max-lg:text-base"
             >
               {{ $t("our_safeguards") }}:
             </h3>
@@ -1424,44 +1484,52 @@
             <ul class="space-y-3 max-lg:space-y-2">
               <li class="flex items-start gap-3 max-lg:gap-2">
                 <i
-                  class="bi bi-check-circle-fill text-purple-500 mt-1 max-lg:text-sm"
+                  class="bi bi-check-circle-fill text-purple-400 mt-1 max-lg:text-sm"
                 ></i>
                 <span class="max-lg:text-xs"
-                  ><strong>{{ $t("age_verification") }}:</strong>
+                  ><strong class="text-[#ff3344]"
+                    >{{ $t("age_verification") }}:</strong
+                  >
                   {{ $t("age_verification_desc") }}</span
                 >
               </li>
               <li class="flex items-start gap-3 max-lg:gap-2">
                 <i
-                  class="bi bi-check-circle-fill text-purple-500 mt-1 max-lg:text-sm"
+                  class="bi bi-check-circle-fill text-purple-400 mt-1 max-lg:text-sm"
                 ></i>
                 <span class="max-lg:text-xs"
-                  ><strong>{{ $t("id_checks") }}:</strong>
+                  ><strong class="text-[#ff3344]"
+                    >{{ $t("id_checks") }}:</strong
+                  >
                   {{ $t("id_checks_desc") }}</span
                 >
               </li>
               <li class="flex items-start gap-3 max-lg:gap-2">
                 <i
-                  class="bi bi-check-circle-fill text-purple-500 mt-1 max-lg:text-sm"
+                  class="bi bi-check-circle-fill text-purple-400 mt-1 max-lg:text-sm"
                 ></i>
                 <span class="max-lg:text-xs"
-                  ><strong>{{ $t("marketing_restrictions") }}:</strong>
+                  ><strong class="text-[#ff3344]"
+                    >{{ $t("marketing_restrictions") }}:</strong
+                  >
                   {{ $t("marketing_restrictions_desc") }}</span
                 >
               </li>
               <li class="flex items-start gap-3 max-lg:gap-2">
                 <i
-                  class="bi bi-check-circle-fill text-purple-500 mt-1 max-lg:text-sm"
+                  class="bi bi-check-circle-fill text-purple-400 mt-1 max-lg:text-sm"
                 ></i>
                 <span class="max-lg:text-xs"
-                  ><strong>{{ $t("staff_training") }}:</strong>
+                  ><strong class="text-[#ff3344]"
+                    >{{ $t("staff_training") }}:</strong
+                  >
                   {{ $t("staff_training_desc") }}</span
                 >
               </li>
             </ul>
 
             <h3
-              class="text-gray-800 font-semibold mt-8 max-lg:mt-4 mb-4 max-lg:mb-2 max-lg:text-base"
+              class="text-[#f0eaea] font-semibold mt-8 max-lg:mt-4 mb-4 max-lg:mb-2 max-lg:text-base"
             >
               {{ $t("parental_controls") }}
             </h3>
@@ -1475,12 +1543,12 @@
                 href="https://www.netnanny.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow"
+                class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow bg-[#15090e]/50"
               >
-                <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                   {{ $t("net_nanny") }}
                 </h4>
-                <p class="text-sm max-lg:text-[10px] text-gray-600">
+                <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                   {{ $t("net_nanny_desc") }}
                 </p>
               </a>
@@ -1489,12 +1557,12 @@
                 href="https://www.qustodio.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow"
+                class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow bg-[#15090e]/50"
               >
-                <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                   {{ $t("qustodio") }}
                 </h4>
-                <p class="text-sm max-lg:text-[10px] text-gray-600">
+                <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                   {{ $t("qustodio_desc") }}
                 </p>
               </a>
@@ -1503,12 +1571,12 @@
                 href="https://family.norton.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow"
+                class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow bg-[#15090e]/50"
               >
-                <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                   {{ $t("norton_family") }}
                 </h4>
-                <p class="text-sm max-lg:text-[10px] text-gray-600">
+                <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                   {{ $t("norton_family_desc") }}
                 </p>
               </a>
@@ -1517,12 +1585,12 @@
                 href="https://support.apple.com/en-us/HT201304"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="border border-gray-100 rounded-xl p-4 max-lg:p-2 lg:hover:shadow-sm transition-shadow"
+                class="border border-[#3b1c23] rounded-xl p-4 max-lg:p-2 lg:hover:shadow-lg lg:hover:shadow-red-500/20 transition-shadow bg-[#15090e]/50"
               >
-                <h4 class="font-medium text-gray-800 max-lg:text-xs">
+                <h4 class="font-medium text-[#f0eaea] max-lg:text-xs">
                   {{ $t("ios_screen_time") }}
                 </h4>
-                <p class="text-sm max-lg:text-[10px] text-gray-600">
+                <p class="text-sm max-lg:text-[10px] text-[#b37a7a]">
                   {{ $t("ios_screen_time_desc") }}
                 </p>
               </a>
@@ -1537,23 +1605,23 @@
         <!-- Commitment Section -->
         <div class="max-w-4xl mx-auto text-center">
           <div
-            class="w-16 h-16 max-lg:w-10 max-lg:h-10 mx-auto bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mb-6 max-lg:mb-3"
+            class="w-16 h-16 max-lg:w-10 max-lg:h-10 mx-auto bg-[#ff3344]/20 rounded-full flex items-center justify-center text-[#ff3344] mb-6 max-lg:mb-3"
           >
             <i class="bi bi-check2-circle text-2xl max-lg:text-lg"></i>
           </div>
           <h2
-            class="text-3xl max-lg:text-xl font-bold text-gray-800 mb-6 max-lg:mb-3"
+            class="text-3xl max-lg:text-xl font-bold text-[#f0eaea] mb-6 max-lg:mb-3"
           >
             {{ $t("our_commitment") }}
           </h2>
           <p
-            class="text-lg max-lg:text-sm text-gray-600 mb-8 max-lg:mb-4 max-w-3xl mx-auto"
+            class="text-lg max-lg:text-sm text-[#b37a7a] mb-8 max-lg:mb-4 max-w-3xl mx-auto"
           >
             {{ $t("commitment_description") }}
           </p>
           <NuxtLinkLocale
             href="/helpcenter"
-            class="inline-flex items-center justify-center bg-emerald-600 text-white px-6 max-lg:px-4 py-3 max-lg:py-2 rounded-lg font-medium lg:hover:bg-emerald-700 transition-colors shadow-sm max-lg:text-xs"
+            class="inline-flex items-center justify-center bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white px-6 max-lg:px-4 py-3 max-lg:py-2 rounded-lg font-medium lg:hover:brightness-110 transition-all shadow-sm max-lg:text-xs"
           >
             <i class="bi bi-chat-dots mr-2 max-lg:mr-1.5"></i>
             {{ $t("contact_responsible_gaming_team") }}
