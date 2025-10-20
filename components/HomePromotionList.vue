@@ -4,10 +4,17 @@
       <div
         class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4"
       >
-        <h2 class="homeMainTxt3 font-bold text-[#f0eaea] flex items-center">
-          <i class="bi bi-stars text-[#ff3344] mr-2"></i>
-          {{ $t("latest_promotions") }}
-        </h2>
+        <div>
+          <h2
+            class="homeMainTxt3 font-bold text-gray-200 flex items-center max-lg:text-lg"
+          >
+            <i class="bi bi-stars text-[#ff3344] mr-2"></i>
+            {{ $t("promotions") }}
+          </h2>
+          <p class="text-sm text-gray-400 mt-1 max-lg:text-xs">
+            {{ $t("latest_promotions_description") }}
+          </p>
+        </div>
         <NuxtLinkLocale
           to="/promotions"
           class="text-[#b37a7a] homeSubTxt1 lg:hover:text-[#f0eaea] lg:hover:underline flex items-center gap-1 transition-colors"
@@ -123,15 +130,15 @@ const chineseImageMapping = {
 };
 
 function getPromotionImage(promotion) {
-  if ($locale.value === "zh" && chineseImageMapping[promotion._id]) {
-    const chinesePromo = promotions.value?.find(
-      (p) => p._id === chineseImageMapping[promotion._id]
-    );
+  // if ($locale.value === "zh" && chineseImageMapping[promotion._id]) {
+  //   const chinesePromo = promotions.value?.find(
+  //     (p) => p._id === chineseImageMapping[promotion._id]
+  //   );
 
-    if (chinesePromo && chinesePromo.promotionimage) {
-      return chinesePromo.promotionimage;
-    }
-  }
+  //   if (chinesePromo && chinesePromo.promotionimage) {
+  //     return chinesePromo.promotionimage;
+  //   }
+  // }
 
   return promotion.promotionimage;
 }
@@ -148,7 +155,7 @@ async function fetchPromotion() {
 
 const filteredPromotions = computed(() => {
   if (!promotions.value) return [];
-
+  return promotions.value;
   const chinesePromotionIds = new Set(Object.values(chineseImageMapping));
 
   if ($locale.value === "zh") {
