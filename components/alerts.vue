@@ -34,14 +34,14 @@
         </div>
       </div>
 
-      <h2 class="text-xl font-bold mb-3 text-[#f0eaea]">{{ title }}</h2>
-      <p class="text-[#b37a7a] mb-6" v-html="message"></p>
+      <h2 class="text-base font-bold mb-3 text-[#f0eaea]">{{ title }}</h2>
+      <p class="text-[#b37a7a] mb-6 max-lg:text-sm" v-html="message"></p>
 
       <div class="flex justify-center">
         <button
           @click="closeAlert"
           :class="[
-            'px-7 py-2.5 rounded-lg font-medium shadow-lg transition-all duration-200 lg:hover:shadow-xl',
+            'px-7 py-2.5 max-lg:px-4 max-lg:py-2 rounded-lg font-medium shadow-lg transition-all duration-200 lg:hover:shadow-xl',
             type === 'success'
               ? 'bg-gradient-to-r from-green-600 to-green-500 lg:hover:from-green-700 lg:hover:to-green-600 text-white lg:hover:brightness-110'
               : type === 'error'
