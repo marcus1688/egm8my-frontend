@@ -941,7 +941,7 @@
             <div
               class="h-screen w-[280px] max-w-[85%] bg-[#1A0D13] shadow-2xl shadow-[#ff3344]/20 overflow-hidden flex flex-col transition-transform duration-300 ease-out transform border-r border-[#3b1c23]"
               :class="mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'"
-              style="overflow-x: hidden"
+              style="height: 100dvh; overflow-x: hidden"
             >
               <div class="bg-gradient-to-r from-[#1f0a0f] to-[#3d1219] p-4">
                 <div class="flex justify-between items-center">
@@ -1197,7 +1197,6 @@
                     <button
                       @click="handleLogout"
                       class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
-                      style="margin-bottom: env(safe-area-inset-bottom)"
                     >
                       <i class="bi bi-box-arrow-right"></i>
                       <span class="font-medium text-sm">{{
