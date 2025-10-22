@@ -11,6 +11,6 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwindcss-safe-area")],
   darkMode: "class",
 };

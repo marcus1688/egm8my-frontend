@@ -1196,7 +1196,7 @@
                   >
                     <button
                       @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
+                      class="w-full py-2 mb-safe rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
                     >
                       <i class="bi bi-box-arrow-right"></i>
                       <span class="font-medium text-sm">{{
