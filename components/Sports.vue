@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <div class="py-4 containerWid">
+    <div class="py-4 containerWid max-lg:py-2">
       <div
         class="flex flex-col sm:flex-row justify-between items-start sm:items-center"
       >

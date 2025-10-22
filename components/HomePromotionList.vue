@@ -1,7 +1,7 @@
 <template>
-  <section class="py-4 containerWid max-lg:py-4">
+  <section class="py-4 containerWid max-lg:py-2">
     <div
-      class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4"
+      class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4 max-lg:mb-2"
     >
       <div>
         <h2
@@ -31,6 +31,10 @@
           :loop="true"
           :pagination="{
             clickable: true,
+          }"
+          :autoplay="{
+            delay: 4000,
+            disableOnInteraction: false,
           }"
           :navigation="{
             nextEl: '.promo-button-next',
