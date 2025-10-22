@@ -32,10 +32,12 @@
             class="flex justify-between items-center overflow-x-auto scrollbar-hide"
           >
             <div
-              class="font-bold text-red-500 flex items-center pr-2 text-nowrap bg-black px-3 py-1 rounded-md border border-red-600"
+              class="font-bold text-red-500 flex items-center pr-2 text-nowrap bg-black px-3 py-1 rounded-md border border-red-600 max-lg:px-2"
             >
-              <i class="bi bi-megaphone mr-2 text-red-400"></i>
-              {{ $t("news") }}
+              <i
+                class="bi bi-megaphone mr-2 text-red-400 max-lg:text-[0.7rem]"
+              ></i>
+              <p class="max-lg:text-[0.7rem]">{{ $t("news") }}</p>
             </div>
             <NuxtMarquee
               play
