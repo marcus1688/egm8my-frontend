@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex items-center p-4 lg:hover:bg-gray-50 transition-colors cursor-pointer border-b border-gray-100 last:border-0"
+    class="flex items-center p-4 lg:hover:bg-[#241017]/60 transition-colors cursor-pointer border-b border-[#3b1c23] last:border-0"
     @click="onClick(game)"
   >
     <div
@@ -13,10 +13,10 @@
       />
     </div>
     <div class="flex-1">
-      <h3 class="text-sm font-medium text-gray-800">{{ game.name }}</h3>
+      <h3 class="text-sm font-medium text-[#f0eaea]">{{ game.name }}</h3>
     </div>
     <button
-      class="px-4 py-1.5 text-sm rounded-md bg-blue-50 text-blue-600 lg:hover:bg-blue-600 lg:hover:text-white transition-colors ml-2"
+      class="px-4 py-1.5 text-sm rounded-md bg-[#ff3344]/20 text-[#ff3344] lg:hover:bg-gradient-to-r lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] lg:hover:text-white transition-all ml-2 border border-[#ff3344]/30 lg:hover:border-transparent"
     >
       Play
     </button>

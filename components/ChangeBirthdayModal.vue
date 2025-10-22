@@ -1,59 +1,67 @@
 <template>
-  <div
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60] max-lg:px-4"
-    @click.self="emitClose"
-  >
+  <Teleport to="body">
     <div
-      class="bg-white text-gray-800 rounded-lg w-1/3 p-6 shadow-lg transform transition-transform scale-95 max-lg:w-full max-lg:p-4"
-      role="dialog"
-      aria-modal="true"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[60] max-lg:px-4"
+      @click.self="emitClose"
     >
       <div
-        class="flex justify-between items-center mb-4 border-b border-gray-200 pb-2"
+        class="bg-[#1A0D13] border border-[#3b1c23] text-[#f0eaea] rounded-xl w-1/3 p-6 shadow-2xl shadow-[#ff3344]/20 transform transition-transform scale-95 max-lg:w-full max-lg:p-4"
+        role="dialog"
+        aria-modal="true"
       >
-        <h2 class="text-xl font-semibold">{{ $t("change_birthday") }}</h2>
-        <button @click="emitClose" class="text-gray-500 lg:hover:text-gray-700">
-          <Icon icon="mdi:close" class="w-5 h-5" />
-        </button>
-      </div>
-      <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          {{ $t("date_of_birth") }}</label
+        <div
+          class="flex justify-between items-center mb-4 border-b border-[#3b1c23] pb-3"
         >
-        <VueDatePicker
-          v-model="newDob"
-          required
-          :enable-time-picker="false"
-          :format="format"
-          :max-date="maxDate"
-          :min-date="minDate"
-          :auto-apply="true"
-          :placeholder="$t('select_date_of_birth')"
-          :input-class-name="'w-full border border-gray-300 rounded-lg bg-white text-gray-800 outline-none focus:border-blue-600 p-3 max-lg:p-2'"
-          autocomplete="new-password"
-          default-view="year"
-          :year-range="[1900, new Date().getFullYear() - 18]"
-          :flow="['year', 'calendar']"
-        />
-        <span class="text-red-500 text-xs"> {{ $t("must_be_18") }}</span>
+          <h2 class="text-xl font-semibold text-[#f0eaea]">
+            {{ $t("change_birthday") }}
+          </h2>
+          <button
+            @click="emitClose"
+            class="text-[#b37a7a] lg:hover:text-[#ff3344] transition-colors"
+          >
+            <Icon icon="mdi:close" class="w-5 h-5" />
+          </button>
+        </div>
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[#f0eaea] mb-2">
+            {{ $t("date_of_birth") }}
+          </label>
+          <VueDatePicker
+            v-model="newDob"
+            required
+            :enable-time-picker="false"
+            :format="format"
+            :max-date="maxDate"
+            :min-date="minDate"
+            :auto-apply="true"
+            :placeholder="$t('select_date_of_birth')"
+            :input-class-name="'w-full border border-[#3b1c23] rounded-lg bg-[#241017]/60 text-[#f0eaea] outline-none focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 p-3 max-lg:p-2 placeholder-[#b37a7a]'"
+            autocomplete="new-password"
+            default-view="year"
+            :year-range="[1900, new Date().getFullYear() - 18]"
+            :flow="['year', 'calendar']"
+            dark
+          />
+          <span class="text-[#ff3344] text-xs"> {{ $t("must_be_18") }}</span>
+        </div>
+        <div class="flex justify-end mt-6 gap-2">
+          <button
+            @click="emitClose"
+            class="px-4 py-2 bg-[#241017]/60 text-[#f0eaea] rounded-lg lg:hover:bg-[#3b1c23] transition border border-[#3b1c23]"
+          >
+            {{ $t("cancel") }}
+          </button>
+          <LoadingButton
+            :loading="buttonLoading"
+            @click="saveBirthday"
+            class="px-4 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition shadow-lg shadow-[#ff3344]/30"
+          >
+            {{ $t("save") }}
+          </LoadingButton>
+        </div>
       </div>
-      <div class="flex justify-end mt-6">
-        <button
-          @click="emitClose"
-          class="px-4 py-2 mr-2 bg-gray-100 text-gray-800 rounded-md lg:hover:bg-gray-200 transition border border-gray-300"
-        >
-          {{ $t("cancel") }}
-        </button>
-        <LoadingButton
-          :loading="buttonLoading"
-          @click="saveBirthday"
-          class="px-4 py-2 bg-blue-600 text-white rounded-md lg:hover:bg-blue-700 transition"
-        >
-          {{ $t("save") }}
-        </LoadingButton>
-      </div>
-    </div>
-  </div>
+    </div></Teleport
+  >
 </template>
 
 <script setup>
@@ -110,7 +118,7 @@ async function saveBirthday() {
   buttonLoading.value = true;
   try {
     const { post, get } = useApiEndpoint();
-    const { data } = await post("updateSocialMedia", {
+    const { data } = await post("updateDOB", {
       dob: format(new Date(newDob.value)),
     });
 

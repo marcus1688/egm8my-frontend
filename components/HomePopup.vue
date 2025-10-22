@@ -1,17 +1,17 @@
 <template>
   <div
     v-if="show"
-    class="fixed inset-0 bg-black/80 flex items-center justify-center z-[10000] max-lg:px-4"
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[10000] max-lg:px-4"
     @click.self="closePopup"
   >
     <div
-      class="rounded-lg max-h-[90vh] w-[550px] max-sm:w-full relative overflow-hidden shadow-lg"
-      style="background: linear-gradient(to bottom, #ffffff, #f3f4f6)"
+      class="rounded-xl max-h-[90vh] w-[550px] max-sm:w-full relative overflow-hidden shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23]"
+      style="background: linear-gradient(to bottom, #1a0d13, #241017)"
     >
       <div
         v-if="hasTitleContent"
-        class="relative py-4 px-6 border-b border-gray-200"
-        style="background: linear-gradient(to right, #2563eb, #3b82f6)"
+        class="relative py-4 px-6 border-b border-[#3b1c23]"
+        style="background: linear-gradient(to right, #a1122d, #c21b3a)"
       >
         <div class="flex items-center justify-center">
           <h2
@@ -26,23 +26,23 @@
           </button>
         </div>
       </div>
-      <div class="overflow-y-auto max-h-[70vh] bg-white">
+      <div class="overflow-y-auto max-h-[70vh] bg-[#1A0D13] scrollbar-thin">
         <div>
           <div v-if="popupData.image" class="relative">
             <div
               v-if="imageLoading"
-              class="w-full h-48 bg-gray-100 flex items-center justify-center"
+              class="w-full h-48 bg-[#241017] flex items-center justify-center"
             >
               <div class="flex flex-col items-center gap-3">
                 <div class="relative">
                   <div
-                    class="w-8 h-8 border-2 border-blue-200 border-t-blue-600 rounded-full animate-spin"
+                    class="w-8 h-8 border-2 border-[#3b1c23] border-t-[#ff3344] rounded-full animate-spin"
                   ></div>
                   <div
-                    class="absolute inset-0 w-8 h-8 border border-blue-100 rounded-full animate-pulse"
+                    class="absolute inset-0 w-8 h-8 border border-[#3b1c23] rounded-full animate-pulse"
                   ></div>
                 </div>
-                <span class="text-blue-600 text-sm font-medium animate-pulse">
+                <span class="text-[#ff3344] text-sm font-medium animate-pulse">
                   {{ $t("loading") }}...</span
                 >
               </div>
@@ -50,7 +50,7 @@
             <img
               :src="popupData.image"
               :alt="getLocalizedContent(popupData, 'title')"
-              class="w-full h-auto shadow-md"
+              class="w-full h-auto shadow-lg"
               :class="{ hidden: imageLoading }"
               @load="imageLoading = false"
               @error="imageLoading = false"
@@ -58,15 +58,15 @@
           </div>
           <div
             v-if="hasContentText"
-            class="text-gray-700 leading-relaxed whitespace-pre-wrap break-words max-w-full px-6 py-4"
+            class="text-[#f0eaea] leading-relaxed whitespace-pre-wrap break-words max-w-full px-6 py-4"
             v-html="getLocalizedContent(popupData, 'content')"
           ></div>
         </div>
       </div>
-      <div class="p-4 border-t border-gray-200 bg-gray-50">
+      <div class="p-4 border-t border-[#3b1c23] bg-[#241017]">
         <button
           @click="closePopup"
-          class="w-full py-3 px-4 bg-blue-600 lg:hover:bg-blue-700 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-md"
+          class="w-full py-3 px-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-[#ff3344]/30"
         >
           {{ $t("close") }}
         </button>

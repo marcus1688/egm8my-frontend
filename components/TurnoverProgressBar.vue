@@ -1,14 +1,14 @@
 <template>
   <div
     v-if="turnoverDetails"
-    class="fixed inset-0 z-[999] flex items-center justify-center bg-black bg-opacity-50"
+    class="fixed inset-0 z-[999] flex items-center justify-center bg-black/80 backdrop-blur-sm"
     @click.self="$emit('close')"
   >
     <div
-      class="bg-white rounded-lg p-6 shadow-xl w-[90%] max-w-md transform transition-all max-lg:w-[95%]"
+      class="bg-[#1A0D13] border border-[#3b1c23] rounded-xl p-6 shadow-2xl shadow-[#ff3344]/20 w-[90%] max-w-md transform transition-all max-lg:w-[95%]"
     >
       <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-bold text-gray-800">
+        <h3 class="text-lg font-bold text-[#f0eaea]">
           {{
             turnoverDetails.currentTurnover !== undefined
               ? $t("turnover_progress")
@@ -18,7 +18,7 @@
       </div>
 
       <div class="space-y-4">
-        <div class="flex justify-between text-sm text-gray-600">
+        <div class="flex justify-between text-sm text-[#b37a7a]">
           <span
             >{{
               turnoverDetails.currentTurnover !== undefined
@@ -26,7 +26,7 @@
                 : $t("current_balance")
             }}:</span
           >
-          <span class="font-medium">{{
+          <span class="font-medium text-[#f0eaea]">{{
             (turnoverDetails.currentTurnover !== undefined
               ? turnoverDetails.currentTurnover
               : turnoverDetails.currentBalance
@@ -34,7 +34,7 @@
           }}</span>
         </div>
 
-        <div class="flex justify-between text-sm text-gray-600">
+        <div class="flex justify-between text-sm text-[#b37a7a]">
           <span
             >{{
               turnoverDetails.requiredTurnover !== undefined
@@ -42,7 +42,7 @@
                 : $t("required_balance")
             }}:</span
           >
-          <span class="font-medium">{{
+          <span class="font-medium text-[#f0eaea]">{{
             (turnoverDetails.requiredTurnover !== undefined
               ? turnoverDetails.requiredTurnover
               : turnoverDetails.requiredAmount
@@ -51,52 +51,52 @@
         </div>
 
         <div
-          class="w-full h-4 bg-gray-100 rounded-full overflow-hidden relative"
+          class="w-full h-4 bg-[#241017] border border-[#3b1c23] rounded-full overflow-hidden relative"
         >
           <div
             :style="{ width: progressPercentage + '%' }"
-            class="h-full bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-500"
+            class="h-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-full transition-all duration-500 shadow-sm"
           ></div>
         </div>
 
-        <div class="text-center text-sm text-gray-500">
+        <div class="text-center text-sm text-[#b37a7a]">
           {{ progressPercentage }}% {{ $t("completed") }}
         </div>
 
         <div
-          class="bg-blue-50 rounded-lg p-4 text-center border border-blue-100"
+          class="bg-[#241017]/60 rounded-lg p-4 text-center border border-[#3b1c23]"
         >
-          <div class="text-sm text-gray-600 mb-1">
+          <div class="text-sm text-[#b37a7a] mb-1">
             {{
               turnoverDetails.currentTurnover !== undefined
                 ? $t("remaining_turnover_needed")
                 : $t("remaining_balance_needed")
             }}
           </div>
-          <div class="text-xl font-bold text-blue-600">
+          <div class="text-xl font-bold text-[#ff3344]">
             {{ remainingTurnover.toFixed(2) }}
           </div>
         </div>
 
         <div
           v-if="turnoverDetails.currentTurnover !== undefined"
-          class="bg-blue-50 rounded-lg p-4 border border-blue-100"
+          class="bg-[#241017]/60 rounded-lg p-4 border border-[#3b1c23]"
         >
           <div
-            class="text-sm text-gray-700 font-semibold mb-2 flex items-center"
+            class="text-sm text-[#f0eaea] font-semibold mb-2 flex items-center"
           >
-            <Icon icon="mdi:information-outline" class="text-blue-500 mr-1" />
+            <Icon icon="mdi:information-outline" class="text-[#ff3344] mr-1" />
             {{ $t("below_games_excluded") }}:
           </div>
           <div class="flex flex-wrap gap-2">
             <span
               v-for="game in excludedGames"
               :key="game"
-              class="px-3 py-1 bg-white border border-blue-200 text-gray-700 rounded-md text-sm flex gap-2 items-center shadow-sm"
+              class="px-3 py-1 bg-[#1A0D13] border border-[#3b1c23] text-[#f0eaea] rounded-md text-sm flex gap-2 items-center shadow-sm"
             >
               <Icon
                 icon="mdi:gamepad-variant"
-                class="w-4 h-4 text-blue-500"
+                class="w-4 h-4 text-[#ff3344]"
               />{{ game }}
             </span>
           </div>
@@ -105,7 +105,7 @@
 
       <button
         @click="$emit('close')"
-        class="mt-6 w-full bg-blue-600 lg:hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors shadow-sm"
+        class="mt-6 w-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-semibold py-3 rounded-lg transition-all shadow-lg shadow-[#ff3344]/30"
       >
         {{ $t("understand") }}
       </button>

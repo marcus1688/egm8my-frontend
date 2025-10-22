@@ -1,67 +1,76 @@
 <template>
-  <div
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[60] max-lg:px-4"
-    @click.self="emitClose"
-  >
+  <Teleport to="body">
     <div
-      class="bg-white text-gray-800 rounded-lg w-1/3 p-6 shadow-lg transform transition-transform scale-95 max-lg:w-full max-lg:p-4"
-      role="dialog"
-      aria-modal="true"
+      class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[60] max-lg:px-4"
+      @click.self="emitClose"
     >
-      <!-- Title Bar -->
       <div
-        class="flex justify-between items-center mb-4 border-b border-gray-200 pb-2"
+        class="bg-[#1A0D13] border border-[#3b1c23] text-[#f0eaea] rounded-xl w-1/3 p-6 shadow-2xl shadow-[#ff3344]/20 transform transition-transform scale-95 max-lg:w-full max-lg:p-4"
+        role="dialog"
+        aria-modal="true"
       >
-        <h2 class="text-xl font-semibold">{{ $t("change_telegram_id") }}</h2>
-        <button @click="emitClose" class="text-gray-500 lg:hover:text-gray-700">
-          <Icon icon="mdi:close" class="w-5 h-5" />
-        </button>
-      </div>
-      <!-- Input Field -->
-      <div class="space-y-2">
-        <label class="block text-sm font-medium text-gray-700 mb-2">
-          {{ $t("new_telegram_id") }}</label
+        <!-- Title Bar -->
+        <div
+          class="flex justify-between items-center mb-4 border-b border-[#3b1c23] pb-3"
         >
-        <div class="relative">
-          <span
-            v-if="!newTelegramId.startsWith('@') && newTelegramId.length > 0"
-            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+          <h2 class="text-xl font-semibold text-[#f0eaea]">
+            {{ $t("change_telegram_id") }}
+          </h2>
+          <button
+            @click="emitClose"
+            class="text-[#b37a7a] lg:hover:text-[#ff3344] transition-colors"
           >
-            @
-          </span>
-          <input
-            type="text"
-            v-model="newTelegramId"
-            :placeholder="$t('enter_telegram_id')"
-            class="w-full p-3 rounded-lg border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition max-lg:p-2"
-            :class="{
-              'pl-8':
-                !newTelegramId.startsWith('@') && newTelegramId.length > 0,
-            }"
-          />
+            <Icon icon="mdi:close" class="w-5 h-5" />
+          </button>
         </div>
-        <p class="text-xs text-gray-500">
-          {{ $t("telegram_username_note") }}
-        </p>
-      </div>
-      <!-- Buttons -->
-      <div class="flex justify-end mt-6">
-        <button
-          @click="emitClose"
-          class="px-4 py-2 mr-2 bg-gray-100 text-gray-800 rounded-md lg:hover:bg-gray-200 transition border border-gray-300"
-        >
-          {{ $t("cancel") }}
-        </button>
-        <LoadingButton
-          :loading="telegramButtonLoading"
-          @click="saveTelegramId"
-          class="px-4 py-2 bg-blue-600 text-white rounded-md lg:hover:bg-blue-700 transition"
-        >
-          {{ $t("save") }}
-        </LoadingButton>
+
+        <!-- Input Field -->
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-[#f0eaea] mb-2">
+            {{ $t("new_telegram_id") }}
+          </label>
+          <div class="relative">
+            <span
+              v-if="!newTelegramId.startsWith('@') && newTelegramId.length > 0"
+              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] pointer-events-none z-10"
+            >
+              @
+            </span>
+            <input
+              type="text"
+              v-model="newTelegramId"
+              :placeholder="$t('enter_telegram_id')"
+              class="w-full p-3 max-lg:p-2 rounded-lg border border-[#3b1c23] bg-[#241017]/60 text-[#f0eaea] placeholder-[#b37a7a] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 outline-none transition"
+              :class="{
+                'pl-8':
+                  !newTelegramId.startsWith('@') && newTelegramId.length > 0,
+              }"
+            />
+          </div>
+          <p class="text-xs text-[#b37a7a]">
+            {{ $t("telegram_username_note") }}
+          </p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex justify-end mt-6 gap-2">
+          <button
+            @click="emitClose"
+            class="px-4 py-2 bg-[#241017]/60 text-[#f0eaea] rounded-lg lg:hover:bg-[#3b1c23] transition border border-[#3b1c23]"
+          >
+            {{ $t("cancel") }}
+          </button>
+          <LoadingButton
+            :loading="telegramButtonLoading"
+            @click="saveTelegramId"
+            class="px-4 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition shadow-lg shadow-[#ff3344]/30"
+          >
+            {{ $t("save") }}
+          </LoadingButton>
+        </div>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script setup>

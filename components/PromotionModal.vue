@@ -1,41 +1,40 @@
 <template>
   <div
     v-if="show"
-    class="fixed inset-0 bg-black bg-opacity-50 backdrop-filter backdrop-blur-sm flex items-center justify-center z-[999]"
+    class="fixed inset-0 bg-black/80 backdrop-filter backdrop-blur-sm flex items-center justify-center z-[999]"
     @click.self="$emit('close')"
   >
     <div
-      class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 overflow-hidden"
+      class="bg-[#1A0D13] border border-[#3b1c23] rounded-xl shadow-2xl shadow-[#ff3344]/20 max-w-[800px] w-full mx-4 overflow-hidden"
       role="dialog"
       aria-modal="true"
     >
-      <div class="bg-gradient-to-r from-blue-600 to-indigo-700 p-4 relative">
+      <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] py-3 relative">
         <h2 class="text-xl font-bold text-white text-center max-lg:text-sm">
           {{ promotion.maintitle }}
         </h2>
         <button
           @click="$emit('close')"
-          class="absolute top-4 right-4 text-white lg:hover:text-gray-200"
+          class="absolute top-3 right-4 text-white/80 lg:hover:text-white transition-colors"
         >
           <i class="bi bi-x-lg"></i>
         </button>
       </div>
-
+      <div class="flex justify-center mb-4">
+        <img
+          :src="promotion.promotionimage"
+          :alt="promotion.maintitle"
+          class="object-contain rounded border border-[#3b1c23]"
+        />
+      </div>
       <div
-        class="p-6 max-h-[70vh] overflow-y-auto max-lg:p-4 max-lg:max-h-[80vh]"
+        class="p-6 max-h-[70vh] overflow-y-auto max-lg:p-4 max-lg:max-h-[80vh] scrollbar-thin"
       >
-        <div class="flex justify-center mb-4">
-          <img
-            :src="promotion.promotionimage"
-            :alt="promotion.maintitle"
-            class="max-h-48 object-contain rounded border border-gray-200"
-          />
-        </div>
         <div v-html="promotion.content" class="promotion-content mb-4"></div>
         <div class="flex gap-3 mt-6">
           <button
             @click="$emit('close')"
-            class="flex-1 py-2 px-4 bg-gray-100 lg:hover:bg-gray-200 text-gray-800 rounded-lg transition-colors font-medium"
+            class="flex-1 py-2 px-4 bg-[#241017]/60 lg:hover:bg-[#3b1c23] text-[#f0eaea] rounded-lg transition-colors font-medium border border-[#3b1c23]"
           >
             {{ $t("close") }}
           </button>
@@ -112,6 +111,7 @@ watch(
 <style scoped>
 .promotion-content {
   width: 100%;
+  color: #f0eaea;
 }
 
 .table-wrapper {
@@ -119,40 +119,65 @@ watch(
   overflow-x: auto;
 }
 
+/* 滚动条样式 */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #241017;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #ff3344;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #c21b3a;
+}
+
 :deep(.promotion-content table) {
   width: 100% !important;
   border-collapse: collapse;
   margin-bottom: 1rem;
+  background-color: #241017;
 }
 
 :deep(.promotion-content table th),
 :deep(.promotion-content table td) {
-  border: 1px solid #e2e8f0;
+  border: 1px solid #3b1c23;
   padding: 0.5rem;
   text-align: left;
+  color: #f0eaea;
 }
 
 :deep(.promotion-content table th) {
-  background-color: #f8fafc;
+  background-color: #3b1c23;
   font-weight: bold;
+  color: #ff3344;
 }
 
 :deep(.promotion-content table tr:nth-child(even)) {
-  background-color: #f9fafb;
+  background-color: #1a0d13;
 }
 
 :deep(.promotion-content table tr:hover) {
-  background-color: #f1f5f9;
+  background-color: #2a0f14;
 }
 
 :deep(.promotion-content p) {
   margin-bottom: 1rem;
+  color: #f0eaea;
 }
 
 :deep(.promotion-content ul),
 :deep(.promotion-content ol) {
   margin-left: 1.5rem;
   margin-bottom: 1rem;
+  color: #f0eaea;
 }
 
 :deep(.promotion-content li) {
@@ -166,12 +191,28 @@ watch(
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
   font-weight: bold;
+  color: #ff3344;
 }
 
 :deep(.promotion-content hr) {
   border: none;
   height: 1px;
-  background: #e2e8f0;
+  background: #3b1c23;
   margin: 1.5rem 0;
+}
+
+:deep(.promotion-content a) {
+  color: #ff3344;
+  text-decoration: underline;
+}
+
+:deep(.promotion-content a:hover) {
+  color: #c21b3a;
+}
+
+:deep(.promotion-content strong),
+:deep(.promotion-content b) {
+  color: #ff3344;
+  font-weight: bold;
 }
 </style>

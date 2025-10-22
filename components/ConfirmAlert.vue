@@ -1,26 +1,25 @@
 <template>
   <div
     v-if="visible"
-    class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-900/80 backdrop-blur-sm z-[100]"
+    class="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black/80 backdrop-blur-sm z-[100]"
     @click.self="closeWithoutConfirm"
   >
     <div
       v-show="visible"
-      class="bg-white rounded-xl p-6 w-[90%] max-w-[380px] text-center shadow-xl relative"
+      class="bg-[#1A0D13] border border-[#3b1c23] rounded-xl p-6 w-[90%] max-w-[380px] text-center shadow-2xl shadow-[#ff3344]/20 relative"
       :class="visible ? 'animate-popupIn' : 'animate-popupOut'"
     >
       <div class="flex justify-center mb-4">
-        <!-- Dynamic Icon with Animation -->
         <div
           :class="[
             'w-14 h-14 flex items-center justify-center rounded-full border-[3px] shadow-lg icon-container',
             type === 'success'
-              ? 'bg-gradient-to-br from-green-50 to-green-100 border-green-500 text-green-600'
+              ? 'bg-gradient-to-br from-green-900/30 to-green-800/30 border-green-500 text-green-400'
               : type === 'error'
-              ? 'bg-gradient-to-br from-red-50 to-red-100 border-red-500 text-red-600'
+              ? 'bg-gradient-to-br from-[#a1122d]/30 to-[#c21b3a]/30 border-[#ff3344] text-[#ff3344]'
               : type === 'info'
-              ? 'bg-gradient-to-br from-blue-50 to-blue-100 border-blue-500 text-blue-600'
-              : 'bg-gradient-to-br from-amber-50 to-amber-100 border-amber-500 text-amber-600',
+              ? 'bg-gradient-to-br from-blue-900/30 to-blue-800/30 border-blue-500 text-blue-400'
+              : 'bg-gradient-to-br from-amber-900/30 to-amber-800/30 border-amber-500 text-amber-400',
           ]"
         >
           <i
@@ -38,28 +37,28 @@
         </div>
       </div>
 
-      <h2 class="text-xl font-bold mb-3 text-gray-800">{{ title }}</h2>
-      <p class="text-gray-600 mb-6" v-html="message"></p>
+      <h2 class="text-xl font-bold mb-3 text-[#f0eaea]">{{ title }}</h2>
+      <p class="text-[#b37a7a] mb-6" v-html="message"></p>
 
       <div class="flex justify-center gap-3">
         <button
           v-if="type === 'warning' || type === 'error'"
           @click="closeWithoutConfirm"
-          class="px-7 py-2.5 rounded-lg font-medium shadow-sm transition-all duration-200 lg:hover:shadow-md bg-gray-200 lg:hover:bg-gray-300 text-gray-700"
+          class="px-7 py-2.5 rounded-lg font-medium shadow-sm transition-all duration-200 lg:hover:shadow-md bg-[#241017]/60 lg:hover:bg-[#3b1c23] text-[#f0eaea] border border-[#3b1c23]"
         >
           {{ $t("cancel") }}
         </button>
         <button
           @click="closeWithConfirm"
           :class="[
-            'px-7 py-2.5 rounded-lg font-medium shadow-sm transition-all duration-200 lg:hover:shadow-md',
+            'px-7 py-2.5 rounded-lg font-medium shadow-lg transition-all duration-200 lg:hover:shadow-xl lg:hover:brightness-110',
             type === 'success'
-              ? 'bg-gradient-to-r from-green-600 to-green-500 lg:hover:from-green-700 lg:hover:to-green-600 text-white'
+              ? 'bg-gradient-to-r from-green-600 to-green-500 text-white'
               : type === 'error'
-              ? 'bg-gradient-to-r from-red-600 to-red-500 lg:hover:from-red-700 lg:hover:to-red-600 text-white'
+              ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-[#ff3344]/30'
               : type === 'info'
-              ? 'bg-gradient-to-r from-blue-600 to-indigo-600 lg:hover:from-blue-700 lg:hover:to-indigo-700 text-white'
-              : 'bg-gradient-to-r from-amber-600 to-amber-500 lg:hover:from-amber-700 lg:hover:to-amber-600 text-white',
+              ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white'
+              : 'bg-gradient-to-r from-amber-600 to-amber-500 text-white',
           ]"
         >
           {{ type === "success" ? "OK" : $t("confirmation") }}
@@ -69,7 +68,7 @@
       <!-- Modern Close button -->
       <button
         @click="closeWithoutConfirm"
-        class="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full lg:hover:bg-gray-100 text-gray-400 lg:hover:text-gray-600 transition-colors"
+        class="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full lg:hover:bg-[#3b1c23] text-[#b37a7a] lg:hover:text-[#ff3344] transition-colors"
       >
         <i class="bi bi-x text-lg"></i>
       </button>
@@ -78,8 +77,6 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
-
 const props = defineProps({
   title: {
     type: String,
@@ -123,7 +120,6 @@ watch(
 </script>
 
 <style scoped>
-/* Icon animations based on alert type */
 .icon-container {
   position: relative;
   overflow: hidden;
@@ -180,7 +176,6 @@ watch(
   }
 }
 
-/* Popup transition animations */
 @keyframes popupIn {
   0% {
     opacity: 0;

@@ -1,20 +1,20 @@
 <template>
   <div class="relative z-[999]">
     <div
-      class="lg:hidden fixed flex items-center justify-center inset-0 bg-black bg-opacity-20 z-40"
+      class="lg:hidden fixed flex items-center justify-center inset-0 bg-black/80 backdrop-blur-sm z-40"
       @click="emitClose"
     ></div>
     <div
-      class="absolute right-0 top-full max-[325px]:w-[17.5rem] max-[315px]:w-[16.5rem] w-72 bg-white rounded-lg shadow-xl border border-gray-100 z-50 py-2 max-lg:right-[-20%]"
+      class="absolute right-0 top-full max-[325px]:w-[17.5rem] max-[315px]:w-[16.5rem] w-72 bg-[#1A0D13] border border-[#3b1c23] rounded-lg shadow-2xl shadow-[#ff3344]/20 z-50 py-2 max-lg:right-[-20%]"
     >
-      <div class="px-4 py-2 border-b border-gray-100">
+      <div class="px-4 py-2 border-b border-[#3b1c23]">
         <div class="flex justify-between items-center">
-          <h4 class="font-medium text-gray-800">{{ $t("game_balances") }}</h4>
+          <h4 class="font-medium text-[#f0eaea]">{{ $t("game_balances") }}</h4>
           <div class="flex items-center gap-1 text-xs">
             <button
               v-if="!isLoading"
               @click="refreshAllBalances"
-              class="text-blue-500 lg:hover:text-blue-600 flex items-center gap-0.5 text-xs"
+              class="text-[#ff3344] lg:hover:text-[#c21b3a] flex items-center gap-0.5 text-xs transition-colors"
               :disabled="isLoading"
             >
               <i class="bi bi-arrow-counterclockwise"></i>
@@ -28,21 +28,21 @@
         <div class="flex flex-col items-center justify-center">
           <div class="relative w-12 h-12 mb-4">
             <div
-              class="absolute inset-0 border-2 border-blue-200 rounded-full"
+              class="absolute inset-0 border-2 border-[#3b1c23] rounded-full"
             ></div>
             <div
-              class="absolute inset-0 border-t-2 border-r-2 border-blue-500 rounded-full animate-spin-slow"
+              class="absolute inset-0 border-t-2 border-r-2 border-[#ff3344] rounded-full animate-spin-slow"
             ></div>
             <div class="absolute inset-0 flex items-center justify-center">
               <div
-                class="w-6 h-6 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-full pulse-effect"
+                class="w-6 h-6 bg-gradient-to-br from-[#a1122d] to-[#c21b3a] rounded-full pulse-effect"
               ></div>
             </div>
           </div>
-          <p class="text-gray-600 font-medium mb-1">
+          <p class="text-[#f0eaea] font-medium mb-1">
             {{ $t("loading_balances") }}
           </p>
-          <p class="text-xs text-gray-400">
+          <p class="text-xs text-[#b37a7a]">
             {{ $t("wait_fetch_balances") }}
           </p>
         </div>
@@ -52,28 +52,30 @@
         v-if="!isLoading"
         class="max-h-[300px] overflow-y-auto scrollbar-thin"
       >
-        <div class="px-4 py-3 lg:hover:bg-blue-50 transition-colors bg-gray-50">
+        <div
+          class="px-4 py-3 lg:hover:bg-[#241017]/60 transition-colors bg-[#241017]/40"
+        >
           <div class="flex justify-between items-center">
             <div class="flex items-center gap-2">
               <div
-                class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center"
+                class="w-8 h-8 bg-[#ff3344]/20 rounded-full flex items-center justify-center"
               >
-                <i class="bi bi-cash-stack text-blue-600"></i>
+                <i class="bi bi-cash-stack text-[#ff3344]"></i>
               </div>
               <div>
-                <p class="text-sm font-medium text-gray-800">
+                <p class="text-sm font-medium text-[#f0eaea]">
                   {{ $t("main_wallet") }}
                 </p>
-                <p class="text-xs text-gray-500">{{ $t("main_balance") }}</p>
+                <p class="text-xs text-[#b37a7a]">{{ $t("main_balance") }}</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
-              <span class="font-medium text-blue-600">{{
+              <span class="font-medium text-[#ff3344]">{{
                 formatNumber(userData.wallet)
               }}</span>
               <i
                 @click.stop="fetchUserData()"
-                class="bi bi-arrow-clockwise text-blue-500 cursor-pointer"
+                class="bi bi-arrow-clockwise text-[#ff3344] cursor-pointer lg:hover:text-[#c21b3a] transition-colors"
               ></i>
             </div>
           </div>
@@ -81,34 +83,34 @@
         <div
           v-for="game in gameBalances"
           :key="game.game"
-          class="px-4 py-2.5 lg:hover:bg-blue-50 transition-colors"
+          class="px-4 py-2.5 lg:hover:bg-[#241017]/60 transition-colors"
         >
           <div class="flex justify-between items-center">
             <div class="flex items-center gap-2">
               <div
-                class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center"
+                class="w-8 h-8 bg-[#241017]/60 border border-[#3b1c23] rounded-full flex items-center justify-center"
               >
-                <span class="font-medium text-xs text-gray-700">{{
+                <span class="font-medium text-xs text-[#f0eaea]">{{
                   game.game.substring(0, 2)
                 }}</span>
               </div>
               <div>
-                <p class="text-sm font-medium text-gray-800">
+                <p class="text-sm font-medium text-[#f0eaea]">
                   {{ game.game }}
                 </p>
-                <p class="text-xs text-gray-500">{{ $t("game_balance") }}</p>
+                <p class="text-xs text-[#b37a7a]">{{ $t("game_balance") }}</p>
               </div>
             </div>
             <div class="flex items-center gap-2">
               <span
-                class="font-medium text-gray-800"
-                :class="{ 'text-gray-400': game.isRefreshing }"
+                class="font-medium text-[#f0eaea]"
+                :class="{ 'text-[#b37a7a]': game.isRefreshing }"
               >
                 {{ formatNumber(game.balance) }}
               </span>
               <button
                 @click="fetchAllGameBalances()"
-                class="text-blue-500 lg:hover:text-blue-600 transition-colors"
+                class="text-[#ff3344] lg:hover:text-[#c21b3a] transition-colors"
                 :disabled="game.isRefreshing || isLoading"
               >
                 <i
@@ -125,12 +127,12 @@
         </div>
       </div>
 
-      <div v-if="!isLoading" class="px-4 py-2 border-t border-gray-100 mt-1">
+      <div v-if="!isLoading" class="px-4 py-2 border-t border-[#3b1c23] mt-1">
         <div class="flex justify-between items-center">
-          <span class="text-xs font-medium text-gray-500">{{
+          <span class="text-xs font-medium text-[#b37a7a]">{{
             $t("total_balance")
           }}</span>
-          <span class="font-medium text-green-600">{{
+          <span class="font-medium text-[#ff3344]">{{
             formatNumber(totalBalance)
           }}</span>
         </div>
@@ -139,7 +141,7 @@
       <div v-if="!isLoading" class="lg:hidden px-4 py-2">
         <button
           @click="emitClose"
-          class="w-full py-2 bg-gray-100 text-gray-800 rounded-md lg:hover:bg-gray-200 transition border border-gray-300"
+          class="w-full py-2 bg-[#241017]/60 text-[#f0eaea] rounded-lg lg:hover:bg-[#3b1c23] transition border border-[#3b1c23]"
         >
           {{ $t("close") }}
         </button>
@@ -239,17 +241,17 @@ onMounted(async () => {
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #241017;
   border-radius: 4px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: #ccc;
+  background: #ff3344;
   border-radius: 4px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-  background: #aaa;
+  background: #c21b3a;
 }
 
 @keyframes spin {

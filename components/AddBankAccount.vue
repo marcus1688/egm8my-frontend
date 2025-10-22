@@ -27,10 +27,7 @@
           <label class="block font-medium text-[#f0eaea] mb-1 max-lg:text-sm">{{
             $t("bank_name")
           }}</label>
-          <select
-            v-model="accountData.bankName"
-            class="w-full border border-[#3b1c23] bg-[#15090e]/50 text-[#f0eaea] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#ff3344]/50 focus:border-[#ff3344] max-lg:text-sm"
-          >
+          <CustomSelect v-model="accountData.bankName">
             <option
               value=""
               disabled
@@ -47,7 +44,7 @@
             >
               {{ bank.bankname }}
             </option>
-          </select>
+          </CustomSelect>
         </div>
         <div>
           <label class="block font-medium text-[#f0eaea] mb-1 max-lg:text-sm">{{

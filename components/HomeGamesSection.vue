@@ -252,6 +252,7 @@
     </div>
   </section>
 </template>
+
 <script setup>
 import { Icon } from "@iconify/vue";
 const { launchGame, alertVisible, alertTitle, alertMessage, alertType } =

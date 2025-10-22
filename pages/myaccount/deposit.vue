@@ -384,10 +384,7 @@
           <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
             {{ $t("promotion_optional") }}
           </label>
-          <select
-            v-model="selectedPromotion"
-            class="w-full p-3 max-lg:p-2.5 bg-[#15090e]/50 text-[#f0eaea] rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 focus:outline-none appearance-none max-lg:text-sm"
-          >
+          <CustomSelect v-model="selectedPromotion">
             <option
               :value="null"
               disabled
@@ -407,7 +404,7 @@
             >
               {{ promotion.maintitleEN }}
             </option>
-          </select>
+          </CustomSelect>
         </div>
 
         <!-- Receipt Upload -->

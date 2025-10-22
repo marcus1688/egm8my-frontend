@@ -2,7 +2,7 @@
   <div>
     <NuxtLinkLocale to="/vip">
       <div
-        class="w-full bg-gradient-to-r from-gray-900 via-yellow-950 to-gray-950 p-3 rounded-lg border border-blue-900/50 shadow-lg lg:hover:border-blue-800/60 transition-all duration-300"
+        class="w-full bg-gradient-to-r from-[#1A0D13] via-[#2a0f14] to-[#1A0D13] p-3 rounded-lg border border-[#3b1c23] shadow-lg shadow-[#ff3344]/10 lg:hover:border-[#ff3344]/50 transition-all duration-300"
       >
         <div class="mb-3 flex items-center justify-between">
           <div class="flex items-center gap-2">
@@ -19,19 +19,23 @@
               />
             </div>
             <div class="flex flex-col">
-              <span class="text-blue-200 text-xs font-medium">{{
+              <span class="text-[#b37a7a] text-xs font-medium">{{
                 $t("current_level")
               }}</span>
-              <span class="text-white font-bold">{{ userData.viplevel }}</span>
+              <span class="text-[#f0eaea] font-bold">{{
+                userData.viplevel
+              }}</span>
             </div>
           </div>
 
           <div v-if="nextLevelInfo" class="flex items-center gap-2">
             <div class="flex flex-col items-end">
-              <span class="text-blue-200 text-xs font-medium">{{
+              <span class="text-[#b37a7a] text-xs font-medium">{{
                 $t("next_level")
               }}</span>
-              <span class="text-white font-bold">{{ nextLevelInfo.name }}</span>
+              <span class="text-[#f0eaea] font-bold">{{
+                nextLevelInfo.name
+              }}</span>
             </div>
             <div
               class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg opacity-90"
@@ -47,7 +51,7 @@
           </div>
           <div v-else class="flex items-center gap-2">
             <div class="flex flex-col items-end">
-              <span class="text-blue-200 text-xs font-medium">{{
+              <span class="text-[#b37a7a] text-xs font-medium">{{
                 $t("level_status")
               }}</span>
               <span class="text-yellow-300 font-bold">{{
@@ -63,7 +67,7 @@
         </div>
 
         <div
-          class="h-2.5 bg-slate-800 rounded-full relative mb-2 overflow-hidden shadow-inner border border-slate-700/50"
+          class="h-2.5 bg-[#241017] rounded-full relative mb-2 overflow-hidden shadow-inner border border-[#3b1c23]"
         >
           <div
             class="absolute inset-0 w-full h-full shimmer-effect opacity-20"
@@ -74,7 +78,7 @@
             :class="
               currentLevelInfo
                 ? getLevelBarClass(currentLevelInfo.name)
-                : 'bg-blue-500'
+                : 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a]'
             "
           >
             <div
@@ -84,19 +88,19 @@
         </div>
 
         <div class="flex items-center justify-between text-xs mt-2">
-          <div class="text-blue-100/70">
-            <span class="font-medium text-white">{{
+          <div class="text-[#b37a7a]">
+            <span class="font-medium text-[#f0eaea]">{{
               formatNumber(userData.totaldeposit)
             }}</span>
             <span class="mx-1">/</span>
-            <span v-if="nextLevelInfo" class="text-blue-200">{{
+            <span v-if="nextLevelInfo" class="text-[#ff3344]">{{
               formatNumber(nextLevelRequirement)
             }}</span>
             <span v-else class="text-yellow-300">{{ $t("max_reached") }}</span>
           </div>
-          <div class="flex items-center gap-1.5 text-blue-100/70">
+          <div class="flex items-center gap-1.5 text-[#b37a7a]">
             <span
-              class="text-blue-300 lg:hover:text-blue-200 flex items-center gap-0.5 font-medium text-xs group"
+              class="text-[#ff3344] lg:hover:text-[#c21b3a] flex items-center gap-0.5 font-medium text-xs group transition-colors"
             >
               {{ $t("view_benefits") }}
               <i
@@ -213,7 +217,7 @@ function getLevelBarClass(levelName) {
       return "bg-gradient-to-r from-cyan-500 to-cyan-700";
     case "Diamond":
       return "bg-gradient-to-r from-indigo-400 to-indigo-600";
-    case "Elite":
+    case "EGM8 ELite VIP":
       return "bg-gradient-to-r from-purple-500 to-purple-700";
     default:
       return "bg-gradient-to-r from-blue-400 to-blue-600";
@@ -233,7 +237,7 @@ function getInnerCircleClass(levelName) {
       return "bg-gradient-to-br from-[#71c4cf] to-[#3d898f] border-2 border-[#71c4cf]/80";
     case "Diamond":
       return "bg-gradient-to-br from-[#e0e0e0] to-[#b9b9b9] border-2 border-[#e0e0e0]/80";
-    case "Elite":
+    case "EGM8 ELite VIP":
       return "bg-gradient-to-br from-[#9370DB] to-[#800080] border-2 border-[#9370DB]/80";
     default:
       return "bg-gradient-to-br from-gray-400 to-gray-500 border-2 border-gray-400/80";
@@ -263,7 +267,7 @@ onMounted(async () => {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 51, 68, 0.2) 50%,
     transparent 100%
   );
   background-size: 200% 100%;
@@ -280,6 +284,6 @@ onMounted(async () => {
 }
 
 .shadow-glow {
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 51, 68, 0.4);
 }
 </style>
