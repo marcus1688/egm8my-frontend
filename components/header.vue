@@ -53,7 +53,7 @@
                 <img
                   :src="generalSetting.logoimage"
                   alt="Logo"
-                  class="w-12 h-auto"
+                  class="w-16 h-auto"
                 />
               </NuxtLinkLocale>
             </div>
@@ -106,7 +106,7 @@
                 <div v-if="!userData" class="flex gap-2 items-center">
                   <NuxtLinkLocale
                     to="/login"
-                    class="px-4 py-1.5 max-[360px]:!px-4 menuText font-medium text-gray-300 border border-gray-600 rounded lg:hover:border-red-400 lg:hover:text-red-400 transition-colors"
+                    class="px-4 py-1.5 max-[360px]:!px-4 menuText font-medium bg-gradient-to-r from-yellow-700 to-yellow-600 text-white rounded lg:hover:from-yellow-600 lg:hover:to-yellow-500 transition-all shadow-md shadow-yellow-600/20"
                   >
                     {{ $t("log_in") }}
                   </NuxtLinkLocale>
@@ -135,20 +135,20 @@
                     <!-- Profile Dropdown Menu -->
                     <div
                       v-if="showProfileMenu"
-                      class="absolute left-1/2 transform -translate-x-1/2 w-80 bg-black rounded-lg shadow-lg border border-gray-700 z-50"
+                      class="absolute left-1/2 transform -translate-x-1/2 w-80 bg-[#1A0D13] rounded-lg shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] z-50"
                     >
                       <!-- User Info Section -->
-                      <div class="p-4 border-b border-gray-700">
+                      <div class="p-4 border-b border-[#3b1c23]">
                         <div class="flex items-center justify-between mb-2">
-                          <p class="text-gray-200 font-medium">
+                          <p class="text-[#f0eaea] font-medium">
                             {{ $t("hi") }}, {{ userData.username }}
                           </p>
                           <div class="flex flex-col items-center gap-1">
-                            <span class="text-gray-400 text-xs">{{
+                            <span class="text-[#b37a7a] text-xs">{{
                               $t("your_vip_tier_is")
                             }}</span>
                             <span
-                              class="text-red-400 text-sm font-medium uppercase"
+                              class="text-[#ff3344] text-sm font-medium uppercase"
                               >{{ userData.viplevel }}</span
                             >
                           </div>
@@ -161,25 +161,25 @@
                       <!-- Menu Items -->
                       <div>
                         <!-- Cashier (expandable) -->
-                        <div class="border-b border-gray-700">
+                        <div class="border-b border-[#3b1c23]">
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-gray-800 cursor-pointer"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'cashier' ? null : 'cashier'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-red-400">
+                              <div class="text-[#ff3344]">
                                 <i class="bi bi-wallet2"></i>
                               </div>
                               <span
-                                class="text-gray-200 font-medium uppercase"
+                                class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("cashier") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-gray-400"
+                              class="bi text-[#b37a7a]"
                               :class="
                                 activeMenuItem === 'cashier'
                                   ? 'bi-chevron-up'
@@ -191,41 +191,41 @@
                           <!-- Cashier Sub Items -->
                           <div
                             v-if="activeMenuItem === 'cashier'"
-                            class="border-t border-gray-700"
+                            class="border-t border-[#3b1c23]"
                           >
                             <NuxtLinkLocale
                               to="/myaccount/deposit"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("deposit") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/withdraw"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("withdraw") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/bankaccount"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("bank_account") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/rebate"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("rebate") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/rescue"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("rescue") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/checkin"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("checkin") }}
                             </NuxtLinkLocale>
@@ -233,25 +233,25 @@
                         </div>
 
                         <!-- Agent (expandable) -->
-                        <div class="border-b border-gray-700">
+                        <div class="border-b border-[#3b1c23]">
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-gray-800 cursor-pointer"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'agent' ? null : 'agent'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-red-400">
+                              <div class="text-[#ff3344]">
                                 <i class="bi bi-gift"></i>
                               </div>
                               <span
-                                class="text-gray-200 font-medium uppercase"
+                                class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("agent") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-gray-400"
+                              class="bi text-[#b37a7a]"
                               :class="
                                 activeMenuItem === 'agent'
                                   ? 'bi-chevron-up'
@@ -263,30 +263,30 @@
                           <!-- Agent Sub Items -->
                           <div
                             v-if="activeMenuItem === 'agent'"
-                            class="border-t border-gray-700"
+                            class="border-t border-[#3b1c23]"
                           >
                             <NuxtLinkLocale
                               to="/myaccount/referral"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("referral") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/downline"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("downline") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/commission"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("commission") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               v-if="userData.positionTaking > 0"
                               to="/myaccount/agentpt"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("agent_pt") }}
                             </NuxtLinkLocale>
@@ -294,25 +294,25 @@
                         </div>
 
                         <!-- Profile (expandable) -->
-                        <div class="border-b border-gray-700">
+                        <div class="border-b border-[#3b1c23]">
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-gray-800 cursor-pointer"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'profile' ? null : 'profile'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-red-400">
+                              <div class="text-[#ff3344]">
                                 <i class="bi bi-person"></i>
                               </div>
                               <span
-                                class="text-gray-200 font-medium uppercase"
+                                class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("profile") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-gray-400"
+                              class="bi text-[#b37a7a]"
                               :class="
                                 activeMenuItem === 'profile'
                                   ? 'bi-chevron-up'
@@ -324,23 +324,23 @@
                           <!-- Profile Sub Items -->
                           <div
                             v-if="activeMenuItem === 'profile'"
-                            class="border-t border-gray-700"
+                            class="border-t border-[#3b1c23]"
                           >
                             <NuxtLinkLocale
                               to="/myaccount/profile"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("my_profile") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/messaging"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("messaging") }}
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/change-password"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("change_password") }}
                             </NuxtLinkLocale>
@@ -348,25 +348,25 @@
                         </div>
 
                         <!-- History (expandable) -->
-                        <div class="border-b border-gray-700">
+                        <div class="border-b border-[#3b1c23]">
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-gray-800 cursor-pointer"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'history' ? null : 'history'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-red-400">
+                              <div class="text-[#ff3344]">
                                 <i class="bi bi-file-earmark-text"></i>
                               </div>
                               <span
-                                class="text-gray-200 font-medium uppercase"
+                                class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("history") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-gray-400"
+                              class="bi text-[#b37a7a]"
                               :class="
                                 activeMenuItem === 'history'
                                   ? 'bi-chevron-up'
@@ -378,11 +378,11 @@
                           <!-- History Sub Items -->
                           <div
                             v-if="activeMenuItem === 'history'"
-                            class="border-t border-gray-700"
+                            class="border-t border-[#3b1c23]"
                           >
                             <NuxtLinkLocale
                               to="/myaccount/transaction-history"
-                              class="pl-10 block py-3 px-2 text-gray-300 lg:hover:bg-gray-800 lg:hover:text-red-400"
+                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("transaction_history") }}
                             </NuxtLinkLocale>
@@ -393,7 +393,7 @@
                         <div class="px-4 py-3">
                           <button
                             @click="handleLogout"
-                            class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-red-900/50 text-red-400 lg:hover:bg-red-800/50 border border-red-700/50 transition-colors"
+                            class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#241017]/60 text-[#ff3344] lg:hover:bg-[#2a0f14] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all"
                           >
                             <i class="bi bi-box-arrow-right"></i>
                             <span class="font-medium">{{ $t("logout") }}</span>
@@ -448,7 +448,7 @@
                 @mouseleave="showLanguageMenu = false"
               >
                 <button
-                  class="flex items-center gap-1 text-gray-300 p-1.5 lg:hover:bg-gray-800 rounded-full transition-colors"
+                  class="flex items-center gap-1 text-[#f0eaea] p-1.5 lg:hover:bg-[#2a0f14] rounded-full transition-colors"
                 >
                   <img
                     :src="
@@ -463,29 +463,29 @@
 
                 <div
                   v-if="showLanguageMenu"
-                  class="absolute right-0 top-full bg-black rounded-xl shadow-xl border border-gray-700 overflow-hidden z-50 w-44 transition-all duration-200"
+                  class="absolute right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-44 transition-all duration-200"
                 >
                   <div
                     class="absolute -top-1 right-0 w-full h-1 bg-transparent"
                   ></div>
 
-                  <div class="py-1">
+                  <div>
                     <button
                       v-for="lang in languageOptions"
                       :key="lang.code"
                       @click="changeLocale(lang.code)"
-                      class="w-full text-left px-4 py-3 text-sm lg:hover:bg-gray-800 flex items-center gap-3 transition-all duration-200 group"
+                      class="w-full text-left px-4 py-3 text-sm lg:hover:bg-[#2a0f14] flex items-center gap-3 transition-all duration-200 group"
                       :class="
                         locale === lang.code
-                          ? 'text-red-400 font-semibold bg-gray-800'
-                          : 'text-gray-300 lg:hover:text-red-400'
+                          ? 'text-[#ff3344] font-semibold bg-[#241017]'
+                          : 'text-[#f0eaea] lg:hover:text-[#ff3344]'
                       "
                     >
                       <div class="relative">
                         <img
                           :src="lang.flag"
                           :alt="lang.name"
-                          class="w-6 h-6 rounded-full object-cover shadow-sm border-2 lg:group-hover:scale-105 transition-transform duration-200"
+                          class="w-6 h-6 rounded-full object-cover shadow-sm border-2 border-[#3b1c23]"
                         />
                       </div>
 
@@ -502,7 +502,7 @@
                 @mouseleave="showMainMenu = false"
               >
                 <button
-                  class="p-1.5 text-gray-300 lg:hover:bg-gray-800 rounded-full"
+                  class="p-1.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] rounded-full transition-colors"
                 >
                   <i class="bi bi-grid text-lg"></i>
                 </button>
@@ -510,7 +510,7 @@
                 <!-- Dropdown Menu -->
                 <div
                   v-if="showMainMenu"
-                  class="absolute right-0 top-full bg-black rounded-xl shadow-xl border border-gray-700 overflow-hidden z-50 w-72"
+                  class="absolute right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-72"
                 >
                   <!-- Invisible bridge to prevent gap issues -->
                   <div
@@ -519,15 +519,15 @@
 
                   <!-- Menu Items -->
                   <div class="">
-                    <div class="space-y-2">
+                    <div>
                       <!-- Promotions -->
-                      <NuxtLinkLocale
+                      <!-- <NuxtLinkLocale
                         to="/promotions"
-                        class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-gray-800 transition-all duration-200 border border-transparent lg:hover:border-red-400/20 lg:hover:shadow-sm"
+                        class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-gray-800 rounded-xl flex items-center justify-center border border-gray-600 flex-shrink-0"
+                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
                         >
                           <NuxtImg
                             src="/images/newicon/promotion.png"
@@ -537,27 +537,27 @@
                         </div>
                         <div class="flex-1">
                           <span
-                            class="text-sm font-semibold text-gray-200 lg:group-hover:text-red-400 transition-colors block"
+                            class="text-sm font-semibold text-[#f0eaea] lg:group-hover:text-[#ff3344] transition-colors block"
                           >
                             {{ $t("promotions") }}
                           </span>
-                          <p class="text-xs text-gray-400 mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-1">
                             Special offers and bonuses
                           </p>
                         </div>
                         <i
-                          class="bi bi-chevron-right text-gray-400 lg:group-hover:text-red-400 transition-colors"
+                          class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
-                      </NuxtLinkLocale>
+                      </NuxtLinkLocale> -->
 
                       <!-- VIP -->
-                      <NuxtLinkLocale
+                      <!-- <NuxtLinkLocale
                         to="/vip"
-                        class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-gray-800 transition-all duration-200 border border-transparent lg:hover:border-red-400/20 lg:hover:shadow-sm"
+                        class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-gray-800 rounded-xl flex items-center justify-center border border-gray-600 flex-shrink-0"
+                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
                         >
                           <NuxtImg
                             src="/images/newicon/vip.png"
@@ -567,27 +567,27 @@
                         </div>
                         <div class="flex-1">
                           <span
-                            class="text-sm font-semibold text-gray-200 lg:group-hover:text-red-400 transition-colors block"
+                            class="text-sm font-semibold text-[#f0eaea] lg:group-hover:text-[#ff3344] transition-colors block"
                           >
                             {{ $t("vip") }}
                           </span>
-                          <p class="text-xs text-gray-400 mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-1">
                             Exclusive member benefits
                           </p>
                         </div>
                         <i
-                          class="bi bi-chevron-right text-gray-400 lg:group-hover:text-red-400 transition-colors"
+                          class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
-                      </NuxtLinkLocale>
+                      </NuxtLinkLocale> -->
 
                       <!-- Refer Friends -->
                       <NuxtLinkLocale
                         to="/myaccount/referral"
-                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-gray-800 transition-all duration-200 border border-transparent lg:hover:border-red-400/20 lg:hover:shadow-sm"
+                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-gray-800 rounded-xl flex items-center justify-center border border-gray-600 flex-shrink-0"
+                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
                         >
                           <NuxtImg
                             src="/images/newicon/referral.png"
@@ -597,27 +597,27 @@
                         </div>
                         <div class="flex-1">
                           <span
-                            class="text-sm font-semibold text-gray-200 lg:group-hover:text-red-400 transition-colors block"
+                            class="text-sm font-semibold text-[#f0eaea] lg:group-hover:text-[#ff3344] transition-colors block"
                           >
                             {{ $t("refer_a_friend") }}
                           </span>
-                          <p class="text-xs text-gray-400 mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-1">
                             Earn rewards for referrals
                           </p>
                         </div>
                         <i
-                          class="bi bi-chevron-right text-gray-400 lg:group-hover:text-red-400 transition-colors"
+                          class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
                       </NuxtLinkLocale>
 
                       <!-- Lucky Draw -->
                       <NuxtLinkLocale
                         to="/luckydraw"
-                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-gray-800 transition-all duration-200 border border-transparent lg:hover:border-red-400/20 lg:hover:shadow-sm"
+                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-gray-800 rounded-xl flex items-center justify-center border border-gray-600 flex-shrink-0"
+                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
                         >
                           <NuxtImg
                             src="/images/newicon/dice.png"
@@ -627,16 +627,16 @@
                         </div>
                         <div class="flex-1">
                           <span
-                            class="text-sm font-semibold text-gray-200 lg:group-hover:text-red-400 transition-colors block"
+                            class="text-sm font-semibold text-[#f0eaea] lg:group-hover:text-[#ff3344] transition-colors block"
                           >
                             {{ $t("lucky_draw") }}
                           </span>
-                          <p class="text-xs text-gray-400 mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-1">
                             Try your luck and win prizes
                           </p>
                         </div>
                         <i
-                          class="bi bi-chevron-right text-gray-400 lg:group-hover:text-red-400 transition-colors"
+                          class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
                       </NuxtLinkLocale>
                     </div>
@@ -932,29 +932,29 @@
                 : 'pointer-events-none opacity-0'
             "
           >
-            <!-- Backdrop -->
             <div
-              class="absolute inset-0 bg-black/40 transition-opacity duration-300"
+              class="absolute inset-0 bg-black/80 backdrop-blur-sm transition-opacity duration-300"
               :class="mobileMenuOpen ? 'opacity-100' : 'opacity-0'"
               @click="closeMobileMenu"
             ></div>
 
-            <!-- Slide-in Panel (Flex Column + Sticky Footer) -->
             <div
-              class="h-screen w-[280px] max-w-[85%] bg-[#1A0D13] shadow-xl overflow-hidden flex flex-col transition-transform duration-300 ease-out transform"
+              class="h-screen w-[280px] max-w-[85%] bg-[#1A0D13] shadow-2xl shadow-[#ff3344]/20 overflow-hidden flex flex-col transition-transform duration-300 ease-out transform border-r border-[#3b1c23]"
               :class="mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'"
               style="overflow-x: hidden"
             >
-              <!-- Header -->
-              <div class="bg-red-600 p-4">
+              <div class="bg-gradient-to-r from-[#1f0a0f] to-[#3d1219] p-4">
                 <div class="flex justify-between items-center">
-                  <img src="/images/egm8my.png" alt="Logo" class="h-7" />
+                  <img
+                    src="/images/egm8my.png"
+                    alt="Logo"
+                    class="h-auto w-16"
+                  />
                   <div class="flex items-center gap-2">
-                    <!-- Language Button -->
                     <div class="relative language-dropdown">
                       <button
                         @click.stop="showLanguageMenu = !showLanguageMenu"
-                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white"
+                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
                       >
                         <img
                           :src="
@@ -968,14 +968,13 @@
                           class="w-5 h-5 rounded-full object-cover"
                         />
                       </button>
-                      <!-- Dropdown Menu -->
                       <div v-if="showLanguageMenu" class="relative z-[999]">
                         <div
-                          class="lg:hidden fixed flex items-center justify-center inset-0 bg-black bg-opacity-20 z-40"
+                          class="lg:hidden fixed flex items-center justify-center inset-0 bg-black/80 backdrop-blur-sm z-40"
                           @click="showLanguageMenu = false"
                         ></div>
                         <div
-                          class="absolute right-0 mt-2 bg-black border border-gray-700 rounded-lg shadow-md z-50 py-1 w-32"
+                          class="absolute right-0 mt-2 bg-[#1A0D13] border border-[#3b1c23] rounded-lg shadow-2xl shadow-[#ff3344]/20 z-50 w-32"
                         >
                           <button
                             v-for="lang in languageOptions"
@@ -984,11 +983,11 @@
                               changeLocale(lang.code);
                               showLanguageMenu = false;
                             "
-                            class="flex items-center gap-2 w-full px-3 py-2 lg:hover:bg-gray-800 text-left"
+                            class="flex items-center gap-2 w-full px-3 py-2 hover:bg-[#2a0f14] text-left transition-colors"
                             :class="
                               locale === lang.code
-                                ? 'bg-gray-800 text-red-400 font-medium'
-                                : 'text-gray-300'
+                                ? 'bg-[#241017] text-[#ff3344] font-medium'
+                                : 'text-[#f0eaea]'
                             "
                           >
                             <img
@@ -1001,10 +1000,9 @@
                         </div>
                       </div>
                     </div>
-                    <!-- Close Button -->
                     <button
                       @click="closeMobileMenu"
-                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white"
+                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
                     >
                       <i class="bi bi-x text-lg"></i>
                     </button>
@@ -1012,51 +1010,48 @@
                 </div>
               </div>
 
-              <!-- Scrollable Content -->
               <div
-                class="flex-1 overflow-y-auto pb-4"
+                class="flex-1 overflow-y-auto pb-4 scrollbar-thin"
                 style="overflow-x: hidden"
               >
-                <!-- Login / Register (KEEPING YOUR ORIGINAL BLOCK) -->
                 <div v-if="!userData" class="px-4 pt-3 flex gap-3">
                   <NuxtLinkLocale
                     to="/login"
                     @click="closeMobileMenu"
-                    class="flex-1 py-2 text-center border border-gray-600 rounded-lg text-gray-300 font-medium mobileMenuText"
+                    class="flex-1 py-2 text-center bg-gradient-to-r from-yellow-700 to-yellow-600 rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-yellow-600/30 transition-all hover:from-yellow-600 hover:to-yellow-500"
                   >
                     {{ $t("log_in") }}
                   </NuxtLinkLocale>
                   <NuxtLinkLocale
                     to="/register"
                     @click="closeMobileMenu"
-                    class="flex-1 py-2 text-center bg-red-600 rounded-lg text-white font-medium mobileMenuText"
+                    class="flex-1 py-2 text-center bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-[#ff3344]/30"
                   >
                     {{ $t("register") }}
                   </NuxtLinkLocale>
                 </div>
 
-                <!-- User Account Info (if logged in) -->
                 <div
                   v-if="isUserLoggedIn"
-                  class="px-4 py-3 bg-black border-b border-gray-700"
+                  class="px-4 py-3 bg-[#241017]/60 border-b border-[#3b1c23]"
                 >
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                       <div
-                        class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center"
+                        class="w-8 h-8 rounded-full bg-[#ff3344]/20 flex items-center justify-center"
                       >
-                        <i class="bi bi-person text-red-600"></i>
+                        <i class="bi bi-person text-[#ff3344]"></i>
                       </div>
                       <div>
-                        <p class="text-sm font-medium text-gray-200">
+                        <p class="text-sm font-medium text-[#f0eaea]">
                           {{ userData?.username || "User" }}
                         </p>
-                        <p class="text-xs text-gray-400">
+                        <p class="text-xs text-[#b37a7a]">
                           {{ userData?.viplevel || "Standard" }}
                         </p>
                       </div>
                     </div>
-                    <div class="text-sm text-red-400 font-medium">
+                    <div class="text-sm text-[#ff3344] font-medium">
                       <div
                         @click="showBalanceDropdown = !showBalanceDropdown"
                         class="flex items-center gap-1 cursor-pointer"
@@ -1065,9 +1060,7 @@
                           >MYR
                           {{ userData?.wallet?.toFixed(2) || "0.00" }}</span
                         >
-                        <i
-                          class="bi bi-caret-down-fill text-xs ml-0.5 text-red-300"
-                        ></i>
+                        <i class="bi bi-caret-down-fill text-xs ml-0.5"></i>
                       </div>
                       <GameBalanceDropdown
                         v-if="showBalanceDropdown"
@@ -1077,19 +1070,20 @@
                   </div>
                 </div>
 
-                <!-- Tabs -->
                 <div v-if="isUserLoggedIn" class="px-4 pt-2 pb-1">
-                  <div class="bg-gray-800 p-1 rounded-xl flex shadow-sm">
+                  <div
+                    class="bg-[#1A0D13] p-1 rounded-xl flex shadow-sm border border-[#3b1c23]"
+                  >
                     <button
                       @click="mobileTab = 'games'"
                       class="relative flex-1 flex items-center justify-center py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
                       :class="
-                        mobileTab === 'games' ? 'text-red-400' : 'text-gray-400'
+                        mobileTab === 'games' ? 'text-white' : 'text-[#8a6d6d]'
                       "
                     >
                       <div
                         v-if="mobileTab === 'games'"
-                        class="absolute inset-0 bg-[#1A0D13] rounded-lg shadow-sm transition-all duration-300"
+                        class="absolute inset-0 bg-[#9e1c34] rounded-lg shadow-md transition-all duration-300"
                       ></div>
 
                       <div
@@ -1105,37 +1099,36 @@
                       class="relative flex-1 flex items-center justify-center py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
                       :class="
                         mobileTab === 'account'
-                          ? 'text-red-400'
-                          : 'text-gray-400'
+                          ? 'text-white'
+                          : 'text-[#8a6d6d]'
                       "
                     >
                       <div
                         v-if="mobileTab === 'account'"
-                        class="absolute inset-0 bg-[#1A0D13] rounded-lg shadow-sm transition-all duration-300"
+                        class="absolute inset-0 bg-[#9e1c34] rounded-lg shadow-md transition-all duration-300"
                       ></div>
+
                       <div
                         class="relative flex items-center justify-center gap-1.5 z-10"
                       >
-                        <i class="bi bi-person text-lg"></i>
+                        <i class="bi bi-person-circle text-lg"></i>
                         <span>{{ $t("account") }}</span>
                       </div>
                     </button>
                   </div>
                 </div>
 
-                <!-- Games Tab Content -->
                 <div v-if="mobileTab === 'games'" class="px-4 pt-3">
-                  <!-- Game Categories -->
                   <div class="grid grid-cols-2 gap-3">
                     <NuxtLinkLocale
                       v-for="item in HeaderNav"
                       :key="item.name"
                       :to="item.link"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-gray-800 rounded-xl border border-gray-700"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-red-50 to-red-100 rounded-xl flex items-center justify-center mb-2"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           :src="item.icon"
@@ -1144,24 +1137,23 @@
                         />
                       </div>
                       <span
-                        class="text-sm font-medium text-gray-200 text-center"
+                        class="text-sm font-medium text-[#f0eaea] text-center group-hover:text-[#ff3344] transition-colors"
                       >
                         {{ item.label }}
                       </span>
                     </NuxtLinkLocale>
                   </div>
 
-                  <!-- Premium Features -->
                   <div
-                    class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-gray-700"
+                    class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-[#3b1c23]"
                   >
                     <NuxtLinkLocale
                       to="/promotions"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-gradient-to-br from-red-900/30 to-red-800/30 rounded-xl border border-red-700/30"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-black rounded-xl flex items-center justify-center mb-2"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           src="/images/newicon/promotion.png"
@@ -1170,7 +1162,7 @@
                         />
                       </div>
                       <span
-                        class="text-sm font-medium text-red-300 text-center"
+                        class="text-sm font-medium text-center text-white group-hover:text-white transition-colors"
                       >
                         {{ $t("promotions") }}
                       </span>
@@ -1179,10 +1171,10 @@
                     <NuxtLinkLocale
                       to="/vip"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-gradient-to-br from-yellow-900/30 to-yellow-800/30 rounded-xl border border-yellow-700/30"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-black rounded-xl flex items-center justify-center mb-2"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           src="/images/newicon/vip.png"
@@ -1191,7 +1183,7 @@
                         />
                       </div>
                       <span
-                        class="text-sm font-medium text-yellow-300 text-center"
+                        class="text-sm font-medium text-white text-center group-hover:text-yellow-200 transition-colors"
                       >
                         {{ $t("vip") }}
                       </span>
@@ -1200,11 +1192,11 @@
 
                   <div
                     v-if="isUserLoggedIn"
-                    class="py-4 bg-[#1A0D13] border-gray-700 flex justify-center"
+                    class="py-4 bg-[#1A0D13] flex justify-center"
                   >
                     <button
                       @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-red-900/30 text-red-400 border border-red-700/30 flex items-center justify-center gap-2"
+                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
                     >
                       <i class="bi bi-box-arrow-right"></i>
                       <span class="font-medium text-sm">{{
@@ -1214,34 +1206,32 @@
                   </div>
                 </div>
 
-                <!-- Account Tab Content -->
                 <div v-if="mobileTab === 'account'" class="px-4 pt-3">
-                  <!-- Cashier Section -->
                   <div class="mb-3">
                     <div
                       @click="
                         mobileActiveSubmenu =
                           mobileActiveSubmenu === 'cashier' ? null : 'cashier'
                       "
-                      class="p-3 bg-gray-800 rounded-xl border border-gray-700 shadow-sm cursor-pointer transition-all duration-200"
+                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 hover:bg-[#2a0f14]"
                       :class="{
-                        'border-red-400/30 bg-gray-800':
+                        'border-[#ff3344]/30 bg-[#241017]':
                           mobileActiveSubmenu === 'cashier',
                       }"
                     >
                       <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                           <div
-                            class="w-10 h-10 bg-red-900/30 rounded-xl flex items-center justify-center"
+                            class="w-10 h-10 bg-[#ff3344]/20 rounded-xl flex items-center justify-center"
                           >
-                            <i class="bi bi-wallet text-red-400"></i>
+                            <i class="bi bi-wallet text-[#ff3344]"></i>
                           </div>
-                          <span class="text-sm font-semibold text-gray-200">
+                          <span class="text-sm font-semibold text-[#f0eaea]">
                             {{ $t("cashier") }}
                           </span>
                         </div>
                         <i
-                          class="bi text-gray-400 transition-transform duration-300"
+                          class="bi text-[#b37a7a] transition-transform duration-300"
                           :class="
                             mobileActiveSubmenu === 'cashier'
                               ? 'bi-chevron-up rotate-270'
@@ -1261,15 +1251,15 @@
                     >
                       <div
                         v-if="mobileActiveSubmenu === 'cashier'"
-                        class="mt-2 bg-gray-800 rounded-xl border border-red-400/20 shadow-sm p-2 origin-top"
+                        class="mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] shadow-sm p-2 origin-top"
                       >
                         <NuxtLinkLocale
                           to="/myaccount/deposit"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-arrow-down-circle text-red-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-arrow-down-circle text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("deposit")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1277,10 +1267,10 @@
                         <NuxtLinkLocale
                           to="/myaccount/withdraw"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-arrow-up-circle text-red-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-arrow-up-circle text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("withdraw")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1288,10 +1278,10 @@
                         <NuxtLinkLocale
                           to="/myaccount/rescue"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-heart-pulse text-red-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-heart-pulse text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("rescue")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1299,10 +1289,10 @@
                         <NuxtLinkLocale
                           to="/myaccount/checkin"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-calendar-check text-red-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-calendar-check text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("checkin")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1310,10 +1300,10 @@
                         <NuxtLinkLocale
                           to="/luckydraw"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-dice-5 text-red-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-dice-5 text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("lucky_draw")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1321,10 +1311,10 @@
                         <NuxtLinkLocale
                           to="/myaccount/bankaccount"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-bank text-red-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-bank text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("bank_account")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1332,32 +1322,31 @@
                     </Transition>
                   </div>
 
-                  <!-- Agent Section with Smooth Transitions -->
                   <div class="mb-3">
                     <div
                       @click="
                         mobileActiveSubmenu =
                           mobileActiveSubmenu === 'agent' ? null : 'agent'
                       "
-                      class="p-3 bg-gray-800 rounded-xl border border-gray-700 shadow-sm cursor-pointer transition-all duration-200"
+                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 hover:bg-[#2a0f14]"
                       :class="{
-                        'border-green-400/30 bg-gray-800':
+                        'border-[#ff3344]/30 bg-[#241017]':
                           mobileActiveSubmenu === 'agent',
                       }"
                     >
                       <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                           <div
-                            class="w-10 h-10 bg-green-900/30 rounded-xl flex items-center justify-center"
+                            class="w-10 h-10 bg-[#ff3344]/20 rounded-xl flex items-center justify-center"
                           >
-                            <i class="bi bi-people text-green-400"></i>
+                            <i class="bi bi-people text-[#ff3344]"></i>
                           </div>
-                          <span class="text-sm font-semibold text-gray-200">
+                          <span class="text-sm font-semibold text-[#f0eaea]">
                             {{ $t("agent") }}
                           </span>
                         </div>
                         <i
-                          class="bi text-gray-400 transition-transform duration-300"
+                          class="bi text-[#b37a7a] transition-transform duration-300"
                           :class="
                             mobileActiveSubmenu === 'agent'
                               ? 'bi-chevron-up rotate-270'
@@ -1377,15 +1366,15 @@
                     >
                       <div
                         v-if="mobileActiveSubmenu === 'agent'"
-                        class="mt-2 bg-gray-800 rounded-xl border border-green-400/20 shadow-sm p-2 origin-top"
+                        class="mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] shadow-sm p-2 origin-top"
                       >
                         <NuxtLinkLocale
                           to="/myaccount/referral"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-share-fill text-green-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-share-fill text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("referral")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1393,10 +1382,10 @@
                         <NuxtLinkLocale
                           to="/myaccount/downline"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-diagram-3 text-green-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-diagram-3 text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("downline")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1404,10 +1393,10 @@
                         <NuxtLinkLocale
                           to="/myaccount/commission"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-currency-dollar text-green-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-currency-dollar text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("commission")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1416,10 +1405,10 @@
                           v-if="userData?.positionTaking > 0"
                           to="/myaccount/agentpt"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
-                          <i class="bi bi-graph-up text-green-400"></i>
-                          <span class="text-gray-300 text-sm">{{
+                          <i class="bi bi-graph-up text-[#ff3344]"></i>
+                          <span class="text-[#f0eaea] text-sm">{{
                             $t("agent_pt")
                           }}</span>
                         </NuxtLinkLocale>
@@ -1429,11 +1418,11 @@
 
                   <div
                     v-if="isUserLoggedIn"
-                    class="pb-4 pt-1 bg-[#1A0D13] border-gray-700 flex justify-center"
+                    class="pb-4 pt-1 bg-[#1A0D13] flex justify-center"
                   >
                     <button
                       @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-red-900/30 text-red-400 border border-red-700/30 transition-colors flex items-center justify-center gap-2"
+                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
                     >
                       <i class="bi bi-box-arrow-right"></i>
                       <span class="font-medium text-sm">{{
@@ -1444,9 +1433,8 @@
                 </div>
               </div>
 
-              <!-- Sticky Footer (outside the scrollable area) -->
               <div
-                class="px-2 py-2 flex justify-center border-t border-gray-700 bg-gray-800 max-lg:h-[120px]"
+                class="px-2 py-2 flex max-lg:hidden justify-center border-t border-gray-700 bg-gray-950"
               >
                 <div class="grid grid-cols-5">
                   <NuxtLinkLocale
