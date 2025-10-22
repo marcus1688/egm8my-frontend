@@ -22,7 +22,7 @@
     <PageLoading v-if="pageLoading || gameLoading" />
     <div class="fixed inset-0 flex flex-col">
       <Header v-if="!excludeNavigationFooter" />
-      <div ref="scrollContainer" class="flex-1 overflow-y-auto">
+      <div ref="scrollContainer" class="flex-1 overflow-y-auto bg-[#030712]">
         <NuxtPage />
         <div class="max-lg:hidden" v-if="!excludeNavigationFooter">
           <Footer />
