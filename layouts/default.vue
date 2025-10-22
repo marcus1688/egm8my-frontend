@@ -1,5 +1,6 @@
 <template>
   <ClientOnly>
+    <LiveChatButton />
     <Alerts
       :title="alertTitle"
       :message="alertMessage"

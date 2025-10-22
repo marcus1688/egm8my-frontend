@@ -67,7 +67,7 @@
 
       <div
         v-if="userData && userData.luckySpinClaim === false"
-        class="fixed bottom-32 right-0 z-[60] max-lg:right-1 cursor-pointer animate-pulse-glow lg:hover:animate-none"
+        class="fixed bottom-32 right-0 z-[60] max-lg:right-1 cursor-pointer animate-pulse-glow lg:hover:animate-none hidden"
         @click="showLuckySpin = true"
       >
         <div class="relative">
