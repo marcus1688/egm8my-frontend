@@ -141,9 +141,13 @@
                       >
                     </label>
                   </div>
-                  <a href="/forgot-password" class="text-[#ff3344] text_2"
-                    >{{ $t("forgot_password") }}?</a
+                  <button
+                    @click="handleForgotPassword"
+                    type="button"
+                    class="text-sm text-[#ff3344] transition-colors font-medium"
                   >
+                    {{ $t("forgot_password") }}
+                  </button>
                 </div>
 
                 <LoadingButton
@@ -204,6 +208,13 @@ const formatPhoneNumber = (phoneNumber) => {
   } else {
     return "6" + formattedNumber;
   }
+};
+
+const handleForgotPassword = () => {
+  alertTitle.value = $t("forgot_password");
+  alertMessage.value = $t("please_contact_cs_for_password_reset");
+  alertType.value = "warning";
+  alertVisible.value = true;
 };
 
 const handleLogin = async () => {
