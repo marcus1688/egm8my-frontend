@@ -1,34 +1,37 @@
 <template>
   <section class="py-4 containerWid max-lg:py-4">
-    <div class="mx-auto">
-      <div
-        class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4"
-      >
-        <div>
-          <h2
-            class="homeMainTxt3 font-bold text-gray-200 flex items-center max-lg:text-lg"
-          >
-            <i class="bi bi-stars text-[#ff3344] mr-2"></i>
-            {{ $t("promotions") }}
-          </h2>
-          <p class="text-sm text-gray-400 mt-1 max-lg:text-xs">
-            {{ $t("latest_promotions_description") }}
-          </p>
-        </div>
-        <NuxtLinkLocale
-          to="/promotions"
-          class="text-[#b37a7a] homeSubTxt1 lg:hover:text-[#f0eaea] lg:hover:underline flex items-center gap-1 transition-colors"
+    <div
+      class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4"
+    >
+      <div>
+        <h2
+          class="homeMainTxt3 font-bold text-gray-200 flex items-center max-lg:text-lg"
         >
-          View all
-          <i class="bi bi-chevron-right text-xs"></i>
-        </NuxtLinkLocale>
+          <i class="bi bi-stars text-[#ff3344] mr-2"></i>
+          {{ $t("promotions") }}
+        </h2>
+        <p class="text-sm text-gray-400 mt-1 max-lg:text-xs">
+          {{ $t("latest_promotions_description") }}
+        </p>
       </div>
+      <NuxtLinkLocale
+        to="/promotions"
+        class="text-[#b37a7a] homeSubTxt1 lg:hover:text-[#f0eaea] lg:hover:underline flex items-center gap-1 transition-colors text-nowrap max-lg:pl-2"
+      >
+        View all
+        <i class="bi bi-chevron-right text-xs"></i>
+      </NuxtLinkLocale>
+    </div>
+    <div class="mx-auto">
       <div class="relative">
         <swiper
-          :modules="[Autoplay, Navigation]"
+          :modules="[Autoplay, Navigation, Pagination]"
           :slidesPerView="1"
           :spaceBetween="16"
           :loop="true"
+          :pagination="{
+            clickable: true,
+          }"
           :navigation="{
             nextEl: '.promo-button-next',
             prevEl: '.promo-button-prev',
@@ -61,7 +64,7 @@
                   <NuxtImg
                     :src="getPromotionImage(promo)"
                     alt="Promotion Image"
-                    class="w-full h-auto object-cover lg:group-hover:scale-105 transition-transform duration-500"
+                    class="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-500"
                   />
                 </NuxtLinkLocale>
               </div>
@@ -84,18 +87,14 @@
           </swiper-slide>
         </swiper>
         <button
-          class="promo-button-prev absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
+          class="promo-button-prev max-lg:hidden absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
         >
-          <i
-            class="bi bi-chevron-left text-xl max-[1023px]:text-base max-[430px]:text-sm"
-          ></i>
+          <i class="bi bi-chevron-left text-xl"></i>
         </button>
         <button
-          class="promo-button-next absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 max-[1023px]:w-9 max-[1023px]:h-9 max-[430px]:w-8 max-[430px]:h-8 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
+          class="promo-button-next max-lg:hidden absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
         >
-          <i
-            class="bi bi-chevron-right text-xl max-[1023px]:text-base max-[430px]:text-sm"
-          ></i>
+          <i class="bi bi-chevron-right text-xl"></i>
         </button>
       </div>
     </div>
@@ -179,3 +178,36 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+@media (max-width: 1023px) {
+  :deep(.promotion-swiper .swiper-pagination) {
+    bottom: 12px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  :deep(.promotion-swiper .swiper-pagination-bullet) {
+    width: 8px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 1;
+    transition: all 0.3s;
+    border-radius: 50%;
+  }
+
+  :deep(.promotion-swiper .swiper-pagination-bullet-active) {
+    background: #ff3344;
+    width: 24px;
+    border-radius: 4px;
+  }
+}
+
+/* 大屏幕隐藏 pagination */
+@media (min-width: 1024px) {
+  :deep(.promotion-swiper .swiper-pagination) {
+    display: none;
+  }
+}
+</style>
