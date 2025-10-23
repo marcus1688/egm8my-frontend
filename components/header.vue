@@ -1904,6 +1904,41 @@ const getNavIcon = (navName) => {
 
 const HeaderNav = computed(() => [
   {
+    name: "Sports",
+    label: $t("sports"),
+    link: "/games/sports",
+    icon: "/images/newicon/sport.png",
+    games: [
+      {
+        name: "SABA SPORTS",
+        image: "/images/header/gameimg1.png",
+        tag: "Hot",
+      },
+      {
+        name: "AFB SPORTS",
+        image: "/images/header/gameimg1.png",
+      },
+    ],
+  },
+  {
+    name: "E-Sports",
+    label: $t("e_sports"),
+    link: "/games/e-sports",
+    icon: "/images/newicon/game.png",
+    games: [
+      {
+        name: "TF GAMING",
+        image: "/images/header/gameimg1.png",
+        tag: "Hot",
+      },
+      {
+        name: "IM ESPORTS",
+        image: "/images/header/gameimg1.png",
+        tag: "New",
+      },
+    ],
+  },
+  {
     name: "Casino",
     label: $t("live_casino"),
     link: "/games/livecasino",
@@ -1967,41 +2002,6 @@ const HeaderNav = computed(() => [
       {
         name: "Funky Games",
         image: "/images/header/gameimg2.png",
-      },
-    ],
-  },
-  {
-    name: "Sports",
-    label: $t("sports"),
-    link: "/games/sports",
-    icon: "/images/newicon/sport.png",
-    games: [
-      {
-        name: "SABA SPORTS",
-        image: "/images/header/gameimg1.png",
-        tag: "Hot",
-      },
-      {
-        name: "AFB SPORTS",
-        image: "/images/header/gameimg1.png",
-      },
-    ],
-  },
-  {
-    name: "E-Sports",
-    label: $t("e_sports"),
-    link: "/games/e-sports",
-    icon: "/images/newicon/game.png",
-    games: [
-      {
-        name: "TF GAMING",
-        image: "/images/header/gameimg1.png",
-        tag: "Hot",
-      },
-      {
-        name: "IM ESPORTS",
-        image: "/images/header/gameimg1.png",
-        tag: "New",
       },
     ],
   },
