@@ -1090,5 +1090,9 @@
   "term_general": "Syarikat berhak untuk tafsiran muktamad",
   "please_login_to_play_lucky_draw": "Sila log masuk untuk bermain cabutan bertuah",
   "check_turnover_requirements": "Semak Turnover",
-  "checking": "Memeriksa"
+  "checking": "Memeriksa",
+  "select_region": "Pilih Wilayah",
+  "current": "Semasa",
+  "malaysia": "Malaysia",
+  "singapore": "Singapore"
 }

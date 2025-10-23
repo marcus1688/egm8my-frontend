@@ -643,6 +643,154 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Country/Region Selection Button -->
+              <div
+                class="relative hidden lg:flex"
+                @mouseenter="showCountryMenu = true"
+                @mouseleave="showCountryMenu = false"
+              >
+                <button
+                  class="p-1.5 lg:hover:bg-[#2a0f14] rounded-full transition-colors flex items-center justify-center"
+                >
+                  <img
+                    :src="generalSetting.logoimage"
+                    alt="Region"
+                    class="w-8 h-8 object-contain rounded-full"
+                  />
+                </button>
+                <div
+                  v-if="showCountryMenu"
+                  class="absolute right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-64"
+                >
+                  <div
+                    class="absolute -top-2 right-0 w-full h-2 bg-transparent"
+                  ></div>
+                  <div class="p-2">
+                    <div class="px-3 py-2">
+                      <span
+                        class="text-xs font-semibold text-[#b37a7a] uppercase tracking-wider"
+                      >
+                        {{ $t("select_region") }}
+                      </span>
+                    </div>
+
+                    <!-- Malaysia -->
+                    <a
+                      href="https://www.egm8my.vip"
+                      target="_self"
+                      :class="[
+                        'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
+                        currentregion === 'malaysia'
+                          ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
+                          : 'lg:hover:bg-[#2a0f14] cursor-pointer',
+                      ]"
+                      @click="
+                        currentregion === 'malaysia'
+                          ? $event.preventDefault()
+                          : null
+                      "
+                    >
+                      <div class="text-2xl flex-shrink-0">🇲🇾</div>
+                      <div class="flex-1">
+                        <div class="flex items-center gap-2">
+                          <span
+                            :class="[
+                              'text-sm font-semibold transition-colors block',
+                              currentregion === 'malaysia'
+                                ? 'text-[#7a5a5a]'
+                                : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
+                            ]"
+                          >
+                            {{ $t("malaysia") }}
+                          </span>
+                          <span
+                            v-if="currentregion === 'malaysia'"
+                            class="text-xs text-[#ff3344] font-medium px-2 py-0.5 bg-[#ff3344]/10 rounded"
+                          >
+                            {{ $t("current") }}
+                          </span>
+                        </div>
+                        <p
+                          :class="[
+                            'text-xs mt-0.5',
+                            currentregion === 'malaysia'
+                              ? 'text-[#7a5a5a]'
+                              : 'text-[#b37a7a]',
+                          ]"
+                        >
+                          egm8my.vip
+                        </p>
+                      </div>
+                      <i
+                        v-if="currentregion !== 'malaysia'"
+                        class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
+                      ></i>
+                      <i
+                        v-else
+                        class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
+                      ></i>
+                    </a>
+
+                    <!-- Singapore -->
+                    <a
+                      href="https://www.egm8sg.vip"
+                      target="_self"
+                      :class="[
+                        'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
+                        currentregion === 'singapore'
+                          ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
+                          : 'lg:hover:bg-[#2a0f14] cursor-pointer',
+                      ]"
+                      @click="
+                        currentregion === 'singapore'
+                          ? $event.preventDefault()
+                          : null
+                      "
+                    >
+                      <div class="text-2xl flex-shrink-0">🇸🇬</div>
+                      <div class="flex-1">
+                        <div class="flex items-center gap-2">
+                          <span
+                            :class="[
+                              'text-sm font-semibold transition-colors block',
+                              currentregion === 'singapore'
+                                ? 'text-[#7a5a5a]'
+                                : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
+                            ]"
+                          >
+                            {{ $t("singapore") }}
+                          </span>
+                          <span
+                            v-if="currentregion === 'singapore'"
+                            class="text-xs text-[#ff3344] font-medium px-2 py-0.5 bg-[#ff3344]/10 rounded"
+                          >
+                            {{ $t("current") }}
+                          </span>
+                        </div>
+                        <p
+                          :class="[
+                            'text-xs mt-0.5',
+                            currentregion === 'singapore'
+                              ? 'text-[#7a5a5a]'
+                              : 'text-[#b37a7a]',
+                          ]"
+                        >
+                          egm8sg.vip
+                        </p>
+                      </div>
+                      <i
+                        v-if="currentregion !== 'singapore'"
+                        class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
+                      ></i>
+                      <i
+                        v-else
+                        class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
+                      ></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1000,6 +1148,146 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="relative">
+                      <button
+                        @click.stop="
+                          showCountryMenuMobile = !showCountryMenuMobile
+                        "
+                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+                      >
+                        <img
+                          :src="generalSetting.logoimage"
+                          alt="Region"
+                          class="w-5 h-5 object-contain rounded-full"
+                        />
+                      </button>
+                      <div
+                        v-if="showCountryMenuMobile"
+                        class="relative z-[999]"
+                      >
+                        <div
+                          class="lg:hidden fixed flex items-center justify-center inset-0 bg-black/80 backdrop-blur-sm z-40"
+                          @click="showCountryMenuMobile = false"
+                        ></div>
+                        <div
+                          class="absolute right-0 mt-2 bg-[#1A0D13] border border-[#3b1c23] rounded-lg shadow-2xl shadow-[#ff3344]/20 z-50 w-52"
+                        >
+                          <div class="p-2">
+                            <div class="px-3 py-2">
+                              <span
+                                class="text-xs font-semibold text-[#b37a7a] uppercase tracking-wider"
+                              >
+                                {{ $t("select_region") }}
+                              </span>
+                            </div>
+
+                            <!-- Malaysia -->
+                            <a
+                              href="https://www.egm8my.vip"
+                              target="_self"
+                              :class="[
+                                'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
+                                currentregion === 'malaysia'
+                                  ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
+                                  : 'hover:bg-[#2a0f14] cursor-pointer',
+                              ]"
+                              @click="
+                                currentregion === 'malaysia'
+                                  ? $event.preventDefault()
+                                  : null
+                              "
+                            >
+                              <div class="text-2xl flex-shrink-0">🇲🇾</div>
+                              <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                  <span
+                                    :class="[
+                                      'text-sm font-semibold transition-colors block',
+                                      currentregion === 'malaysia'
+                                        ? 'text-[#7a5a5a]'
+                                        : 'text-[#f0eaea] group-hover:text-[#ff3344]',
+                                    ]"
+                                  >
+                                    {{ $t("malaysia") }}
+                                  </span>
+                                </div>
+                                <p
+                                  :class="[
+                                    'text-xs mt-0.5',
+                                    currentregion === 'malaysia'
+                                      ? 'text-[#7a5a5a]'
+                                      : 'text-[#b37a7a]',
+                                  ]"
+                                >
+                                  egm8my.vip
+                                </p>
+                              </div>
+                              <i
+                                v-if="currentregion !== 'malaysia'"
+                                class="bi bi-box-arrow-up-right text-[#b37a7a] group-hover:text-[#ff3344] transition-colors text-sm"
+                              ></i>
+                              <i
+                                v-else
+                                class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
+                              ></i>
+                            </a>
+
+                            <!-- Singapore -->
+                            <a
+                              href="https://www.egm8sg.vip"
+                              target="_self"
+                              :class="[
+                                'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
+                                currentregion === 'singapore'
+                                  ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
+                                  : 'hover:bg-[#2a0f14] cursor-pointer',
+                              ]"
+                              @click="
+                                currentregion === 'singapore'
+                                  ? $event.preventDefault()
+                                  : null
+                              "
+                            >
+                              <div class="text-2xl flex-shrink-0">🇸🇬</div>
+                              <div class="flex-1">
+                                <div class="flex items-center gap-2">
+                                  <span
+                                    :class="[
+                                      'text-sm font-semibold transition-colors block',
+                                      currentregion === 'singapore'
+                                        ? 'text-[#7a5a5a]'
+                                        : 'text-[#f0eaea] group-hover:text-[#ff3344]',
+                                    ]"
+                                  >
+                                    {{ $t("singapore") }}
+                                  </span>
+                                </div>
+                                <p
+                                  :class="[
+                                    'text-xs mt-0.5',
+                                    currentregion === 'singapore'
+                                      ? 'text-[#7a5a5a]'
+                                      : 'text-[#b37a7a]',
+                                  ]"
+                                >
+                                  egm8sg.vip
+                                </p>
+                              </div>
+                              <i
+                                v-if="currentregion !== 'singapore'"
+                                class="bi bi-box-arrow-up-right text-[#b37a7a] group-hover:text-[#ff3344] transition-colors text-sm"
+                              ></i>
+                              <i
+                                v-else
+                                class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
+                              ></i>
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
                     <button
                       @click="closeMobileMenu"
                       class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
@@ -1535,7 +1823,9 @@
 import { useRouter } from "vue-router";
 import { Icon } from "@iconify/vue";
 const router = useRouter();
-
+const currentregion = ref("malaysia");
+const showCountryMenu = ref(false);
+const showCountryMenuMobile = ref(false);
 const showBalanceDropdown = ref(false);
 const { post, get } = useApiEndpoint();
 const { launchGame, alertVisible, alertTitle, alertMessage, alertType } =
