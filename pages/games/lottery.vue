@@ -587,7 +587,7 @@
 
       <!-- Game Promo Cards -->
       <GamePromoCards />
-
+      <SeoContent />
       <TransferModal
         v-if="showTransferModal"
         :gameInfo="currentKiosk"

@@ -64,6 +64,7 @@
       <TrustedPartners />
       <HomeTestimonials />
       <HomePopup v-if="shouldShowPopup" :popup-data="activePopup" />
+      <SeoContent />
 
       <div
         v-if="userData && userData.luckySpinClaim === false"

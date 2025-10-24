@@ -67,6 +67,7 @@
       </section>
       <!-- Game Promo Cards -->
       <GamePromoCards />
+      <SeoContent />
     </div>
   </ClientOnly>
 </template>
