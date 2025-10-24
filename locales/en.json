@@ -1103,5 +1103,10 @@
   "search_placeholder": "Search articles...",
   "read_more": "Read More",
   "no_results_blog": "No articles found",
-  "recommended_articles": "Recommended Articles"
+  "recommended_articles": "Recommended Articles",
+  "blog_description_short": "Latest news and updates",
+  "promotions_desc": "Special offers and bonuses",
+  "vip_desc": "Exclusive member benefits",
+  "blog_desc": "Latest news and updates",
+  "refer_a_friend_desc": "Earn rewards for referrals"
 }

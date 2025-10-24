@@ -545,7 +545,7 @@
                             {{ $t("promotions") }}
                           </span>
                           <p class="text-xs text-[#b37a7a] mt-1">
-                            Special offers and bonuses
+                            {{ $t("promotions_desc") }}
                           </p>
                         </div>
                         <i
@@ -575,7 +575,7 @@
                             {{ $t("vip") }}
                           </span>
                           <p class="text-xs text-[#b37a7a] mt-1">
-                            Exclusive member benefits
+                            {{ $t("vip_desc") }}
                           </p>
                         </div>
                         <i
@@ -605,7 +605,7 @@
                             {{ $t("refer_a_friend") }}
                           </span>
                           <p class="text-xs text-[#b37a7a] mt-1">
-                            Earn rewards for referrals
+                            {{ $t("refer_a_friend_desc") }}
                           </p>
                         </div>
                         <i
@@ -635,7 +635,32 @@
                             {{ $t("lucky_draw") }}
                           </span>
                           <p class="text-xs text-[#b37a7a] mt-1">
-                            Try your luck and win prizes
+                            {{ $t("lucky_draw_desc") }}
+                          </p>
+                        </div>
+                        <i
+                          class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
+                        ></i>
+                      </NuxtLinkLocale>
+
+                      <NuxtLinkLocale
+                        to="/blog"
+                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        @click="mobileMenuOpen = false"
+                      >
+                        <div
+                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
+                        >
+                          <i class="bi bi-newspaper text-[#ff3344] text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                          <span
+                            class="text-sm font-semibold text-[#f0eaea] lg:group-hover:text-[#ff3344] transition-colors block"
+                          >
+                            {{ $t("blog") }}
+                          </span>
+                          <p class="text-xs text-[#b37a7a] mt-1">
+                            {{ $t("blog_description_short") }}
                           </p>
                         </div>
                         <i
@@ -1477,6 +1502,23 @@
                         class="text-sm font-medium text-white text-center group-hover:text-yellow-200 transition-colors"
                       >
                         {{ $t("vip") }}
+                      </span>
+                    </NuxtLinkLocale>
+
+                    <NuxtLinkLocale
+                      to="/blog"
+                      @click="closeMobileMenu"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
+                    >
+                      <div
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
+                      >
+                        <i class="bi bi-newspaper text-[#ff3344] text-2xl"></i>
+                      </div>
+                      <span
+                        class="text-sm font-medium text-white text-center group-hover:text-[#ff3344] transition-colors"
+                      >
+                        {{ $t("blog") }}
                       </span>
                     </NuxtLinkLocale>
                   </div>

@@ -1103,5 +1103,10 @@
   "search_placeholder": "搜索文章...",
   "read_more": "阅读更多",
   "no_results_blog": "未找到文章",
-  "recommended_articles": "推荐文章"
+  "recommended_articles": "推荐文章",
+  "blog_description_short": "最新资讯与更新",
+  "promotions_desc": "特别优惠与奖金",
+  "vip_desc": "专属会员福利",
+  "blog_desc": "最新资讯与更新",
+  "refer_a_friend_desc": "推荐好友赚取奖励"
 }
