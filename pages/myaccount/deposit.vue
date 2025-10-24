@@ -99,7 +99,7 @@
               :class="[
                 'py-3 px-6 rounded-lg text-center text-sm flex items-center gap-2 transition-colors duration-200 font-medium max-lg:text-xs max-lg:px-4 max-lg:py-2',
                 selectedOption === option.name
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >

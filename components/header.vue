@@ -219,7 +219,7 @@
                             </NuxtLinkLocale>
                             <NuxtLinkLocale
                               to="/myaccount/rescue"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
+                              class="pl-10 py-3 hidden px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
                             >
                               {{ $t("rescue") }}
                             </NuxtLinkLocale>
@@ -1566,7 +1566,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/rescue"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="hidden items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-heart-pulse text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{

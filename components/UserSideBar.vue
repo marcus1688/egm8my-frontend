@@ -126,7 +126,7 @@
 
           <NuxtLinkLocale
             to="/myaccount/rescue"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
+            class="hidden items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
             :class="{
               'text-[#ff3344] font-medium bg-[#15090e]/50':
                 isActiveRoute('rescue'),

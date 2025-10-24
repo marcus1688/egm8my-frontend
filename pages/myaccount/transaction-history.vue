@@ -22,7 +22,7 @@
               :class="[
                 'py-2 px-4 rounded-lg text-center text-sm font-medium whitespace-nowrap transition-colors',
                 selectedType === type.key
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -44,7 +44,7 @@
               :class="[
                 'py-2 px-4 rounded-lg text-center text-sm font-medium whitespace-nowrap transition-colors',
                 selectedTime === time.key
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -120,12 +120,15 @@
                         'bg-purple-500/20 text-purple-400':
                           transaction.transactiontype === 'bonus',
                         'bg-blue-500/20 text-blue-400':
-                          transaction.transactiontype === 'agent commission',
+                          transaction.transactiontype === 'commission',
+                        'bg-orange-500/20 text-orange-400':
+                          transaction.transactiontype === 'rescue',
                         'bg-[#b37a7a]/20 text-[#b37a7a]': ![
                           'deposit',
                           'withdraw',
                           'bonus',
-                          'agent commission',
+                          'commission',
+                          'rescue',
                         ].includes(transaction.transactiontype),
                       }"
                     >
@@ -272,6 +275,7 @@ const transactionTypes = [
   { key: "Bonus", en: $t("bonus"), zh: "优惠" },
   { key: "Transfer", en: $t("transfer"), zh: "转账" },
   { key: "Rebate", en: $t("rebate"), zh: "返水" },
+  { key: "Rescue", en: $t("rescue"), zh: "复活分" },
   { key: "Commission", en: $t("commission"), zh: "佣金" },
 ];
 
@@ -292,7 +296,8 @@ const typeMapping = {
   Withdraw: "withdraw",
   Bonus: "bonus",
   Rebate: "rebate",
-  Commission: "agent commission",
+  Commission: "commission",
+  Rescue: "rescue",
 };
 
 const displayedPages = computed(() => {
@@ -451,8 +456,10 @@ const getLocalizedTransactionType = (transactiontype) => {
     return $t("withdraw").toUpperCase();
   } else if (transactiontype === "bonus") {
     return $t("bonus").toUpperCase();
-  } else if (transactiontype === "agent commission") {
+  } else if (transactiontype === "commission") {
     return $t("commission").toUpperCase();
+  } else if (transactiontype === "rescue") {
+    return $t("rescue").toUpperCase();
   }
   return transactiontype.toUpperCase();
 };

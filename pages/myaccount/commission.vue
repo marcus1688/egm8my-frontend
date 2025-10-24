@@ -115,7 +115,7 @@
               :class="[
                 'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'All'
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -129,7 +129,7 @@
               :class="[
                 'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Today'
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -143,7 +143,7 @@
               :class="[
                 'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Yesterday'
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -157,7 +157,7 @@
               :class="[
                 'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Last 7 Days'
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -171,7 +171,7 @@
               :class="[
                 'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Last 30 Days'
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
@@ -185,7 +185,7 @@
               :class="[
                 'py-2 max-lg:py-1.5 px-4 max-lg:px-3 rounded-lg text-center transition-colors',
                 selectedTime === 'Last Month'
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
+                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
                   : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
               ]"
             >
