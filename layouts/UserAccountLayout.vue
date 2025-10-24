@@ -9,7 +9,7 @@
         </div>
         <div class="md:col-span-3">
           <div
-            class="bg-[#241017]/60 backdrop-blur-sm rounded-lg shadow-lg shadow-red-500/20 border border-[#3b1c23] min-h-[700px] p-6 max-lg:p-4"
+            class="bg-[#241017] backdrop-blur-sm rounded-lg shadow-lg shadow-red-500/20 border border-[#3b1c23] min-h-[700px] p-6 max-lg:p-4"
           >
             <slot></slot>
           </div>

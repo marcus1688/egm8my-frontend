@@ -149,7 +149,10 @@
                             }}</span>
                             <span
                               class="text-[#ff3344] text-sm font-medium uppercase"
-                              >{{ userData.viplevel }}</span
+                            >
+                              {{
+                                getLocalizedLevelName(userData.viplevel)
+                              }}</span
                             >
                           </div>
                         </div>
@@ -2120,6 +2123,63 @@ const performLogout = async () => {
     confirmAlertType.value = "error";
     isConfirmAlertVisible.value = true;
   }
+};
+
+const levelNameTranslations = {
+  bronze: {
+    en: "Bronze",
+    zh: "青銅",
+    zh_hk: "青銅",
+    ms: "Gangsa",
+    id: "Perunggu",
+  },
+  silver: {
+    en: "Silver",
+    zh: "白銀",
+    zh_hk: "白銀",
+    ms: "Perak",
+    id: "Perak",
+  },
+  gold: {
+    en: "Gold",
+    zh: "黃金",
+    zh_hk: "黃金",
+    ms: "Emas",
+    id: "Emas",
+  },
+  platinum: {
+    en: "Platinum",
+    zh: "鉑金",
+    zh_hk: "鉑金",
+    ms: "Platinum",
+    id: "Platinum",
+  },
+  "egm8 elite vip": {
+    en: "EGM8 Elite VIP",
+    zh: "EGM8 尊贵贵宾",
+    zh_hk: "EGM8 尊贵贵宾",
+    ms: "EGM8 Elite VIP",
+    id: "EGM8 Elite VIP",
+  },
+  diamond: {
+    en: "Diamond",
+    zh: "鑽石",
+    zh_hk: "鑽石",
+    ms: "Berlian",
+    id: "Berlian",
+  },
+  royal: {
+    en: "Royal",
+    zh: "至尊",
+    zh_hk: "至尊",
+    ms: "Raja",
+    id: "Royal",
+  },
+};
+
+const getLocalizedLevelName = (name) => {
+  const lowerName = name.toLowerCase();
+  return levelNameTranslations[lowerName]?.[$locale.value] || name;
 };
 
 watch(

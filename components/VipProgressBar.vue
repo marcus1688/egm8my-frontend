@@ -22,9 +22,9 @@
               <span class="text-[#b37a7a] text-xs font-medium">{{
                 $t("current_level")
               }}</span>
-              <span class="text-[#f0eaea] font-bold">{{
-                userData.viplevel
-              }}</span>
+              <span class="text-[#f0eaea] font-bold">
+                {{ getLocalizedLevelName(userData.viplevel) }}</span
+              >
             </div>
           </div>
 
@@ -33,9 +33,9 @@
               <span class="text-[#b37a7a] text-xs font-medium">{{
                 $t("next_level")
               }}</span>
-              <span class="text-[#f0eaea] font-bold">{{
-                nextLevelInfo.name
-              }}</span>
+              <span class="text-[#f0eaea] font-bold">
+                {{ getLocalizedLevelName(nextLevelInfo.name) }}</span
+              >
             </div>
             <div
               class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg opacity-90"
@@ -243,6 +243,63 @@ function getInnerCircleClass(levelName) {
       return "bg-gradient-to-br from-gray-400 to-gray-500 border-2 border-gray-400/80";
   }
 }
+
+const levelNameTranslations = {
+  bronze: {
+    en: "Bronze",
+    zh: "青銅",
+    zh_hk: "青銅",
+    ms: "Gangsa",
+    id: "Perunggu",
+  },
+  silver: {
+    en: "Silver",
+    zh: "白銀",
+    zh_hk: "白銀",
+    ms: "Perak",
+    id: "Perak",
+  },
+  gold: {
+    en: "Gold",
+    zh: "黃金",
+    zh_hk: "黃金",
+    ms: "Emas",
+    id: "Emas",
+  },
+  platinum: {
+    en: "Platinum",
+    zh: "鉑金",
+    zh_hk: "鉑金",
+    ms: "Platinum",
+    id: "Platinum",
+  },
+  "egm8 elite vip": {
+    en: "EGM8 Elite VIP",
+    zh: "EGM8 尊贵贵宾",
+    zh_hk: "EGM8 尊贵贵宾",
+    ms: "EGM8 Elite VIP",
+    id: "EGM8 Elite VIP",
+  },
+  diamond: {
+    en: "Diamond",
+    zh: "鑽石",
+    zh_hk: "鑽石",
+    ms: "Berlian",
+    id: "Berlian",
+  },
+  royal: {
+    en: "Royal",
+    zh: "至尊",
+    zh_hk: "至尊",
+    ms: "Raja",
+    id: "Royal",
+  },
+};
+
+const getLocalizedLevelName = (name) => {
+  const lowerName = name.toLowerCase();
+  return levelNameTranslations[lowerName]?.[$locale.value] || name;
+};
 
 function formatNumber(value) {
   if (!value && value !== 0) return "";

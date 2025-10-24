@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full h-[700px] bg-[#241017]/60 rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23] overflow-hidden"
+    class="w-full h-[700px] bg-[#241017] rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23] overflow-hidden"
   >
     <div class="p-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white">
       <div class="flex items-center gap-3">

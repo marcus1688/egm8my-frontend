@@ -373,12 +373,12 @@
           </div>
         </div>
       </div>
-
-      <TurnoverProgressBar
-        :turnoverDetails="turnoverData"
-        v-if="turnoverData"
-        @close="turnoverData = null"
-      />
+      <Teleport to="body">
+        <TurnoverProgressBar
+          :turnoverDetails="turnoverData"
+          v-if="turnoverData"
+          @close="turnoverData = null"
+      /></Teleport>
     </div>
   </UserAccountLayout>
 </template>

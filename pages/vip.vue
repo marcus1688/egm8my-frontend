@@ -14,7 +14,7 @@
         />
       </section>
       <section class="py-8 relative max-lg:p-4">
-        <div class="container mx-auto px-4 mb-4 max-lg:hidden">
+        <div class="mb-4 px-48 max-2xl:px-12 max-lg:px-2 max-lg:hidden">
           <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
             <div
               v-for="level in settingsData.vipLevels"
@@ -54,10 +54,12 @@
                     'text-[#daa520]': level.name === 'Gold',
                     'text-[#3d898f]': level.name === 'Platinum',
                     'text-gray-300': level.name === 'Diamond',
-                    'text-[#a855f7]': level.name === 'EGM8 ELite VIP',
+                    'text-[#a855f7]': level.name === 'EGM8 Elite VIP',
                   }"
                 >
-                  {{ level.name }}
+                  <p class="max-xl:text-sm">
+                    {{ getLocalizedLevelName(level.name) }}
+                  </p>
                 </h3>
               </div>
             </div>
@@ -65,7 +67,7 @@
         </div>
 
         <!-- VIP Table -->
-        <div class="container mx-auto px-4 mb-12 max-lg:px-2 max-lg:mb-6">
+        <div class="px-48 max-2xl:px-12 max-lg:px-0">
           <div
             class="bg-[#241017] rounded-xl shadow-lg overflow-hidden border border-[#3b1c23] relative max-lg:rounded-lg max-lg:shadow-md"
           >
@@ -78,7 +80,9 @@
             ></div>
 
             <div class="overflow-x-auto">
-              <table class="w-full min-w-[900px] max-lg:min-w-[750px]">
+              <table
+                class="w-full min-w-[900px] max-lg:min-w-[750px] text-nowrap"
+              >
                 <thead>
                   <tr
                     class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white"
@@ -98,7 +102,9 @@
                           alt="VIP Icon"
                           class="w-12 h-auto max-lg:w-8"
                         />
-                        <span class="max-lg:text-xs">{{ level.name }}</span>
+                        <span class="max-lg:text-xs">
+                          {{ getLocalizedLevelName(level.name) }}</span
+                        >
                       </div>
                     </th>
                   </tr>
@@ -312,6 +318,63 @@ const getLocalizedTerms = computed(() => {
   }
 });
 
+const levelNameTranslations = {
+  bronze: {
+    en: "Bronze",
+    zh: "青銅",
+    zh_hk: "青銅",
+    ms: "Gangsa",
+    id: "Perunggu",
+  },
+  silver: {
+    en: "Silver",
+    zh: "白銀",
+    zh_hk: "白銀",
+    ms: "Perak",
+    id: "Perak",
+  },
+  gold: {
+    en: "Gold",
+    zh: "黃金",
+    zh_hk: "黃金",
+    ms: "Emas",
+    id: "Emas",
+  },
+  platinum: {
+    en: "Platinum",
+    zh: "鉑金",
+    zh_hk: "鉑金",
+    ms: "Platinum",
+    id: "Platinum",
+  },
+  "egm8 elite vip": {
+    en: "EGM8 Elite VIP",
+    zh: "EGM8 尊贵贵宾",
+    zh_hk: "EGM8 尊贵贵宾",
+    ms: "EGM8 Elite VIP",
+    id: "EGM8 Elite VIP",
+  },
+  diamond: {
+    en: "Diamond",
+    zh: "鑽石",
+    zh_hk: "鑽石",
+    ms: "Berlian",
+    id: "Berlian",
+  },
+  royal: {
+    en: "Royal",
+    zh: "至尊",
+    zh_hk: "至尊",
+    ms: "Raja",
+    id: "Royal",
+  },
+};
+
+const getLocalizedLevelName = (name) => {
+  const lowerName = name.toLowerCase();
+  return levelNameTranslations[lowerName]?.[$locale.value] || name;
+};
+
 const rowNameTranslations = {
   "Total Deposit": {
     en: "Total Deposit",
@@ -383,7 +446,7 @@ const getGradientClass = (name) => {
       return "from-[#71c4cf] to-[#3d898f]";
     case "Diamond":
       return "from-[#b9b9b9] to-[#e0e0e0]";
-    case "EGM8 ELite VIP":
+    case "EGM8 Elite VIP":
       return "from-[#4B0082] to-[#800080]";
     default:
       console.log("No matching style for:", name);
@@ -404,7 +467,7 @@ const getInnerCircleClass = (name) => {
       return "bg-[#3d898f] border-2 border-[#71c4cf]";
     case "Diamond":
       return "bg-[#b9b9b9] border-2 border-[#e0e0e0]";
-    case "EGM8 ELite VIP":
+    case "EGM8 Elite VIP":
       return "bg-[#800080] border-2 border-[#9370DB]";
     default:
       console.log("No matching inner circle style for:", name);
