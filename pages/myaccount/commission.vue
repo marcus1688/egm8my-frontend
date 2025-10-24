@@ -14,7 +14,7 @@
 
       <div v-else>
         <!-- Commission Claim Section -->
-        <div class="mb-6 max-lg:mb-3">
+        <div class="mb-6 max-lg:mb-3 hidden">
           <div
             class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20"
           >
@@ -99,10 +99,10 @@
             <h4
               class="text-[#ff3344] font-medium text-sm max-lg:text-xs mb-1 max-lg:mb-0.5"
             >
-              {{ $t("daily_update_schedule") }}
+              {{ $t("weekly_distribution_schedule") }}
             </h4>
             <p class="text-[#f0eaea] text-sm max-lg:text-xs">
-              {{ $t("update_schedule_description") }}
+              {{ $t("distribution_schedule_description") }}
             </p>
           </div>
         </div>
@@ -197,7 +197,7 @@
         </div>
 
         <div
-          class="mb-6 max-lg:mb-3 p-4 max-lg:p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg flex items-start"
+          class="mb-6 max-lg:mb-3 p-4 max-lg:p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg items-start hidden"
         >
           <div class="text-amber-400 mr-3 max-lg:mr-2 mt-0.5">
             <Icon
@@ -235,42 +235,27 @@
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
-                    {{ $t("downline") }}
+                    {{ $t("formula") }}
                   </th>
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
-                    {{ $t("live_casino") }}
+                    {{ $t("total_deposit") }}
                   </th>
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
-                    {{ $t("sports") }}
+                    {{ $t("total_withdraw") }}
                   </th>
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
-                    {{ $t("slot_games") }}
+                    {{ $t("total_bonus") }}
                   </th>
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
-                    {{ $t("fishing") }}
-                  </th>
-                  <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
-                  >
-                    {{ $t("e_sports") }}
-                  </th>
-                  <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
-                  >
-                    {{ $t("lottery") }}
-                  </th>
-                  <th
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
-                  >
-                    {{ $t("total_turnover") }}
+                    {{ $t("net_winlose") }}
                   </th>
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
@@ -280,7 +265,7 @@
                   <th
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
                   >
-                    {{ $t("formula") }}
+                    {{ $t("status") }}
                   </th>
                 </tr>
               </thead>
@@ -289,7 +274,7 @@
                   v-for="(report, index) in paginatedReports"
                   :key="index"
                   :class="[
-                    'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors',
+                    'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors text-nowrap',
                     index % 2 === 0 ? 'bg-[#15090e]/30' : 'bg-[#15090e]/50',
                   ]"
                 >
@@ -297,57 +282,6 @@
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
                   >
                     {{ formatDate(report.createdAt) }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-medium text-[#ff3344]"
-                  >
-                    {{ report.downlineUsername }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
-                  >
-                    ${{
-                      formatAmount(report.categoryTurnover["Live Casino"] || 0)
-                    }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
-                  >
-                    ${{ formatAmount(report.categoryTurnover["Sports"] || 0) }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
-                  >
-                    ${{
-                      formatAmount(report.categoryTurnover["Slot Games"] || 0)
-                    }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
-                  >
-                    ${{ formatAmount(report.categoryTurnover["Fishing"] || 0) }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
-                  >
-                    ${{
-                      formatAmount(report.categoryTurnover["E-Sports"] || 0)
-                    }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
-                  >
-                    ${{ formatAmount(report.categoryTurnover["Lottery"] || 0) }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-bold text-[#f0eaea]"
-                  >
-                    ${{ formatAmount(report.totalTurnover) }}
-                  </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-bold text-[#ff3344]"
-                  >
-                    ${{ formatAmount(report.commissionAmount) }}
                   </td>
                   <td
                     class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs"
@@ -358,6 +292,54 @@
                     >
                       {{ $t("view") }}
                     </button>
+                  </td>
+                  <td
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs font-medium text-[#f0eaea]"
+                  >
+                    MYR {{ formatNumber(report.totalDeposit || 0) }}
+                  </td>
+                  <td
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
+                  >
+                    MYR {{ formatNumber(report.totalWithdraw || 0) }}
+                  </td>
+                  <td
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
+                  >
+                    MYR {{ formatNumber(report.totalBonus || 0) }}
+                  </td>
+                  <td
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs text-[#f0eaea]"
+                  >
+                    MYR {{ formatNumber(report.totalWinLoss || 0) }}
+                  </td>
+                  <td
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs"
+                    :class="
+                      (report.commissionAmount || 0) > 0
+                        ? 'text-green-400'
+                        : (report.commissionAmount || 0) < 0
+                        ? 'text-red-400'
+                        : 'text-[#f0eaea]'
+                    "
+                  >
+                    MYR {{ formatNumber(report.commissionAmount) }}
+                  </td>
+                  <td
+                    class="px-4 max-lg:px-3 py-3 max-lg:py-2 text-sm max-lg:text-xs flex justify-center items-center"
+                  >
+                    <span
+                      :class="[
+                        'px-2 py-1 rounded-md text-xs uppercase border',
+                        report.status === 'approved'
+                          ? 'bg-green-900/30 text-green-400 border-green-500/30'
+                          : report.status === 'pending'
+                          ? 'bg-amber-900/30 text-amber-400 border-amber-500/30'
+                          : 'bg-red-900/30 text-red-400 border-red-500/30',
+                      ]"
+                    >
+                      {{ getLocalizedStatus(report.status) }}
+                    </span>
                   </td>
                 </tr>
               </tbody>
@@ -458,51 +440,60 @@
         </div>
       </div>
     </div>
-
     <!-- Formula Modal -->
-    <div
-      v-if="showFormulaModal"
-      class="fixed inset-0 z-50 overflow-auto bg-black/70 flex items-center justify-center"
-      @click="showFormulaModal = false"
-    >
+    <Teleport to="body">
       <div
-        class="bg-[#241017]/95 backdrop-blur-sm rounded-xl shadow-2xl shadow-red-500/20 border border-[#3b1c23] max-w-lg w-full mx-4 p-6 max-lg:p-4"
-        @click.stop
+        v-if="showFormulaModal"
+        class="fixed inset-0 z-50 overflow-auto bg-black/70 flex items-center justify-center p-4"
+        @click="showFormulaModal = false"
       >
-        <div class="flex justify-between items-center mb-4 max-lg:mb-3">
-          <h3 class="text-lg max-lg:text-base font-bold text-[#f0eaea]">
-            {{ $t("commission_formula") }}
-          </h3>
-          <button
-            @click="showFormulaModal = false"
-            class="text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
-          >
-            <Icon icon="mdi:close" class="w-5 h-5 max-lg:w-4 max-lg:h-4" />
-          </button>
-        </div>
         <div
-          class="bg-[#15090e]/50 p-4 max-lg:p-3 rounded-lg border border-[#3b1c23]"
+          class="bg-[#241017]/95 backdrop-blur-sm rounded-xl shadow-2xl shadow-red-500/20 border border-[#3b1c23] max-w-lg w-full p-6 max-lg:p-4 max-h-[80vh] flex flex-col"
+          @click.stop
         >
-          <p class="text-[#f0eaea] max-lg:text-sm whitespace-pre-line">
-            {{ selectedFormula }}
-          </p>
-        </div>
-        <div class="mt-6 max-lg:mt-4 flex justify-end">
-          <button
-            @click="showFormulaModal = false"
-            class="px-4 max-lg:px-3 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
+          <div
+            class="flex justify-between items-center mb-4 max-lg:mb-3 flex-shrink-0"
           >
-            {{ $t("close") }}
-          </button>
+            <h3 class="text-lg max-lg:text-base font-bold text-[#f0eaea]">
+              {{ $t("commission_formula") }}
+            </h3>
+            <button
+              @click="showFormulaModal = false"
+              class="text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
+            >
+              <Icon icon="mdi:close" class="w-5 h-5 max-lg:w-4 max-lg:h-4" />
+            </button>
+          </div>
+
+          <!-- Scrollable Content Area -->
+          <div class="overflow-y-auto flex-1 min-h-0">
+            <div
+              class="bg-[#15090e]/50 p-4 max-lg:p-3 rounded-lg border border-[#3b1c23]"
+            >
+              <p class="text-[#f0eaea] max-lg:text-sm whitespace-pre-line">
+                {{ selectedFormula }}
+              </p>
+            </div>
+          </div>
+
+          <div class="mt-6 max-lg:mt-4 flex justify-end flex-shrink-0">
+            <button
+              @click="showFormulaModal = false"
+              class="px-4 max-lg:px-3 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
+            >
+              {{ $t("close") }}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </UserAccountLayout>
 </template>
 <script setup>
 import { Icon } from "@iconify/vue";
 import UserAccountLayout from "~/layouts/UserAccountLayout.vue";
 import moment from "moment-timezone";
+import { formatNumber } from "~/utils/formatNumber";
 
 const { checkAuth } = useAuthCheck();
 await checkAuth();
@@ -519,6 +510,41 @@ const commissionClaimLoading = ref(false);
 const { showAlert } = useAlert();
 
 const selectedTime = ref("All");
+
+const getLocalizedStatus = (status) => {
+  const statusTranslations = {
+    approved: {
+      en: "Approved",
+      zh: "已批准",
+      zh_hk: "已批准",
+      ms: "Diluluskan",
+      id: "Disetujui",
+    },
+    pending: {
+      en: "Pending",
+      zh: "待處理",
+      zh_hk: "待處理",
+      ms: "Menunggu",
+      id: "Menunggu",
+    },
+    rejected: {
+      en: "Rejected",
+      zh: "已拒絕",
+      zh_hk: "已拒絕",
+      ms: "Ditolak",
+      id: "Ditolak",
+    },
+    cancel: {
+      en: "Cancelled",
+      zh: "已取消",
+      zh_hk: "已取消",
+      ms: "Dibatalkan",
+      id: "Dibatalkan",
+    },
+  };
+  const lowerStatus = status.toLowerCase();
+  return statusTranslations[lowerStatus]?.[$locale.value] || status;
+};
 
 // For pagination display
 const displayedPages = computed(() => {
@@ -602,7 +628,11 @@ const totalPages = computed(() =>
 );
 
 const openFormulaModal = (report) => {
-  selectedFormula.value = report.formula;
+  if ($locale.value === "zh") {
+    selectedFormula.value = report.formulazh;
+  } else {
+    selectedFormula.value = report.formula;
+  }
   showFormulaModal.value = true;
 };
 

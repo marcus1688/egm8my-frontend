@@ -1094,5 +1094,8 @@
   "select_region": "Select Region",
   "current": "Current",
   "malaysia": "Malaysia",
-  "singapore": "Singapore"
+  "singapore": "Singapore",
+  "net_winlose": "Net Win/Loss",
+  "weekly_distribution_schedule": "Weekly Distribution Schedule",
+  "distribution_schedule_description": "Commissions are automatically calculated and distributed every Monday at 6:00 AM."
 }

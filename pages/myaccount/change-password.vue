@@ -225,13 +225,15 @@
       </div>
     </div>
 
-    <Alerts
-      :title="alertTitle"
-      :message="alertMessage"
-      :isVisible="alertVisible"
-      :type="alertType"
-      @close="alertVisible = false"
-    />
+    <Teleport to="body">
+      <Alerts
+        :title="alertTitle"
+        :message="alertMessage"
+        :isVisible="alertVisible"
+        :type="alertType"
+        @close="alertVisible = false"
+      />
+    </Teleport>
   </UserAccountLayout>
 </template>
 

@@ -1,11 +1,13 @@
 <template>
-  <Alerts
-    :title="alertTitle"
-    :message="alertMessage"
-    :isVisible="alertVisible"
-    :type="alertType"
-    @close="alertVisible = false"
-  />
+  <Teleport to="body">
+    <Alerts
+      :title="alertTitle"
+      :message="alertMessage"
+      :isVisible="alertVisible"
+      :type="alertType"
+      @close="alertVisible = false"
+    />
+  </Teleport>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
       <div class="mb-6 max-lg:mb-2">

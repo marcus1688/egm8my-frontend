@@ -1094,5 +1094,8 @@
   "select_region": "Pilih Wilayah",
   "current": "Semasa",
   "malaysia": "Malaysia",
-  "singapore": "Singapore"
+  "singapore": "Singapore",
+  "net_winlose": "Untung/Rugi Bersih",
+  "weekly_distribution_schedule": "Jadual Pengedaran Mingguan",
+  "distribution_schedule_description": "Komisen akan dikira dan diedarkan secara automatik setiap hari Isnin pada jam 6:00 pagi."
 }

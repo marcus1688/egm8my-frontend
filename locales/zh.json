@@ -1094,5 +1094,8 @@
   "select_region": "选择地区",
   "current": "当前",
   "malaysia": "马来西亚",
-  "singapore": "新加坡"
+  "singapore": "新加坡",
+  "net_winlose": "净输赢",
+  "weekly_distribution_schedule": "每周派发时间",
+  "distribution_schedule_description": "佣金将于每周一早上6点自动计算并派发。"
 }
