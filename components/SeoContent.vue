@@ -69,7 +69,8 @@ const pathToSeoType = {
 };
 
 const getSeoPageType = (path) => {
-  return pathToSeoType[path] || "index";
+  const cleanPath = path.replace(/^\/(en|zh|zh_hk|ms|id)/, "") || "/";
+  return pathToSeoType[cleanPath] || "index";
 };
 
 async function fetchSeoContent() {
