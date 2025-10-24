@@ -1097,5 +1097,11 @@
   "singapore": "Singapore",
   "net_winlose": "Net Win/Loss",
   "weekly_distribution_schedule": "Weekly Distribution Schedule",
-  "distribution_schedule_description": "Commissions are automatically calculated and distributed every Monday at 6:00 AM."
+  "distribution_schedule_description": "Commissions are automatically calculated and distributed every Monday at 6:00 AM.",
+  "blog": "Blog",
+  "blog_description": "Explore our blog for the latest insights, gaming strategies, industry news, and exclusive tips to enhance your gaming experience.",
+  "search_placeholder": "Search articles...",
+  "read_more": "Read More",
+  "no_results_blog": "No articles found",
+  "recommended_articles": "Recommended Articles"
 }

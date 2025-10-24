@@ -1097,5 +1097,11 @@
   "singapore": "Singapore",
   "net_winlose": "Untung/Rugi Bersih",
   "weekly_distribution_schedule": "Jadual Pengedaran Mingguan",
-  "distribution_schedule_description": "Komisen akan dikira dan diedarkan secara automatik setiap hari Isnin pada jam 6:00 pagi."
+  "distribution_schedule_description": "Komisen akan dikira dan diedarkan secara automatik setiap hari Isnin pada jam 6:00 pagi.",
+  "blog": "Blog",
+  "blog_description": "Terokai blog kami untuk mendapatkan pandangan terkini, strategi permainan, berita industri, dan petua eksklusif untuk meningkatkan pengalaman permainan anda.",
+  "search_placeholder": "Cari artikel...",
+  "read_more": "Baca Lagi",
+  "no_results_blog": "Tiada artikel dijumpai",
+  "recommended_articles": "Artikel Disyorkan"
 }

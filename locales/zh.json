@@ -1097,5 +1097,11 @@
   "singapore": "新加坡",
   "net_winlose": "净输赢",
   "weekly_distribution_schedule": "每周派发时间",
-  "distribution_schedule_description": "佣金将于每周一早上6点自动计算并派发。"
+  "distribution_schedule_description": "佣金将于每周一早上6点自动计算并派发。",
+  "blog": "博客",
+  "blog_description": "浏览我们的博客，获取最新见解、游戏策略、行业新闻以及独家提示，提升您的游戏体验。",
+  "search_placeholder": "搜索文章...",
+  "read_more": "阅读更多",
+  "no_results_blog": "未找到文章",
+  "recommended_articles": "推荐文章"
 }

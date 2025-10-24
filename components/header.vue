@@ -524,7 +524,7 @@
                   <div class="">
                     <div>
                       <!-- Promotions -->
-                      <!-- <NuxtLinkLocale
+                      <NuxtLinkLocale
                         to="/promotions"
                         class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
@@ -551,10 +551,10 @@
                         <i
                           class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
-                      </NuxtLinkLocale> -->
+                      </NuxtLinkLocale>
 
                       <!-- VIP -->
-                      <!-- <NuxtLinkLocale
+                      <NuxtLinkLocale
                         to="/vip"
                         class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
@@ -581,7 +581,7 @@
                         <i
                           class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
-                      </NuxtLinkLocale> -->
+                      </NuxtLinkLocale>
 
                       <!-- Refer Friends -->
                       <NuxtLinkLocale
