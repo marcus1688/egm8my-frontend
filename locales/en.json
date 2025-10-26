@@ -149,7 +149,7 @@
   "no_data_message": "There is no leaderboard data for this week yet. Please check back later.",
   "player_id": "Player ID",
   "valid_turnover": "Valid Turnover",
-  "leaderboard_update_message": "Leaderboard is updated everyday at 00:30",
+  "leaderboard_update_message": "Leaderboard is updated everyweek",
   "failed_fetch_leaderboard": "Failed to fetch leaderboard data. Please try again.",
   "claimed": "Claimed",
   "won_amount": "You've won ${amount}!",

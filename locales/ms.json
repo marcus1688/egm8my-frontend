@@ -149,7 +149,7 @@
   "no_data_message": "Belum ada data papan pendahulu untuk minggu ini. Sila periksa kemudian.",
   "player_id": "ID Pemain",
   "valid_turnover": "Turnover Sah",
-  "leaderboard_update_message": "Papan pendahulu dikemas kini setiap hari pada 00:30",
+  "leaderboard_update_message": "Papan pendahulu dikemas kini setiap minggu",
   "failed_fetch_leaderboard": "Gagal mengambil data papan pendahulu. Sila cuba lagi.",
   "claimed": "Dituntut",
   "won_amount": "Anda telah memenangi ${amount}!",

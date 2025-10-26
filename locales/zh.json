@@ -149,7 +149,7 @@
   "no_data_message": "本周尚无排行榜数据。请稍后再查看。",
   "player_id": "玩家ID",
   "valid_turnover": "有效流水",
-  "leaderboard_update_message": "排行榜每天00:30更新",
+  "leaderboard_update_message": "排行榜每周更新",
   "failed_fetch_leaderboard": "获取排行榜数据失败。请重试。",
   "claimed": "已领取",
   "won_amount": "您赢得了${amount}！",
