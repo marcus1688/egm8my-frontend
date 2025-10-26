@@ -23,6 +23,7 @@ const unreadCount = useState("unreadCount", () => null);
 const { socket, connectSocketIO, cleanup } = useSocketIO();
 const { showNotification } = useNotification();
 const smsStatus = useState("smsStatus", () => null);
+const luckyDrawStatus = useState("luckyDrawStatus", () => false);
 
 if (process.client) {
   window.$t = i18n.t;
@@ -34,6 +35,17 @@ async function fetchGeneralSetting() {
     const { data } = await get("generalsetting");
     if (data.success) {
       generalSetting.value = data.data[0];
+    }
+  } catch (error) {
+    console.error("Error fetching information:", error);
+  }
+}
+
+async function fetchLuckyDrawStatus() {
+  try {
+    const { data } = await get("luckydraw9grid/status");
+    if (data.success) {
+      luckyDrawStatus.value = data.data.isActive;
     }
   } catch (error) {
     console.error("Error fetching information:", error);
@@ -126,6 +138,7 @@ onMounted(async () => {
   await fetchGeneralSetting();
   await fetchKiosks();
   await fetchSmsStatus();
+  await fetchLuckyDrawStatus();
   if (process.client && userData.value?._id) {
     if (!localStorage.getItem("adminAccess")) {
       connectSocketIO(userData.value);

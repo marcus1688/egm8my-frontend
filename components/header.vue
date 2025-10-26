@@ -615,6 +615,7 @@
 
                       <!-- Lucky Draw -->
                       <NuxtLinkLocale
+                        v-if="luckyDrawStatus"
                         to="/luckydraw"
                         class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
@@ -1631,6 +1632,7 @@
                         </NuxtLinkLocale>
 
                         <NuxtLinkLocale
+                          v-if="luckyDrawStatus"
                           to="/luckydraw"
                           @click="closeMobileMenu"
                           class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
@@ -1884,6 +1886,7 @@ const esportsKiosks = useState("esportsKiosks");
 const fishingKiosks = useState("fishingKiosks");
 const lotteryKiosks = useState("lotteryKiosks");
 const isUserLoggedIn = useState("isUserLoggedIn");
+const luckyDrawStatus = useState("luckyDrawStatus");
 const localePath = useLocalePath();
 const isLogoutSuccess = ref(false);
 const isConfirmAlertVisible = ref(false);
