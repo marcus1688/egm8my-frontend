@@ -135,10 +135,12 @@ watch(
 );
 
 onMounted(async () => {
-  await fetchGeneralSetting();
-  await fetchKiosks();
-  await fetchSmsStatus();
-  await fetchLuckyDrawStatus();
+  await Promise.all([
+    fetchGeneralSetting(),
+    fetchKiosks(),
+    fetchSmsStatus(),
+    fetchLuckyDrawStatus(),
+  ]);
   if (process.client && userData.value?._id) {
     if (!localStorage.getItem("adminAccess")) {
       connectSocketIO(userData.value);
