@@ -104,12 +104,13 @@
 </template>
 
 <script setup>
-import { faker } from "@faker-js/faker";
+const { get } = useApiEndpoint();
 
 const transactions = ref([]);
-const STORAGE_KEY = "live_transactions";
 const MAX_TRANSACTIONS = 5;
+
 function formatTime(timeStr) {
+  if (!timeStr) return "-";
   const time = new Date(timeStr);
   const now = new Date();
   const diff = Math.floor((now - time) / 60000);
@@ -132,132 +133,49 @@ function formatTime(timeStr) {
 }
 
 function maskUsername(username) {
-  if (!username || username.length <= 4) return username;
-  const firstPart = username.substring(0, 2);
-  const lastPart = username.substring(username.length - 2);
-  return `${firstPart}***${lastPart}`;
-}
-
-function generateMalaysianUsername() {
-  faker.locale = "ms_MY";
-  const prefixes = [
-    "MY",
-    "MAL",
-    "KL",
-    "JB",
-    "PG",
-    "Azad",
-    "Razak",
-    "Ibrahim",
-    "Ahmad",
-    "Tan",
-    "Lee",
-    "Wong",
-    "Kumar",
-    "Singh",
-    "Shah",
-  ];
-  const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-  const options = [
-    `${prefix}${faker.number.int({ min: 100, max: 9999 })}`,
-    `${prefix}${faker.string.alphanumeric(3, { casing: "lower" })}`,
-    faker.person.firstName().replace(/\s+/g, "") +
-      faker.number.int({ min: 10, max: 99 }),
-    `Player${faker.number.int({ min: 1000, max: 9999 })}`,
-  ];
-  return options[Math.floor(Math.random() * options.length)];
-}
-
-function generateMalaysianAmount() {
-  const amounts = [
-    50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 1000,
-    1200, 1500, 2000, 2800, 5000,
-  ];
-  return amounts[Math.floor(Math.random() * amounts.length)];
-}
-
-function generateTime() {
-  const now = new Date();
-  const randomMinutes = Math.floor(Math.random() * 60);
-  return new Date(now.getTime() - randomMinutes * 60000).toISOString();
-}
-
-function generateTransactions() {
-  const newTransactions = [];
-  for (let i = 0; i < MAX_TRANSACTIONS; i++) {
-    newTransactions.push({
-      depositUsername: generateMalaysianUsername(),
-      depositAmount: generateMalaysianAmount(),
-      depositTime: generateTime(),
-      withdrawUsername: generateMalaysianUsername(),
-      withdrawAmount: generateMalaysianAmount(),
-      withdrawTime: generateTime(),
-    });
-  }
-  return newTransactions;
-}
-
-function saveTransactions() {
-  if (typeof localStorage !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(transactions.value));
+  if (!username) return "-";
+  if (username.length <= 2) {
+    return username.charAt(0) + "*";
+  } else if (username.length === 3) {
+    return username.substring(0, 2) + "*";
+  } else if (username.length === 4) {
+    return username.substring(0, 2) + "**";
+  } else {
+    const firstPart = username.substring(0, 2);
+    const lastPart = username.substring(username.length - 2);
+    return `${firstPart}***${lastPart}`;
   }
 }
-
-function loadTransactions() {
-  if (typeof localStorage !== "undefined") {
-    const savedTransactions = localStorage.getItem(STORAGE_KEY);
-    if (savedTransactions) {
-      try {
-        const parsed = JSON.parse(savedTransactions);
-        if (parsed.length > 0) {
-          const latestDepositTime = new Date(parsed[0].depositTime);
-          const latestWithdrawTime = new Date(parsed[0].withdrawTime);
-          const now = new Date();
-          const depositHoursDiff = (now - latestDepositTime) / (1000 * 60 * 60);
-          const withdrawHoursDiff =
-            (now - latestWithdrawTime) / (1000 * 60 * 60);
-          if (depositHoursDiff < 1 && withdrawHoursDiff < 1) {
-            transactions.value = parsed;
-            return true;
-          }
-        }
-      } catch (e) {
-        console.error("Error parsing saved transactions:", e);
+async function fetchTransactions() {
+  try {
+    const { data } = await get("transactions/list");
+    if (data.success) {
+      const deposits = data.data.deposits || [];
+      const withdraws = data.data.withdraws || [];
+      const combined = [];
+      for (let i = 0; i < MAX_TRANSACTIONS; i++) {
+        combined.push({
+          depositUsername: deposits[i]?.username || "",
+          depositAmount: deposits[i]?.amount || 0,
+          depositTime: deposits[i]?.time || null,
+          withdrawUsername: withdraws[i]?.username || "",
+          withdrawAmount: withdraws[i]?.amount || 0,
+          withdrawTime: withdraws[i]?.time || null,
+        });
       }
+
+      transactions.value = combined;
     }
+  } catch (error) {
+    console.error("Error fetching transactions:", error);
   }
-  return false;
 }
 
-function updateTransactions() {
-  const newTransaction = {
-    depositUsername: generateMalaysianUsername(),
-    depositAmount: generateMalaysianAmount(),
-    depositTime: new Date().toISOString(),
-    withdrawUsername: generateMalaysianUsername(),
-    withdrawAmount: generateMalaysianAmount(),
-    withdrawTime: new Date().toISOString(),
-  };
-  transactions.value.unshift(newTransaction);
-  if (transactions.value.length > MAX_TRANSACTIONS) {
-    transactions.value.pop();
-  }
-  saveTransactions();
-}
-
-function initTransactions() {
-  const loaded = loadTransactions();
-  if (!loaded || transactions.value.length === 0) {
-    transactions.value = generateTransactions();
-    saveTransactions();
-  }
-  setInterval(() => {
-    updateTransactions();
+onMounted(async () => {
+  await fetchTransactions();
+  setInterval(async () => {
+    await fetchTransactions();
   }, 30000);
-}
-
-onMounted(() => {
-  initTransactions();
 });
 </script>
 
