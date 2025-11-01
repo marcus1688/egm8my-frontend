@@ -49,7 +49,7 @@
             <p class="text-[#b37a7a] max-w-md mx-auto">{{ error }}</p>
             <button
               @click="fetchLeaderboardData"
-              class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg hover:bg-[#c21b3a] transition-colors"
+              class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors"
             >
               {{ $t("try_again") }}
             </button>

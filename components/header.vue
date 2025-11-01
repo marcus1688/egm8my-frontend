@@ -26,7 +26,7 @@
             <div class="flex items-center gap-4 max-[373px]:!gap-2">
               <button
                 @click="mobileMenuOpen = !mobileMenuOpen"
-                class="lg:hidden text-gray-300 hover:text-white"
+                class="lg:hidden text-gray-300 lg:hover:text-white"
               >
                 <i class="bi bi-list text-2xl max-[480px]:text-xl"></i>
               </button>
@@ -1131,7 +1131,7 @@
                     <div class="relative language-dropdown">
                       <button
                         @click.stop="showLanguageMenu = !showLanguageMenu"
-                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
                       >
                         <img
                           :src="
@@ -1160,7 +1160,7 @@
                               changeLocale(lang.code);
                               showLanguageMenu = false;
                             "
-                            class="flex items-center gap-2 w-full px-3 py-2 hover:bg-[#2a0f14] text-left transition-colors"
+                            class="flex items-center gap-2 w-full px-3 py-2 lg:hover:bg-[#2a0f14] text-left transition-colors"
                             :class="
                               locale === lang.code
                                 ? 'bg-[#241017] text-[#ff3344] font-medium'
@@ -1183,7 +1183,7 @@
                         @click.stop="
                           showCountryMenuMobile = !showCountryMenuMobile
                         "
-                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+                        class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
                       >
                         <img
                           :src="generalSetting.logoimage"
@@ -1219,7 +1219,7 @@
                                 'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
                                 currentregion === 'malaysia'
                                   ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
-                                  : 'hover:bg-[#2a0f14] cursor-pointer',
+                                  : 'lg:hover:bg-[#2a0f14] cursor-pointer',
                               ]"
                               @click="
                                 currentregion === 'malaysia'
@@ -1235,7 +1235,7 @@
                                       'text-sm font-semibold transition-colors block',
                                       currentregion === 'malaysia'
                                         ? 'text-[#7a5a5a]'
-                                        : 'text-[#f0eaea] group-hover:text-[#ff3344]',
+                                        : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
                                     ]"
                                   >
                                     {{ $t("malaysia") }}
@@ -1254,7 +1254,7 @@
                               </div>
                               <i
                                 v-if="currentregion !== 'malaysia'"
-                                class="bi bi-box-arrow-up-right text-[#b37a7a] group-hover:text-[#ff3344] transition-colors text-sm"
+                                class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
                               ></i>
                               <i
                                 v-else
@@ -1270,7 +1270,7 @@
                                 'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
                                 currentregion === 'singapore'
                                   ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
-                                  : 'hover:bg-[#2a0f14] cursor-pointer',
+                                  : 'lg:hover:bg-[#2a0f14] cursor-pointer',
                               ]"
                               @click="
                                 currentregion === 'singapore'
@@ -1286,7 +1286,7 @@
                                       'text-sm font-semibold transition-colors block',
                                       currentregion === 'singapore'
                                         ? 'text-[#7a5a5a]'
-                                        : 'text-[#f0eaea] group-hover:text-[#ff3344]',
+                                        : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
                                     ]"
                                   >
                                     {{ $t("singapore") }}
@@ -1305,7 +1305,7 @@
                               </div>
                               <i
                                 v-if="currentregion !== 'singapore'"
-                                class="bi bi-box-arrow-up-right text-[#b37a7a] group-hover:text-[#ff3344] transition-colors text-sm"
+                                class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
                               ></i>
                               <i
                                 v-else
@@ -1319,7 +1319,7 @@
 
                     <button
                       @click="closeMobileMenu"
-                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors"
+                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
                     >
                       <i class="bi bi-x text-lg"></i>
                     </button>
@@ -1335,7 +1335,7 @@
                   <NuxtLinkLocale
                     to="/login"
                     @click="closeMobileMenu"
-                    class="flex-1 py-2 text-center bg-gradient-to-r from-yellow-700 to-yellow-600 rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-yellow-600/30 transition-all hover:from-yellow-600 hover:to-yellow-500"
+                    class="flex-1 py-2 text-center bg-gradient-to-r from-yellow-700 to-yellow-600 rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-yellow-600/30 transition-all lg:hover:from-yellow-600 lg:hover:to-yellow-500"
                   >
                     {{ $t("log_in") }}
                   </NuxtLinkLocale>
@@ -1442,10 +1442,10 @@
                       :key="item.name"
                       :to="item.link"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           :src="item.icon"
@@ -1454,7 +1454,7 @@
                         />
                       </div>
                       <span
-                        class="text-sm font-medium text-[#f0eaea] text-center group-hover:text-[#ff3344] transition-colors"
+                        class="text-sm font-medium text-[#f0eaea] text-center lg:group-hover:text-[#ff3344] transition-colors"
                       >
                         {{ item.label }}
                       </span>
@@ -1467,10 +1467,10 @@
                     <NuxtLinkLocale
                       to="/promotions"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           src="/images/newicon/promotion.png"
@@ -1479,7 +1479,7 @@
                         />
                       </div>
                       <span
-                        class="text-sm font-medium text-center text-white group-hover:text-white transition-colors"
+                        class="text-sm font-medium text-center text-white lg:group-hover:text-white transition-colors"
                       >
                         {{ $t("promotions") }}
                       </span>
@@ -1488,10 +1488,10 @@
                     <NuxtLinkLocale
                       to="/vip"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           src="/images/newicon/vip.png"
@@ -1500,7 +1500,7 @@
                         />
                       </div>
                       <span
-                        class="text-sm font-medium text-white text-center group-hover:text-yellow-200 transition-colors"
+                        class="text-sm font-medium text-white text-center lg:group-hover:text-yellow-200 transition-colors"
                       >
                         {{ $t("vip") }}
                       </span>
@@ -1509,15 +1509,15 @@
                     <NuxtLinkLocale
                       to="/blog"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] hover:bg-[#2a0f14] hover:border-[#ff3344]/30 transition-all"
+                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 group-hover:scale-105 transition-transform"
+                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <i class="bi bi-newspaper text-[#ff3344] text-2xl"></i>
                       </div>
                       <span
-                        class="text-sm font-medium text-white text-center group-hover:text-[#ff3344] transition-colors"
+                        class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
                       >
                         {{ $t("blog") }}
                       </span>
@@ -1530,7 +1530,7 @@
                   >
                     <button
                       @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
+                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
                     >
                       <i class="bi bi-box-arrow-right"></i>
                       <span class="font-medium text-sm">{{
@@ -1547,7 +1547,7 @@
                         mobileActiveSubmenu =
                           mobileActiveSubmenu === 'cashier' ? null : 'cashier'
                       "
-                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 hover:bg-[#2a0f14]"
+                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 lg:hover:bg-[#2a0f14]"
                       :class="{
                         'border-[#ff3344]/30 bg-[#241017]':
                           mobileActiveSubmenu === 'cashier',
@@ -1590,7 +1590,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/deposit"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-arrow-down-circle text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1601,7 +1601,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/withdraw"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-arrow-up-circle text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1612,7 +1612,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/rescue"
                           @click="closeMobileMenu"
-                          class="hidden items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="hidden items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-heart-pulse text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1623,7 +1623,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/checkin"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-calendar-check text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1635,7 +1635,7 @@
                           v-if="luckyDrawStatus"
                           to="/luckydraw"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-dice-5 text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1646,7 +1646,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/bankaccount"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-bank text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1663,7 +1663,7 @@
                         mobileActiveSubmenu =
                           mobileActiveSubmenu === 'agent' ? null : 'agent'
                       "
-                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 hover:bg-[#2a0f14]"
+                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 lg:hover:bg-[#2a0f14]"
                       :class="{
                         'border-[#ff3344]/30 bg-[#241017]':
                           mobileActiveSubmenu === 'agent',
@@ -1706,7 +1706,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/referral"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-share-fill text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1717,7 +1717,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/downline"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-diagram-3 text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1728,7 +1728,7 @@
                         <NuxtLinkLocale
                           to="/myaccount/commission"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-currency-dollar text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1740,7 +1740,7 @@
                           v-if="userData?.positionTaking > 0"
                           to="/myaccount/agentpt"
                           @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[#2a0f14] transition-colors"
+                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                         >
                           <i class="bi bi-graph-up text-[#ff3344]"></i>
                           <span class="text-[#f0eaea] text-sm">{{
@@ -1757,7 +1757,7 @@
                   >
                     <button
                       @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
+                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
                     >
                       <i class="bi bi-box-arrow-right"></i>
                       <span class="font-medium text-sm">{{
