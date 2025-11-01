@@ -365,7 +365,9 @@
                         )
                       }}
                     </td>
-                    <td class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-center">
+                    <td
+                      class="py-3 px-4 max-lg:py-2 max-lg:px-3 text-center text-nowrap"
+                    >
                       <button
                         @click="openMailModal(announcement)"
                         class="px-3 py-2 max-lg:px-2 max-lg:py-1 text-xs max-lg:text-[10px] bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all"

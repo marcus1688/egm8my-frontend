@@ -119,15 +119,33 @@ watchEffect(() => {
 
 watch(
   () => userData.value?._id,
-  (newId, oldId) => {
+  async (newId, oldId) => {
     if (process.client && newId && newId !== oldId) {
       if (oldId && oldId !== newId) {
         cleanup();
       }
+
       if (!localStorage.getItem("adminAccess")) {
-        connectSocketIO(userData.value);
+        try {
+          await fetchUnreadCount();
+          await connectSocketIO(userData.value);
+
+          socket.value?.off("notification");
+          socket.value?.on("notification", (data) => {
+            const notificationTitle =
+              data.title[$locale.value] || data.title.en;
+            const notificationMessage =
+              data.message[$locale.value] || data.message.en;
+            showNotification(notificationMessage, notificationTitle);
+            fetchUnreadCount();
+          });
+
+          console.log("Socket.IO connected and listener registered");
+        } catch (error) {
+          console.error("Error setting up Socket.IO:", error);
+        }
       } else {
-        console.log("Admin access - skipping Socket.IO connection");
+        console.log("Admin access - skipping Socket.IO");
       }
     }
   },
@@ -141,29 +159,9 @@ onMounted(async () => {
     fetchSmsStatus(),
     fetchLuckyDrawStatus(),
   ]);
-  if (process.client && userData.value?._id) {
-    if (!localStorage.getItem("adminAccess")) {
-      connectSocketIO(userData.value);
-      socket.value?.on("notification", (data) => {
-        const notificationTitle =
-          $locale.value === "en"
-            ? data.title.en
-            : $locale.value === "ms"
-            ? data.title.ms
-            : data.title.zh;
+});
 
-        const notificationMessage =
-          $locale.value === "en"
-            ? data.message.en
-            : $locale.value === "ms"
-            ? data.message.ms
-            : data.message.zh;
-        showNotification(notificationMessage, notificationTitle);
-        fetchUnreadCount();
-      });
-    } else {
-      console.log("Admin access - skipping Socket.IO connection in onMounted");
-    }
-  }
+onUnmounted(() => {
+  cleanup();
 });
 </script>
