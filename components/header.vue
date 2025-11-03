@@ -146,7 +146,7 @@
                       <div
                         class="w-9 h-9 rounded-full flex items-center justify-center"
                       >
-                        <NuxtImg
+                        <img
                           src="/images/user/icon.png"
                           alt="icon"
                           class="w-full h-auto"
@@ -195,7 +195,7 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <NuxtImg
+                              <img
                                 src="/images/user/cashier.png"
                                 alt="Cashier"
                                 class="w-7 h-auto"
@@ -270,7 +270,7 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <NuxtImg
+                              <img
                                 src="/images/user/agent.png"
                                 alt="agent"
                                 class="w-7 h-auto"
@@ -333,7 +333,7 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <NuxtImg
+                              <img
                                 src="/images/user/profile.png"
                                 alt="profile"
                                 class="w-7 h-auto"
@@ -389,7 +389,7 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <NuxtImg
+                              <img
                                 src="/images/user/history.png"
                                 alt="history"
                                 class="w-7 h-auto"
@@ -550,7 +550,7 @@
                         <div
                           class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
-                          <NuxtImg
+                          <img
                             src="/images/burger-menu/promotions.png"
                             class="w-full h-auto object-contain"
                             alt="promotions"
@@ -580,7 +580,7 @@
                         <div
                           class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
-                          <NuxtImg
+                          <img
                             src="/images/burger-menu/vip.png"
                             class="w-full h-auto object-contain"
                             alt="vip"
@@ -610,7 +610,7 @@
                         <div
                           class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
-                          <NuxtImg
+                          <img
                             src="/images/burger-menu/refer.png"
                             class="w-full h-auto object-contain"
                             alt="refer"
@@ -641,7 +641,7 @@
                         <div
                           class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
                         >
-                          <NuxtImg
+                          <img
                             src="/images/newicon/dice.png"
                             class="w-7 h-7 object-contain"
                             alt="Lucky Draw"
@@ -671,7 +671,7 @@
                         <div
                           class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
-                          <NuxtImg
+                          <img
                             src="/images/burger-menu/blog.png"
                             class="w-full h-auto object-contain"
                             alt="blog"
@@ -1380,7 +1380,7 @@
                       <div
                         class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center"
                       >
-                        <NuxtImg
+                        <img
                           src="/images/user/icon.png"
                           alt="icon"
                           class="w-full h-auto"
@@ -1474,7 +1474,7 @@
                       <div
                         class="w-11 h-11 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
-                        <NuxtImg
+                        <img
                           :src="item.icon"
                           :alt="item.name"
                           class="w-full h-auto object-contain"
@@ -1499,7 +1499,7 @@
                       <div
                         class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
-                        <NuxtImg
+                        <img
                           src="/images/burger-menu/promotions.png"
                           class="w-full h-auto object-contain"
                           alt="Promotions"
@@ -1520,7 +1520,7 @@
                       <div
                         class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
-                        <NuxtImg
+                        <img
                           src="/images/burger-menu/vip.png"
                           class="w-full h-auto object-contain"
                           alt="VIP"
@@ -1541,7 +1541,7 @@
                       <div
                         class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
-                        <NuxtImg
+                        <img
                           src="/images/burger-menu/blog.png"
                           class="w-full h-auto object-contain"
                           alt="BLOG"
@@ -1587,7 +1587,7 @@
                       <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                           <div class="w-10 h-10 text-[#ff3344]">
-                            <NuxtImg
+                            <img
                               src="/images/user/cashier.png"
                               alt="Cashier"
                               class="w-full h-auto"
@@ -1705,7 +1705,7 @@
                       <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                           <div class="w-10 h-10 text-[#ff3344]">
-                            <NuxtImg
+                            <img
                               src="/images/user/agent.png"
                               alt="agent"
                               class="w-full h-auto"

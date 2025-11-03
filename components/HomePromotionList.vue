@@ -65,7 +65,7 @@
             >
               <div class="relative overflow-hidden">
                 <NuxtLinkLocale to="/promotions">
-                  <NuxtImg
+                  <img
                     :src="getPromotionImage(promo)"
                     alt="Promotion Image"
                     class="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-500"

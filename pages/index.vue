@@ -15,12 +15,12 @@
           class="hero-swiper"
         >
           <swiper-slide v-for="(image, index) in carousel" :key="index">
-            <NuxtImg
+            <img
               :src="image.link"
               alt="carousel image"
               class="w-full h-auto object-cover lg:block hidden"
             />
-            <NuxtImg
+            <img
               :src="image.link2 || image.link"
               alt="carousel image"
               class="w-full h-auto object-cover lg:hidden block"

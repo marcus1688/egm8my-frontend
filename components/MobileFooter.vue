@@ -12,7 +12,7 @@
           isActiveRoute('/') ? 'text-[#ff3344] rounded-md' : 'text-[#b37a7a]',
         ]"
       >
-        <NuxtImg
+        <img
           :src="
             isActiveRoute('/')
               ? '/images/mobile-footer/home-active.png'
@@ -111,7 +111,7 @@
             : 'text-[#b37a7a]',
         ]"
       >
-        <NuxtImg
+        <img
           :src="
             isActiveRoute('/myaccount/profile')
               ? '/images/mobile-footer/account-active.png'

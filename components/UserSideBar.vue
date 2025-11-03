@@ -7,11 +7,7 @@
         <div
           class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center"
         >
-          <NuxtImg
-            src="/images/user/icon.png"
-            alt="icon"
-            class="w-full h-auto"
-          />
+          <img src="/images/user/icon.png" alt="icon" class="w-full h-auto" />
         </div>
         <div>
           <h3 class="font-medium uppercase">
@@ -37,7 +33,7 @@
         >
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
-              <NuxtImg
+              <img
                 src="/images/user/cashier.png"
                 alt="Cashier"
                 class="w-full h-auto"
@@ -175,7 +171,7 @@
         >
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
-              <NuxtImg
+              <img
                 src="/images/user/agent.png"
                 alt="agent"
                 class="w-full h-auto"
@@ -280,7 +276,7 @@
         >
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
-              <NuxtImg
+              <img
                 src="/images/user/profile.png"
                 alt="profile"
                 class="w-full h-auto"
@@ -369,7 +365,7 @@
         >
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
-              <NuxtImg
+              <img
                 src="/images/user/history.png"
                 alt="history"
                 class="w-full h-auto"

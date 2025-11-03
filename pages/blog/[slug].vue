@@ -15,7 +15,7 @@
             class="overflow-hidden max-h-max flex flex-col gap-4"
           >
             <div class="relative">
-              <NuxtImg
+              <img
                 :src="post.image"
                 alt="Blog Image"
                 class="w-full h-60 object-cover rounded-lg border border-[#3b1c23]"
@@ -95,7 +95,7 @@
                 @click="navigateToArticle(article.slug)"
               >
                 <div class="relative">
-                  <NuxtImg
+                  <img
                     :src="article.image"
                     alt="Article Image"
                     class="w-full h-32 object-cover"

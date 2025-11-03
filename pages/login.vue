@@ -44,7 +44,7 @@
         <!-- Logo with animation -->
         <div class="text-center mb-3">
           <div class="inline-block p-0.5">
-            <NuxtImg src="/images/egm8my.png" alt="" class="w-36" />
+            <img src="/images/egm8my.png" alt="" class="w-36" />
           </div>
         </div>
 
