@@ -147,16 +147,6 @@
             </h4>
             <div class="flex gap-3 max-lg:gap-2">
               <a
-                v-if="generalSetting.telegram"
-                :href="generalSetting.telegram"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="bg-[#241017]/60 lg:hover:bg-gradient-to-br lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg flex items-center justify-center transition-all duration-300 border border-[#3b1c23] lg:hover:border-[#ff3344] lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/20"
-                aria-label="Telegram"
-              >
-                <i class="bi bi-telegram text-base max-lg:text-sm"></i>
-              </a>
-              <a
                 v-if="generalSetting.facebook"
                 :href="generalSetting.facebook"
                 target="_blank"
@@ -164,8 +154,27 @@
                 class="bg-[#241017]/60 lg:hover:bg-gradient-to-br lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg flex items-center justify-center transition-all duration-300 border border-[#3b1c23] lg:hover:border-[#ff3344] lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/20"
                 aria-label="Facebook"
               >
-                <i class="bi bi-facebook text-base max-lg:text-sm"></i>
+                <img
+                  src="/images/social-media/facebook.png"
+                  alt="facebook"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
               </a>
+              <a
+                v-if="generalSetting.telegram"
+                :href="generalSetting.telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="bg-[#241017]/60 lg:hover:bg-gradient-to-br lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg flex items-center justify-center transition-all duration-300 border border-[#3b1c23] lg:hover:border-[#ff3344] lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/20"
+                aria-label="Telegram"
+              >
+                <img
+                  src="/images/social-media/telegram.png"
+                  alt="Telegram"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
+              </a>
+
               <a
                 v-if="generalSetting.instagram"
                 :href="generalSetting.instagram"
@@ -174,7 +183,11 @@
                 class="bg-[#241017]/60 lg:hover:bg-gradient-to-br lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg flex items-center justify-center transition-all duration-300 border border-[#3b1c23] lg:hover:border-[#ff3344] lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/20"
                 aria-label="Instagram"
               >
-                <i class="bi bi-instagram text-base max-lg:text-sm"></i>
+                <img
+                  src="/images/social-media/instagram.png"
+                  alt="instagram"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
               </a>
               <a
                 v-if="generalSetting.youtube"
@@ -194,7 +207,11 @@
                 class="bg-[#241017]/60 lg:hover:bg-gradient-to-br lg:hover:from-[#a1122d] lg:hover:to-[#c21b3a] w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg flex items-center justify-center transition-all duration-300 border border-[#3b1c23] lg:hover:border-[#ff3344] lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/20"
                 aria-label="WhatsApp"
               >
-                <i class="bi bi-whatsapp text-base max-lg:text-sm"></i>
+                <img
+                  src="/images/social-media/whatsapp.png"
+                  alt="whatsapp"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
               </a>
             </div>
           </div>
