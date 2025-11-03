@@ -73,7 +73,10 @@
                     :to="`${item.link}`"
                     class="flex items-center gap-1 menuText font-medium text-gray-300 lg:hover:text-red-400 transition-colors"
                   >
-                    <span>{{ item.label }}</span>
+                    <span
+                      class="max-[1060px]:text-[0.8rem] max-lg:text-[1rem]"
+                      >{{ item.label }}</span
+                    >
                     <i class="bi bi-chevron-down text-xs"></i>
                   </NuxtLinkLocale>
                 </div>
@@ -119,6 +122,20 @@
                   </NuxtLinkLocale>
                 </div>
                 <div v-else class="flex items-center gap-3">
+                  <!-- Message Icon -->
+                  <NuxtLinkLocale to="/myaccount/messaging" class="relative">
+                    <div
+                      class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"
+                    >
+                      <i class="bi bi-envelope-fill text-white text-lg"></i>
+                    </div>
+                    <span
+                      v-if="unreadCount > 0"
+                      class="absolute -top-1 -right-0 bg-gradient-to-r from-red-500 to-pink-500 text-white text-[10px] font-bold rounded-full px-1.5 min-w-[16px] h-[16px] flex items-center justify-center shadow-lg animate-pulse"
+                    >
+                      {{ unreadCount }}
+                    </span>
+                  </NuxtLinkLocale>
                   <!-- Profile icon with dropdown -->
                   <div
                     class="relative cursor-pointer max-lg:hidden"
@@ -127,9 +144,13 @@
                   >
                     <NuxtLinkLocale to="/myaccount/profile" class="block">
                       <div
-                        class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"
+                        class="w-9 h-9 rounded-full flex items-center justify-center"
                       >
-                        <i class="bi bi-person-fill text-white text-lg"></i>
+                        <NuxtImg
+                          src="/images/user/icon.png"
+                          alt="icon"
+                          class="w-full h-auto"
+                        />
                       </div>
                     </NuxtLinkLocale>
 
@@ -174,9 +195,12 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-[#ff3344]">
-                                <i class="bi bi-wallet2"></i>
-                              </div>
+                              <NuxtImg
+                                src="/images/user/cashier.png"
+                                alt="Cashier"
+                                class="w-7 h-auto"
+                              />
+
                               <span
                                 class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("cashier") }}</span
@@ -246,9 +270,11 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-[#ff3344]">
-                                <i class="bi bi-gift"></i>
-                              </div>
+                              <NuxtImg
+                                src="/images/user/agent.png"
+                                alt="agent"
+                                class="w-7 h-auto"
+                              />
                               <span
                                 class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("agent") }}</span
@@ -307,9 +333,11 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-[#ff3344]">
-                                <i class="bi bi-person"></i>
-                              </div>
+                              <NuxtImg
+                                src="/images/user/profile.png"
+                                alt="profile"
+                                class="w-7 h-auto"
+                              />
                               <span
                                 class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("profile") }}</span
@@ -361,9 +389,11 @@
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <div class="text-[#ff3344]">
-                                <i class="bi bi-file-earmark-text"></i>
-                              </div>
+                              <NuxtImg
+                                src="/images/user/history.png"
+                                alt="history"
+                                class="w-7 h-auto"
+                              />
                               <span
                                 class="text-[#f0eaea] font-medium uppercase"
                                 >{{ $t("history") }}</span
@@ -406,20 +436,7 @@
                       </div>
                     </div>
                   </div>
-                  <!-- Message Icon -->
-                  <NuxtLinkLocale to="/myaccount/messaging" class="relative">
-                    <div
-                      class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"
-                    >
-                      <i class="bi bi-envelope-fill text-white text-lg"></i>
-                    </div>
-                    <span
-                      v-if="unreadCount > 0"
-                      class="absolute -top-1 -right-0 bg-gradient-to-r from-red-500 to-pink-500 text-white text-[10px] font-bold rounded-full px-1.5 min-w-[16px] h-[16px] flex items-center justify-center shadow-lg animate-pulse"
-                    >
-                      {{ unreadCount }}
-                    </span>
-                  </NuxtLinkLocale>
+
                   <!-- Balance -->
                   <div
                     @mouseenter="showBalanceDropdown = true"

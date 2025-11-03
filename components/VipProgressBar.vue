@@ -9,12 +9,11 @@
             <div
               v-if="currentLevelInfo"
               class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
-              :class="getInnerCircleClass(currentLevelInfo.name)"
             >
               <img
                 v-if="currentLevelInfo.iconUrl"
                 :src="currentLevelInfo.iconUrl"
-                class="w-5 h-5 drop-shadow-sm"
+                class="w-8 h-8 drop-shadow-sm"
                 :alt="$t('current_vip_icon')"
               />
             </div>
@@ -39,12 +38,11 @@
             </div>
             <div
               class="w-8 h-8 rounded-full flex items-center justify-center shadow-lg opacity-90"
-              :class="getInnerCircleClass(nextLevelInfo.name)"
             >
               <img
                 v-if="nextLevelInfo.iconUrl"
                 :src="nextLevelInfo.iconUrl"
-                class="w-5 h-5 drop-shadow-sm"
+                class="w-8 h-8 drop-shadow-sm"
                 :alt="$t(`next_vip_icon`)"
               />
             </div>

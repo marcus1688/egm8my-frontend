@@ -2,12 +2,16 @@
   <div
     class="w-full h-[700px] bg-[#241017] rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23] overflow-hidden"
   >
-    <div class="p-4 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white">
+    <div class="p-4 bg-gradient-to-r from-[#6d0b1d] to-[#8a1126] text-white">
       <div class="flex items-center gap-3">
         <div
           class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center"
         >
-          <Icon icon="mdi:account" class="text-white text-xl" />
+          <NuxtImg
+            src="/images/user/icon.png"
+            alt="icon"
+            class="w-full h-auto"
+          />
         </div>
         <div>
           <h3 class="font-medium uppercase">
@@ -25,17 +29,19 @@
       <!-- Cashier Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
           :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'cashier' }"
           @click="
             activeMenuItem = activeMenuItem === 'cashier' ? null : 'cashier'
           "
         >
           <div class="flex items-center gap-3">
-            <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-[#ff3344]/20 text-[#ff3344]"
-            >
-              <Icon icon="mdi:wallet" class="text-xl" />
+            <div class="w-8 h-8 text-[#ff3344]">
+              <NuxtImg
+                src="/images/user/cashier.png"
+                alt="Cashier"
+                class="w-full h-auto"
+              />
             </div>
             <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("cashier")
@@ -163,15 +169,17 @@
       <!-- Agent Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
           :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'agent' }"
           @click="activeMenuItem = activeMenuItem === 'agent' ? null : 'agent'"
         >
           <div class="flex items-center gap-3">
-            <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-green-500/20 text-green-400"
-            >
-              <Icon icon="mdi:account-group" class="text-xl" />
+            <div class="w-8 h-8 text-[#ff3344]">
+              <NuxtImg
+                src="/images/user/agent.png"
+                alt="agent"
+                class="w-full h-auto"
+              />
             </div>
             <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("agent")
@@ -264,17 +272,19 @@
       <!-- Profile Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
           :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'profile' }"
           @click="
             activeMenuItem = activeMenuItem === 'profile' ? null : 'profile'
           "
         >
           <div class="flex items-center gap-3">
-            <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-purple-500/20 text-purple-400"
-            >
-              <Icon icon="mdi:account-circle" class="text-xl" />
+            <div class="w-8 h-8 text-[#ff3344]">
+              <NuxtImg
+                src="/images/user/profile.png"
+                alt="profile"
+                class="w-full h-auto"
+              />
             </div>
             <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("profile")
@@ -351,17 +361,19 @@
       <!-- History Section -->
       <div class="px-2 mb-1">
         <div
-          class="flex items-center justify-between p-3 rounded-lg lg:hover:bg-[#15090e]/50 cursor-pointer transition-colors"
+          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
           :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'history' }"
           @click="
             activeMenuItem = activeMenuItem === 'history' ? null : 'history'
           "
         >
           <div class="flex items-center gap-3">
-            <div
-              class="w-8 h-8 flex items-center justify-center rounded-md bg-amber-500/20 text-amber-400"
-            >
-              <Icon icon="mdi:clock" class="text-xl" />
+            <div class="w-8 h-8 text-[#ff3344]">
+              <NuxtImg
+                src="/images/user/history.png"
+                alt="history"
+                class="w-full h-auto"
+              />
             </div>
             <span class="text-[#f0eaea] font-medium uppercase">{{
               $t("history")
