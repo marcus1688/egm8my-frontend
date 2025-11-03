@@ -77,7 +77,7 @@
                         ></i>
                         <span
                           ><strong>{{ $t("license_number") }}:</strong>
-                          OSP18-0037-4-B</span
+                          OSP25-0315-1-C</span
                         >
                       </li>
                       <li class="flex items-start">
@@ -339,7 +339,7 @@ useHead({
     {
       name: "description",
       content:
-        "EGM8 operates under official PAGCOR gaming license OSP18-0037-4-B, ensuring legal, regulated, and secure gaming services. Fully licensed by Philippine Amusement & Gaming Corporation for your protection and peace of mind.",
+        "EGM8 operates under official PAGCOR gaming license OSP25-0315-1-C, ensuring legal, regulated, and secure gaming services. Fully licensed by Philippine Amusement & Gaming Corporation for your protection and peace of mind.",
     },
     {
       name: "keywords",

@@ -1,7 +1,14 @@
 <template>
-  <section class="py-4 containerWid max-lg:pt-2 max-lg:pb-6">
+  <section
+    v-if="
+      seoData &&
+      seoData.isVisible &&
+      seoData.contentBlocks &&
+      seoData.contentBlocks.length > 0
+    "
+    class="py-4 containerWid max-lg:pt-2 max-lg:pb-6"
+  >
     <div
-      v-if="seoData && seoData.contentBlocks.length > 0"
       class="bg-[#241017]/60 border border-[#3b1c23] rounded-lg p-6 max-lg:p-4 max-md:p-3 text-[#b37a7a]"
     >
       <div
@@ -31,20 +38,6 @@
           {{ isExpanded ? $t("show_less") : $t("read_more") }}
         </button>
       </div>
-    </div>
-
-    <div
-      v-else-if="loading"
-      class="mt-4 max-md:mt-3 p-6 max-lg:p-4 max-md:p-3 text-center text-[#b37a7a] text-sm max-md:text-xs"
-    >
-      {{ $t("loading") }}...
-    </div>
-
-    <div
-      v-else-if="error"
-      class="mt-4 max-md:mt-3 p-6 max-lg:p-4 max-md:p-3 text-center text-[#ff3344] text-sm max-md:text-xs"
-    >
-      {{ error }}
     </div>
   </section>
 </template>
@@ -79,6 +72,7 @@ async function fetchSeoContent() {
     error.value = null;
     const pageType = getSeoPageType(route.path);
     const { data } = await get(`seo-pages/${pageType}`);
+    console.log(data);
     if (data.success) {
       seoData.value = data.data;
     }

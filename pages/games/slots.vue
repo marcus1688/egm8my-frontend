@@ -24,7 +24,9 @@
         />
       </section>
 
-      <section class="py-4 px-16 max-lg:p-4 border-t border-[#3b1c23]">
+      <section
+        class="py-4 px-16 max-lg:pt-4 max-lg:pb-2 max-lg:px-4 border-t border-[#3b1c23]"
+      >
         <div>
           <div class="flex justify-between items-center">
             <div>
@@ -40,9 +42,7 @@
       </section>
 
       <!-- Slot Kiosks-->
-      <section
-        class="py-4 px-8 bg-[#241017] border-t border-b border-[#3b1c23] shadow-sm max-lg:py-2 max-lg:px-3"
-      >
+      <section class="py-4 px-8 max-lg:py-2 max-lg:px-3">
         <div
           class="flex flex-wrap gap-4 justify-center max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:justify-start max-lg:scrollbar-hide max-lg:-mx-2 max-lg:px-2 max-lg:pb-2"
         >
@@ -95,7 +95,7 @@
         v-if="
           currentKiosk && !currentKiosk.isManualGame && !currentKiosk.isHTMLGame
         "
-        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-[#1A0D13]"
+        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-[#160a0f]"
       >
         <div>
           <div
@@ -131,7 +131,7 @@
 
           <div
             v-if="paginatedGames.length > 0"
-            class="grid grid-cols-8 max-2xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-5"
+            class="grid grid-cols-8 max-2xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-5 max-lg:gap-3"
           >
             <div
               v-for="game in paginatedGames"
@@ -143,9 +143,8 @@
                   gameType: game.GameType,
                 })
               "
-              class="bg-[#241017] rounded-xl overflow-hidden cursor-pointer shadow-sm transition-all duration-300 group border border-[#3b1c23]"
+              class="bg-[#241017] rounded-xl overflow-hidden cursor-pointer shadow-sm transition-all duration-300 group border border-[#3b1c23] lg:hover:shadow-md lg:hover:shadow-red-500/20 lg:hover:border-[#ff3344]/50"
             >
-              <!-- Image container with Play Now overlay on hover -->
               <div class="relative overflow-hidden">
                 <div
                   class="w-full aspect-square flex items-center justify-center bg-[#15090e]"
@@ -155,7 +154,7 @@
                       ($i18n.locale === 'zh' && game.GameImageZH) ||
                       ($i18n.locale === 'ms' && game.GameImageMS) ||
                       game.GameImage ||
-                      `https://placehold.co/300x300/e2e8f0/475569?text=${encodeURIComponent(
+                      `https://placehold.co/300x300/241017/f0eaea?text=${encodeURIComponent(
                         getLocalizedGameName(game)
                       )}`
                     "
@@ -204,11 +203,11 @@
                       class="flex items-center bg-[#15090e] rounded-full px-2 py-0.5 border border-[#3b1c23]"
                     >
                       <span
-                        class="text-xs font-medium text-amber-600 flex items-center gap-1"
+                        class="text-xs font-medium text-amber-500 flex items-center gap-1"
                       >
                         <Icon
                           icon="mdi:trophy"
-                          class="text-amber-500 text-2xs"
+                          class="text-amber-500 text-xs"
                         />
                         {{ game.RTP }}
                       </span>
@@ -243,34 +242,37 @@
               {{ $t("clear_search") }}
             </button>
           </div>
+
           <!-- Pagination -->
           <div
             v-if="filteredGameList.length > gamesPerPage"
-            class="flex justify-center mt-4"
+            class="flex justify-center mt-6"
           >
             <div class="inline-flex rounded-lg shadow-sm">
               <button
                 @click="currentPage > 1 && currentPage--"
                 :disabled="currentPage === 1"
-                class="px-4 py-2.5 border border-[#3b1c23] rounded-l-lg text-[#b37a7a] lg:hover:bg-[#2a0f14] disabled:opacity-50 disabled:cursor-not-allowed bg-[#241017]"
+                class="px-4 py-2.5 max-lg:px-3 max-lg:py-2 border border-[#3b1c23] rounded-l-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#241017] transition-colors"
               >
-                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-left max-lg:text-sm"></i>
               </button>
 
               <div
-                class="px-6 py-2.5 border-t border-b border-[#3b1c23] text-[#f0eaea] flex items-center bg-[#241017]"
+                class="px-6 py-2.5 max-lg:px-4 max-lg:py-2 border-t border-b border-[#3b1c23] text-[#f0eaea] flex items-center bg-[#241017]"
               >
-                <span class="font-medium">{{ currentPage }}</span>
-                <span class="mx-1">/</span>
-                <span>{{ totalPages }}</span>
+                <span class="font-medium max-lg:text-sm">{{
+                  currentPage
+                }}</span>
+                <span class="mx-1 max-lg:mx-0.5 max-lg:text-sm">/</span>
+                <span class="max-lg:text-sm">{{ totalPages }}</span>
               </div>
 
               <button
                 @click="currentPage < totalPages && currentPage++"
                 :disabled="currentPage === totalPages"
-                class="px-4 py-2.5 border border-[#3b1c23] rounded-r-lg text-[#b37a7a] lg:hover:bg-[#2a0f14] disabled:opacity-50 disabled:cursor-not-allowed bg-[#241017]"
+                class="px-4 py-2.5 max-lg:px-3 max-lg:py-2 border border-[#3b1c23] rounded-r-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#241017] transition-colors"
               >
-                <i class="bi bi-chevron-right"></i>
+                <i class="bi bi-chevron-right max-lg:text-sm"></i>
               </button>
             </div>
           </div>

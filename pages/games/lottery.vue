@@ -55,8 +55,8 @@
               class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 max-lg:px-3 max-lg:py-1.5"
               :class="
                 currentKiosk?._id === provider._id
-                  ? 'bg-[#ff3344]/10 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#3b1c23]/50 border-2 border-transparent'
+                  ? 'bg-[#a1122d] border-2 border-[#ff3344]'
+                  : 'bg-[#15090e] lg:hover:bg-[#2a0f14] border-2 border-[#3b1c23]'
               "
             >
               <div
@@ -72,8 +72,8 @@
                 class="text-sm font-medium max-lg:text-xs max-lg:whitespace-nowrap"
                 :class="
                   currentKiosk?._id === provider._id
-                    ? 'text-[#ff3344]'
-                    : 'text-[#f0eaea]'
+                    ? 'text-white'
+                    : 'text-[#b37a7a]'
                 "
               >
                 {{ provider.name }}
@@ -92,7 +92,7 @@
       <!-- Game List -->
       <section
         v-if="currentKiosk && !currentKiosk.isHTMLGame"
-        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-gradient-to-r from-[#1A0D13] to-[#241017]"
+        class="py-10 px-16 max-xl:px-8 max-lg:px-4 max-lg:py-4 bg-[#160a0f]"
       >
         <div>
           <div
@@ -249,25 +249,27 @@
               <button
                 @click="currentPage > 1 && currentPage--"
                 :disabled="currentPage === 1"
-                class="px-4 py-2.5 border border-[#3b1c23] rounded-l-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#15090e]/50"
+                class="px-4 py-2.5 max-lg:px-3 max-lg:py-2 border border-[#3b1c23] rounded-l-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#15090e]/50 transition-colors"
               >
-                <i class="bi bi-chevron-left"></i>
+                <i class="bi bi-chevron-left max-lg:text-sm"></i>
               </button>
 
               <div
-                class="px-6 py-2.5 border-t border-b border-[#3b1c23] text-[#f0eaea] flex items-center bg-[#15090e]/50"
+                class="px-6 py-2.5 max-lg:px-4 max-lg:py-2 border-t border-b border-[#3b1c23] text-[#f0eaea] flex items-center bg-[#15090e]/50"
               >
-                <span class="font-medium">{{ currentPage }}</span>
-                <span class="mx-1">/</span>
-                <span>{{ totalPages }}</span>
+                <span class="font-medium max-lg:text-sm">{{
+                  currentPage
+                }}</span>
+                <span class="mx-1 max-lg:mx-0.5 max-lg:text-sm">/</span>
+                <span class="max-lg:text-sm">{{ totalPages }}</span>
               </div>
 
               <button
                 @click="currentPage < totalPages && currentPage++"
                 :disabled="currentPage === totalPages"
-                class="px-4 py-2.5 border border-[#3b1c23] rounded-r-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#15090e]/50"
+                class="px-4 py-2.5 max-lg:px-3 max-lg:py-2 border border-[#3b1c23] rounded-r-lg text-[#f0eaea] lg:hover:bg-[#3b1c23]/50 disabled:opacity-50 disabled:cursor-not-allowed bg-[#15090e]/50 transition-colors"
               >
-                <i class="bi bi-chevron-right"></i>
+                <i class="bi bi-chevron-right max-lg:text-sm"></i>
               </button>
             </div>
           </div>
