@@ -10,7 +10,7 @@
       <PageLoading v-if="isLoading || claimButtonLoading" />
       <div class="space-y-6 max-lg:space-y-4">
         <div
-          class="bg-gradient-to-r from-[#ff3344]/10 to-purple-500/20 rounded-xl p-6 max-lg:p-4 border border-[#ff3344]/30 relative overflow-hidden shadow-lg shadow-red-500/10"
+          class="bg-[#241017]/60 border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 relative overflow-hidden shadow-lg shadow-red-500/10"
         >
           <div class="absolute right-0 bottom-0 opacity-10">
             <Icon icon="mdi:gift-outline" class="w-32 h-32 text-[#ff3344]" />
@@ -60,10 +60,10 @@
 
         <div class="grid md:grid-cols-2 gap-4">
           <div
-            class="bg-cyan-500/10 border border-cyan-500/30 rounded-lg p-4 flex items-start gap-3"
+            class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
           >
             <div
-              class="w-10 h-10 rounded-full bg-cyan-500/20 flex items-center justify-center text-cyan-400 flex-shrink-0"
+              class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
             >
               <Icon icon="mdi:clock-alert" class="w-5 h-5" />
             </div>
@@ -78,10 +78,10 @@
           </div>
 
           <div
-            class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 flex items-start gap-3"
+            class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
           >
             <div
-              class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0"
+              class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
             >
               <Icon icon="mdi:cash-refund" class="w-5 h-5" />
             </div>
@@ -97,10 +97,10 @@
         </div>
 
         <div
-          class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 flex items-start gap-3"
+          class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
         >
           <div
-            class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0"
+            class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
           >
             <Icon icon="mdi:information" class="w-5 h-5" />
           </div>

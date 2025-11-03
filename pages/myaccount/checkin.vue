@@ -15,10 +15,10 @@
       <div class="space-y-6 max-lg:space-y-4">
         <!-- Main Action Card -->
         <div
-          class="bg-gradient-to-r from-green-500/10 to-emerald-500/20 rounded-xl p-6 max-lg:p-4 border border-green-500/30 relative overflow-hidden shadow-lg shadow-green-500/10"
+          class="bg-[#241017]/60 border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 relative overflow-hidden shadow-lg shadow-red-500/10"
         >
           <div class="absolute right-0 bottom-0 opacity-10">
-            <Icon icon="mdi:calendar-check" class="w-32 h-32 text-green-400" />
+            <Icon icon="mdi:calendar-check" class="w-32 h-32 text-[#ff3344]" />
           </div>
 
           <div class="relative z-10">
@@ -32,7 +32,7 @@
                 <p class="text-[#b37a7a] mb-2 max-w-2xl max-lg:text-sm">
                   {{ $t("checkin_bonus_reward") }}
                 </p>
-                <p class="text-sm text-green-400 mb-0">
+                <p class="text-sm text-[#ff3344] mb-0">
                   <Icon
                     icon="mdi:information-outline"
                     class="inline-block mr-1"
@@ -45,7 +45,7 @@
                 <LoadingButton
                   :loading="claimButtonLoading"
                   @click="claimCheckinBonus"
-                  class="w-full md:w-auto px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-green-600 to-emerald-600 lg:hover:brightness-110 text-white font-medium rounded-lg transition-all shadow-lg shadow-green-500/20 lg:hover:shadow-green-500/30"
+                  class="w-full md:w-auto px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-medium rounded-lg transition-all shadow-lg shadow-red-500/20 lg:hover:shadow-red-500/30"
                 >
                   <div class="flex items-center justify-center gap-2">
                     <Icon
@@ -66,7 +66,7 @@
         <!-- Info Cards Grid -->
         <div class="grid md:grid-cols-2 gap-4">
           <div
-            class="bg-[#ff3344]/10 border border-[#ff3344]/30 rounded-lg p-4 flex items-start gap-3"
+            class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
           >
             <div
               class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
@@ -84,10 +84,10 @@
           </div>
 
           <div
-            class="bg-purple-500/10 border border-purple-500/30 rounded-lg p-4 flex items-start gap-3"
+            class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
           >
             <div
-              class="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 flex-shrink-0"
+              class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
             >
               <Icon icon="mdi:cash-multiple" class="w-5 h-5" />
             </div>
@@ -104,10 +104,10 @@
 
         <!-- Important Notice -->
         <div
-          class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 flex items-start gap-3"
+          class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
         >
           <div
-            class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 flex-shrink-0"
+            class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
           >
             <Icon icon="mdi:information" class="w-5 h-5" />
           </div>
