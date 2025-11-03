@@ -1378,9 +1378,13 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                       <div
-                        class="w-8 h-8 rounded-full bg-[#ff3344]/20 flex items-center justify-center"
+                        class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center"
                       >
-                        <i class="bi bi-person text-[#ff3344]"></i>
+                        <NuxtImg
+                          src="/images/user/icon.png"
+                          alt="icon"
+                          class="w-full h-auto"
+                        />
                       </div>
                       <div>
                         <p class="text-sm font-medium text-[#f0eaea]">
@@ -1582,10 +1586,12 @@
                     >
                       <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                          <div
-                            class="w-10 h-10 bg-[#ff3344]/20 rounded-xl flex items-center justify-center"
-                          >
-                            <i class="bi bi-wallet text-[#ff3344]"></i>
+                          <div class="w-10 h-10 text-[#ff3344]">
+                            <NuxtImg
+                              src="/images/user/cashier.png"
+                              alt="Cashier"
+                              class="w-full h-auto"
+                            />
                           </div>
                           <span class="text-sm font-semibold text-[#f0eaea]">
                             {{ $t("cashier") }}
@@ -1698,10 +1704,12 @@
                     >
                       <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                          <div
-                            class="w-10 h-10 bg-[#ff3344]/20 rounded-xl flex items-center justify-center"
-                          >
-                            <i class="bi bi-people text-[#ff3344]"></i>
+                          <div class="w-10 h-10 text-[#ff3344]">
+                            <NuxtImg
+                              src="/images/user/agent.png"
+                              alt="agent"
+                              class="w-full h-auto"
+                            />
                           </div>
                           <span class="text-sm font-semibold text-[#f0eaea]">
                             {{ $t("agent") }}

@@ -16,7 +16,7 @@
         />
       </section>
       <section class="py-8 relative max-lg:p-4">
-        <div class="mb-4 px-48 max-2xl:px-12 max-lg:px-2 max-lg:hidden">
+        <div class="mb-4 px-48 max-2xl:px-12 max-lg:px-2 max-lg:hidden hidden">
           <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
             <div
               v-for="level in settingsData.vipLevels"
