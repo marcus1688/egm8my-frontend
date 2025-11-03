@@ -277,7 +277,7 @@
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
               <img
-                src="/images/user/profile.png"
+                src="/images/user/profile2.png"
                 alt="profile"
                 class="w-full h-auto"
               />

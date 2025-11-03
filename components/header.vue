@@ -334,7 +334,7 @@
                           >
                             <div class="flex items-center gap-3">
                               <img
-                                src="/images/user/profile.png"
+                                src="/images/user/profile2.png"
                                 alt="profile"
                                 class="w-7 h-auto"
                               />
