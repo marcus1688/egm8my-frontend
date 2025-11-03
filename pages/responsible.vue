@@ -1,7 +1,31 @@
 <template>
   <div>
+    <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
+      <NuxtImg
+        src="/images/banner/responsible_banner_desktop.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:block hidden"
+      />
+      <NuxtImg
+        src="/images/banner/responsible_banner_mobile.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:hidden block"
+      />
+      <div
+        class="absolute bottom-[12%] left-[40%] -translate-x-1/2 max-lg:bottom-[25%] max-lg:left-[35%]"
+      >
+        <a
+          href="#self-assessment"
+          @click.prevent="handleAnchorClick($event, 'self-assessment')"
+          class="inline-flex items-center bg-white text-[#a1122d] text-[1vw] max-lg:hidden px-6 max-lg:px-5 py-3 max-lg:py-2.5 rounded-lg font-medium lg:hover:bg-red-50 transition-colors shadow-lg max-lg:text-sm"
+        >
+          <i class="bi bi-clipboard-check mr-2"></i>
+          <p>{{ $t("take_self_assessment") }}</p>
+        </a>
+      </div>
+    </section>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
+    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative hidden">
       <div class="absolute inset-0 opacity-10">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
           <defs>

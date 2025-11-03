@@ -16,9 +16,14 @@
         >
           <swiper-slide v-for="(image, index) in carousel" :key="index">
             <NuxtImg
-              :src="image"
+              :src="image.link"
               alt="carousel image"
-              class="w-full h-auto object-cover"
+              class="w-full h-auto object-cover lg:block hidden"
+            />
+            <NuxtImg
+              :src="image.link2 || image.link"
+              alt="carousel image"
+              class="w-full h-auto object-cover lg:hidden block"
             />
           </swiper-slide>
         </swiper>
@@ -111,40 +116,23 @@ async function fetchCarousel() {
     const { data } = await get("client/getallcarousels");
 
     if (data.success) {
-      const isMobile = window.matchMedia("(max-width: 1023px)").matches;
+      carousel.value = data.carousels;
 
-      let filteredCarousels;
-
-      if (isMobile) {
-        const mobileCarousels = data.carousels.filter((carousel) =>
-          carousel.name.startsWith("M_")
-        );
-        console.log(mobileCarousels);
-        if (mobileCarousels.length > 0) {
-          filteredCarousels = mobileCarousels;
-        } else {
-          filteredCarousels = data.carousels.filter(
-            (carousel) => !carousel.name.startsWith("M_")
-          );
-        }
-      } else {
-        filteredCarousels = data.carousels.filter(
-          (carousel) => !carousel.name.startsWith("M_")
-        );
-      }
-
-      carousel.value = filteredCarousels.map((carousel) => carousel.link);
       if (process.client) {
-        carousel.value.forEach((src) => {
-          if (src) {
+        carousel.value.forEach((item) => {
+          if (item.link) {
             const img = new Image();
-            img.src = src;
+            img.src = item.link;
+          }
+          if (item.link2) {
+            const img = new Image();
+            img.src = item.link2;
           }
         });
       }
     }
   } catch (error) {
-    console.error("Error fetching promotions:", error);
+    console.error("Error fetching carousels:", error);
   }
 }
 

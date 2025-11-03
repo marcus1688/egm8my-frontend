@@ -9,15 +9,17 @@
     />
     <PageLoading v-if="pageLoading" />
     <div>
-      <section class="relative max-lg:max-w-[100vw]">
+      <section
+        class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20"
+      >
         <NuxtImg
-          src="/images/banner/slot_banner.png"
-          alt="Slots Game"
+          src="/images/banner/slot_banner_desktop.png"
+          alt="Promotions and Bonuses Banner"
           class="w-full h-auto lg:block hidden"
         />
         <NuxtImg
           src="/images/banner/slot_banner_mobile.png"
-          alt="Slots Game"
+          alt="Promotions and Bonuses Banner"
           class="w-full h-auto lg:hidden block"
         />
       </section>

@@ -1,38 +1,18 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
-      <div class="absolute inset-0 opacity-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern
-              id="dots"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="10" cy="10" r="1.5" fill="white" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dots)" />
-        </svg>
-      </div>
-
-      <div
-        class="container mx-auto px-6 max-lg:px-4 py-20 max-lg:py-16 text-center relative z-10"
-      >
-        <h1
-          class="text-4xl md:text-5xl max-lg:text-3xl font-bold text-white mb-6 max-lg:mb-4 animate-fadeIn"
-        >
-          {{ $t("how_can_we_help") }}
-        </h1>
-        <p
-          class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto mb-10 max-lg:mb-6 animate-fadeIn animate-delay-200"
-        >
-          {{ $t("support_team_assist") }}
-        </p>
-      </div>
-    </div>
+    <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
+      <NuxtImg
+        src="/images/banner/help_banner_desktop.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:block hidden"
+      />
+      <NuxtImg
+        src="/images/banner/help_banner_mobile.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:hidden block"
+      />
+    </section>
 
     <!-- Support Categories Section -->
     <div class="py-16 max-lg:py-12">

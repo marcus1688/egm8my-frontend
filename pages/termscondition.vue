@@ -1,50 +1,18 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
-      <div class="absolute inset-0 opacity-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern
-              id="grid"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M 20 0 L 0 0 0 20"
-                fill="none"
-                stroke="white"
-                stroke-width="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
-
-      <div
-        class="container mx-auto px-6 max-lg:px-4 py-16 max-lg:py-10 relative z-10"
-      >
-        <div class="max-w-4xl mx-auto">
-          <h1
-            class="text-4xl md:text-5xl max-lg:text-2xl font-bold text-white mb-4 max-lg:mb-2 text-center"
-          >
-            {{ $t("terms_conditions") }}
-          </h1>
-          <p
-            class="text-red-100 text-lg md:text-xl max-lg:text-base mb-6 max-lg:mb-3 text-center"
-          >
-            {{ $t("read_carefully") }}
-          </p>
-          <div class="flex justify-center">
-            <p class="text-sm max-lg:text-xs text-red-200">
-              {{ $t("last_updated") }}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
+      <NuxtImg
+        src="/images/banner/terms_banner_desktop.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:block hidden"
+      />
+      <NuxtImg
+        src="/images/banner/terms_banner_mobile.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:hidden block"
+      />
+    </section>
 
     <!-- Main Content -->
     <div

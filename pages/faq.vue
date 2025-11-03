@@ -1,35 +1,17 @@
 <template>
   <div>
-    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a]">
-      <!-- Header/Banner Section -->
-      <div
-        class="container mx-auto px-6 max-lg:px-4 py-16 max-lg:py-12 text-center"
-      >
-        <h1
-          class="text-4xl md:text-5xl max-lg:text-3xl font-bold text-white mb-4 max-lg:mb-3"
-        >
-          {{ $t("frequently_asked_questions") }}
-        </h1>
-        <p
-          class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto"
-        >
-          {{ $t("find_answers") }}
-        </p>
-
-        <!-- Search bar -->
-        <div class="max-w-xl mx-auto mt-8 max-lg:mt-6 relative">
-          <input
-            v-model="searchQuery"
-            type="text"
-            :placeholder="$t('search_for_questions')"
-            class="w-full px-5 max-lg:px-4 py-3 max-lg:py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/30 text-white placeholder-red-100 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-transparent shadow-lg max-lg:text-sm"
-          />
-          <i
-            class="bi bi-search absolute right-4 top-1/2 -translate-y-1/2 text-red-100"
-          ></i>
-        </div>
-      </div>
-    </div>
+    <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
+      <NuxtImg
+        src="/images/banner/faq_banner_desktop.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:block hidden"
+      />
+      <NuxtImg
+        src="/images/banner/faq_banner_mobile.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:hidden block"
+      />
+    </section>
 
     <!-- FAQ Content Section -->
     <div class="container mx-auto px-4 py-16 max-lg:py-4 max-w-4xl">

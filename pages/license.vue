@@ -1,45 +1,18 @@
 <template>
   <div>
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
-      <div class="absolute inset-0 opacity-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern
-              id="shield-pattern"
-              width="50"
-              height="50"
-              patternUnits="userSpaceOnUse"
-            >
-              <path
-                d="M25,2 L2,10 L2,30 Q2,35 6,38 L25,48 L44,38 Q48,35 48,30 L48,10 L25,2"
-                fill="none"
-                stroke="white"
-                stroke-width="0.5"
-              />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#shield-pattern)" />
-        </svg>
-      </div>
-
-      <div
-        class="container mx-auto px-6 max-lg:px-4 py-16 max-lg:py-12 relative z-10"
-      >
-        <div class="max-w-4xl mx-auto text-center">
-          <h1
-            class="text-4xl md:text-5xl max-lg:text-3xl font-bold text-white mb-4 max-lg:mb-2"
-          >
-            {{ $t("official_gaming_license") }}
-          </h1>
-          <p
-            class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto"
-          >
-            {{ $t("fully_licensed") }}
-          </p>
-        </div>
-      </div>
-    </div>
+    <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
+      <NuxtImg
+        src="/images/banner/license_banner_desktop.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:block hidden"
+      />
+      <NuxtImg
+        src="/images/banner/license_banner_mobile.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:hidden block"
+      />
+    </section>
 
     <!-- Main Content -->
     <div class="py-16 max-lg:py-10">
