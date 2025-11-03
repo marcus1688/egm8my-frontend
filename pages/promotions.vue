@@ -1,14 +1,16 @@
 <template>
   <ClientOnly>
     <div>
-      <section class="relative max-lg:max-w-[100vw]">
+      <section
+        class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20"
+      >
         <NuxtImg
-          src="/images/promotion_banner.png"
+          src="/images/banner/promotion_banner_desktop.png"
           alt="Promotions and Bonuses Banner"
           class="w-full h-auto lg:block hidden"
         />
         <NuxtImg
-          src="/images/promotion_banner_mobile.png"
+          src="/images/banner/promotion_banner_mobile.png"
           alt="Promotions and Bonuses Banner"
           class="w-full h-auto lg:hidden block"
         />
@@ -78,7 +80,7 @@
 
           <div
             v-if="filteredContent.length > 0"
-            class="grid lg:grid-cols-3 gap-6"
+            class="grid grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1 gap-6"
           >
             <div
               v-for="(promotion, index) in filteredContent"
@@ -400,14 +402,21 @@ const chineseImageMapping = {
 };
 
 function getPromotionImage(promotion) {
-  if ($locale.value === "zh" && chineseImageMapping[promotion._id]) {
-    const chinesePromo = promotionData.value?.find(
-      (p) => p._id === chineseImageMapping[promotion._id]
-    );
+  if ($locale.value === "zh") {
+    if (chineseImageMapping[promotion._id]) {
+      const chinesePromo = promotionData.value?.find(
+        (p) => p._id === chineseImageMapping[promotion._id]
+      );
 
-    if (chinesePromo && chinesePromo.promotionimage) {
-      return chinesePromo.promotionimage;
+      if (chinesePromo && chinesePromo.promotionimage) {
+        return chinesePromo.promotionimage;
+      }
     }
+    return promotion.promotionimage2 || promotion.promotionimage;
+  }
+
+  if ($locale.value === "ms") {
+    return promotion.promotionimage3 || promotion.promotionimage;
   }
 
   return promotion.promotionimage;

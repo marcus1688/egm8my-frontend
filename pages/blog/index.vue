@@ -1,38 +1,18 @@
 <template>
   <div class="text-white pb-8 fade-in max-lg:pb-4">
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] relative">
-      <div class="absolute inset-0 opacity-10">
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <defs>
-            <pattern
-              id="dots"
-              width="20"
-              height="20"
-              patternUnits="userSpaceOnUse"
-            >
-              <circle cx="10" cy="10" r="1.5" fill="white" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dots)" />
-        </svg>
-      </div>
-
-      <div
-        class="mx-auto px-6 max-lg:px-4 py-12 max-lg:py-8 text-center relative z-10"
-      >
-        <h1
-          class="text-4xl md:text-5xl max-lg:text-3xl font-bold text-white mb-4 max-lg:mb-3 animate-fadeIn"
-        >
-          {{ $t("blog") }}
-        </h1>
-        <p
-          class="text-red-100 text-lg md:text-xl max-lg:text-base max-w-2xl mx-auto animate-fadeIn animate-delay-200"
-        >
-          {{ $t("blog_description") }}
-        </p>
-      </div>
-    </div>
+    <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
+      <NuxtImg
+        src="/images/banner/blog_banner_desktop.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:block hidden"
+      />
+      <NuxtImg
+        src="/images/banner/blog_banner_mobile.png"
+        alt="Promotions and Bonuses Banner"
+        class="w-full h-auto lg:hidden block"
+      />
+    </section>
 
     <div class="px-6 max-lg:px-4 mt-8 max-lg:mt-6">
       <div class="flex justify-center mb-6 max-md:mb-4">

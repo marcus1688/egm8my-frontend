@@ -2,7 +2,7 @@
   <ClientOnly>
     <!-- Simple Footer that matches website design -->
     <footer
-      class="bg-[#1A0D13] text-white pt-12 pb-6 max-lg:pt-6 max-lg:pb-4 border-t border-[#3b1c23]"
+      class="bg-gray-950 text-white pt-12 pb-6 max-lg:pt-6 max-lg:pb-4 border-t border-[#3b1c23]"
     >
       <div class="container mx-auto px-4">
         <!-- Footer Top - Links -->

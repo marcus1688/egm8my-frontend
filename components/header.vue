@@ -17,7 +17,8 @@
 
     <div>
       <header
-        class="relative w-full h-[80px] max-lg:h-[60px] bg-[#1A0D13] shadow-2xl shadow-black z-50"
+        class="relative w-full h-[80px] max-lg:h-[60px] shadow-lg shadow-red-500/20 py-2 border-b-2 border-red-600 z-50"
+        style="background-image: url('/images/header.png')"
       >
         <div
           class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-xl:px-4 max-lg:p-2"

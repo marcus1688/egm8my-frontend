@@ -24,9 +24,7 @@
         </swiper>
       </section>
 
-      <section
-        class="shadow-lg shadow-red-500/20 relative z-10 py-2 border-b-2 border-red-600"
-      >
+      <section class="shadow-lg shadow-red-600/20 relative z-10 py-2">
         <div class="mx-auto containerWid">
           <div
             class="flex justify-between items-center overflow-x-auto scrollbar-hide"

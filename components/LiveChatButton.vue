@@ -2,7 +2,7 @@
   <div
     ref="chatButton"
     :class="[
-      'fixed cursor-pointer z-[90] w-[70px] max-lg:w-[60px] ',
+      'fixed cursor-pointer z-[90] w-[100px] max-lg:w-[80px] ',
       isDragging ? '' : 'bounce-infinite',
     ]"
     :style="position"
@@ -18,7 +18,7 @@
 const props = defineProps({
   buttonImage: {
     type: String,
-    default: "/images/livechat/livechat.jpeg",
+    default: "/images/livechat/livechat.png",
   },
   buttonAlt: {
     type: String,
