@@ -531,12 +531,12 @@
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
                           <NuxtImg
-                            src="/images/newicon/promotion.png"
-                            class="w-7 h-7 object-contain"
-                            alt="Promotions"
+                            src="/images/burger-menu/promotions.png"
+                            class="w-full h-auto object-contain"
+                            alt="promotions"
                           />
                         </div>
                         <div class="flex-1">
@@ -561,12 +561,12 @@
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
                           <NuxtImg
-                            src="/images/newicon/vip.png"
-                            class="w-7 h-7 object-contain"
-                            alt="VIP"
+                            src="/images/burger-menu/vip.png"
+                            class="w-full h-auto object-contain"
+                            alt="vip"
                           />
                         </div>
                         <div class="flex-1">
@@ -591,12 +591,12 @@
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
                           <NuxtImg
-                            src="/images/newicon/referral.png"
-                            class="w-7 h-7 object-contain"
-                            alt="Referral"
+                            src="/images/burger-menu/refer.png"
+                            class="w-full h-auto object-contain"
+                            alt="refer"
                           />
                         </div>
                         <div class="flex-1">
@@ -645,15 +645,20 @@
                         ></i>
                       </NuxtLinkLocale>
 
+                      <!-- Blog -->
                       <NuxtLinkLocale
                         to="/blog"
                         class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="mobileMenuOpen = false"
                       >
                         <div
-                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                         >
-                          <i class="bi bi-newspaper text-[#ff3344] text-xl"></i>
+                          <NuxtImg
+                            src="/images/burger-menu/blog.png"
+                            class="w-full h-auto object-contain"
+                            alt="blog"
+                          />
                         </div>
                         <div class="flex-1">
                           <span
@@ -1446,12 +1451,12 @@
                       class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        class="w-11 h-11 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
                           :src="item.icon"
                           :alt="item.name"
-                          class="w-7 h-7 object-contain"
+                          class="w-full h-auto object-contain"
                         />
                       </div>
                       <span
@@ -1471,11 +1476,11 @@
                       class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
-                          src="/images/newicon/promotion.png"
-                          class="w-7 h-7 object-contain"
+                          src="/images/burger-menu/promotions.png"
+                          class="w-full h-auto object-contain"
                           alt="Promotions"
                         />
                       </div>
@@ -1492,11 +1497,11 @@
                       class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
                         <NuxtImg
-                          src="/images/newicon/vip.png"
-                          class="w-7 h-7 object-contain"
+                          src="/images/burger-menu/vip.png"
+                          class="w-full h-auto object-contain"
                           alt="VIP"
                         />
                       </div>
@@ -1513,9 +1518,13 @@
                       class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
                     >
                       <div
-                        class="w-11 h-11 bg-gradient-to-br from-[#ff3344]/20 to-[#ff3344]/10 rounded-xl flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
                       >
-                        <i class="bi bi-newspaper text-[#ff3344] text-2xl"></i>
+                        <NuxtImg
+                          src="/images/burger-menu/blog.png"
+                          class="w-full h-auto object-contain"
+                          alt="BLOG"
+                        />
                       </div>
                       <span
                         class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
@@ -1956,103 +1965,38 @@ const HeaderNav = computed(() => [
     name: "Sports",
     label: $t("sports"),
     link: "/games/sports",
-    icon: "/images/newicon/sport.png",
-    games: [
-      {
-        name: "SABA SPORTS",
-        image: "/images/header/gameimg1.png",
-        tag: "Hot",
-      },
-      {
-        name: "AFB SPORTS",
-        image: "/images/header/gameimg1.png",
-      },
-    ],
+    icon: "/images/burger-menu/sports.png",
   },
   {
     name: "E-Sports",
     label: $t("e_sports"),
     link: "/games/e-sports",
-    icon: "/images/newicon/game.png",
-    games: [
-      {
-        name: "TF GAMING",
-        image: "/images/header/gameimg1.png",
-        tag: "Hot",
-      },
-      {
-        name: "IM ESPORTS",
-        image: "/images/header/gameimg1.png",
-        tag: "New",
-      },
-    ],
+    icon: "/images/burger-menu/e-sports.png",
   },
   {
     name: "Casino",
     label: $t("live_casino"),
     link: "/games/livecasino",
-    icon: "/images/newicon/poker.png",
-    games: [
-      {
-        name: "Sexybcrt",
-        image: "/images/header/gameimg2.png",
-      },
-      {
-        name: "Evolution Gaming",
-        image: "/images/header/gameimg2.png",
-        tag: "Hot",
-      },
-    ],
+    icon: "/images/burger-menu/livecasino.png",
   },
   {
     name: "Slots",
     label: $t("slots"),
     link: "/games/slots",
-    icon: "/images/newicon/slot.png",
-    games: [
-      {
-        name: "JDB",
-        image: "/images/header/gameimg2.png",
-      },
-      {
-        name: "Jili",
-        image: "/images/header/gameimg2.png",
-        tag: "New",
-      },
-    ],
+    icon: "/images/burger-menu/slots.png",
   },
   {
     name: "Fishing",
     label: $t("fishing"),
     link: "/games/fishing",
-    icon: "/images/newicon/fishing.png",
-    games: [
-      {
-        name: "JDB",
-        image: "/images/header/gameimg2.png",
-      },
-      {
-        name: "Joker",
-        image: "/images/header/gameimg2.png",
-      },
-    ],
+    icon: "/images/burger-menu/fishing.png",
   },
 
   {
     name: "Lottery",
     label: $t("lottery"),
     link: "/games/lottery",
-    icon: "/images/newicon/lottery.png",
-    games: [
-      {
-        name: "QQ Keno",
-        image: "/images/header/gameimg1.png",
-      },
-      {
-        name: "Funky Games",
-        image: "/images/header/gameimg2.png",
-      },
-    ],
+    icon: "/images/burger-menu/lottery.png",
   },
 ]);
 const getIconBgClass = (name) => {
