@@ -18,7 +18,7 @@
         </p>
       </div>
 
-      <div class="max-lg:pb-[80px]">
+      <div>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-lg:gap-4">
           <div class="flex flex-col items-center justify-center">
             <div

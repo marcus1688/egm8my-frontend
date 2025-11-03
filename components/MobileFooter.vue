@@ -12,10 +12,14 @@
           isActiveRoute('/') ? 'text-[#ff3344] rounded-md' : 'text-[#b37a7a]',
         ]"
       >
-        <component
-          :is="isActiveRoute('/') ? HomeSolid : HomeOutline"
+        <NuxtImg
+          :src="
+            isActiveRoute('/')
+              ? '/images/mobile-footer/home-active.png'
+              : '/images/mobile-footer/home.png'
+          "
+          alt="Home"
           class="w-6 h-6 max-[370px]:w-5 max-[370px]:h-5 transition-colors"
-          :class="isActiveRoute('/') ? 'text-[#ff3344]' : 'text-[#b37a7a]'"
         />
         <span class="tracking-wide">{{ $t("home") }}</span>
       </NuxtLinkLocale>
@@ -107,14 +111,14 @@
             : 'text-[#b37a7a]',
         ]"
       >
-        <component
-          :is="isActiveRoute('/myaccount/profile') ? UserSolid : UserOutline"
-          class="w-6 h-6 max-[370px]:w-5 max-[370px]:h-5 transition-colors"
-          :class="
+        <NuxtImg
+          :src="
             isActiveRoute('/myaccount/profile')
-              ? 'text-[#ff3344]'
-              : 'text-[#b37a7a]'
+              ? '/images/mobile-footer/account-active.png'
+              : '/images/mobile-footer/account.png'
           "
+          alt="Account"
+          class="w-6 h-6 max-[370px]:w-5 max-[370px]:h-5 transition-colors"
         />
         <span class="tracking-wide">{{ $t("account") }}</span>
       </NuxtLinkLocale>
