@@ -27,18 +27,10 @@
               <h2
                 class="homeMainTxt3 font-bold text-[#f0eaea] flex items-center gap-2 max-lg:text-lg"
               >
-                <i
-                  :class="[
-                    getCategoryIcon(selectedTab),
-                    selectedTab === 'All'
-                      ? 'text-[#ff3344]'
-                      : getCategoryColor(selectedTab),
-                  ]"
-                  class="max-[430px]:hidden max-lg:text-base"
-                ></i>
-                <span class="text-xl max-lg:text-lg"
-                  >{{ selectedTab }} {{ $t("promotion") }}</span
-                >
+                <span class="text-xl max-lg:text-lg">
+                  {{ tabs.find((t) => t.key === selectedTab)?.label }}
+                  {{ $t("promotion") }}
+                </span>
               </h2>
               <p class="text-sm max-[630px]:text-xs text-[#b37a7a]">
                 {{ $t("showing") }}
@@ -67,11 +59,12 @@
                         : 'bg-[#15090e] text-[#b37a7a] lg:hover:bg-[#2a0f14] border border-[#3b1c23]'
                     "
                   >
-                    <i
-                      :class="getCategoryIcon(tab.key)"
-                      class="text-lg max-lg:text-base"
-                    ></i>
-                    <span>{{ tab.en }}</span>
+                    <NuxtImg
+                      :src="getCategoryIcon(tab.key)"
+                      alt="Category Icon"
+                      class="w-8 h-auto max-lg:w-6 max-lg:h-6"
+                    />
+                    <span>{{ tab.label }}</span>
                   </button>
                 </div>
               </div>
@@ -170,54 +163,29 @@ const pageLoading = useState("pageLoading");
 const isPromotionModalOpen = ref(false);
 const selectedPromotion = ref(null);
 const tabs = [
-  { key: "All", en: $t("all"), zh: "全部" },
-  {
-    key: "Live Casino",
-    en: $t("live_casino"),
-    zh: "真人娱乐",
-  },
-  {
-    key: "Sports",
-    en: $t("sports"),
-    zh: "体育",
-  },
-  {
-    key: "Slot Games",
-    en: $t("slot_games"),
-    zh: "老虎机",
-  },
-  {
-    key: "Fishing",
-    en: $t("fishing"),
-    zh: "捕鱼",
-  },
-  {
-    key: "E-Sports",
-    en: $t("e_sports"),
-    zh: "电竞",
-  },
-  {
-    key: "Lottery",
-    en: $t("lottery"),
-    zh: "彩票",
-  },
+  { key: "All", label: $t("all") },
+  { key: "Live Casino", label: $t("live_casino") },
+  { key: "Sports", label: $t("sports") },
+  { key: "Slot Games", label: $t("slot_games") },
+  { key: "Fishing", label: $t("fishing") },
+  { key: "E-Sports", label: $t("e_sports") },
+  { key: "Lottery", label: $t("lottery") },
 ];
 
 const promotionData = ref(null);
 
 const getCategoryIcon = (category) => {
   const iconMap = {
-    All: "bi bi-grid",
-    "Slot Games": "bi bi-grid-3x3-gap",
-    "Live Casino": "bi bi-suit-club",
-    "E-Sports": "bi bi-controller",
-    Sports: "bi bi-dribbble",
-    Fishing: "bi bi-water",
-    Lottery: "bi bi-ticket-perforated",
+    All: "/images/burger-menu/slots.png",
+    "Slot Games": "/images/burger-menu/slots.png",
+    "Live Casino": "/images/burger-menu/livecasino.png",
+    "E-Sports": "/images/burger-menu/e-sports.png",
+    Sports: "/images/burger-menu/sports.png",
+    Fishing: "/images/burger-menu/fishing.png",
+    Lottery: "/images/burger-menu/lottery.png",
   };
-  return iconMap[category] || "bi bi-tag";
+  return iconMap[category];
 };
-
 function openPromotionModal(promotion) {
   selectedPromotion.value = {
     promotionimage: promotion.promotionimage,
