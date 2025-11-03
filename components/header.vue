@@ -196,7 +196,7 @@
                           >
                             <div class="flex items-center gap-3">
                               <img
-                                src="/images/user/cashier.png"
+                                src="/images/user/cashier2.png"
                                 alt="Cashier"
                                 class="w-7 h-auto"
                               />
@@ -271,7 +271,7 @@
                           >
                             <div class="flex items-center gap-3">
                               <img
-                                src="/images/user/agent.png"
+                                src="/images/user/agent2.png"
                                 alt="agent"
                                 class="w-7 h-auto"
                               />
@@ -390,7 +390,7 @@
                           >
                             <div class="flex items-center gap-3">
                               <img
-                                src="/images/user/history.png"
+                                src="/images/user/history2.png"
                                 alt="history"
                                 class="w-7 h-auto"
                               />
@@ -1588,7 +1588,7 @@
                         <div class="flex items-center gap-3">
                           <div class="w-10 h-10 text-[#ff3344]">
                             <img
-                              src="/images/user/cashier.png"
+                              src="/images/user/cashier2.png"
                               alt="Cashier"
                               class="w-full h-auto"
                             />
@@ -1706,7 +1706,7 @@
                         <div class="flex items-center gap-3">
                           <div class="w-10 h-10 text-[#ff3344]">
                             <img
-                              src="/images/user/agent.png"
+                              src="/images/user/agent2.png"
                               alt="agent"
                               class="w-full h-auto"
                             />

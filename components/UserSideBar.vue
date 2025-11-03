@@ -34,7 +34,7 @@
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
               <img
-                src="/images/user/cashier.png"
+                src="/images/user/cashier2.png"
                 alt="Cashier"
                 class="w-full h-auto"
               />
@@ -172,7 +172,7 @@
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
               <img
-                src="/images/user/agent.png"
+                src="/images/user/agent2.png"
                 alt="agent"
                 class="w-full h-auto"
               />
@@ -366,7 +366,7 @@
           <div class="flex items-center gap-3">
             <div class="w-8 h-8 text-[#ff3344]">
               <img
-                src="/images/user/history.png"
+                src="/images/user/history2.png"
                 alt="history"
                 class="w-full h-auto"
               />
