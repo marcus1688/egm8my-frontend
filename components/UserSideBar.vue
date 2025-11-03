@@ -196,7 +196,7 @@
         <!-- Agent Sub Items -->
         <div
           v-if="activeMenuItem === 'agent'"
-          class="mt-1 py-1 border-l-2 border-green-400"
+          class="mt-1 border-l-2 border-[#ff3344]"
         >
           <NuxtLinkLocale
             to="/myaccount/referral"
@@ -303,7 +303,7 @@
         <!-- Profile Sub Items -->
         <div
           v-if="activeMenuItem === 'profile'"
-          class="mt-1 py-1 border-l-2 border-purple-400"
+          class="mt-1 py-1 border-l-2 border-[#ff3344]"
         >
           <NuxtLinkLocale
             to="/myaccount/profile"
@@ -392,7 +392,7 @@
         <!-- History Sub Items -->
         <div
           v-if="activeMenuItem === 'history'"
-          class="mt-1 py-1 border-l-2 border-amber-400"
+          class="mt-1 py-1 border-l-2 border-[#ff3344]"
         >
           <NuxtLinkLocale
             to="/myaccount/transaction-history"
