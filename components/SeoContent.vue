@@ -71,14 +71,18 @@ async function fetchSeoContent() {
     loading.value = true;
     error.value = null;
     const pageType = getSeoPageType(route.path);
-    const { data } = await get(`seo-pages/${pageType}`);
-    console.log(data);
-    if (data.success) {
-      seoData.value = data.data;
+    const { data } = await get(`seo-pages`);
+    if (data.success && data.data) {
+      const pageData = data.data.find((page) => page.pageType === pageType);
+      if (pageData && pageData.isVisible) {
+        seoData.value = pageData;
+      } else {
+        seoData.value = null;
+      }
     }
-  } catch (error) {
-    error.value = "Failed to load SEO content";
-    console.error("Error fetching SEO content:", error);
+  } catch (err) {
+    seoData.value = null;
+    console.log("SEO content fetch error:", err);
   } finally {
     loading.value = false;
   }

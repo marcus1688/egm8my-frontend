@@ -1119,6 +1119,7 @@ const visibleItems = ref(5);
 const userData = useState("userData");
 const isLoading = ref(false);
 const loadingMessage = ref("");
+const scrollToElement = inject("scrollToElement");
 
 const hasGameAccount = computed(() => {
   if (!userData.value) return false;
@@ -1421,15 +1422,15 @@ const scrollToSelectedProvider = () => {
   if (!currentKiosk.value) return;
   nextTick(() => {
     const providersContainer = document.querySelector(
-      ".flex.flex-wrap.max-lg\\:flex-nowrap.max-lg\\:overflow-x-auto"
+      ".flex.flex-wrap.gap-4.justify-center.max-lg\\:flex-nowrap.max-lg\\:overflow-x-auto"
     );
     if (!providersContainer) return;
-    const selectedProvider = Array.from(
-      providersContainer.querySelectorAll(".group")
-    ).find((el) => {
-      return el.querySelector('div[class*="bg-blue-50"]');
-    });
-
+    const selectedProvider = Array.from(providersContainer.children).find(
+      (el) => {
+        const innerDiv = el.querySelector('div[class*="bg-[#a1122d]"]');
+        return innerDiv !== null;
+      }
+    );
     if (selectedProvider) {
       const containerWidth = providersContainer.offsetWidth;
       const selectedPosition = selectedProvider.offsetLeft;
