@@ -20,7 +20,6 @@ export const useGameLauncher = () => {
       alertVisible.value = true;
       return;
     }
-    console.log(game);
     if (userGameLocks.value?.[game.databaseName]?.lock === true) {
       alertTitle.value = $t("alert_error");
       alertMessage.value = $t("game_locked_message");
@@ -118,6 +117,7 @@ export const useGameLauncher = () => {
     try {
       const requestBody = {
         gameLang: $locale.value || "en",
+        gameType: game.categoryId.name,
       };
 
       if (game.isManualGame) {
