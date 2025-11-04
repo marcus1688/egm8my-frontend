@@ -675,7 +675,7 @@ const claimCommission = async () => {
       userData.value.lastCommissionClaim = new Date().toISOString();
       showAlert(
         $t("alert_success"),
-        data.message?.en || $t("commission_claimed"),
+        data.message[$locale.value] || $t("commission_claimed"),
         "success"
       );
       await fetchReports();

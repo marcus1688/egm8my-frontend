@@ -79,11 +79,11 @@ async function saveFacebookId() {
       if (newData.success) {
         useState("userData").value = newData.user;
       }
-      showAlert($t("alert_success"), data.message.en, "success");
+      showAlert($t("alert_success"), data.message[$locale.value], "success");
       emit("save", newFacebookId.value);
       emit("close");
     } else {
-      showAlert($t("alert_info"), data.message.en, "info");
+      showAlert($t("alert_info"), data.message[$locale.value], "info");
     }
   } catch (error) {
     console.error("Save Facebook ID error:", error);

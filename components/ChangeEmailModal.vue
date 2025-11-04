@@ -129,7 +129,7 @@ async function saveEmail() {
       showAlert($t("alert_success"), $t("email_updated"), "success");
       emit("close");
     } else {
-      showAlert($t("alert_info"), data.message.en, "info");
+      showAlert($t("alert_info"), data.message[$locale.value], "info");
     }
   } catch (error) {
     console.error("Save email error:", error);

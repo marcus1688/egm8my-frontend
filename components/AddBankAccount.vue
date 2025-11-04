@@ -149,13 +149,17 @@ async function confirmAdd() {
     if (data.success) {
       showAlert(
         $t("alert_success"),
-        data.message?.en || $t("bank_added"),
+        data.message[$locale.value] || $t("bank_added"),
         "success"
       );
       emits("addAccount");
       resetForm();
     } else {
-      showAlert("Info", data.message?.en || $t("failed_to_add"), "info");
+      showAlert(
+        "Info",
+        data.message[$locale.value] || $t("failed_to_add"),
+        "info"
+      );
     }
   } catch (error) {
     showAlert(

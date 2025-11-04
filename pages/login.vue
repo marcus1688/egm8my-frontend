@@ -254,7 +254,7 @@ const handleLogin = async () => {
     } else {
       alertTitle.value =
         data.status === "inactive" ? $t("warning") : $t("info");
-      alertMessage.value = data.message?.en || $t("login_failed");
+      alertMessage.value = data.message[$locale.value] || $t("login_failed");
       alertType.value = data.status === "inactive" ? "warning" : "info";
       alertVisible.value = true;
     }

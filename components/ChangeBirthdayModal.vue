@@ -127,11 +127,11 @@ async function saveBirthday() {
       if (newData.success) {
         useState("userData").value = newData.user;
       }
-      showAlert($t("alert_success"), data.message.en, "success");
+      showAlert($t("alert_success"), data.message[$locale.value], "success");
       emit("save", format(new Date(newDob.value)));
       emit("close");
     } else {
-      showAlert("Info", data.message.en, "info");
+      showAlert("Info", data.message[$locale.value], "info");
     }
   } catch (error) {
     console.error("Save Birthday error:", error);

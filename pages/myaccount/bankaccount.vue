@@ -174,7 +174,7 @@ async function removeAccount(id) {
     if (data.success) {
       showAlert(
         $t("alert_success"),
-        data.message?.en || $t("account_removed"),
+        data.message[$locale.value] || $t("account_removed"),
         "success"
       );
       await fetchUserBank();

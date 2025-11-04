@@ -150,7 +150,7 @@ const spinWheel = async () => {
       isSpinning.value = false;
       showAlert(
         $t("alert_error"),
-        data.message.en || "An error occurred",
+        data.message[$locale.value] || "An error occurred",
         "error"
       );
     }

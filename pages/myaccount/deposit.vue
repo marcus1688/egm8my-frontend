@@ -653,7 +653,7 @@ async function submitBonus(depositId) {
     if (!data.success) {
       showAlert(
         $t("alert_info"),
-        data.message?.en || "Bonus submission failed"
+        data.message[$locale.value] || "Bonus submission failed"
       );
     }
   } catch (error) {
@@ -826,7 +826,10 @@ async function submitDeposit() {
       const { data } = await post("deposit", formData);
 
       if (!data.success) {
-        showAlert($t("alert_info"), data.message?.en || "Deposit failed");
+        showAlert(
+          $t("alert_info"),
+          data.message[$locale.value] || "Deposit failed"
+        );
         return;
       }
 
@@ -834,7 +837,7 @@ async function submitDeposit() {
 
       showAlert(
         $t("alert_success"),
-        data.message?.en || $t("deposit_successful"),
+        data.message[$locale.value] || $t("deposit_successful"),
         "success"
       );
       resetForm();
