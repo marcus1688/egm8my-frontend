@@ -1,8 +1,20 @@
 <template>
   <div
-    class="flex items-center p-4 lg:hover:bg-[#241017]/60 transition-colors cursor-pointer border-b border-[#3b1c23] last:border-0"
-    @click="onClick(game)"
+    class="flex items-center p-4 transition-colors border-b border-[#3b1c23] last:border-0 relative"
+    :class="[
+      isLocked
+        ? 'opacity-50 cursor-not-allowed bg-[#1a0d13]'
+        : 'cursor-pointer lg:hover:bg-[#241017]/60',
+    ]"
+    @click="isLocked ? null : onClick(game)"
   >
+    <div
+      v-if="isLocked"
+      class="absolute inset-0 bg-black/40 flex items-center justify-center z-10"
+    >
+      <i class="bi-shield-lock-fill text-white text-2xl"></i>
+    </div>
+
     <div
       class="w-16 h-16 flex items-center justify-center mr-4 relative flex-shrink-0"
     >
@@ -27,6 +39,7 @@
 const props = defineProps({
   game: { type: Object, required: true },
   onClick: { type: Function, default: () => {} },
+  isLocked: { type: Boolean, default: false },
 });
 
 const fallback = (name) =>

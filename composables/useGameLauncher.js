@@ -3,6 +3,7 @@ export const useGameLauncher = () => {
   const localePath = useLocalePath();
   const router = useRouter();
   const userData = useState("userData");
+  const userGameLocks = useState("userGameLocks");
   const gameLoading = useState("gameLoading", () => false);
   const gameCredentialsModal = ref(false);
   const gameCredentials = ref(null);
@@ -16,6 +17,13 @@ export const useGameLauncher = () => {
       alertTitle.value = $t("info");
       alertMessage.value = $t("login_required");
       alertType.value = "info";
+      alertVisible.value = true;
+      return;
+    }
+    if (userGameLocks.value?.[game.databaseName]?.lock === true) {
+      alertTitle.value = $t("alert_error");
+      alertMessage.value = $t("game_locked_message");
+      alertType.value = "error";
       alertVisible.value = true;
       return;
     }

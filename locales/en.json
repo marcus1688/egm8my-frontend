@@ -1108,5 +1108,7 @@
   "promotions_desc": "Special offers and bonuses",
   "vip_desc": "Exclusive member benefits",
   "blog_desc": "Latest news and updates",
-  "refer_a_friend_desc": "Earn rewards for referrals"
+  "refer_a_friend_desc": "Earn rewards for referrals",
+  "game_locked": "Game Locked",
+  "game_locked_message": "This game is currently locked. Please contact customer service for assistance."
 }

@@ -1108,5 +1108,7 @@
   "promotions_desc": "特别优惠与奖金",
   "vip_desc": "专属会员福利",
   "blog_desc": "最新资讯与更新",
-  "refer_a_friend_desc": "推荐好友赚取奖励"
+  "refer_a_friend_desc": "推荐好友赚取奖励",
+  "game_locked": "游戏已锁定",
+  "game_locked_message": "此游戏目前已被锁定。请联系客服寻求帮助。"
 }

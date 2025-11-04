@@ -24,6 +24,7 @@ const { socket, connectSocketIO, cleanup } = useSocketIO();
 const { showNotification } = useNotification();
 const smsStatus = useState("smsStatus", () => null);
 const luckyDrawStatus = useState("luckyDrawStatus", () => false);
+const userGameLocks = useState("userGameLocks", () => ({}));
 
 if (process.client) {
   window.$t = i18n.t;
@@ -109,6 +110,17 @@ async function fetchSmsStatus() {
   }
 }
 
+async function fetchUserGameLocks() {
+  try {
+    const { data } = await get("user/game-locks");
+    if (data.success) {
+      userGameLocks.value = data.data.gameLock || {};
+    }
+  } catch (error) {
+    console.error("Error fetching game locks:", error);
+  }
+}
+
 watchEffect(() => {
   if (allKiosks.value?.length > 0) {
     partners.value = allKiosks.value.map((kiosk) => ({
@@ -124,12 +136,11 @@ watch(
       if (oldId && oldId !== newId) {
         cleanup();
       }
-
+      await fetchUserGameLocks();
+      await fetchUnreadCount();
       if (!localStorage.getItem("adminAccess")) {
         try {
-          await fetchUnreadCount();
           await connectSocketIO(userData.value);
-
           socket.value?.off("notification");
           socket.value?.on("notification", (data) => {
             const notificationTitle =

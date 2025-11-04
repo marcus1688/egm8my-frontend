@@ -50,6 +50,22 @@
                   class="w-48 h-auto object-contain rounded-xl shadow"
                 />
                 <div
+                  v-if="isGameLocked(game.databaseName)"
+                  class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/80 flex items-center justify-center z-20 rounded-xl"
+                >
+                  <div class="text-center">
+                    <div
+                      class="bg-[#ff3344] w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2 shadow-lg"
+                    >
+                      <i class="bi bi-shield-lock-fill text-white text-lg"></i>
+                    </div>
+                    <span class="text-white text-xs font-semibold">{{
+                      $t("game_locked")
+                    }}</span>
+                  </div>
+                </div>
+                <div
+                  v-if="!isGameLocked(game.databaseName)"
                   class="max-lg:hidden absolute inset-0 bg-black/30 opacity-0 lg:group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-xl"
                 >
                   <button
@@ -79,6 +95,8 @@ import { Icon } from "@iconify/vue";
 const { launchGame, alertVisible, alertTitle, alertMessage, alertType } =
   useGameLauncher();
 const liveCasinoKiosks = useState("liveCasinoKiosks");
+const userGameLocks = useState("userGameLocks");
+const isUserLoggedIn = useState("isUserLoggedIn");
 const searchQuery = ref("");
 const sortOption = ref("popular");
 const currentPage = ref(1);
@@ -106,6 +124,11 @@ const hasGameListKiosks = computed(() =>
 const regularKiosks = computed(() =>
   liveCasinoKiosks.value.filter((kiosk) => !kiosk.gameListLink)
 );
+
+const isGameLocked = (gameDatabaseName) => {
+  if (!isUserLoggedIn.value || !gameDatabaseName) return false;
+  return userGameLocks.value?.[gameDatabaseName]?.lock === true;
+};
 
 const filteredGameList = computed(() => {
   if (!searchTerm.value) return gameList.value;

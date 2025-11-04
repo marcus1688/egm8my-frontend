@@ -53,6 +53,13 @@
             class="relative cursor-pointer group max-lg:flex-none"
           >
             <div
+              v-if="isGameLocked(provider.databaseName)"
+              class="absolute inset-0 bg-black/60 flex items-center justify-center z-20 rounded-lg"
+            >
+              <i class="bi bi-shield-lock-fill text-white text-lg"></i>
+            </div>
+
+            <div
               class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 max-lg:px-3 max-lg:py-1.5"
               :class="
                 currentKiosk?._id === provider._id
@@ -1100,6 +1107,7 @@ const { launchGame, alertVisible, alertTitle, alertMessage, alertType } =
   useGameLauncher();
 const isUserLoggedIn = useState("isUserLoggedIn");
 const slotKiosks = useState("slotKiosks");
+const userGameLocks = useState("userGameLocks");
 const searchQuery = ref("");
 const sortOption = ref("popular");
 const currentPage = ref(1);
@@ -1147,6 +1155,11 @@ const showTransferModal = ref(false);
 
 const openTransferModal = () => {
   showTransferModal.value = true;
+};
+
+const isGameLocked = (gameDatabaseName) => {
+  if (!isUserLoggedIn.value || !gameDatabaseName) return false;
+  return userGameLocks.value?.[gameDatabaseName]?.lock === true;
 };
 
 const copyToClipboard = (text) => {

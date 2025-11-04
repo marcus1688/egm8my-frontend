@@ -2,8 +2,13 @@
   <div
     v-for="game in games"
     :key="game._id"
-    @click="() => onClick(game)"
-    class="relative cursor-pointer group"
+    @click="isGameLocked(game.databaseName) ? null : onClick(game)"
+    class="relative group"
+    :class="[
+      isGameLocked(game.databaseName)
+        ? 'opacity-50 cursor-not-allowed'
+        : 'cursor-pointer',
+    ]"
   >
     <div class="relative inline-block group">
       <img
@@ -12,13 +17,25 @@
         class="w-48 h-auto object-contain rounded-xl shadow-lg"
       />
       <div
+        v-if="isGameLocked(game.databaseName)"
+        class="absolute inset-0 bg-black/60 flex items-center justify-center z-20 rounded-xl"
+      >
+        <div class="text-center">
+          <i class="bi bi-shield-lock-fill text-white text-4xl mb-2"></i>
+          <p class="text-white text-xs font-medium">{{ $t("game_locked") }}</p>
+        </div>
+      </div>
+
+      <div
         v-if="game.isHotGame"
-        class="absolute top-0 right-0 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1"
+        class="absolute top-0 right-0 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1 z-10"
       >
         <Icon icon="mdi:fire" class="text-orange-400" />
         {{ $t("hot") }}
       </div>
+
       <div
+        v-if="!isGameLocked(game.databaseName)"
         class="max-lg:hidden absolute inset-0 bg-black/50 opacity-0 lg:group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-xl"
       >
         <button
@@ -42,6 +59,10 @@ defineProps({
   onClick: {
     type: Function,
     default: () => {},
+  },
+  isGameLocked: {
+    type: Function,
+    default: () => false,
   },
 });
 

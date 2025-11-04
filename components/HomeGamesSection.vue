@@ -126,6 +126,7 @@
           v-if="activeCategory === 0"
           :games="slotKiosks"
           :onClick="launchGame"
+          :isGameLocked="isGameLocked"
         />
 
         <!-- Live Casino -->
@@ -133,6 +134,7 @@
           v-if="activeCategory === 1"
           :games="liveCasinoKiosks"
           :onClick="launchGame"
+          :isGameLocked="isGameLocked"
         />
 
         <!-- Sports -->
@@ -140,6 +142,7 @@
           v-if="activeCategory === 2"
           :games="sportsKiosks"
           :onClick="launchGame"
+          :isGameLocked="isGameLocked"
         />
 
         <!-- E-Sports -->
@@ -147,6 +150,7 @@
           v-if="activeCategory === 3"
           :games="esportsKiosks"
           :onClick="launchGame"
+          :isGameLocked="isGameLocked"
         />
 
         <!-- Fishing -->
@@ -154,6 +158,7 @@
           v-if="activeCategory === 4"
           :games="fishingKiosks"
           :onClick="launchGame"
+          :isGameLocked="isGameLocked"
         />
 
         <!-- Lottery Games -->
@@ -161,6 +166,7 @@
           v-if="activeCategory === 5"
           :games="lotteryKiosks"
           :onClick="launchGame"
+          :isGameLocked="isGameLocked"
         />
       </div>
 
@@ -175,6 +181,7 @@
             :key="game._id"
             :game="game"
             :onClick="launchGame"
+            :isLocked="isGameLocked(game.databaseName)"
           />
         </template>
 
@@ -184,6 +191,7 @@
             :key="game._id"
             :game="game"
             :onClick="launchGame"
+            :isLocked="isGameLocked(game.databaseName)"
           />
         </template>
 
@@ -193,6 +201,7 @@
             :key="game._id"
             :game="game"
             :onClick="launchGame"
+            :isLocked="isGameLocked(game.databaseName)"
           />
         </template>
 
@@ -202,6 +211,7 @@
             :key="game._id"
             :game="game"
             :onClick="launchGame"
+            :isLocked="isGameLocked(game.databaseName)"
           />
         </template>
 
@@ -211,6 +221,7 @@
             :key="game._id"
             :game="game"
             :onClick="launchGame"
+            :isLocked="isGameLocked(game.databaseName)"
           />
         </template>
 
@@ -220,6 +231,7 @@
             :key="game._id"
             :game="game"
             :onClick="launchGame"
+            :isLocked="isGameLocked(game.databaseName)"
           />
         </template>
       </div>
@@ -265,6 +277,13 @@ const fishingKiosks = useState("fishingKiosks");
 const lotteryKiosks = useState("lotteryKiosks");
 const activeCategory = ref(0);
 const viewMode = ref("grid");
+const userGameLocks = useState("userGameLocks");
+const isUserLoggedIn = useState("isUserLoggedIn");
+
+const isGameLocked = (gameDatabaseName) => {
+  if (!isUserLoggedIn.value) return false;
+  return userGameLocks.value?.[gameDatabaseName]?.lock === true;
+};
 
 const getCategoryIcon = (categoryName) => {
   const iconMap = {

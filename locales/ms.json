@@ -1108,5 +1108,7 @@
   "promotions_desc": "Tawaran istimewa dan bonus",
   "vip_desc": "Faedah ahli eksklusif",
   "blog_desc": "Berita dan kemas kini terkini",
-  "refer_a_friend_desc": "Perolehi ganjaran untuk rujukan"
+  "refer_a_friend_desc": "Perolehi ganjaran untuk rujukan",
+  "game_locked": "Permainan Dikunci",
+  "game_locked_message": "Permainan ini sedang dikunci. Sila hubungi khidmat pelanggan untuk bantuan."
 }
