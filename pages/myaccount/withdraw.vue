@@ -467,7 +467,7 @@ const submitWithdraw = async () => {
     if (response.data.success) {
       showAlert(
         $t("alert_success"),
-        response.data.message.en || $t("withdrawal_success"),
+        response.data.message[$locale.value] || $t("withdrawal_success"),
         "success"
       );
       fetchUserData();
