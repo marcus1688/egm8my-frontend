@@ -94,6 +94,9 @@ async function fetchKiosks() {
     lotteryKiosks.value = data.data.filter(
       (kiosk) => kiosk.categoryId?.name === "Lottery"
     );
+    if (userData.value?._id) {
+      await fetchUserGameLocks();
+    }
   } catch (error) {
     console.error("Failed to fetch kiosks:", error);
   }
@@ -112,10 +115,32 @@ async function fetchSmsStatus() {
 
 async function fetchUserGameLocks() {
   try {
-    const { data } = await get("user/game-locks");
-    if (data.success) {
-      userGameLocks.value = data.data.gameLock || {};
+    const [locksResponse, restrictionsResponse] = await Promise.all([
+      get("user/game-locks"),
+      get("user/game-restrictions"),
+    ]);
+    console.log(restrictionsResponse.data);
+    const gameLocks = {};
+    if (locksResponse.data.success) {
+      Object.assign(gameLocks, locksResponse.data.data.gameLock || {});
     }
+    if (
+      restrictionsResponse.data.success &&
+      restrictionsResponse.data.hasRestrictions
+    ) {
+      const allowedGames = restrictionsResponse.data.allowedGames;
+      allKiosks.value.forEach((kiosk) => {
+        if (kiosk.databaseName) {
+          if (!allowedGames.includes(kiosk.databaseName)) {
+            gameLocks[kiosk.databaseName] = {
+              lock: true,
+              reason: "promotion_restriction",
+            };
+          }
+        }
+      });
+    }
+    userGameLocks.value = gameLocks;
   } catch (error) {
     console.error("Error fetching game locks:", error);
   }
@@ -136,7 +161,7 @@ watch(
       if (oldId && oldId !== newId) {
         cleanup();
       }
-      await fetchUserGameLocks();
+
       await fetchUnreadCount();
       if (!localStorage.getItem("adminAccess")) {
         try {
