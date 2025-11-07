@@ -1111,5 +1111,6 @@
   "refer_a_friend_desc": "Earn rewards for referrals",
   "game_locked": "Game Locked",
   "game_locked_message": "This game is currently locked. Please contact customer service for assistance.",
-  "real_time_transaction_updates": "Live transaction updates"
+  "real_time_transaction_updates": "Live transaction updates",
+  "top_players_weekly_rankings": "Top players with highest valid turnover this week"
 }

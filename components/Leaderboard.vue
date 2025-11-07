@@ -1,156 +1,105 @@
 <template>
-  <section class="py-4">
-    <div class="mx-auto containerWid">
-      <div class="rounded-lg overflow-hidden shadow-md border border-[#3b1c23]">
-        <div
-          class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] p-3 flex justify-between items-center"
+  <section
+    v-if="leaderboardData.length > 0"
+    class="py-4 containerWid max-lg:py-2"
+  >
+    <!-- Header Section -->
+    <div class="my-4">
+      <div class="flex items-center justify-between mb-1">
+        <h2
+          class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl flex items-center gap-2"
         >
-          <div class="flex items-center gap-2">
-            <i class="bi bi-trophy text-yellow-300"></i>
-            <h3 class="text-[#f0eaea] font-bold">
-              {{ $t("weekly_turnover_leaderboard") }}
-            </h3>
-          </div>
-          <div
-            class="bg-[#241017] text-[#f0eaea] text-xs rounded-lg px-3 py-1 font-medium max-lg:hidden border border-[#3b1c23]"
-          >
-            {{ formatDatePeriod(metadata.startDate, metadata.endDate) }}
-          </div>
-        </div>
-
+          {{ $t("weekly_turnover_leaderboard") }}
+        </h2>
         <div
-          class="lg:hidden bg-[#1a0c0f] border-b border-[#3b1c23] p-2 text-center"
+          class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs rounded-full font-bold shadow-lg shadow-[#ff3344]/30 max-lg:text-[10px] max-lg:px-2 max-lg:py-1"
         >
-          <div class="text-[#ff3344] text-xs font-medium inline-block">
-            {{ formatDatePeriod(metadata.startDate, metadata.endDate) }}
-          </div>
+          <i class="bi bi-calendar-week"></i>
+          <span>{{
+            formatDatePeriod(metadata.startDate, metadata.endDate)
+          }}</span>
         </div>
+      </div>
 
-        <div class="overflow-hidden">
+      <div class="flex items-center gap-3">
+        <p class="text-sm text-[#b37a7a] max-lg:text-xs">
+          {{ $t("top_players_weekly_rankings") }}
+        </p>
+        <div
+          class="flex-1 h-px bg-gradient-to-r from-[#3b1c23] to-transparent"
+        ></div>
+      </div>
+    </div>
+
+    <div
+      class="bg-[#241017] rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg"
+    >
+      <div>
+        <div class="overflow-y-auto max-h-[600px] leaderboard-scroll">
           <div
-            v-if="isLoading"
-            class="py-16 flex flex-col items-center justify-center bg-[#1a0c0f]"
+            v-for="(user, index) in leaderboardData"
+            :key="user.username"
+            :class="[
+              'px-6 py-4 flex items-center gap-4 transition-colors max-lg:px-4 max-lg:py-3 max-lg:gap-3',
+              index % 2 === 0 ? 'bg-[#1A0D13]' : 'bg-[#241017]',
+              'lg:hover:bg-[#1f0e13]',
+            ]"
           >
             <div
-              class="w-12 h-12 border-4 border-[#ff3344] border-t-transparent rounded-full animate-spin mb-4"
-            ></div>
-            <p class="text-[#b37a7a]">{{ $t("loading") }}...</p>
-          </div>
-
-          <div v-else-if="error" class="py-16 text-center bg-[#1a0c0f]">
-            <div
-              class="w-16 h-16 mx-auto bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] mb-4 border border-[#3b1c23]"
+              :class="[
+                'w-10 h-10 max-sm:w-8 max-sm:h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0 max-lg:w-9 max-lg:h-9 max-lg:text-sm  max-sm:text-xs',
+                index === 0 ? 'bg-[#fbbf24] text-white' : '',
+                index === 1 ? 'bg-[#e5e7eb] text-[#1a1a1a]' : '',
+                index === 2 ? 'bg-[#fb923c] text-white' : '',
+                index > 2
+                  ? 'bg-[#15090e] text-[#f0eaea] border border-[#3b1c23]'
+                  : '',
+              ]"
             >
-              <i class="bi bi-exclamation-triangle text-2xl"></i>
+              <i v-if="index === 0" class="bi bi-trophy-fill"></i>
+              <i v-else-if="index === 1" class="bi bi-trophy-fill"></i>
+              <i v-else-if="index === 2" class="bi bi-trophy-fill"></i>
+              <span v-else>{{ index + 1 }}</span>
             </div>
-            <h4 class="text-xl font-medium text-[#f0eaea] mb-2">
-              {{ $t("error") }}
-            </h4>
-            <p class="text-[#b37a7a] max-w-md mx-auto">{{ error }}</p>
-            <button
-              @click="fetchLeaderboardData"
-              class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors"
-            >
-              {{ $t("try_again") }}
-            </button>
-          </div>
 
-          <div
-            v-else-if="!leaderboardData.length"
-            class="py-16 text-center bg-[#1a0c0f]"
-          >
-            <div
-              class="w-16 h-16 mx-auto bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] mb-4 border border-[#3b1c23]"
-            >
-              <i class="bi bi-info-circle text-2xl"></i>
-            </div>
-            <h4 class="text-xl font-medium text-[#f0eaea] mb-2">
-              {{ $t("no_data_available") }}
-            </h4>
-            <p class="text-[#b37a7a] max-w-md mx-auto">
-              {{ $t("no_data_message") }}
-            </p>
-          </div>
-
-          <div v-else>
-            <div class="grid grid-cols-1 divide-y divide-[#3b1c23]">
-              <div
-                v-for="(user, index) in leaderboardData"
-                :key="user.username"
-              >
+            <div class="flex items-center gap-3 min-w-0 flex-1">
+              <div class="min-w-0 flex-1">
                 <div
-                  :class="[
-                    'p-4 flex items-center gap-3 transition-colors',
-                    index < 3
-                      ? 'bg-gradient-to-r'
-                      : index % 2 === 0
-                      ? 'bg-[#1a0c0f]'
-                      : 'bg-[#1f0e13]',
-                    index === 0 ? 'from-[#2a1810] to-[#3d2817]' : '',
-                    index === 1 ? 'from-[#1c1c1c] to-[#2d2d2d]' : '',
-                    index === 2 ? 'from-[#2a1610] to-[#3d2415]' : '',
-                    'lg:hover:bg-[#2a0f14]',
-                  ]"
+                  class="font-semibold text-[#f0eaea] truncate max-lg:text-sm max-sm:text-xs"
                 >
-                  <div
-                    :class="[
-                      'flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white font-bold shadow-sm',
-                      index === 0
-                        ? 'bg-gradient-to-br from-amber-400 to-amber-600'
-                        : '',
-                      index === 1
-                        ? 'bg-gradient-to-br from-slate-400 to-slate-600'
-                        : '',
-                      index === 2
-                        ? 'bg-gradient-to-br from-orange-400 to-orange-600'
-                        : '',
-                      index > 2
-                        ? 'bg-gradient-to-br from-[#a1122d] to-[#c21b3a]'
-                        : '',
-                    ]"
-                  >
-                    <span v-if="index > 2">{{ index + 1 }}</span>
-                    <i
-                      v-else-if="index === 0"
-                      class="bi bi-trophy-fill text-yellow-200"
-                    ></i>
-                    <i
-                      v-else-if="index === 1"
-                      class="bi bi-trophy text-white"
-                    ></i>
-                    <i
-                      v-else-if="index === 2"
-                      class="bi bi-award text-white"
-                    ></i>
-                  </div>
-                  <div class="flex-grow min-w-0">
-                    <div class="font-medium text-[#f0eaea] truncate">
-                      {{ maskUsername(user.username) }}
-                    </div>
-                    <div class="text-xs text-[#b37a7a]">
-                      {{ $t("player_id") }}
-                    </div>
-                  </div>
-                  <div class="text-right flex-shrink-0">
-                    <div class="font-bold text-[#ff3344]">
-                      MYR {{ formatNumber(user.totalValidTurnover) }}
-                    </div>
-                    <div class="text-xs text-[#b37a7a]">
-                      {{ $t("valid_turnover") }}
-                    </div>
-                  </div>
+                  {{ maskUsername(user.username) }}
+                </div>
+                <div class="text-xs text-[#b37a7a] max-lg:text-[10px]">
+                  {{ $t("player_id") }}
                 </div>
               </div>
             </div>
 
-            <div class="bg-[#15090e] border-t border-[#3b1c23] p-3 text-center">
+            <div class="text-right flex-shrink-0">
               <div
-                class="text-sm text-[#b37a7a] flex items-center justify-center gap-2 max-lg:text-xs"
+                :class="[
+                  'font-bold text-lg max-lg:text-base max-sm:text-sm',
+                  index === 0 ? 'text-[#fbbf24]' : '',
+                  index === 1 ? 'text-[#e5e7eb]' : '',
+                  index === 2 ? 'text-[#fb923c]' : '',
+                  index > 2 ? 'text-[#4ade80]' : '',
+                ]"
               >
-                <i class="bi bi-info-circle"></i>
-                <span>{{ $t("leaderboard_update_message") }}</span>
+                {{ formatNumber(user.totalValidTurnover) }}
               </div>
+              <div class="text-xs text-[#b37a7a] max-lg:text-[10px]">MYR</div>
             </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] border-t border-[#3b1c23] px-6 py-4 max-lg:px-4 max-lg:py-3"
+        >
+          <div
+            class="flex items-center justify-center gap-2 text-xs text-[#b37a7a] max-lg:text-[10px]"
+          >
+            <i class="bi bi-info-circle text-[#ff3344]"></i>
+            <span>{{ $t("leaderboard_update_message") }}</span>
           </div>
         </div>
       </div>
@@ -299,20 +248,6 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.animate-pulse {
-  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -324,5 +259,30 @@ onMounted(async () => {
 
 .animate-spin {
   animation: spin 1s linear infinite;
+}
+
+/* Custom Scrollbar */
+.leaderboard-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.leaderboard-scroll::-webkit-scrollbar-track {
+  background: #15090e;
+  border-radius: 10px;
+}
+
+.leaderboard-scroll::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 10px;
+}
+
+.leaderboard-scroll::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
+}
+
+/* Firefox */
+.leaderboard-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3b1c23 #15090e;
 }
 </style>
