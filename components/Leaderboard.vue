@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="leaderboardData.length > 0"
-    class="py-4 containerWid max-lg:py-2"
+    class="py-4 max-lg:hidden containerWid max-lg:py-2"
   >
     <!-- Header Section -->
     <div class="my-4">
