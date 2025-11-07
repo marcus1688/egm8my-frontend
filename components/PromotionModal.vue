@@ -8,7 +8,7 @@
       >
         <div
           v-show="show"
-          class="bg-[#15090e] border border-[#3b1c23] rounded-xl shadow-2xl max-w-4xl w-full overflow-hidden max-h-[70vh] flex flex-col"
+          class="bg-[#15090e] border border-[#3b1c23] rounded-xl shadow-2xl max-w-4xl w-full overflow-hidden max-h-[70vh] h-[70vh] flex flex-col"
           :class="show ? 'animate-popupIn' : 'animate-popupOut'"
           role="dialog"
           aria-modal="true"
@@ -48,7 +48,7 @@
           >
             <button
               @click="$emit('close')"
-              class="w-full py-2.5 px-4 bg-transparent border border-[#ff3344] text-[#ff3344] rounded-lg font-semibold lg:hover:bg-[#ff3344] lg:hover:text-white transition-all max-lg:py-2 max-lg:text-sm max-sm:text-xs"
+              class="w-full py-2.5 px-4 bg-transparent border border-[#ff3344] text-[#ff3344] rounded-lg font-semibold lg:hover:bg-[#ff3344] lg:hover:text-white transition-all max-lg:py-2 max-lg:text-sm"
             >
               {{ $t("close") }}
             </button>
