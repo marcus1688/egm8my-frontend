@@ -7,6 +7,14 @@
       :type="alertType"
       @close="alertVisible = false"
     />
+
+    <CompanyBankDetails
+      :show="showBankModal"
+      :bank="selectedBankForModal"
+      @close="closeBankModal"
+      @select="confirmBankSelection"
+      @copy="copyToClipboard"
+    />
   </Teleport>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
@@ -164,13 +172,13 @@
         <label class="block font-semibold mb-2 text-base">{{
           $t("select_bank")
         }}</label>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-lg:gap-2">
+        <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
           <button
             v-for="bank in depositbank"
             :key="bank._id"
-            @click="selectBank(bank)"
+            @click="openBankModal(bank)"
             :class="[
-              'p-4 rounded-lg flex items-start gap-3 text-left transition-all border max-lg:p-2.5',
+              ' rounded-lg flex items-center justify-center transition-all border  w-32 h-32',
               selectedBank && selectedBank.bankaccount === bank.bankaccount
                 ? 'bg-[#ff3344]/10 border-[#ff3344]'
                 : 'bg-[#241017] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
@@ -180,36 +188,17 @@
               v-if="bank.qrimage"
               :src="bank.qrimage"
               :alt="bank.bankname"
-              class="w-12 h-12 object-contain"
+              class="w-full h-full object-contain"
             />
             <img
               v-else
               src="/images/deposit/bank.png"
               :alt="bank.bankname"
-              class="w-10 h-10 object-contain max-lg:w-8 max-lg:h-8"
+              class="w-full h-full object-contain"
             />
-            <div class="flex-1 min-w-0">
-              <p class="font-semibold text-[#f0eaea] mb-0.5 text-[0.9rem]">
-                {{ bank.bankname }}
-              </p>
-              <p class="text-sm text-[#b37a7a] mb-1">{{ bank.ownername }}</p>
-              <div class="flex items-center gap-2">
-                <p class="text-sm text-[#b37a7a] truncate">
-                  {{ bank.bankaccount }}
-                </p>
-                <button
-                  type="button"
-                  @click.stop="copyToClipboard(bank.bankaccount)"
-                  class="text-[#ff3344] lg:hover:text-[#cc2a3a] transition-colors flex-shrink-0"
-                >
-                  <Icon icon="mdi:content-copy" class="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
           </button>
         </div>
       </div>
-
       <div class="mb-4">
         <label class="block font-semibold mb-2 text-base">
           {{ $t("promotion_optional") }}
@@ -398,6 +387,26 @@ const selectedDepositAmount = ref("");
 const selectedBank = ref(null);
 const amounts = [50, 100, 500, 1000, 3000];
 
+const showBankModal = ref(false);
+const selectedBankForModal = ref(null);
+
+function openBankModal(bank) {
+  selectedBankForModal.value = bank;
+  showBankModal.value = true;
+}
+
+function closeBankModal() {
+  showBankModal.value = false;
+  setTimeout(() => {
+    selectedBankForModal.value = null;
+  }, 300);
+}
+
+function confirmBankSelection(bank) {
+  selectedBank.value = bank;
+  closeBankModal();
+}
+
 function selectOption(option) {
   selectedOption.value = option;
   if (option === "fast_deposit" && paymentGateways.value.length > 0) {
@@ -437,17 +446,15 @@ function removeReceipt() {
 }
 
 function resetForm() {
+  console.log(selectedBank.value, "Hihasidad");
   selectedOption.value = "fast_deposit";
   selectedDepositAmount.value = "";
   selectedBank.value = null;
   receipt.value = null;
   receiptPreview.value = "";
   selectedPromotion.value = null;
+  selectedBank.value = null;
   selectedPaymentGateway.value = null;
-  selectedDGPayBank.value = null;
-  selectedTruePayBank.value = null;
-  selectedLuxePayBank.value = null;
-  selectedSKL99Bank.value = null;
   if (fileInput.value) fileInput.value.value = "";
 }
 
@@ -742,78 +749,6 @@ function selectPromotion(promotion) {
   isPromotionDropdownOpen.value = false;
 }
 
-const selectedDGPayBank = ref(null);
-const dgpayBanks = computed(() => {
-  const dgpay = paymentGateways.value.find((g) => g.name === "DGPay");
-  return (
-    dgpay?.banks
-      ?.filter((bank) => bank.active)
-      .map((bank) => ({
-        name: bank.bankname,
-        code: bank.bankcode,
-        logo: bank.bankimage,
-      })) || []
-  );
-});
-
-const selectedTruePayBank = ref(null);
-const truepayBanks = computed(() => {
-  const truepay = paymentGateways.value.find((g) => g.name === "TruePay");
-  return (
-    truepay?.banks
-      ?.filter((bank) => bank.active)
-      .map((bank) => ({
-        name: bank.bankname,
-        code: bank.bankcode,
-        logo: bank.bankimage,
-      })) || []
-  );
-});
-
-const selectedLuxePayBank = ref(null);
-const luxepayBanks = computed(() => {
-  const luxepay = paymentGateways.value.find((g) => g.name === "LuxePay");
-  return (
-    luxepay?.banks
-      ?.filter((bank) => bank.active)
-      .map((bank) => ({
-        name: bank.bankname,
-        code: bank.bankcode,
-        logo: bank.bankimage,
-      })) || []
-  );
-});
-
-const selectedSKL99Bank = ref(null);
-const skl99Banks = computed(() => {
-  const skl99 = paymentGateways.value.find((g) => g.name === "SKL99");
-  return (
-    skl99?.banks
-      ?.filter((bank) => bank.active)
-      .map((bank) => ({
-        name: bank.bankname,
-        code: bank.bankcode,
-        logo: bank.bankimage,
-      })) || []
-  );
-});
-
-function selectDGPayBank(bank) {
-  selectedDGPayBank.value = bank;
-}
-
-function selectTruePayBank(bank) {
-  selectedTruePayBank.value = bank;
-}
-
-function selectLuxePayBank(bank) {
-  selectedLuxePayBank.value = bank;
-}
-
-function selectSKL99Bank(bank) {
-  selectedSKL99Bank.value = bank;
-}
-
 const fetchAllGameBalances = async () => {
   try {
     const { data } = await post("game/checkallgamebalance");
@@ -866,9 +801,6 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-/* ... existing styles ... */
-
-/* Dropdown transition */
 .dropdown-enter-active,
 .dropdown-leave-active {
   transition: all 0.2s ease;
@@ -880,7 +812,6 @@ onMounted(async () => {
   transform: translateY(-10px);
 }
 
-/* Custom scrollbar for dropdown */
 .scrollbar-thin::-webkit-scrollbar {
   width: 4px;
 }
@@ -896,5 +827,31 @@ onMounted(async () => {
 
 .scrollbar-thin::-webkit-scrollbar-thumb:hover {
   background: #ff3344;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Popup animation for modal */
+@keyframes popupIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-popupIn {
+  animation: popupIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 </style>

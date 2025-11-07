@@ -1123,5 +1123,8 @@
   "learn_more": "Learn More",
   "no_promotions": "No Promotions Available",
   "no_promotions_in_category": "There are currently no promotions in this category",
-  "ok": "OK"
+  "ok": "OK",
+  "bank_details": "Bank Details",
+  "account_holder": "Account Holder",
+  "select_bank_modal": "Select Bank"
 }
