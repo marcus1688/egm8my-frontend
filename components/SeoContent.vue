@@ -6,37 +6,55 @@
       seoData.contentBlocks &&
       seoData.contentBlocks.length > 0
     "
-    class="py-4 containerWid max-lg:pt-2 max-lg:pb-6"
+    class="py-8 containerWid max-lg:py-4"
   >
-    <div
-      class="bg-[#241017]/60 border border-[#3b1c23] rounded-lg p-6 max-lg:p-4 max-md:p-3 text-[#b37a7a]"
-    >
+    <div class="mx-auto px-4 max-lg:px-2">
       <div
-        :class="{
-          'max-h-[300px] max-lg:max-h-[250px] max-md:max-h-[200px] overflow-hidden':
-            !isExpanded,
-        }"
-        class="space-y-6 max-lg:space-y-4 max-md:space-y-3 transition-all duration-300"
+        class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden shadow-lg"
       >
         <div
-          v-for="block in seoData.contentBlocks"
-          :key="block._id"
-          class="space-y-4 max-lg:space-y-3 max-md:space-y-2 pb-6 max-lg:pb-4 max-md:pb-3 border-b border-[#3b1c23] last:border-b-0"
+          :class="{
+            'max-h-[400px] overflow-hidden relative': !isExpanded,
+          }"
+          class="transition-all duration-500"
         >
           <div
-            v-html="$i18n.locale === 'zh' ? block.contentCN : block.content"
-            class="seo-content"
+            class="p-8 space-y-6 max-lg:p-6 max-lg:space-y-4 max-md:p-4 max-md:space-y-3"
+          >
+            <div
+              v-for="block in seoData.contentBlocks"
+              :key="block._id"
+              class="space-y-4 max-lg:space-y-3 pb-6 max-lg:pb-4 border-b border-[#3b1c23] last:border-b-0 last:pb-0"
+            >
+              <div
+                v-html="$i18n.locale === 'zh' ? block.contentCN : block.content"
+                class="seo-content"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Fade Overlay when collapsed -->
+          <div
+            v-if="!isExpanded"
+            class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#241017] to-transparent pointer-events-none"
           ></div>
         </div>
-      </div>
 
-      <div class="mt-4 max-md:mt-3 text-center">
-        <button
-          @click="toggleExpand"
-          class="px-6 py-2 max-md:px-4 max-md:py-1.5 max-md:text-sm bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white rounded-lg transition duration-300"
+        <!-- Toggle Button -->
+        <div
+          class="border-t border-[#3b1c23] p-4 text-center bg-gradient-to-r from-[#1A0D13] to-[#15090e]"
         >
-          {{ isExpanded ? $t("show_less") : $t("read_more") }}
-        </button>
+          <button
+            @click="toggleExpand"
+            class="group inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white rounded-lg font-semibold transition-all duration-300 lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/30 max-md:px-4 max-md:py-2 max-md:text-sm"
+          >
+            <span>{{ isExpanded ? $t("show_less") : $t("read_more") }}</span>
+            <i
+              :class="isExpanded ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"
+              class="transition-transform duration-300"
+            ></i>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -108,24 +126,47 @@ watch(
 <style>
 .seo-content {
   color: #b37a7a;
-  line-height: 1.7;
+  line-height: 1.8;
+  font-size: 15px;
 }
 
-.seo-content h1,
-.seo-content h2,
-.seo-content h3,
-.seo-content h4,
-.seo-content h5,
-.seo-content h6 {
+.seo-content h1 {
   color: #f0eaea;
   font-weight: bold;
+  font-size: 2rem;
   margin-top: 1.5em;
   margin-bottom: 0.75em;
 }
 
+.seo-content h2 {
+  color: #f0eaea;
+  font-weight: bold;
+  font-size: 1.75rem;
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.seo-content h3 {
+  color: #f0eaea;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+}
+
+.seo-content h4,
+.seo-content h5,
+.seo-content h6 {
+  color: #f0eaea;
+  font-weight: 600;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+
 .seo-content p {
-  margin-bottom: 1em;
+  margin-bottom: 1.25em;
   color: #b37a7a;
+  line-height: 1.8;
 }
 
 .seo-content p:empty {
@@ -135,54 +176,69 @@ watch(
 .seo-content a {
   color: #ff3344;
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid transparent;
 }
 
 .seo-content a:hover {
-  color: #c21b3a;
-  text-decoration: underline;
+  color: #ff5566;
+  border-bottom-color: #ff3344;
 }
 
 .seo-content ul,
 .seo-content ol {
-  margin: 1em 0;
-  padding-left: 1.5em;
+  margin: 1.5em 0;
+  padding-left: 1.75em;
   color: #b37a7a;
 }
 
 .seo-content li {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.75em;
+  line-height: 1.7;
+}
+
+.seo-content ul li::marker {
+  color: #ff3344;
+}
+
+.seo-content ol li::marker {
+  color: #ff3344;
+  font-weight: bold;
 }
 
 .seo-content table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1.5em 0;
-  border-radius: 8px;
+  margin: 2em 0;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   border: 1px solid #3b1c23;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .seo-content th,
 .seo-content td {
   border: 1px solid #3b1c23;
-  padding: 10px 15px;
+  padding: 12px 16px;
   text-align: left;
 }
 
 .seo-content th {
-  background: linear-gradient(135deg, #a1122d, #c21b3a);
-  color: #f0eaea;
+  background: linear-gradient(135deg, #ff3344, #cc2a3a);
+  color: #ffffff;
   font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
 }
 
 .seo-content tr:nth-child(even) {
-  background-color: rgba(36, 16, 23, 0.3);
+  background-color: rgba(36, 16, 23, 0.4);
 }
 
 .seo-content tr:nth-child(odd) {
-  background-color: rgba(36, 16, 23, 0.2);
+  background-color: rgba(26, 13, 19, 0.4);
 }
 
 .seo-content tr:hover {
@@ -193,42 +249,46 @@ watch(
 .seo-content strong,
 .seo-content b {
   color: #f0eaea;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .seo-content em,
 .seo-content i {
-  color: #b37a7a;
+  color: #d4a5a5;
   font-style: italic;
 }
 
 .seo-content blockquote {
   border-left: 4px solid #ff3344;
-  padding-left: 1em;
-  margin: 1.5em 0;
+  padding: 1.25em 1.5em;
+  margin: 2em 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 51, 68, 0.05),
+    rgba(204, 42, 58, 0.05)
+  );
+  border-radius: 8px;
+  color: #d4a5a5;
   font-style: italic;
-  background-color: rgba(255, 51, 68, 0.1);
-  padding: 1em;
-  border-radius: 4px;
-  color: #b37a7a;
 }
 
 .seo-content code {
-  background-color: rgba(36, 16, 23, 0.8);
-  padding: 0.2em 0.4em;
-  border-radius: 3px;
-  font-family: monospace;
-  color: #ff3344;
+  background-color: rgba(36, 16, 23, 0.9);
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  font-family: "Courier New", monospace;
+  color: #ff5566;
   border: 1px solid #3b1c23;
+  font-size: 0.9em;
 }
 
 .seo-content pre {
-  background: rgba(36, 16, 23, 0.8);
-  padding: 1em;
-  border-radius: 8px;
+  background: rgba(21, 9, 14, 0.9);
+  padding: 1.5em;
+  border-radius: 12px;
   overflow-x: auto;
   border: 1px solid #3b1c23;
-  margin: 1.5em 0;
+  margin: 2em 0;
 }
 
 .seo-content pre code {
@@ -244,9 +304,36 @@ watch(
   background: linear-gradient(
     to right,
     rgba(255, 51, 68, 0),
-    rgba(255, 51, 68, 0.75),
+    rgba(255, 51, 68, 0.5),
     rgba(255, 51, 68, 0)
   );
-  margin: 2em 0;
+  margin: 3em 0;
+}
+
+@media (max-width: 768px) {
+  .seo-content {
+    font-size: 14px;
+  }
+
+  .seo-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .seo-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .seo-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .seo-content table {
+    font-size: 13px;
+  }
+
+  .seo-content th,
+  .seo-content td {
+    padding: 8px 10px;
+  }
 }
 </style>

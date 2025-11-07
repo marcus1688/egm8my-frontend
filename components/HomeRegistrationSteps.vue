@@ -65,7 +65,7 @@
       <div class="mt-12 text-center">
         <NuxtLinkLocale :to="isUserLoggedIn ? '/games/slots' : '/register'">
           <button
-            class="pulse-button homeMainTxt2 px-8 py-3.5 bg-[#a1122d] text-white lg:hover:bg-[#c21b3a] rounded-lg font-bold transition-all duration-300 inline-flex items-center gap-2 lg:hover:gap-3 shadow-lg shadow-[#a1122d]/20 lg:hover:shadow-xl lg:hover:shadow-[#c21b3a]/30 lg:hover:-translate-y-1 border border-[#ff3344]"
+            class="pulse-button homeMainTxt2 px-8 py-3.5 bg-[#a1122d] text-white lg:hover:bg-[#c21b3a] rounded-lg font-bold transition-all duration-300 inline-flex items-center gap-2 lg:hover:gap-3 shadow-lg shadow-[#a1122d]/20 lg:hover:shadow-xl lg:hover:shadow-[#c21b3a]/30 border border-[#ff3344]"
           >
             {{ isUserLoggedIn ? $t("play_now") : $t("sign_up_now") }}
             <i

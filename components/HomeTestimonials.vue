@@ -1,13 +1,13 @@
 <template>
-  <section class="py-4 containerWid max-lg:pt-2 max-lg:pb-6">
-    <div class="mx-auto px-4 max-lg:px-0">
+  <section class="py-12 containerWid max-lg:py-6">
+    <div class="mx-auto px-4 max-lg:px-2">
       <!-- Section Header -->
-      <div class="mb-8 max-lg:mb-3">
-        <h2 class="homeMainTxt3 font-bold text-[#f0eaea] mb-2">
+      <div class="mb-10 text-center max-lg:mb-6">
+        <h2 class="text-4xl font-bold text-[#f0eaea] mb-3 max-lg:text-2xl">
           {{ $t("what_our_players_say") }}
         </h2>
-        <div class="w-16 h-1 bg-[#ff3344] rounded-full"></div>
       </div>
+
       <!-- Testimonial Slider -->
       <swiper
         :modules="[Navigation, Autoplay, Pagination]"
@@ -17,10 +17,6 @@
         :autoplay="{
           delay: 5000,
           disableOnInteraction: false,
-        }"
-        :navigation="{
-          nextEl: '.testimonial-next-btn',
-          prevEl: '.testimonial-prev-btn',
         }"
         :pagination="{
           clickable: true,
@@ -41,66 +37,59 @@
         <swiper-slide
           v-for="(review, index) in reviews"
           :key="index"
-          class="h-auto pb-4"
+          class="h-auto"
         >
           <div
-            class="bg-[#241017] rounded-xl shadow-lg shadow-[#ff3344]/10 p-6 h-full min-h-[300px] max-lg:min-h-[200px] flex flex-col relative overflow-hidden max-lg:p-4 border border-[#3b1c23]"
+            class="bg-[#241017] rounded-xl border border-[#3b1c23] p-6 flex flex-col transition-all duration-300 lg:hover:border-[#ff3344] lg:hover:shadow-lg max-lg:p-5 h-[320px] max-lg:h-[280px]"
           >
-            <!-- Colored corner accent -->
-            <div
-              class="absolute top-0 right-0 w-16 h-16 transform translate-x-8 -translate-y-8 rotate-45 bg-[#ff3344] opacity-10"
-            ></div>
-
-            <!-- Rating -->
-            <div class="flex mb-3 max-[1023px]:pl-2 pl-4 text-yellow-400">
+            <!-- Rating Stars -->
+            <div class="flex gap-0.5 mb-4 flex-shrink-0">
               <i
-                v-for="n in Math.floor(review.rating)"
+                v-for="n in 5"
                 :key="n"
-                class="bi bi-star-fill"
+                :class="
+                  n <= Math.floor(review.rating)
+                    ? 'bi bi-star-fill text-[#fbbf24]'
+                    : 'bi bi-star text-[#3b1c23]'
+                "
               ></i>
-              <i v-if="review.rating % 1 !== 0" class="bi bi-star-half"></i>
             </div>
 
-            <!-- Quote with truncation -->
-            <div class="relative z-10 mb-4 flex-grow">
-              <div class="pl-4 max-[1023px]:pl-2 relative">
-                <h4 class="font-semibold mb-2 text-[#f0eaea]">
-                  {{ review.title }}
-                </h4>
-                <div class="text-[#b37a7a] line-clamp-4 mb-1 homeMainTxt2">
-                  {{ review.description }}
-                </div>
-              </div>
+            <!-- Review Content - Scrollable if needed -->
+            <div class="flex-grow mb-4 overflow-hidden">
+              <h4 class="font-bold text-base mb-2 text-[#f0eaea] line-clamp-2">
+                {{ review.title }}
+              </h4>
+              <p class="text-sm text-[#b37a7a] leading-relaxed line-clamp-5">
+                "{{ review.description }}"
+              </p>
             </div>
 
-            <!-- User info -->
+            <!-- Author - Always at bottom -->
             <div
-              class="flex items-center mt-auto pt-4 border-t border-[#3b1c23]"
+              class="flex items-center gap-3 pt-4 border-t border-[#3b1c23] flex-shrink-0"
             >
-              <div class="flex-grow">
-                <h3 class="titletext font-bold text-[#f0eaea]">
+              <div
+                class="w-10 h-10 rounded-full bg-[#1A0D13] border-2 border-[#ff3344] flex items-center justify-center text-[#ff3344] font-bold flex-shrink-0"
+              >
+                {{ review.author.charAt(0) }}
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-[#f0eaea] text-sm truncate">
                   {{ review.author }}
                 </h3>
-                <p class="subtitletext text-[#b37a7a]">
-                  {{ $t("verified_player") }}
-                </p>
-              </div>
-              <div class="ml-auto">
-                <span
-                  class="inline-flex items-center px-2 py-1 bg-[#15090e] text-[#4ade80] titletext rounded-full border border-[#3b1c23]"
-                >
-                  <i class="bi bi-shield-check mr-1"></i>
+                <p class="text-xs text-[#4ade80] flex items-center gap-1">
+                  <i class="bi bi-patch-check-fill"></i>
                   {{ $t("verified") }}
-                </span>
+                </p>
               </div>
             </div>
           </div>
         </swiper-slide>
       </swiper>
 
-      <div
-        class="testimonial-pagination flex justify-center mt-6 max-lg:mt-0"
-      ></div>
+      <!-- Pagination -->
+      <div class="testimonial-pagination flex justify-center mt-8"></div>
     </div>
   </section>
 </template>
@@ -159,19 +148,42 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+/* Modern Pagination Dots */
+:deep(.testimonial-pagination) {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
 :deep(.testimonial-pagination .swiper-pagination-bullet) {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   background-color: #3b1c23;
   opacity: 1;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  margin: 0 !important;
 }
+
+:deep(.testimonial-pagination .swiper-pagination-bullet:hover) {
+  background-color: #ff3344;
+  transform: scale(1.2);
+}
+
 :deep(.testimonial-pagination .swiper-pagination-bullet-active) {
   background-color: #ff3344;
-  width: 24px;
-  border-radius: 4px;
+  width: 32px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(255, 51, 68, 0.4);
 }
-.bi-quote {
-  font-size: 3rem;
-  line-height: 1;
+
+/* Ensure swiper slides have equal height */
+:deep(.testimonials-swiper .swiper-wrapper) {
+  align-items: stretch;
+}
+
+:deep(.testimonials-swiper .swiper-slide) {
+  height: auto;
 }
 </style>
