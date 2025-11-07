@@ -10,50 +10,31 @@
     <div class="mx-auto px-4 max-lg:px-2">
       <!-- Mobile Category Navigation -->
       <div class="block lg:hidden mb-6">
-        <div class="grid grid-cols-3 gap-2.5">
+        <div class="grid grid-cols-3 gap-2">
           <button
             v-for="(category, index) in categories"
             :key="category.name"
             @click="selectCategory(index)"
-            class="group relative py-3.5 px-2 rounded-xl font-medium transition-all duration-300 flex flex-col items-center justify-center gap-2 overflow-hidden"
+            class="group relative py-3 px-2 rounded-lg flex flex-col items-center justify-center gap-1"
             :class="
               activeCategory === index
-                ? 'bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] text-white shadow-lg shadow-[#ff3344]/30 scale-105'
+                ? 'bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] text-white shadow-lg'
                 : 'bg-[#241017] text-[#f0eaea] border border-[#3b1c23]'
             "
           >
-            <!-- Hover shine effect -->
-            <div
-              v-if="activeCategory !== index"
-              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-active:translate-x-full transition-transform duration-500"
-            ></div>
-
-            <div class="relative w-7 h-7 flex items-center justify-center">
-              <img
-                :src="
-                  activeCategory === index
-                    ? category.iconActive
-                    : category.iconInactive
-                "
-                :alt="category.name"
-                class="w-full h-full object-contain transition-all duration-300"
-                :class="
-                  activeCategory === index
-                    ? 'scale-110'
-                    : 'group-active:scale-95'
-                "
-              />
-            </div>
-
-            <span class="relative text-[10px] font-semibold tracking-wide">
+            <img
+              :src="
+                activeCategory === index
+                  ? category.iconActive
+                  : category.iconInactive
+              "
+              :class="activeCategory === index ? 'brightness-0 invert' : ''"
+              :alt="category.name"
+              class="w-7 h-7 max-sm:w-6 max-sm:h-6 object-contain"
+            />
+            <span class="text-sm max-sm:text-xs font-medium">
               {{ category.name }}
             </span>
-
-            <!-- Active indicator -->
-            <div
-              v-if="activeCategory === index"
-              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-white/50 rounded-full blur-[2px]"
-            ></div>
           </button>
         </div>
       </div>
@@ -118,7 +99,7 @@
         ></div>
 
         <div
-          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-4 max-md:grid-cols-3 gap-4 max-lg:gap-3"
+          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 gap-4 max-lg:gap-3 max-sm:grid-cols-3 max-[450px]:grid-cols-2"
         >
           <!-- Slot Games -->
           <GameCardGrid
