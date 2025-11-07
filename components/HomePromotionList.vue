@@ -78,14 +78,18 @@
           </swiper-slide>
         </swiper>
         <button
-          class="promo-button-prev max-lg:hidden absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#a1122d] rounded-full flex items-center justify-center text-white transition-all duration-300 lg:hover:bg-[#c21b3a]"
+          class="promo-button-prev max-lg:hidden absolute top-1/2 -left-8 max-[1080px]:-left-3 z-10 transform -translate-y-1/2 w-10 h-10 max-[1080px]:w-8 max-[1080px]:h-8 bg-[#a1122d] rounded-full flex items-center justify-center text-white transition-all duration-300 lg:hover:bg-[#c21b3a]"
         >
-          <i class="bi bi-chevron-left text-sm font-bold"></i>
+          <i
+            class="bi bi-chevron-left text-sm font-bold max-[1080px]:text-xs"
+          ></i>
         </button>
         <button
-          class="promo-button-next max-lg:hidden absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#a1122d] rounded-full flex items-center justify-center text-white transition-all duration-300 lg:hover:bg-[#c21b3a]"
+          class="promo-button-next max-lg:hidden absolute top-1/2 -right-8 max-[1080px]:-right-3 z-10 transform -translate-y-1/2 w-10 h-10 max-[1080px]:w-8 max-[1080px]:h-8 bg-[#a1122d] rounded-full flex items-center justify-center text-white transition-all duration-300 lg:hover:bg-[#c21b3a]"
         >
-          <i class="bi bi-chevron-right text-sm font-bold"></i>
+          <i
+            class="bi bi-chevron-right text-sm font-bold max-[1080px]:text-xs"
+          ></i>
         </button>
       </div>
     </div>

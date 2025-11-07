@@ -19,6 +19,7 @@
         </div>
       </div>
 
+      <!-- Desktop Grid -->
       <div class="hidden lg:grid grid-cols-3 gap-4">
         <div
           v-for="match in matches"
@@ -41,92 +42,101 @@
             </div>
           </div>
 
-          <div class="p-5 max-lg:p-4">
-            <div class="flex items-center justify-between mb-5">
-              <div class="w-5/12 flex flex-col items-center text-center">
+          <div class="p-4 max-lg:p-3">
+            <!-- Live Status Badge -->
+            <div
+              v-if="match.status.short !== 'NS'"
+              class="flex justify-center mb-4"
+            >
+              <div
+                class="bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-[#ff3344]/30"
+              >
+                <span class="relative flex h-2 w-2">
+                  <span
+                    class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
+                  ></span>
+                  <span
+                    class="relative inline-flex rounded-full h-2 w-2 bg-white"
+                  ></span>
+                </span>
+                <span v-if="['1H', '2H', 'ET'].includes(match.status.short)">
+                  {{ match.status.elapsed
+                  }}{{ match.status.extra ? `+${match.status.extra}` : ""
+                  }}<span class="blink">'</span>
+                </span>
+                <span v-else>{{ match.status.short }}</span>
+              </div>
+            </div>
+
+            <!-- Teams Grid -->
+            <div class="grid grid-cols-12 gap-2 items-start">
+              <!-- Home Team Column -->
+              <div class="col-span-5 flex flex-col items-center">
                 <div
-                  class="w-20 h-20 flex items-center justify-center mb-3 p-2 rounded-xl bg-[#1A0D13]"
+                  class="w-20 h-20 flex items-center justify-center p-2 rounded-xl bg-[#1A0D13] mb-1"
                 >
                   <img
                     :src="match.teams.home.logo"
                     :alt="match.teams.home.name"
-                    class="w-full object-contain"
+                    class="w-full h-full object-contain"
                     onerror="this.src='https://placehold.co/80/e2e8f0/475569?text=Team'"
                   />
                 </div>
                 <p
-                  class="font-semibold text-[#f0eaea] line-clamp-2 text-sm flex items-center justify-center leading-tight"
+                  class="font-semibold text-[#f0eaea] text-sm text-center line-clamp-2 leading-tight h-10 flex items-center justify-center"
                 >
                   {{ match.teams.home.name }}
                 </p>
               </div>
 
-              <div
-                class="w-2/12 flex flex-col items-center justify-center gap-2"
-              >
+              <!-- VS or Score Column -->
+              <div class="col-span-2 flex flex-col items-center justify-center">
                 <div
                   v-if="match.status.short !== 'NS'"
-                  class="bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 shadow-lg shadow-[#ff3344]/30"
+                  class="bg-gradient-to-br from-[#1A0D13] to-[#15090e] px-4 py-3 rounded-xl shadow-md border border-[#3b1c23]"
                 >
-                  <span class="relative flex h-2 w-2">
-                    <span
-                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
-                    ></span>
-                    <span
-                      class="relative inline-flex rounded-full h-2 w-2 bg-white"
-                    ></span>
-                  </span>
-                  <span v-if="['1H', '2H', 'ET'].includes(match.status.short)">
-                    {{ match.status.elapsed
-                    }}{{ match.status.extra ? `+${match.status.extra}` : ""
-                    }}<span class="blink">'</span>
-                  </span>
-                  <span v-else>{{ match.status.short }}</span>
-                </div>
-
-                <div
-                  v-if="match.status.short !== 'NS'"
-                  class="bg-gradient-to-br from-[#1A0D13] to-[#15090e] px-5 py-3 rounded-xl shadow-md border border-[#3b1c23]"
-                >
-                  <div class="flex items-center justify-center gap-3">
+                  <div class="flex flex-col items-center justify-center gap-1">
                     <span class="text-2xl font-bold text-[#f0eaea]">{{
                       match.goals.home ?? 0
                     }}</span>
-                    <span class="text-sm text-[#ff3344] font-bold">:</span>
+                    <span class="text-xs text-[#ff3344] font-bold">:</span>
                     <span class="text-2xl font-bold text-[#f0eaea]">{{
                       match.goals.away ?? 0
                     }}</span>
                   </div>
                 </div>
-                <div
-                  v-else
-                  class="px-4 py-2 rounded-lg bg-[#1A0D13] border border-[#3b1c23]"
-                >
-                  <span class="text-xl font-bold text-[#b37a7a]">VS</span>
+                <div v-else class="w-14 mt-6">
+                  <img
+                    src="/images/VS Image/VS 3.png"
+                    alt="VS"
+                    class="w-full"
+                  />
                 </div>
               </div>
 
-              <div class="w-5/12 flex flex-col items-center text-center">
+              <!-- Away Team Column -->
+              <div class="col-span-5 flex flex-col items-center">
                 <div
-                  class="w-20 h-20 flex items-center justify-center mb-3 p-2 rounded-xl bg-[#1A0D13]"
+                  class="w-20 h-20 flex items-center justify-center p-2 rounded-xl bg-[#1A0D13] mb-1"
                 >
                   <img
                     :src="match.teams.away.logo"
                     :alt="match.teams.away.name"
-                    class="max-w-full max-h-full object-contain"
+                    class="w-full h-full object-contain"
                     onerror="this.src='https://placehold.co/80/e2e8f0/475569?text=Team'"
                   />
                 </div>
                 <p
-                  class="font-semibold text-[#f0eaea] line-clamp-2 text-sm flex items-center justify-center leading-tight"
+                  class="font-semibold text-[#f0eaea] text-sm text-center line-clamp-2 leading-tight h-10 flex items-center justify-center"
                 >
                   {{ match.teams.away.name }}
                 </p>
               </div>
             </div>
 
+            <!-- Date/Time -->
             <div
-              class="text-xs text-center text-[#b37a7a] pt-4 border-t border-[#3b1c23] flex items-center justify-center gap-2"
+              class="text-xs text-center text-[#b37a7a] pt-4 mt-4 border-t border-[#3b1c23] flex items-center justify-center gap-2"
             >
               <Icon icon="mdi:calendar-clock" class="text-sm text-[#ff3344]" />
               <span class="font-medium">{{ formatDate(match.date) }}</span>
@@ -135,7 +145,7 @@
         </div>
       </div>
 
-      <!-- Mobile/Tablet Swiper (below lg) -->
+      <!-- Mobile/Tablet Swiper -->
       <div class="lg:hidden relative">
         <swiper
           :modules="[Autoplay, Navigation]"
@@ -153,7 +163,7 @@
               spaceBetween: 16,
             },
           }"
-          class="matches-swiper pb-10"
+          class="matches-swiper"
         >
           <swiper-slide v-for="match in matches" :key="match.fixtureId">
             <div
@@ -177,98 +187,109 @@
               </div>
 
               <!-- Match Content -->
-              <div class="p-4 max-lg:p-3">
-                <div class="flex items-center justify-between mb-4">
-                  <!-- Home Team -->
-                  <div class="w-5/12 flex flex-col items-center text-center">
+              <div class="p-4">
+                <!-- Live Status Badge -->
+                <div
+                  v-if="match.status.short !== 'NS'"
+                  class="flex justify-center mb-3"
+                >
+                  <div
+                    class="bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1"
+                  >
+                    <span class="relative flex h-1.5 w-1.5">
+                      <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
+                      ></span>
+                      <span
+                        class="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"
+                      ></span>
+                    </span>
+                    <span
+                      v-if="['1H', '2H', 'ET'].includes(match.status.short)"
+                    >
+                      {{ match.status.elapsed
+                      }}{{ match.status.extra ? `+${match.status.extra}` : ""
+                      }}<span class="blink">'</span>
+                    </span>
+                    <span v-else>{{ match.status.short }}</span>
+                  </div>
+                </div>
+
+                <!-- Teams Grid -->
+                <div class="grid grid-cols-12 gap-2 items-start">
+                  <!-- Home Team Column -->
+                  <div class="col-span-5 flex flex-col items-center">
                     <div
-                      class="w-16 h-16 flex items-center justify-center mb-2 p-2 rounded-xl bg-[#1A0D13]"
+                      class="w-14 h-14 flex items-center justify-center p-2 rounded-xl bg-[#1A0D13] mb-2"
                     >
                       <img
                         :src="match.teams.home.logo"
                         :alt="match.teams.home.name"
-                        class="max-w-full max-h-full object-contain"
+                        class="w-full h-full object-contain"
                         onerror="this.src='https://placehold.co/80/e2e8f0/475569?text=Team'"
                       />
                     </div>
                     <p
-                      class="font-semibold text-[#f0eaea] line-clamp-2 text-xs h-10 flex items-center justify-center leading-tight"
+                      class="font-semibold text-[#f0eaea] text-xs text-center line-clamp-2 leading-tight h-9 flex items-center justify-center"
                     >
                       {{ match.teams.home.name }}
                     </p>
                   </div>
 
-                  <!-- Score/Status -->
+                  <!-- VS or Score Column -->
                   <div
-                    class="w-2/12 flex flex-col items-center justify-center gap-2"
+                    class="col-span-2 flex flex-col items-center justify-center"
                   >
                     <div
                       v-if="match.status.short !== 'NS'"
-                      class="bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white px-2 py-0.5 rounded-full text-[10px] font-bold flex items-center gap-1"
+                      class="bg-gradient-to-br from-[#1A0D13] to-[#15090e] px-2 py-2 rounded-lg shadow-md border border-[#3b1c23]"
                     >
-                      <span class="relative flex h-1.5 w-1.5">
-                        <span
-                          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
-                        ></span>
-                        <span
-                          class="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"
-                        ></span>
-                      </span>
-                      <span
-                        v-if="['1H', '2H', 'ET'].includes(match.status.short)"
+                      <div
+                        class="flex flex-col items-center justify-center gap-1"
                       >
-                        {{ match.status.elapsed
-                        }}{{ match.status.extra ? `+${match.status.extra}` : ""
-                        }}<span class="blink">'</span>
-                      </span>
-                      <span v-else>{{ match.status.short }}</span>
-                    </div>
-
-                    <div
-                      v-if="match.status.short !== 'NS'"
-                      class="bg-gradient-to-br from-[#1A0D13] to-[#15090e] px-3 py-2 rounded-lg shadow-md border border-[#3b1c23]"
-                    >
-                      <div class="flex items-center justify-center gap-2">
-                        <span class="text-lg font-bold text-[#f0eaea]">{{
+                        <span class="text-base font-bold text-[#f0eaea]">{{
                           match.goals.home ?? 0
                         }}</span>
-                        <span class="text-xs text-[#ff3344] font-bold">:</span>
-                        <span class="text-lg font-bold text-[#f0eaea]">{{
+                        <span class="text-[10px] text-[#ff3344] font-bold"
+                          >:</span
+                        >
+                        <span class="text-base font-bold text-[#f0eaea]">{{
                           match.goals.away ?? 0
                         }}</span>
                       </div>
                     </div>
-                    <div
-                      v-else
-                      class="px-3 py-1.5 rounded-lg bg-[#1A0D13] border border-[#3b1c23]"
-                    >
-                      <span class="text-base font-bold text-[#b37a7a]">VS</span>
+                    <div v-else class="w-10 mt-4">
+                      <img
+                        src="/images/VS Image/VS 3.png"
+                        alt="VS"
+                        class="w-full"
+                      />
                     </div>
                   </div>
 
-                  <!-- Away Team -->
-                  <div class="w-5/12 flex flex-col items-center text-center">
+                  <!-- Away Team Column -->
+                  <div class="col-span-5 flex flex-col items-center">
                     <div
-                      class="w-16 h-16 flex items-center justify-center mb-2 p-2 rounded-xl bg-[#1A0D13]"
+                      class="w-14 h-14 flex items-center justify-center p-2 rounded-xl bg-[#1A0D13] mb-2"
                     >
                       <img
                         :src="match.teams.away.logo"
                         :alt="match.teams.away.name"
-                        class="max-w-full max-h-full object-contain"
+                        class="w-full h-full object-contain"
                         onerror="this.src='https://placehold.co/80/e2e8f0/475569?text=Team'"
                       />
                     </div>
                     <p
-                      class="font-semibold text-[#f0eaea] line-clamp-2 text-xs h-10 flex items-center justify-center leading-tight"
+                      class="font-semibold text-[#f0eaea] text-xs text-center line-clamp-2 leading-tight h-9 flex items-center justify-center"
                     >
                       {{ match.teams.away.name }}
                     </p>
                   </div>
                 </div>
 
-                <!-- Match Date/Time -->
+                <!-- Date/Time -->
                 <div
-                  class="text-xs text-center text-[#b37a7a] pt-3 border-t border-[#3b1c23] flex items-center justify-center gap-1.5"
+                  class="text-xs text-center text-[#b37a7a] pt-3 mt-3 border-t border-[#3b1c23] flex items-center justify-center gap-1.5"
                 >
                   <Icon
                     icon="mdi:calendar-clock"
