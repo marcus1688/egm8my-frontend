@@ -1126,5 +1126,15 @@
   "ok": "OK",
   "bank_details": "Bank Details",
   "account_holder": "Account Holder",
-  "select_bank_modal": "Select Bank"
+  "select_bank_modal": "Select Bank",
+  "download_qr": "Download QR",
+  "referral_code": "Referral Code",
+  "referral_link": "Referral Link",
+  "share_via": "Share Via",
+  "unlimited_earnings": "Unlimited Earnings",
+  "unlimited_earnings_desc": "No cap on how much you can earn from referrals",
+  "instant_rewards": "Instant Rewards",
+  "instant_rewards_desc": "Get rewarded immediately when friends join",
+  "lifetime_commission": "Lifetime Commission",
+  "lifetime_commission_desc": "Earn from your referrals' activities forever"
 }

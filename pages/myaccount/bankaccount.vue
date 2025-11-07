@@ -1,107 +1,117 @@
 <template>
   <UserAccountLayout>
-    <div>
-      <div
-        class="flex justify-between items-center mb-6 max-lg:mb-4 max-lg:flex-col max-lg:items-start max-lg:gap-3"
-      >
-        <div>
-          <h1 class="text-lg font-bold max-lg:text-base text-[#f0eaea]">
-            {{ $t("bank_accounts") }}
-          </h1>
-          <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-            {{ $t("manage_bank_accounts") }}
-          </p>
+    <div class="text-[#f0eaea]">
+      <!-- Page Header -->
+      <div class="mb-6 max-lg:mb-4">
+        <div class="flex justify-between items-start gap-3">
+          <div class="flex-1">
+            <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+              {{ $t("bank_accounts") }}
+            </h1>
+            <p class="text-[#b37a7a] text-sm max-lg:text-xs">
+              {{ $t("manage_bank_accounts") }}
+            </p>
+          </div>
+          <button
+            @click="showModal = true"
+            class="flex items-center gap-2 bg-[#ff3344] text-white px-4 py-2.5 rounded-lg lg:hover:bg-[#cc2a3a] transition-all text-sm font-medium whitespace-nowrap max-lg:px-3 max-lg:py-2 max-lg:text-xs"
+          >
+            <Icon icon="mdi:plus" class="w-4 h-4" />
+            <span class="max-lg:hidden">{{ $t("add_bank_account") }}</span>
+            <span class="lg:hidden">{{ $t("add") }}</span>
+          </button>
         </div>
-        <button
-          class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-lg lg:hover:brightness-110 transition-all max-lg:text-sm"
-          @click="showModal = true"
+      </div>
+
+      <!-- Bank Accounts List -->
+      <div v-if="userbank.length" class="space-y-3">
+        <div
+          v-for="bank in userbank"
+          :key="bank._id"
+          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 lg:hover:border-[#ff3344]/50 transition-all max-lg:p-3"
         >
+          <div class="flex items-start gap-3">
+            <!-- Bank Icon -->
+            <div
+              class="w-12 h-12 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center flex-shrink-0 max-lg:w-10 max-lg:h-10"
+            >
+              <Icon
+                icon="mdi:bank"
+                class="w-6 h-6 text-[#ff3344] max-lg:w-5 max-lg:h-5"
+              />
+            </div>
+
+            <!-- Bank Details -->
+            <div class="flex-1 min-w-0">
+              <h3
+                class="font-semibold text-[#f0eaea] mb-1 text-base max-lg:text-sm"
+              >
+                {{ bank.bankname }}
+              </h3>
+              <div class="flex items-center gap-2 mb-2">
+                <p class="text-sm text-[#b37a7a] font-mono max-lg:text-xs">
+                  {{
+                    showFullAccount[bank._id]
+                      ? bank.banknumber
+                      : formatBankNumber(bank.banknumber)
+                  }}
+                </p>
+                <button
+                  @click="toggleAccountVisibility(bank._id)"
+                  class="text-[#ff3344] lg:hover:text-[#cc2a3a] transition-colors"
+                >
+                  <Icon
+                    :icon="
+                      showFullAccount[bank._id] ? 'mdi:eye-off' : 'mdi:eye'
+                    "
+                    class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Delete Button -->
+            <button
+              @click="confirmRemoveAccount(bank._id)"
+              class="w-9 h-9 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center text-[#b37a7a] lg:hover:bg-red-500/10 lg:hover:border-red-500/50 lg:hover:text-red-400 transition-all max-lg:w-8 max-lg:h-8"
+              :title="$t('delete_account_tooltip')"
+            >
+              <Icon
+                icon="mdi:trash-can-outline"
+                class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div
+        v-else
+        class="bg-[#241017] border border-[#3b1c23] rounded-lg p-8 text-center max-lg:p-6"
+      >
+        <div
+          class="w-16 h-16 rounded-full bg-[#ff3344]/10 flex items-center justify-center mx-auto mb-4"
+        >
+          <Icon icon="mdi:bank-off" class="w-8 h-8 text-[#ff3344]" />
+        </div>
+        <h3 class="font-semibold text-[#f0eaea] mb-2 text-base">
+          {{ $t("no_bank_accounts") }}
+        </h3>
+        <p class="text-sm text-[#b37a7a] mb-4">
+          {{ $t("add_bank_account_to_withdraw") }}
+        </p>
+        <button
+          @click="showModal = true"
+          class="inline-flex items-center gap-2 bg-[#ff3344] text-white px-4 py-2.5 rounded-lg lg:hover:bg-[#cc2a3a] transition-all text-sm font-medium"
+        >
+          <Icon icon="mdi:plus" class="w-4 h-4" />
           {{ $t("add_bank_account") }}
         </button>
       </div>
-
-      <div>
-        <div
-          v-if="userbank.length"
-          class="grid grid-cols-2 max-lg:grid-cols-1 gap-4 max-lg:gap-3"
-        >
-          <div
-            v-for="bank in userbank"
-            :key="bank._id"
-            class="bg-[#15090e]/50 shadow-lg shadow-red-500/20 lg:hover:shadow-[#ff3344]/20 border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 relative transition-all duration-300 overflow-hidden group lg:hover:border-[#ff3344]/50"
-          >
-            <div class="flex justify-between items-start relative z-10">
-              <div>
-                <div class="flex items-center mb-3 max-lg:mb-2">
-                  <div
-                    class="w-8 h-8 max-lg:w-7 max-lg:h-7 rounded-full bg-[#ff3344]/20 flex items-center justify-center mr-3 max-lg:mr-2"
-                  >
-                    <Icon
-                      icon="mdi:bank"
-                      class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5 text-[#ff3344]"
-                    />
-                  </div>
-                  <h2
-                    class="text-base max-lg:text-sm font-semibold text-[#f0eaea]"
-                  >
-                    {{ bank.bankname }}
-                  </h2>
-                </div>
-
-                <div class="mt-2 max-lg:mt-1.5 pl-11 max-lg:pl-9">
-                  <p class="text-sm max-lg:text-xs text-[#b37a7a] font-mono">
-                    <span>
-                      {{
-                        showFullAccount[bank._id]
-                          ? bank.banknumber
-                          : formatBankNumber(bank.banknumber)
-                      }}
-                    </span>
-                    <button
-                      @click="toggleAccountVisibility(bank._id)"
-                      class="ml-2 text-[#ff3344] text-xs max-lg:text-[10px] lg:hover:text-[#c21b3a] lg:hover:underline transition-colors duration-200"
-                    >
-                      <span class="flex items-center">
-                        <Icon
-                          :icon="
-                            showFullAccount[bank._id]
-                              ? 'mdi:eye-off'
-                              : 'mdi:eye'
-                          "
-                          class="w-3 h-3 max-lg:w-2.5 max-lg:h-2.5 mr-1"
-                        />
-                        {{
-                          showFullAccount[bank._id] ? $t("hide") : $t("show")
-                        }}
-                      </span>
-                    </button>
-                  </p>
-                </div>
-              </div>
-              <button
-                @click="confirmRemoveAccount(bank._id)"
-                class="w-8 h-8 hidden max-lg:w-7 max-lg:h-7 rounded-full items-center justify-center bg-[#241017]/60 lg:hover:bg-red-500/20 text-[#b37a7a] lg:hover:text-red-400 transition-all duration-200 border border-[#3b1c23] lg:hover:border-red-400/50"
-                :title="$t(`delete_account_tooltip`)"
-              >
-                <Icon
-                  icon="mdi:trash-can-outline"
-                  class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
-                />
-              </button>
-            </div>
-
-            <div
-              class="absolute bottom-0 left-0 h-1 w-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] opacity-70"
-            ></div>
-          </div>
-        </div>
-
-        <p v-else class="text-[#b37a7a] max-lg:text-sm">
-          {{ $t("no_bank_accounts") }}
-        </p>
-      </div>
     </div>
 
+    <!-- Add Bank Account Modal -->
     <AddBankAccount
       :isVisible="showModal"
       @close="showModal = false"
@@ -116,21 +126,13 @@ import UserAccountLayout from "~/layouts/UserAccountLayout.vue";
 
 const { alertVisible, alertTitle, alertMessage, alertType, showAlert } =
   useAlert();
-const {
-  isConfirmAlertVisible,
-  confirmAlertTitle,
-  confirmAlertMessage,
-  confirmAlertType,
-  showConfirmAlert,
-  closeConfirmAlert,
-} = useConfirmAlert();
+const { showConfirmAlert } = useConfirmAlert();
 const userData = useState("userData");
 const pageLoading = useState("pageLoading");
 const showModal = ref(false);
 const userbank = useState("userbank", () => []);
 const showFullAccount = ref({});
 const { get, delete: del } = useApiEndpoint();
-const pendingDeleteId = ref(null);
 
 const fetchUserBank = async () => {
   try {
@@ -152,6 +154,7 @@ function formatBankNumber(number) {
   const maskLength = Math.max(0, number.length - 4);
   return "*".repeat(maskLength) + number.slice(-4);
 }
+
 async function confirmRemoveAccount(id) {
   try {
     const confirmed = await showConfirmAlert(

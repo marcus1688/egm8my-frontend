@@ -1,167 +1,161 @@
 <template>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
+      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-lg font-bold max-lg:text-base">{{ $t("downline") }}</h1>
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+          {{ $t("downline") }}
+        </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("track_and_manage") }}
         </p>
       </div>
 
-      <div>
+      <div class="space-y-4">
+        <!-- Stats Overview Card -->
         <div
-          class="grid grid-cols-1 md:grid-cols-3 gap-4 max-lg:gap-3 mb-6 max-lg:mb-4"
+          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
         >
-          <div
-            class="bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 rounded-lg p-5 max-lg:p-4 border border-[#ff3344]/30 shadow-lg shadow-red-500/10"
+          <h3
+            class="font-semibold text-[#f0eaea] mb-4 text-sm flex items-center gap-2"
           >
-            <div class="flex items-center justify-between mb-2 max-lg:mb-1.5">
-              <div class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
+            <Icon icon="mdi:chart-box" class="w-5 h-5 text-[#ff3344]" />
+            {{ $t("team_overview") }}
+          </h3>
+
+          <div class="grid grid-cols-3 gap-4 max-lg:gap-3">
+            <div class="text-center">
+              <div
+                class="text-3xl font-bold text-[#ff3344] mb-1 max-lg:text-2xl"
+              >
                 {{ statsData?.all?.registeredUsers || 0 }}
               </div>
+              <div class="text-xs text-[#b37a7a]">{{ $t("total") }}</div>
+            </div>
+            <div class="text-center border-x border-[#3b1c23]">
               <div
-                class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-[#ff3344] rounded-full flex items-center justify-center"
+                class="text-3xl font-bold text-green-400 mb-1 max-lg:text-2xl"
               >
-                <Icon
-                  icon="mingcute:user-add-fill"
-                  class="w-6 h-6 max-lg:w-5 max-lg:h-5 text-white"
-                />
-              </div>
-            </div>
-            <div class="text-[#ff3344] font-medium max-lg:text-sm">
-              {{ $t("total_downlines") }}
-            </div>
-          </div>
-
-          <div
-            class="bg-gradient-to-r from-green-500/10 to-green-500/20 rounded-lg p-5 max-lg:p-4 border border-green-500/30 shadow-lg shadow-green-500/10"
-          >
-            <div class="flex items-center justify-between mb-2 max-lg:mb-1.5">
-              <div class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
                 {{ statsData?.direct?.registeredUsers || 0 }}
               </div>
+              <div class="text-xs text-[#b37a7a]">{{ $t("direct") }}</div>
+            </div>
+            <div class="text-center">
               <div
-                class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-green-600 rounded-full flex items-center justify-center"
+                class="text-3xl font-bold text-purple-400 mb-1 max-lg:text-2xl"
               >
-                <Icon
-                  icon="mdi:user-check"
-                  class="w-6 h-6 max-lg:w-5 max-lg:h-5 text-white"
-                />
-              </div>
-            </div>
-            <div class="text-green-400 font-medium max-lg:text-sm">
-              {{ $t("direct_downlines") }}
-            </div>
-          </div>
-
-          <div
-            class="bg-gradient-to-r from-purple-500/10 to-purple-500/20 rounded-lg p-5 max-lg:p-4 border border-purple-500/30 shadow-lg shadow-purple-500/10"
-          >
-            <div class="flex items-center justify-between mb-2 max-lg:mb-1.5">
-              <div class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
                 {{ statsData?.indirect?.registeredUsers || 0 }}
               </div>
-              <div
-                class="w-12 h-12 max-lg:w-10 max-lg:h-10 bg-purple-600 rounded-full flex items-center justify-center"
-              >
-                <Icon
-                  icon="fluent:people-team-20-filled"
-                  class="w-6 h-6 max-lg:w-5 max-lg:h-5 text-white"
-                />
-              </div>
-            </div>
-            <div class="text-purple-400 font-medium max-lg:text-sm">
-              {{ $t("indirect_downlines") }}
+              <div class="text-xs text-[#b37a7a]">{{ $t("indirect") }}</div>
             </div>
           </div>
         </div>
 
-        <div class="relative flex-grow max-w-md mb-6 max-lg:mb-4">
-          <Icon
-            icon="mdi:search"
-            class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] max-lg:w-4 max-lg:h-4"
-          />
-          <input
-            v-model="searchQuery"
-            type="text"
-            :placeholder="$t('search_by_username')"
-            class="w-full bg-[#15090e]/50 text-[#f0eaea] pl-10 max-lg:pl-9 pr-4 max-lg:pr-3 py-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none focus:ring-2 focus:ring-[#ff3344]/50 placeholder-[#b37a7a] max-lg:text-sm"
-          />
+        <!-- Search & Filter Bar -->
+        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+          <div class="flex items-center gap-3 max-lg:flex-col">
+            <div class="relative flex-1 max-lg:w-full">
+              <Icon
+                icon="mdi:magnify"
+                class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] w-5 h-5"
+              />
+              <input
+                v-model="searchQuery"
+                type="text"
+                :placeholder="$t('search_by_username')"
+                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-4 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors placeholder-[#b37a7a] text-sm"
+              />
+            </div>
+            <div
+              class="flex items-center gap-2 text-sm text-[#b37a7a] max-lg:w-full max-lg:justify-between"
+            >
+              <span
+                >{{ $t("showing") }} {{ filteredDownlines.length }}
+                {{ $t("members") }}</span
+              >
+            </div>
+          </div>
         </div>
 
-        <div
-          class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mb-6 max-lg:mb-4"
-        >
-          <div class="overflow-x-auto">
-            <table class="w-full text-center text-nowrap">
+        <!-- Members List -->
+        <div class="space-y-2">
+          <!-- Desktop: Table View -->
+          <div
+            class="hidden md:block bg-[#241017] border border-[#3b1c23] rounded-lg overflow-hidden"
+          >
+            <table class="w-full">
               <thead>
-                <tr class="bg-[#241017]/80 border-b border-[#3b1c23]">
+                <tr class="bg-[#15090e] border-b border-[#3b1c23]">
                   <th
                     v-for="header in tableHeaders"
                     :key="header.key"
                     @click="handleSort(header.key)"
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2.5 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase cursor-pointer lg:hover:bg-[#15090e]/50 transition-colors"
+                    class="px-4 py-3 text-left text-xs font-semibold text-[#f0eaea] uppercase cursor-pointer lg:hover:bg-[#241017] transition-colors"
                   >
-                    <div class="flex items-center justify-center gap-1">
+                    <div class="flex items-center gap-2">
                       {{ header.label }}
-                      <div v-if="header.sortable">
-                        <Icon
-                          :icon="
-                            sortConfig.key === header.key
-                              ? sortConfig.direction === 'asc'
-                                ? 'material-symbols:arrow-upward'
-                                : 'material-symbols:arrow-downward'
-                              : 'material-symbols:unfold-more'
-                          "
-                          class="w-4 h-4 max-lg:w-3 max-lg:h-3"
-                        />
-                      </div>
+                      <Icon
+                        v-if="header.sortable"
+                        :icon="
+                          sortConfig.key === header.key
+                            ? sortConfig.direction === 'asc'
+                              ? 'mdi:arrow-up'
+                              : 'mdi:arrow-down'
+                            : 'mdi:unfold-more-horizontal'
+                        "
+                        class="w-4 h-4 text-[#b37a7a]"
+                      />
                     </div>
                   </th>
                 </tr>
               </thead>
               <tbody>
                 <tr
-                  v-for="(member, index) in paginatedDownlines"
+                  v-for="member in paginatedDownlines"
                   :key="member._id"
-                  :class="[
-                    'border-b border-[#3b1c23] lg:hover:bg-[#ff3344]/10 transition-colors text-xs max-lg:text-[10px]',
-                    index % 2 === 0 ? 'bg-[#15090e]/30' : 'bg-[#15090e]/50',
-                  ]"
+                  class="border-b border-[#3b1c23] lg:hover:bg-[#15090e]/30 transition-colors"
                 >
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2.5 text-[#f0eaea] uppercase font-medium"
-                  >
-                    {{ member.username }}
+                  <td class="px-4 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm"
+                      >
+                        {{ member.username.substring(0, 2).toUpperCase() }}
+                      </div>
+                      <span
+                        class="text-sm font-semibold text-[#f0eaea] uppercase"
+                      >
+                        {{ member.username }}
+                      </span>
+                    </div>
                   </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2.5 text-[#b37a7a]"
-                  >
-                    {{ member.viplevel }}
-                  </td>
-                  <!-- <td class="px-4 max-lg:px-3 py-3 max-lg:py-2.5 text-[#b37a7a]">
-                    {{ member.totalturnover }}
-                  </td> -->
-                  <td class="px-4 max-lg:px-3 py-3 max-lg:py-2.5">
+                  <td class="px-4 py-4">
                     <span
-                      class="px-2 max-lg:px-1.5 py-1 max-lg:py-0.5 rounded-full text-xs max-lg:text-[10px] font-medium"
-                      :class="
-                        member.status
-                          ? 'bg-green-500/20 text-green-400'
-                          : 'bg-red-500/20 text-red-400'
-                      "
+                      class="inline-flex items-center px-2.5 py-1 bg-[#ff3344]/10 border border-[#ff3344]/30 rounded text-xs font-medium text-[#ff3344]"
                     >
-                      {{ member.status ? $t("active") : $t("inactive") }}
+                      {{ member.viplevel }}
                     </span>
                   </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2.5 text-[#b37a7a]"
-                  >
+                  <td class="px-4 py-4">
+                    <div class="flex items-center gap-2">
+                      <div
+                        class="w-2 h-2 rounded-full"
+                        :class="member.status ? 'bg-green-400' : 'bg-red-400'"
+                      ></div>
+                      <span
+                        class="text-sm"
+                        :class="
+                          member.status ? 'text-green-400' : 'text-red-400'
+                        "
+                      >
+                        {{ member.status ? $t("active") : $t("inactive") }}
+                      </span>
+                    </div>
+                  </td>
+                  <td class="px-4 py-4 text-sm text-[#b37a7a]">
                     {{ formatDate(member.lastdepositdate) }}
                   </td>
-                  <td
-                    class="px-4 max-lg:px-3 py-3 max-lg:py-2.5 text-[#b37a7a]"
-                  >
+                  <td class="px-4 py-4 text-sm text-[#b37a7a]">
                     {{ formatDate(member.createdAt) }}
                   </td>
                 </tr>
@@ -169,35 +163,94 @@
             </table>
           </div>
 
+          <!-- Mobile: Card View -->
+          <div class="md:hidden space-y-2">
+            <div
+              v-for="member in paginatedDownlines"
+              :key="member._id"
+              class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4"
+            >
+              <div class="flex items-start justify-between mb-3">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold"
+                  >
+                    {{ member.username.substring(0, 2).toUpperCase() }}
+                  </div>
+                  <div>
+                    <p
+                      class="text-sm font-semibold text-[#f0eaea] uppercase mb-1"
+                    >
+                      {{ member.username }}
+                    </p>
+                    <span
+                      class="inline-flex items-center px-2 py-0.5 bg-[#ff3344]/10 border border-[#ff3344]/30 rounded text-xs text-[#ff3344]"
+                    >
+                      {{ member.viplevel }}
+                    </span>
+                  </div>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <div
+                    class="w-2 h-2 rounded-full"
+                    :class="member.status ? 'bg-green-400' : 'bg-red-400'"
+                  ></div>
+                  <span
+                    class="text-xs"
+                    :class="member.status ? 'text-green-400' : 'text-red-400'"
+                  >
+                    {{ member.status ? $t("active") : $t("inactive") }}
+                  </span>
+                </div>
+              </div>
+              <div
+                class="grid grid-cols-2 gap-3 pt-3 border-t border-[#3b1c23]"
+              >
+                <div>
+                  <p class="text-xs text-[#b37a7a] mb-0.5">
+                    {{ $t("last_deposit") }}
+                  </p>
+                  <p class="text-sm text-[#f0eaea]">
+                    {{ formatDate(member.lastdepositdate) }}
+                  </p>
+                </div>
+                <div>
+                  <p class="text-xs text-[#b37a7a] mb-0.5">
+                    {{ $t("joined") }}
+                  </p>
+                  <p class="text-sm text-[#f0eaea]">
+                    {{ formatDate(member.createdAt) }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Empty State -->
           <div
             v-if="paginatedDownlines.length === 0"
-            class="py-16 max-lg:py-12"
+            class="bg-[#241017] border border-[#3b1c23] rounded-lg py-16"
           >
             <div class="flex flex-col items-center">
               <div
-                class="w-20 h-20 max-lg:w-16 max-lg:h-16 bg-[#ff3344]/20 rounded-full flex items-center justify-center mb-4 max-lg:mb-3"
+                class="w-20 h-20 rounded-full bg-[#ff3344]/10 flex items-center justify-center mb-4"
               >
                 <Icon
-                  icon="mdi:account-group"
-                  class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
+                  icon="mdi:account-group-outline"
+                  class="w-10 h-10 text-[#ff3344]"
                 />
               </div>
-              <h3 class="text-[#f0eaea] font-medium mb-1 max-lg:text-sm">
+              <h3 class="text-[#f0eaea] font-bold mb-2 text-base">
                 {{ $t("no_downline_found") }}
               </h3>
-              <p
-                class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-4 max-lg:px-4 text-center"
-              >
+              <p class="text-[#b37a7a] text-sm mb-6 text-center max-w-sm px-4">
                 {{ $t("start_sharing") }}
               </p>
               <button
-                @click="$router.push('/myaccount/referral')"
-                class="px-6 max-lg:px-4 py-2 max-lg:py-1.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all flex items-center gap-2 max-lg:text-sm"
+                @click="$router.push(localePath('/myaccount/referral'))"
+                class="flex items-center gap-2 px-6 py-3 bg-[#ff3344] text-white rounded-lg font-semibold lg:hover:bg-[#cc2a3a] transition-all text-sm"
               >
-                <Icon
-                  icon="mdi:share-variant"
-                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                />
+                <Icon icon="mdi:share-variant" class="w-5 h-5" />
                 {{ $t("share_referral_code") }}
               </button>
             </div>
@@ -207,53 +260,59 @@
         <!-- Pagination -->
         <div
           v-if="paginatedDownlines.length > 0"
-          class="flex justify-between items-center gap-4 px-2 max-lg:flex-col max-lg:items-end"
+          class="flex justify-between items-center gap-4 max-lg:flex-col"
         >
-          <div class="text-[#b37a7a] text-sm max-lg:text-xs max-lg:hidden">
-            {{
-              $t("showing_entries", {
-                start: paginationStart + 1,
-                end: paginationEnd,
-                total: filteredDownlines.length,
-              })
-            }}
+          <div class="text-[#b37a7a] text-sm">
+            {{ $t("page") }} {{ currentPage }} {{ $t("of") }} {{ totalPages }}
           </div>
 
           <div class="flex items-center gap-2">
             <button
-              @click="currentPage--"
+              @click="currentPage = 1"
               :disabled="currentPage === 1"
-              class="px-3 max-lg:px-2 py-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
+              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Icon
-                icon="ooui:previous-ltr"
-                class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
-              />
+              <Icon icon="mdi:chevron-double-left" class="w-5 h-5" />
             </button>
 
-            <span
-              v-for="page in displayedPages"
-              :key="page"
-              @click="currentPage = page"
-              :class="[
-                'w-8 h-8 max-lg:w-7 max-lg:h-7 flex items-center justify-center rounded-lg font-medium cursor-pointer text-sm max-lg:text-xs',
-                currentPage === page
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
-                  : 'bg-[#15090e]/50 text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#15090e]/70',
-              ]"
+            <button
+              @click="currentPage--"
+              :disabled="currentPage === 1"
+              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {{ page }}
-            </span>
+              <Icon icon="mdi:chevron-left" class="w-5 h-5" />
+            </button>
+
+            <div class="flex gap-1">
+              <button
+                v-for="page in displayedPages"
+                :key="page"
+                @click="currentPage = page"
+                :class="[
+                  'w-9 h-9 rounded-lg font-semibold text-sm transition-all',
+                  currentPage === page
+                    ? 'bg-[#ff3344] text-white'
+                    : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#241017]',
+                ]"
+              >
+                {{ page }}
+              </button>
+            </div>
 
             <button
               @click="currentPage++"
               :disabled="currentPage === totalPages"
-              class="px-3 max-lg:px-2 py-2 max-lg:py-1.5 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#b37a7a] shadow-sm transition-colors lg:hover:bg-[#15090e]/70 disabled:bg-[#15090e]/30 disabled:text-[#b37a7a]/50 disabled:cursor-not-allowed"
+              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <Icon
-                icon="ooui:next-ltr"
-                class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
-              />
+              <Icon icon="mdi:chevron-right" class="w-5 h-5" />
+            </button>
+
+            <button
+              @click="currentPage = totalPages"
+              :disabled="currentPage === totalPages"
+              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <Icon icon="mdi:chevron-double-right" class="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -267,6 +326,7 @@ import { Icon } from "@iconify/vue";
 import UserAccountLayout from "~/layouts/UserAccountLayout.vue";
 import moment from "moment-timezone";
 
+const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
 const statsData = ref(null);
 const searchQuery = ref("");
@@ -278,7 +338,6 @@ const isLoading = ref(false);
 const tableHeaders = [
   { key: "username", label: $t("member"), sortable: true },
   { key: "vip", label: $t("vip"), sortable: false },
-  // { key: "totalturnover", label: "Total Turnover", sortable: true },
   { key: "status", label: $t("status"), sortable: false },
   { key: "lastdepositdate", label: $t("last_deposit_date"), sortable: true },
   { key: "createdAt", label: $t("register_date"), sortable: true },
@@ -368,7 +427,6 @@ const fetchDownlines = async () => {
 const filteredDownlines = computed(() => {
   if (!downlines.value) return [];
 
-  // Only use direct downlines
   let filtered = [...(downlines.value.direct || [])];
 
   if (searchQuery.value) {

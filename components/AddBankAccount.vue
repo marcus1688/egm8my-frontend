@@ -1,118 +1,164 @@
 <template>
   <Teleport to="body">
-    <div
-      v-if="isVisible"
-      class="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 max-lg:px-2"
-      @click.self="close"
-    >
+    <Transition name="fade">
       <div
-        class="bg-[#241017]/95 backdrop-blur-sm rounded-xl shadow-2xl shadow-red-500/20 border border-[#3b1c23] p-6 w-full max-w-md relative max-lg:p-4"
+        v-if="isVisible"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[99] p-4"
+        @click.self="close"
       >
-        <h2 class="text-lg font-semibold text-[#f0eaea] mb-4 max-lg:text-base">
-          {{ $t("add_bank_account") }}
-        </h2>
-        <div class="flex flex-col gap-4 mb-4">
-          <div>
-            <label
-              class="block font-medium text-[#f0eaea] mb-1 max-lg:text-sm"
-              >{{ $t("name") }}</label
-            >
-            <input
-              type="text"
-              :value="userData.fullname"
-              disabled
-              readonly
-              class="w-full border border-[#3b1c23] bg-[#15090e]/50 rounded-lg p-2 text-[#b37a7a] cursor-not-allowed uppercase font-semibold max-lg:text-sm focus:outline-none"
-            />
-          </div>
-          <div>
-            <label
-              class="block font-medium text-[#f0eaea] mb-1 max-lg:text-sm"
-              >{{ $t("bank_name") }}</label
-            >
-            <CustomSelect v-model="accountData.bankName">
-              <option
-                value=""
-                disabled
-                selected
-                class="bg-[#241017] text-[#b37a7a]"
-              >
-                {{ $t("select_bank") }}
-              </option>
-              <option
-                v-for="bank in banklist"
-                :key="bank._id"
-                :value="bank.bankname"
-                class="bg-[#241017] text-[#f0eaea]"
-              >
-                {{ bank.bankname }}
-              </option>
-            </CustomSelect>
-          </div>
-          <div>
-            <label
-              class="block font-medium text-[#f0eaea] mb-1 max-lg:text-sm"
-              >{{ $t("account_number") }}</label
-            >
-            <input
-              v-model="accountData.accountNumber"
-              @input="onlyNumbers"
-              type="text"
-              :placeholder="$t('enter_account_number')"
-              class="w-full border border-[#3b1c23] bg-[#15090e]/50 text-[#f0eaea] placeholder-[#b37a7a] rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-[#ff3344]/50 focus:border-[#ff3344] max-lg:text-sm"
-            />
-          </div>
-          <div
-            class="flex items-start gap-2 text-sm text-red-300 bg-red-500/10 border border-red-500/30 rounded-lg p-3"
-          >
-            <Icon
-              icon="mdi:alert-circle-outline"
-              class="w-5 h-5 mt-0.5 text-red-400"
-            />
-            <span class="font-medium">
-              {{ $t("name_restriction_1") }}
-              <strong class="text-red-200">{{
-                $t("name_restriction_2")
-              }}</strong>
-              {{ $t("name_restriction_3") }}
-            </span>
-          </div>
-        </div>
-        <div class="flex justify-end gap-3">
-          <button
-            @click="close"
-            class="px-4 py-2 rounded-lg border border-[#3b1c23] text-[#b37a7a] lg:hover:bg-[#15090e]/50 lg:hover:text-[#f0eaea] transition-all"
-          >
-            {{ $t("cancel") }}
-          </button>
-          <button
-            @click="confirmAdd"
-            :disabled="addWithdrawBankButtonLoading"
-            class="px-4 py-2 rounded-lg bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white lg:hover:brightness-110 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-          >
-            {{ $t("confirm") }}
-          </button>
-        </div>
-        <button
-          @click="close"
-          class="absolute top-3 right-3 text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
+        <div
+          class="bg-[#1A0D13] border border-[#3b1c23] rounded-lg w-full max-w-md overflow-hidden"
+          :class="isVisible ? 'animate-popupIn' : ''"
         >
-          <Icon icon="mdi:close" class="w-5 h-5" />
-        </button>
-      </div></div
-  ></Teleport>
+          <!-- Header -->
+          <div
+            class="p-4 border-b border-[#3b1c23] flex items-center justify-between"
+          >
+            <h3 class="font-semibold text-[#f0eaea] text-base">
+              {{ $t("add_bank_account") }}
+            </h3>
+            <button
+              @click="close"
+              class="w-8 h-8 rounded-lg bg-[#241017] border border-[#3b1c23] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all"
+            >
+              <Icon icon="mdi:close" class="w-5 h-5" />
+            </button>
+          </div>
+
+          <!-- Content -->
+          <div class="p-4 space-y-4">
+            <!-- Account Holder Name -->
+            <div>
+              <label class="block font-semibold mb-2 text-sm text-[#f0eaea]">
+                {{ $t("name") }}
+              </label>
+              <input
+                type="text"
+                :value="userData.fullname"
+                disabled
+                readonly
+                class="w-full p-3 bg-[#241017] text-[#b37a7a] rounded-lg border border-[#3b1c23] cursor-not-allowed uppercase font-semibold text-sm"
+              />
+            </div>
+
+            <!-- Bank Name -->
+            <div>
+              <label class="block font-semibold mb-2 text-sm text-[#f0eaea]">
+                {{ $t("bank_name") }}
+              </label>
+              <div class="relative" ref="bankDropdown">
+                <button
+                  type="button"
+                  @click="isBankDropdownOpen = !isBankDropdownOpen"
+                  class="w-full p-3 bg-[#241017] text-left rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-sm flex items-center justify-between"
+                  :class="
+                    accountData.bankName ? 'text-[#f0eaea]' : 'text-[#b37a7a]'
+                  "
+                >
+                  <span>{{ accountData.bankName || $t("select_bank") }}</span>
+                  <Icon
+                    icon="mdi:chevron-down"
+                    class="w-5 h-5 transition-transform"
+                    :class="{ 'rotate-180': isBankDropdownOpen }"
+                  />
+                </button>
+
+                <Transition name="dropdown">
+                  <div
+                    v-if="isBankDropdownOpen"
+                    class="absolute z-50 w-full mt-2 bg-[#241017] border border-[#3b1c23] rounded-lg shadow-lg max-h-40 overflow-y-auto scrollbar-thin"
+                  >
+                    <button
+                      type="button"
+                      v-for="bank in banklist"
+                      :key="bank._id"
+                      @click="selectBank(bank.bankname)"
+                      class="w-full p-3 text-left text-[#f0eaea] text-sm lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] last:border-b-0"
+                      :class="{
+                        'bg-[#ff3344]/10 text-[#ff3344]':
+                          accountData.bankName === bank.bankname,
+                      }"
+                    >
+                      {{ bank.bankname }}
+                    </button>
+                  </div>
+                </Transition>
+              </div>
+            </div>
+
+            <!-- Account Number -->
+            <div>
+              <label class="block font-semibold mb-2 text-sm text-[#f0eaea]">
+                {{ $t("account_number") }}
+              </label>
+              <input
+                v-model="accountData.accountNumber"
+                @input="onlyNumbers"
+                type="text"
+                :placeholder="$t('enter_account_number')"
+                class="w-full p-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-sm"
+              />
+            </div>
+
+            <!-- Warning -->
+            <div class="bg-red-500/10 border border-red-500/30 rounded-lg p-3">
+              <div class="flex gap-2">
+                <Icon
+                  icon="mdi:alert-circle"
+                  class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"
+                />
+                <p class="text-xs text-red-200">
+                  {{ $t("name_restriction_1") }}
+                  <strong class="text-red-400">{{
+                    $t("name_restriction_2")
+                  }}</strong>
+                  {{ $t("name_restriction_3") }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div class="p-4 border-t border-[#3b1c23] flex gap-2">
+            <button
+              @click="close"
+              class="flex-1 py-2.5 bg-[#241017] border border-[#3b1c23] text-[#f0eaea] rounded-lg font-medium lg:hover:border-[#ff3344]/50 transition-all text-sm"
+            >
+              {{ $t("cancel") }}
+            </button>
+            <button
+              @click="confirmAdd"
+              :disabled="addWithdrawBankButtonLoading"
+              class="flex-1 py-2.5 bg-[#ff3344] text-white rounded-lg font-medium lg:hover:bg-[#cc2a3a] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span v-if="!addWithdrawBankButtonLoading">{{
+                $t("confirm")
+              }}</span>
+              <span v-else class="flex items-center justify-center gap-2">
+                <Icon icon="mdi:loading" class="w-4 h-4 animate-spin" />
+                {{ $t("adding") }}...
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
 import { Icon } from "@iconify/vue";
+
 const pageLoading = useState("pageLoading");
 const { get, post } = useApiEndpoint();
 const addWithdrawBankButtonLoading = ref(false);
 const banklist = ref([]);
 const userData = useState("userData");
-const userbank = useState("userbank");
 const { alertVisible, alertTitle, alertMessage, alertType, showAlert } =
   useAlert();
+
+const isBankDropdownOpen = ref(false);
+const bankDropdown = ref(null);
 
 const props = defineProps({
   isVisible: Boolean,
@@ -124,18 +170,23 @@ const accountData = ref({
   accountNumber: "",
 });
 
+function selectBank(bankName) {
+  accountData.value.bankName = bankName;
+  isBankDropdownOpen.value = false;
+}
+
 function close() {
   emits("close");
 }
 
 async function confirmAdd() {
   if (!accountData.value.bankName || !accountData.value.accountNumber) {
-    showAlert($t("alert_info"), $t("fields_required"));
+    showAlert($t("alert_info"), $t("fields_required"), "info");
     return;
   }
 
   if (isNaN(Number(accountData.value.accountNumber))) {
-    showAlert($t("alert_info"), $t("numeric_account_number"));
+    showAlert($t("alert_info"), $t("numeric_account_number"), "info");
     return;
   }
 
@@ -156,7 +207,7 @@ async function confirmAdd() {
       resetForm();
     } else {
       showAlert(
-        "Info",
+        $t("alert_info"),
         data.message[$locale.value] || $t("failed_to_add"),
         "info"
       );
@@ -195,16 +246,79 @@ const fetchBankList = async () => {
   }
 };
 
-onMounted(async () => {
-  pageLoading.value = true;
-  try {
-    await fetchBankList();
-  } catch (error) {
-    console.error("Error during initialization:", error);
-  } finally {
-    pageLoading.value = false;
-  }
+// Close dropdown when clicking outside
+onMounted(() => {
+  const handleClickOutside = (event) => {
+    if (bankDropdown.value && !bankDropdown.value.contains(event.target)) {
+      isBankDropdownOpen.value = false;
+    }
+  };
+
+  document.addEventListener("click", handleClickOutside);
+
+  onBeforeUnmount(() => {
+    document.removeEventListener("click", handleClickOutside);
+  });
+
+  fetchBankList();
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Fade transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Dropdown transition */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.2s ease;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Popup animation */
+@keyframes popupIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-popupIn {
+  animation: popupIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #15090e;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
+}
+</style>

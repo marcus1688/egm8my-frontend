@@ -1,312 +1,45 @@
 <template>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
+      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-lg font-bold">{{ $t("rebate") }}</h1>
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+          {{ $t("rebate") }}
+        </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("claim_rebate_description") }}
         </p>
       </div>
-      <PageLoading v-if="isLoading || claimButtonLoading" />
-      <div class="space-y-6 max-lg:space-y-4">
-        <div
-          class="bg-[#241017]/60 border border-[#3b1c23] rounded-xl p-6 max-lg:p-4 relative overflow-hidden shadow-lg shadow-red-500/10"
-        >
-          <div class="absolute right-0 bottom-0 opacity-10">
-            <Icon icon="mdi:gift-outline" class="w-32 h-32 text-[#ff3344]" />
-          </div>
 
-          <div class="relative z-10">
-            <div
-              class="flex flex-col md:flex-row gap-6 items-center justify-between"
-            >
+      <PageLoading v-if="isLoading" />
+
+      <div v-else class="space-y-4">
+        <!-- Claim Rebate Card -->
+        <div
+          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
+        >
+          <div class="flex items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
+              >
+                <Icon icon="mdi:gift" class="w-6 h-6 text-[#ff3344]" />
+              </div>
               <div>
-                <h3 class="text-xl font-bold text-[#f0eaea] mb-2">
+                <h3 class="font-bold text-[#f0eaea] text-base mb-0.5">
                   {{ $t("rebate_rewards_ready") }}
                 </h3>
-                <p class="text-[#b37a7a] mb-2 max-w-2xl max-lg:text-sm">
+                <p class="text-xs text-[#b37a7a]">
                   {{ $t("rebate_rewards_based") }}
                 </p>
-                <p class="text-sm text-[#ff3344] mb-0">
-                  <Icon
-                    icon="mdi:information-outline"
-                    class="inline-block mr-1"
-                  />
-                  {{ $t("valid_turnover_info") }}
-                </p>
-              </div>
-
-              <div class="flex-shrink-0">
-                <LoadingButton
-                  :loading="claimButtonLoading"
-                  @click="claimRebate"
-                  class="w-full md:w-auto px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-medium rounded-lg transition-all shadow-lg shadow-red-500/20 lg:hover:shadow-red-500/30"
-                >
-                  <div class="flex items-center justify-center gap-2">
-                    <Icon
-                      v-if="!claimButtonLoading"
-                      icon="mdi:cash-refund"
-                      class="w-5 h-5"
-                    />
-                    <span class="font-bold max-lg:text-sm uppercase">{{
-                      $t("claim_my_rebate")
-                    }}</span>
-                  </div>
-                </LoadingButton>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="grid md:grid-cols-2 gap-4">
-          <div
-            class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
-          >
-            <div
-              class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
-            >
-              <Icon icon="mdi:clock-alert" class="w-5 h-5" />
-            </div>
-            <div>
-              <h3 class="font-medium text-[#f0eaea] mb-1">
-                {{ $t("time_limit") }}
-              </h3>
-              <p class="text-sm text-[#b37a7a]">
-                {{ $t("time_limit_description") }}
-              </p>
-            </div>
-          </div>
-
-          <div
-            class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
-          >
-            <div
-              class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
-            >
-              <Icon icon="mdi:cash-refund" class="w-5 h-5" />
-            </div>
-            <div>
-              <h3 class="font-medium text-[#f0eaea] mb-1">
-                {{ $t("no_turnover") }}
-              </h3>
-              <p class="text-sm text-[#b37a7a]">
-                {{ $t("no_turnover_description") }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="bg-[#15090e]/50 border border-[#3b1c23] rounded-lg p-4 flex items-start gap-3"
-        >
-          <div
-            class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center text-[#ff3344] flex-shrink-0"
-          >
-            <Icon icon="mdi:information" class="w-5 h-5" />
-          </div>
-          <div>
-            <h3 class="font-medium text-[#f0eaea] mb-1">
-              {{ $t("important_notice") }}
-            </h3>
-            <p class="text-sm text-[#b37a7a]">
-              {{ $t("games_not_qualify") }}
-            </p>
-          </div>
-        </div>
-
-        <div
-          class="bg-[#15090e]/50 rounded-xl p-6 max-lg:p-4 border border-[#3b1c23] shadow-lg shadow-red-500/10"
-        >
-          <h3
-            class="text-lg font-medium text-[#f0eaea] mb-4 flex items-center gap-2"
-          >
-            <Icon icon="mdi:information" class="text-[#ff3344]" />
-            {{ $t("rebate_rates_vip") }}
-          </h3>
-
-          <div class="space-y-4">
-            <div class="overflow-x-auto">
-              <table
-                class="min-w-full bg-[#241017]/60 border border-[#3b1c23] rounded-lg overflow-hidden"
-              >
-                <thead>
-                  <tr class="bg-[#ff3344]/20 text-[#f0eaea]">
-                    <th class="py-2 px-4 text-left text-sm font-medium">
-                      {{ $t("game_type") }}
-                    </th>
-                    <th
-                      v-for="level in settingsData.vipLevels"
-                      :key="level.name"
-                      class="py-2 px-4 text-center text-sm font-medium"
-                    >
-                      {{ level.name }}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-[#3b1c23]">
-                  <tr>
-                    <td class="py-2 px-4 text-sm text-[#f0eaea]">
-                      {{ $t("slots") }}
-                    </td>
-                    <td
-                      v-for="level in settingsData.vipLevels"
-                      :key="`slots-${level.name}`"
-                      class="py-2 px-4 text-sm text-[#b37a7a] text-center"
-                    >
-                      {{
-                        level.benefits && level.benefits["Rebate Slot"]
-                          ? formatNumber(
-                              level.benefits["Rebate Slot"],
-                              "Rebate Slot"
-                            ) + "%"
-                          : "-"
-                      }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 px-4 text-sm text-[#f0eaea]">
-                      {{ $t("live_casino") }}
-                    </td>
-                    <td
-                      v-for="level in settingsData.vipLevels"
-                      :key="`live-${level.name}`"
-                      class="py-2 px-4 text-sm text-[#b37a7a] text-center"
-                    >
-                      {{
-                        level.benefits && level.benefits["Rebate Live Casino"]
-                          ? formatNumber(
-                              level.benefits["Rebate Live Casino"],
-                              "Rebate Live Casino"
-                            ) + "%"
-                          : "-"
-                      }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="py-2 px-4 text-sm text-[#f0eaea]">
-                      {{ $t("sports_esports") }}
-                    </td>
-                    <td
-                      v-for="level in settingsData.vipLevels"
-                      :key="`sports-${level.name}`"
-                      class="py-2 px-4 text-sm text-[#b37a7a] text-center"
-                    >
-                      {{
-                        level.benefits &&
-                        level.benefits["Rebate Sports & Esports"]
-                          ? formatNumber(
-                              level.benefits["Rebate Sports & Esports"],
-                              "Rebate Sports & Esports"
-                            ) + "%"
-                          : "-"
-                      }}
-                    </td>
-                  </tr>
-                  <tr class="bg-[#15090e]/50">
-                    <td class="py-2 px-4 text-sm text-[#f0eaea]">
-                      {{ $t("lottery") }}
-                    </td>
-                    <td
-                      v-for="level in settingsData.vipLevels"
-                      :key="`lottery-${level.name}`"
-                      class="py-2 px-4 text-sm text-[#b37a7a]/60 text-center italic"
-                    >
-                      N/A
-                    </td>
-                  </tr>
-                  <tr class="bg-[#15090e]/50">
-                    <td class="py-2 px-4 text-sm text-[#f0eaea]">
-                      {{ $t("fishing_games") }}
-                    </td>
-                    <td
-                      v-for="level in settingsData.vipLevels"
-                      :key="`fishing-${level.name}`"
-                      class="py-2 px-4 text-sm text-[#b37a7a]/60 text-center italic"
-                    >
-                      N/A
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div class="flex flex-col gap-2">
-              <div class="text-sm text-[#b37a7a] italic">
-                {{ $t("rebate_rates_note") }}
-              </div>
-              <div class="text-sm text-[#b37a7a]">
-                <span class="font-medium">{{ $t("your_current_vip") }}: </span>
-                <span class="font-bold text-[#ff3344]">{{
-                  userData?.viplevel || "Bronze"
-                }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          class="bg-[#15090e]/50 rounded-xl p-6 max-lg:p-4 border border-[#3b1c23] shadow-lg shadow-red-500/10"
-        >
-          <h3 class="text-lg font-medium text-[#f0eaea] mb-4">
-            {{ $t("how_rebates_work") }}
-          </h3>
-
-          <div class="space-y-4">
-            <div class="flex items-start gap-3">
-              <div
-                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
-              >
-                1
-              </div>
-              <div>
-                <h4 class="font-medium text-[#f0eaea]">
-                  {{ $t("play_eligible_games") }}
-                </h4>
-                <p class="text-sm text-[#b37a7a]">
-                  {{ $t("play_eligible_description") }}
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div
-                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
-              >
-                2
-              </div>
-              <div>
-                <h4 class="font-medium text-[#f0eaea]">
-                  {{ $t("automatic_calculation") }}
-                </h4>
-                <p class="text-sm text-[#b37a7a]">
-                  {{ $t("automatic_calculation_description") }}
-                </p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div
-                class="w-6 h-6 rounded-full bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white flex items-center justify-center flex-shrink-0 font-bold text-sm"
-              >
-                3
-              </div>
-              <div>
-                <h4 class="font-medium text-[#f0eaea]">
-                  {{ $t("claim_your_rewards") }}
-                </h4>
-                <p class="text-sm text-[#b37a7a]">
-                  {{ $t("claim_rewards_description") }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-center mt-2">
           <LoadingButton
             :loading="claimButtonLoading"
             @click="claimRebate"
-            class="px-8 py-3 max-lg:px-6 max-lg:py-2.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-medium rounded-lg transition-all shadow-lg shadow-red-500/20 lg:hover:shadow-red-500/30"
+            class="w-full py-3 bg-[#ff3344] text-white rounded-lg font-semibold lg:hover:bg-[#cc2a3a] transition-all text-sm max-lg:py-2.5"
           >
             <div class="flex items-center justify-center gap-2">
               <Icon
@@ -314,9 +47,289 @@
                 icon="mdi:cash-refund"
                 class="w-5 h-5"
               />
-              <span class="font-bold max-lg:text-sm uppercase">{{
-                $t("claim_my_rebate_now")
-              }}</span>
+              <span class="uppercase">{{ $t("claim_my_rebate") }}</span>
+            </div>
+          </LoadingButton>
+        </div>
+
+        <!-- Info Cards -->
+        <div class="grid md:grid-cols-2 gap-3">
+          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+            <div class="flex gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-[#ff3344]/10 flex items-center justify-center flex-shrink-0"
+              >
+                <Icon icon="mdi:clock-alert" class="w-5 h-5 text-[#ff3344]" />
+              </div>
+              <div>
+                <h4 class="font-semibold text-[#f0eaea] mb-1 text-sm">
+                  {{ $t("time_limit") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("time_limit_description") }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+            <div class="flex gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-[#ff3344]/10 flex items-center justify-center flex-shrink-0"
+              >
+                <Icon icon="mdi:cash-refund" class="w-5 h-5 text-[#ff3344]" />
+              </div>
+              <div>
+                <h4 class="font-semibold text-[#f0eaea] mb-1 text-sm">
+                  {{ $t("no_turnover") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("no_turnover_description") }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Important Notice -->
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4">
+          <div class="flex gap-3">
+            <Icon
+              icon="mdi:information"
+              class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"
+            />
+            <div>
+              <h4 class="font-semibold text-amber-400 mb-1 text-sm">
+                {{ $t("important_notice") }}
+              </h4>
+              <p class="text-xs text-[#f0eaea]">
+                {{ $t("games_not_qualify") }}
+              </p>
+              <p class="text-xs text-[#b37a7a] mt-1">
+                <Icon
+                  icon="mdi:information-outline"
+                  class="inline-block mr-1"
+                />
+                {{ $t("valid_turnover_info") }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Your Current VIP -->
+        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
+              >
+                <Icon icon="mdi:crown" class="w-5 h-5 text-[#ff3344]" />
+              </div>
+              <div>
+                <p class="text-xs text-[#b37a7a] mb-0.5">
+                  {{ $t("your_current_vip") }}
+                </p>
+                <p class="text-base font-bold text-[#ff3344]">
+                  {{ userData?.viplevel || "Bronze" }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rebate Rates Table -->
+        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+          <h3
+            class="font-bold text-[#f0eaea] mb-3 text-base flex items-center gap-2"
+          >
+            <Icon icon="mdi:table" class="text-[#ff3344]" />
+            {{ $t("rebate_rates_vip") }}
+          </h3>
+
+          <div class="overflow-x-auto">
+            <table class="w-full">
+              <thead>
+                <tr class="border-b border-[#3b1c23]">
+                  <th
+                    class="py-2 px-3 text-left text-xs font-semibold text-[#f0eaea]"
+                  >
+                    {{ $t("game_type") }}
+                  </th>
+                  <th
+                    v-for="level in settingsData.vipLevels"
+                    :key="level.name"
+                    class="py-2 px-3 text-center text-xs font-semibold text-[#f0eaea]"
+                  >
+                    {{ level.name }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-b border-[#3b1c23]">
+                  <td class="py-2 px-3 text-xs text-[#f0eaea]">
+                    {{ $t("slots") }}
+                  </td>
+                  <td
+                    v-for="level in settingsData.vipLevels"
+                    :key="`slots-${level.name}`"
+                    class="py-2 px-3 text-xs text-[#b37a7a] text-center"
+                  >
+                    {{
+                      level.benefits && level.benefits["Rebate Slot"]
+                        ? formatNumber(
+                            level.benefits["Rebate Slot"],
+                            "Rebate Slot"
+                          ) + "%"
+                        : "-"
+                    }}
+                  </td>
+                </tr>
+                <tr class="border-b border-[#3b1c23]">
+                  <td class="py-2 px-3 text-xs text-[#f0eaea]">
+                    {{ $t("live_casino") }}
+                  </td>
+                  <td
+                    v-for="level in settingsData.vipLevels"
+                    :key="`live-${level.name}`"
+                    class="py-2 px-3 text-xs text-[#b37a7a] text-center"
+                  >
+                    {{
+                      level.benefits && level.benefits["Rebate Live Casino"]
+                        ? formatNumber(
+                            level.benefits["Rebate Live Casino"],
+                            "Rebate Live Casino"
+                          ) + "%"
+                        : "-"
+                    }}
+                  </td>
+                </tr>
+                <tr class="border-b border-[#3b1c23]">
+                  <td class="py-2 px-3 text-xs text-[#f0eaea]">
+                    {{ $t("sports_esports") }}
+                  </td>
+                  <td
+                    v-for="level in settingsData.vipLevels"
+                    :key="`sports-${level.name}`"
+                    class="py-2 px-3 text-xs text-[#b37a7a] text-center"
+                  >
+                    {{
+                      level.benefits &&
+                      level.benefits["Rebate Sports & Esports"]
+                        ? formatNumber(
+                            level.benefits["Rebate Sports & Esports"],
+                            "Rebate Sports & Esports"
+                          ) + "%"
+                        : "-"
+                    }}
+                  </td>
+                </tr>
+                <tr class="border-b border-[#3b1c23]">
+                  <td class="py-2 px-3 text-xs text-[#f0eaea]">
+                    {{ $t("lottery") }}
+                  </td>
+                  <td
+                    v-for="level in settingsData.vipLevels"
+                    :key="`lottery-${level.name}`"
+                    class="py-2 px-3 text-xs text-[#b37a7a] text-center italic"
+                  >
+                    N/A
+                  </td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 text-xs text-[#f0eaea]">
+                    {{ $t("fishing_games") }}
+                  </td>
+                  <td
+                    v-for="level in settingsData.vipLevels"
+                    :key="`fishing-${level.name}`"
+                    class="py-2 px-3 text-xs text-[#b37a7a] text-center italic"
+                  >
+                    N/A
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="text-xs text-[#b37a7a] italic mt-3">
+            {{ $t("rebate_rates_note") }}
+          </p>
+        </div>
+
+        <!-- How Rebates Work -->
+        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+          <h3
+            class="font-bold text-[#f0eaea] mb-3 text-base flex items-center gap-2"
+          >
+            <Icon icon="mdi:help-circle" class="text-[#ff3344]" />
+            {{ $t("how_rebates_work") }}
+          </h3>
+
+          <div class="space-y-3">
+            <div class="flex gap-3">
+              <div
+                class="w-6 h-6 rounded-full bg-[#ff3344] text-white flex items-center justify-center flex-shrink-0 text-xs font-bold"
+              >
+                1
+              </div>
+              <div>
+                <h4 class="font-semibold text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("play_eligible_games") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("play_eligible_description") }}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <div
+                class="w-6 h-6 rounded-full bg-[#ff3344] text-white flex items-center justify-center flex-shrink-0 text-xs font-bold"
+              >
+                2
+              </div>
+              <div>
+                <h4 class="font-semibold text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("automatic_calculation") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("automatic_calculation_description") }}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <div
+                class="w-6 h-6 rounded-full bg-[#ff3344] text-white flex items-center justify-center flex-shrink-0 text-xs font-bold"
+              >
+                3
+              </div>
+              <div>
+                <h4 class="font-semibold text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("claim_your_rewards") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("claim_rewards_description") }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Claim Button -->
+        <div class="pt-2">
+          <LoadingButton
+            :loading="claimButtonLoading"
+            @click="claimRebate"
+            class="w-full py-3 bg-[#ff3344] text-white rounded-lg font-semibold lg:hover:bg-[#cc2a3a] transition-all text-sm max-lg:py-2.5"
+          >
+            <div class="flex items-center justify-center gap-2">
+              <Icon
+                v-if="!claimButtonLoading"
+                icon="mdi:cash-refund"
+                class="w-5 h-5"
+              />
+              <span class="uppercase">{{ $t("claim_my_rebate_now") }}</span>
             </div>
           </LoadingButton>
         </div>
@@ -340,7 +353,6 @@ const settingsData = ref({
 });
 const isLoading = ref(true);
 const claimButtonLoading = ref(false);
-const lastClaimedDate = ref(null);
 const userData = useState("userData");
 const { get, post } = useApiEndpoint();
 const { showAlert } = useAlert();
@@ -385,7 +397,6 @@ const claimRebate = async () => {
   claimButtonLoading.value = true;
   try {
     const { data } = await post("user/claimrebate");
-    console.log(data);
     if (data.success) {
       showAlert($t("alert_success"), $t("rebate_claim_success"), "success");
     } else {
@@ -412,31 +423,3 @@ onMounted(async () => {
   isLoading.value = false;
 });
 </script>
-
-<style scoped>
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-.animate-pulse {
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes ping {
-  75%,
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-.animate-ping {
-  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-</style>

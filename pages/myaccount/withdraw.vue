@@ -1,384 +1,359 @@
 <template>
   <UserAccountLayout>
-    <div
-      v-if="showActiveGamesModal"
-      class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 p-3 md:p-4"
-      @click="closeModalOnOutsideClick"
-    >
-      <div
-        class="bg-[#241017]/95 backdrop-blur-sm rounded-2xl w-full max-w-sm md:max-w-md mx-auto shadow-2xl shadow-red-500/20 max-h-[30rem] overflow-auto transform transition-all duration-300 scale-100 border border-[#3b1c23]"
-      >
-        <div class="p-4 md:p-6 text-center border-b border-[#3b1c23]">
+    <!-- Active Games Modal -->
+    <Teleport to="body">
+      <Transition name="fade">
+        <div
+          v-if="showActiveGamesModal"
+          class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[999] p-4"
+          @click.self="showActiveGamesModal = false"
+        >
           <div
-            class="w-14 h-14 bg-[#ff3344]/20 rounded-full flex items-center justify-center mx-auto mb-3"
+            class="bg-[#1A0D13] border border-[#3b1c23] rounded-lg w-full max-w-md overflow-hidden"
+            :class="showActiveGamesModal ? 'animate-popupIn' : ''"
           >
-            <i class="bi bi-exclamation-triangle text-[#ff3344] text-xl"></i>
-          </div>
-          <h3 class="text-lg font-bold text-[#f0eaea] mb-1">
-            {{ $t("withdrawal_blocked") }}
-          </h3>
-          <p class="text-xs md:text-sm text-[#b37a7a] leading-relaxed px-2">
-            {{ $t("complete_games_before_withdrawal_mandatory") }}
-          </p>
-        </div>
-
-        <div class="px-4 py-4 md:px-6">
-          <div class="mb-3 md:mb-4">
-            <p class="text-xs md:text-sm font-medium text-[#f0eaea] mb-3">
-              {{ $t("incomplete_games") }} ({{ activeGames.length }})
-            </p>
-          </div>
-
-          <div
-            class="space-y-2 md:space-y-3 max-h-48 md:max-h-60 overflow-y-auto"
-          >
+            <!-- Header -->
             <div
-              v-for="game in activeGames"
-              :key="game.betId"
-              class="bg-[#ff3344]/10 rounded-xl p-3 md:p-4 flex items-center justify-between border-l-4 border-[#ff3344]"
+              class="p-4 border-b border-[#3b1c23] flex items-center justify-between"
             >
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center mb-1">
-                  <div
-                    class="w-2 h-2 bg-[#ff3344] rounded-full mr-2 animate-pulse"
-                  ></div>
-                  <p
-                    class="font-semibold text-[#f0eaea] text-xs md:text-sm truncate"
-                  >
-                    {{ game.gameName }}
-                  </p>
-                </div>
-              </div>
-
-              <div class="flex-shrink-0 ml-3">
+              <div class="flex items-center gap-3">
                 <div
-                  class="w-8 h-8 md:w-10 md:h-10 bg-[#ff3344] rounded-full flex items-center justify-center"
+                  class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center"
                 >
-                  <i
-                    class="bi bi-controller text-white text-sm md:text-base"
-                  ></i>
+                  <Icon icon="mdi:alert-circle" class="w-6 h-6 text-red-400" />
+                </div>
+                <h3 class="font-semibold text-[#f0eaea] text-base">
+                  {{ $t("withdrawal_blocked") }}
+                </h3>
+              </div>
+              <button
+                @click="showActiveGamesModal = false"
+                class="w-8 h-8 rounded-lg bg-[#241017] border border-[#3b1c23] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all"
+              >
+                <Icon icon="mdi:close" class="w-5 h-5" />
+              </button>
+            </div>
+
+            <!-- Content -->
+            <div class="p-4">
+              <p class="text-sm text-[#b37a7a] mb-4">
+                {{ $t("complete_games_before_withdrawal_mandatory") }}
+              </p>
+
+              <!-- Active Games List -->
+              <div class="space-y-2 max-h-60 overflow-y-auto scrollbar-thin">
+                <div
+                  v-for="game in activeGames"
+                  :key="game.betId"
+                  class="p-3 rounded-lg bg-[#241017] border border-[#3b1c23] flex items-center gap-3"
+                >
+                  <div
+                    class="w-2 h-2 bg-[#ff3344] rounded-full animate-pulse"
+                  ></div>
+                  <div class="flex-1 min-w-0">
+                    <p class="font-medium text-[#f0eaea] text-sm truncate">
+                      {{ game.gameName }}
+                    </p>
+                  </div>
+                  <div
+                    class="w-8 h-8 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
+                  >
+                    <Icon
+                      icon="mdi:gamepad-variant"
+                      class="w-4 h-4 text-[#ff3344]"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
+
+            <!-- Footer -->
+            <div class="p-4 border-t border-[#3b1c23]">
+              <button
+                @click="showActiveGamesModal = false"
+                class="w-full py-2.5 bg-[#ff3344] text-white rounded-lg font-medium lg:hover:bg-[#cc2a3a] transition-all text-sm"
+              >
+                {{ $t("understood") }}
+              </button>
+            </div>
           </div>
         </div>
+      </Transition>
+    </Teleport>
 
-        <div
-          class="p-4 md:p-6 border-t border-[#3b1c23] bg-[#15090e]/50 rounded-b-2xl"
-        >
-          <div class="text-center mb-4">
-            <p class="text-xs md:text-sm text-[#b37a7a] mb-2">
-              {{ $t("complete_games_instruction") }}
+    <!-- Turnover Progress Bar -->
+    <Teleport to="body">
+      <TurnoverProgressBar
+        :turnoverDetails="turnoverData"
+        v-if="turnoverData"
+        @close="turnoverData = null"
+      />
+    </Teleport>
+
+    <div class="text-[#f0eaea]">
+      <!-- Page Header -->
+      <div class="mb-6 max-lg:mb-4">
+        <div class="flex justify-between items-start gap-3">
+          <div class="flex-1">
+            <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+              {{ $t("withdraw") }}
+            </h1>
+            <p class="text-[#b37a7a] text-sm max-lg:text-xs">
+              {{ $t("request_withdrawal") }}
             </p>
           </div>
-
-          <button
-            @click="showActiveGamesModal = false"
-            class="w-full py-3 md:py-3.5 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-semibold rounded-xl transition-all duration-200 text-sm"
-          >
-            <i class="bi bi-check-circle mr-2"></i>
-            {{ $t("understood") }}
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="text-[#f0eaea]">
-      <div class="mb-6 max-lg:mb-4">
-        <div class="flex justify-between items-center">
-          <h1 class="text-lg font-bold text-[#f0eaea] max-lg:text-base">
-            {{ $t("withdraw") }}
-          </h1>
           <button
             type="button"
             @click="checkTurnoverRequirements"
             :disabled="turnoverCheckLoading"
-            class="flex items-center justify-center bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-medium py-2.5 px-4 max-lg:py-2 max-lg:px-3 rounded-lg transition shadow-lg shadow-red-500/20 disabled:opacity-60 disabled:cursor-not-allowed text-sm max-lg:text-xs whitespace-nowrap ml-4 max-lg:ml-2"
+            class="flex items-center gap-2 bg-[#241017] border border-[#3b1c23] text-[#f0eaea] font-medium py-2.5 px-4 rounded-lg lg:hover:border-[#ff3344]/50 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap max-lg:py-2 max-lg:px-3 max-lg:text-xs"
           >
-            <span v-if="!turnoverCheckLoading" class="flex items-center">
-              <i
-                class="bi bi-clipboard-check mr-2 max-lg:mr-1 max-lg:text-xs"
-              ></i>
-              {{ $t("check_turnover_requirements") }}
-            </span>
-            <span v-else class="flex items-center">
-              <i
-                class="bi bi-arrow-repeat animate-spin mr-2 max-lg:mr-1 max-lg:text-xs"
-              ></i>
-              {{ $t("checking") }}...
-            </span>
+            <Icon
+              :icon="
+                turnoverCheckLoading ? 'mdi:loading' : 'mdi:clipboard-check'
+              "
+              class="w-4 h-4"
+              :class="{ 'animate-spin': turnoverCheckLoading }"
+            />
+            <span class="max-lg:hidden">{{
+              $t("check_turnover_requirements")
+            }}</span>
+            <span class="lg:hidden">{{ $t("check") }}</span>
           </button>
         </div>
-        <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-          {{ $t("request_withdrawal") }}
-        </p>
       </div>
 
-      <!-- Main Content -->
-      <div class="flex flex-col gap-8 max-lg:gap-6">
-        <div class="md:col-span-7">
-          <div>
-            <form
-              @submit.prevent="submitWithdraw"
-              class="space-y-6 max-lg:space-y-4"
-            >
+      <!-- Withdraw Form -->
+      <div class="space-y-4">
+        <!-- Available Balance Card -->
+        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
+              >
+                <Icon icon="mdi:wallet" class="w-5 h-5 text-[#ff3344]" />
+              </div>
               <div>
-                <label
-                  for="withdrawAmount"
-                  class="block text-sm max-lg:text-xs font-medium text-[#f0eaea] mb-1"
-                >
-                  {{ $t("withdrawal_amount") }}
-                </label>
-                <div class="relative">
-                  <div
-                    class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
-                  >
-                    <span class="text-[#b37a7a] text-lg max-lg:text-base"
-                      >MYR</span
-                    >
-                  </div>
-                  <input
-                    id="withdrawAmount"
-                    v-model="withdrawAmount"
-                    type="number"
-                    min="0"
-                    step="0.01"
-                    placeholder="0.00"
-                    class="pl-16 max-lg:pl-14 block w-full rounded-lg border border-[#3b1c23] py-3 max-lg:py-2.5 px-4 max-lg:px-3 bg-[#241017]/50 text-[#f0eaea] placeholder-[#b37a7a] focus:outline-none focus:ring-2 focus:ring-[#ff3344]/50 focus:border-[#ff3344] transition max-lg:text-sm"
-                  />
-                </div>
+                <p class="text-xs text-[#b37a7a] mb-0.5">
+                  {{ $t("available_balance") }}
+                </p>
+                <p class="text-xl font-bold text-[#ff3344]">
+                  MYR {{ userData?.wallet?.toFixed(2) || "0.00" }}
+                </p>
               </div>
-
-              <div
-                v-if="userData?.bankAccounts?.length"
-                class="space-y-3 max-lg:space-y-2"
-              >
-                <label
-                  class="block text-sm max-lg:text-xs font-medium text-[#f0eaea] mb-1"
-                >
-                  {{ $t("withdraw_to") }}:
-                </label>
-                <div class="space-y-2">
-                  <div
-                    v-for="bank in userData.bankAccounts"
-                    :key="bank._id"
-                    class="bg-[#241017]/50 rounded-lg p-4 max-lg:p-3 border border-[#3b1c23] flex justify-between items-center cursor-pointer lg:hover:border-[#ff3344]/50 lg:hover:bg-[#15090e]/70 transition"
-                    :class="{
-                      'border-[#ff3344] shadow-lg shadow-red-500/20 bg-[#ff3344]/10':
-                        selectedBankId === bank._id,
-                    }"
-                    @click="selectedBankId = bank._id"
-                  >
-                    <div class="flex items-center">
-                      <div
-                        class="w-10 h-10 max-lg:w-8 max-lg:h-8 rounded-full bg-[#ff3344]/20 flex items-center justify-center mr-3 max-lg:mr-2"
-                      >
-                        <i class="bi bi-bank text-[#ff3344] max-lg:text-sm"></i>
-                      </div>
-                      <div>
-                        <p class="font-medium text-[#f0eaea] max-lg:text-sm">
-                          {{ bank.bankname }}
-                        </p>
-                        <p
-                          class="text-sm max-lg:text-xs text-[#b37a7a] font-mono"
-                        >
-                          {{ formatBankNumber(bank.banknumber) }}
-                        </p>
-                      </div>
-                    </div>
-                    <div class="flex items-center">
-                      <!-- Radio button styled indicator -->
-                      <div
-                        class="w-5 h-5 max-lg:w-4 max-lg:h-4 rounded-full border-2 flex items-center justify-center mr-2"
-                        :class="
-                          selectedBankId === bank._id
-                            ? 'border-[#ff3344]'
-                            : 'border-[#3b1c23]'
-                        "
-                      >
-                        <div
-                          v-if="selectedBankId === bank._id"
-                          class="w-3 h-3 max-lg:w-2 max-lg:h-2 rounded-full bg-[#ff3344]"
-                        ></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- No Bank Account Warning -->
-              <div
-                v-else
-                class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 max-lg:p-3 flex items-start"
-              >
-                <i
-                  class="bi bi-exclamation-triangle text-amber-400 text-lg max-lg:text-base mr-3 max-lg:mr-2 mt-0.5"
-                ></i>
-                <div>
-                  <h4 class="font-medium text-amber-400 max-lg:text-sm">
-                    {{ $t("no_bank_account_found") }}
-                  </h4>
-                  <p class="text-[#f0eaea] text-sm max-lg:text-xs mt-1">
-                    {{ $t("add_bank_account_message") }}
-                  </p>
-                  <div class="mt-3 max-lg:mt-2">
-                    <NuxtLinkLocale
-                      to="/myaccount/bankaccount"
-                      class="text-sm max-lg:text-xs px-4 max-lg:px-3 py-2 max-lg:py-1.5 bg-amber-500/20 lg:hover:bg-amber-500/30 text-amber-400 rounded-md transition inline-block"
-                    >
-                      {{ $t("add_bank_account_message") }}
-                    </NuxtLinkLocale>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="bg-[#ff3344]/10 rounded-lg p-4 max-lg:p-3 border border-[#ff3344]/30"
-              >
-                <div class="flex justify-between items-center">
-                  <span class="text-[#f0eaea] max-lg:text-sm"
-                    >{{ $t("available_balance") }}:</span
-                  >
-                  <span
-                    class="font-semibold text-[#ff3344] text-lg max-lg:text-base"
-                  >
-                    ${{ userData?.wallet?.toFixed(2) || "0.00" }}
-                  </span>
-                </div>
-              </div>
-
-              <div class="pt-2">
-                <LoadingButton
-                  type="submit"
-                  :disabled="
-                    withdrawButtonLoading || !userData?.bankAccounts?.length
-                  "
-                  class="w-full flex justify-center items-center bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 text-white font-medium py-3 max-lg:py-2.5 px-4 max-lg:px-3 rounded-lg transition shadow-lg shadow-red-500/20 disabled:opacity-60 disabled:cursor-not-allowed max-lg:text-sm"
-                >
-                  <span v-if="!withdrawButtonLoading">{{
-                    $t("request_withdrawal_button")
-                  }}</span>
-                  <span v-else class="flex items-center">
-                    <i class="bi bi-arrow-repeat animate-spin mr-2"></i>
-                    {{ $t("processing") }}...
-                  </span>
-                </LoadingButton>
-              </div>
-            </form>
+            </div>
           </div>
         </div>
 
-        <div class="md:col-span-5">
-          <div
-            class="bg-[#15090e]/50 rounded-xl p-6 max-lg:p-4 border border-[#3b1c23] shadow-lg shadow-red-500/20 space-y-6 max-lg:space-y-4"
-          >
-            <div>
-              <h3
-                class="text-lg max-lg:text-base font-semibold text-[#f0eaea] mb-3 max-lg:mb-2"
-              >
-                {{ $t("withdrawal_information") }}
-              </h3>
-
-              <ul class="space-y-4 max-lg:space-y-3">
-                <li class="flex items-start">
-                  <i
-                    class="bi bi-clock text-[#ff3344] mr-3 max-lg:mr-2 mt-1"
-                  ></i>
-                  <div>
-                    <h4 class="font-medium text-[#f0eaea] max-lg:text-sm">
-                      {{ $t("withdrawal_information") }}
-                    </h4>
-                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-                      {{ $t("processing_time_desc") }}
-                    </p>
-                  </div>
-                </li>
-
-                <li class="flex items-start">
-                  <i
-                    class="bi bi-cash-stack text-[#ff3344] mr-3 max-lg:mr-2 mt-1"
-                  ></i>
-                  <div>
-                    <h4 class="font-medium text-[#f0eaea] max-lg:text-sm">
-                      {{ $t("minimum_withdrawal") }}
-                    </h4>
-                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-                      {{ $t("minimum_withdrawal_desc") }}
-                    </p>
-                  </div>
-                </li>
-
-                <li class="flex items-start">
-                  <i
-                    class="bi bi-bank text-[#ff3344] mr-3 max-lg:mr-2 mt-1"
-                  ></i>
-                  <div>
-                    <h4 class="font-medium text-[#f0eaea] max-lg:text-sm">
-                      {{ $t("bank_account") }}
-                    </h4>
-                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-                      {{ $t("bank_account_desc") }}
-                    </p>
-                  </div>
-                </li>
-
-                <li class="flex items-start">
-                  <i
-                    class="bi bi-shield-check text-[#ff3344] mr-3 max-lg:mr-2 mt-1"
-                  ></i>
-                  <div>
-                    <h4 class="font-medium text-[#f0eaea] max-lg:text-sm">
-                      {{ $t("verification") }}
-                    </h4>
-                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-                      {{ $t("verification_desc") }}
-                    </p>
-                  </div>
-                </li>
-                <li class="flex items-start">
-                  <i
-                    class="bi bi-exclamation-triangle text-[#ff3344] mr-3 max-lg:mr-2 mt-1"
-                  ></i>
-                  <div>
-                    <h4 class="font-medium text-[#f0eaea] max-lg:text-sm">
-                      {{ $t("betting_rules") }}
-                    </h4>
-                    <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-                      {{ $t("betting_rules_desc") }}
-                    </p>
-                  </div>
-                </li>
-              </ul>
+        <!-- Withdrawal Amount -->
+        <div>
+          <label class="block font-semibold mb-2 text-base">
+            {{ $t("withdrawal_amount") }}
+          </label>
+          <div class="relative">
+            <div
+              class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+            >
+              <span class="text-[#b37a7a] text-sm font-medium">MYR</span>
             </div>
+            <input
+              v-model="withdrawAmount"
+              type="number"
+              min="0"
+              step="0.01"
+              placeholder="0.00"
+              class="w-full pl-16 pr-4 py-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-base max-lg:pl-14 max-lg:py-2.5 max-lg:text-sm"
+            />
+          </div>
+        </div>
 
-            <div class="pt-2">
-              <div class="border-t border-[#3b1c23] pt-4 max-lg:pt-3">
-                <h3
-                  class="text-lg max-lg:text-base font-semibold text-[#f0eaea] mb-3 max-lg:mb-2"
-                >
-                  {{ $t("need_help") }}?
-                </h3>
-                <p class="text-[#b37a7a] max-lg:text-sm mb-3 max-lg:mb-2">
-                  {{ $t("withdrawal_questions") }}
-                </p>
-                <button
-                  type="button"
-                  @click="navigateToHome"
-                  class="flex items-center text-[#ff3344] lg:hover:text-[#c21b3a] transition max-lg:text-sm"
-                >
-                  <i class="bi bi-arrow-left mr-2"></i>
-                  {{ $t("return_homepage") }}
-                </button>
+        <!-- Bank Account Selection -->
+        <div v-if="userData?.bankAccounts?.length">
+          <label class="block font-semibold mb-2 text-base">
+            {{ $t("withdraw_to") }}
+          </label>
+          <div class="space-y-2">
+            <button
+              v-for="bank in userData.bankAccounts"
+              :key="bank._id"
+              type="button"
+              @click="selectedBankId = bank._id"
+              :class="[
+                'w-full p-3 rounded-lg flex items-center gap-3 transition-all border text-left',
+                selectedBankId === bank._id
+                  ? 'bg-[#ff3344]/10 border-[#ff3344]'
+                  : 'bg-[#241017] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
+              ]"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center"
+              >
+                <Icon icon="mdi:bank" class="w-5 h-5 text-[#ff3344]" />
               </div>
+              <div class="flex-1 min-w-0">
+                <p class="font-semibold text-[#f0eaea] text-sm mb-0.5">
+                  {{ bank.bankname }}
+                </p>
+                <p class="text-xs text-[#b37a7a] font-mono">
+                  {{ formatBankNumber(bank.banknumber) }}
+                </p>
+              </div>
+              <div
+                class="w-5 h-5 rounded-full border-2 flex items-center justify-center"
+                :class="
+                  selectedBankId === bank._id
+                    ? 'border-[#ff3344]'
+                    : 'border-[#3b1c23]'
+                "
+              >
+                <div
+                  v-if="selectedBankId === bank._id"
+                  class="w-3 h-3 rounded-full bg-[#ff3344]"
+                ></div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- No Bank Account Warning -->
+        <div
+          v-else
+          class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4"
+        >
+          <div class="flex gap-3">
+            <Icon
+              icon="mdi:alert"
+              class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"
+            />
+            <div class="flex-1">
+              <h4 class="font-semibold text-amber-400 mb-1 text-sm">
+                {{ $t("no_bank_account_found") }}
+              </h4>
+              <p class="text-[#f0eaea] text-sm mb-3">
+                {{ $t("add_bank_account_message") }}
+              </p>
+              <NuxtLinkLocale
+                to="/myaccount/bankaccount"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/20 text-amber-400 rounded-lg lg:hover:bg-amber-500/30 transition-all text-sm font-medium"
+              >
+                <Icon icon="mdi:plus" class="w-4 h-4" />
+                {{ $t("add_bank_account") }}
+              </NuxtLinkLocale>
             </div>
           </div>
+        </div>
+
+        <!-- Submit Button -->
+        <LoadingButton
+          :loading="withdrawButtonLoading"
+          @click="submitWithdraw"
+          :disabled="!userData?.bankAccounts?.length"
+          class="w-full py-3 bg-[#ff3344] text-white rounded-lg font-semibold lg:hover:bg-[#cc2a3a] transition-all text-base disabled:opacity-50 disabled:cursor-not-allowed max-lg:py-2.5 max-lg:text-sm"
+        >
+          {{ $t("request_withdrawal_button") }}
+        </LoadingButton>
+
+        <!-- Withdrawal Information -->
+        <div class="border border-[#3b1c23] rounded-lg p-4">
+          <h3
+            class="font-semibold text-[#f0eaea] mb-3 text-base flex items-center gap-2"
+          >
+            <Icon icon="mdi:information" class="w-5 h-5 text-[#ff3344]" />
+            {{ $t("withdrawal_information") }}
+          </h3>
+          <ul class="space-y-3">
+            <li class="flex gap-3">
+              <Icon
+                icon="mdi:clock-outline"
+                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+              />
+              <div>
+                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("processing_time") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("processing_time_desc") }}
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <Icon
+                icon="mdi:cash"
+                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+              />
+              <div>
+                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("minimum_withdrawal") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("minimum_withdrawal_desc") }}
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <Icon
+                icon="mdi:bank"
+                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+              />
+              <div>
+                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("bank_account") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("bank_account_desc") }}
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <Icon
+                icon="mdi:shield-check"
+                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+              />
+              <div>
+                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("verification") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("verification_desc") }}
+                </p>
+              </div>
+            </li>
+            <li class="flex gap-3">
+              <Icon
+                icon="mdi:alert-circle"
+                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+              />
+              <div>
+                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                  {{ $t("betting_rules") }}
+                </h4>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("betting_rules_desc") }}
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Need Help -->
+        <div class="border-t border-[#3b1c23] pt-4">
+          <h3 class="font-semibold text-[#f0eaea] mb-2 text-sm">
+            {{ $t("need_help") }}?
+          </h3>
+          <p class="text-[#b37a7a] text-sm mb-3">
+            {{ $t("withdrawal_questions") }}
+          </p>
+          <button
+            type="button"
+            @click="navigateToHome"
+            class="flex items-center gap-2 text-[#ff3344] lg:hover:text-[#cc2a3a] transition-all text-sm font-medium"
+          >
+            <Icon icon="mdi:arrow-left" class="w-4 h-4" />
+            {{ $t("return_homepage") }}
+          </button>
         </div>
       </div>
-      <Teleport to="body">
-        <TurnoverProgressBar
-          :turnoverDetails="turnoverData"
-          v-if="turnoverData"
-          @close="turnoverData = null"
-      /></Teleport>
     </div>
   </UserAccountLayout>
 </template>
@@ -386,6 +361,7 @@
 <script setup>
 import { useRouter } from "vue-router";
 import UserAccountLayout from "~/layouts/UserAccountLayout.vue";
+import { Icon } from "@iconify/vue";
 
 const turnoverCheckLoading = ref(false);
 const turnoverData = ref(null);
@@ -416,12 +392,6 @@ const navigateToHome = () => {
 const showActiveGamesModal = ref(false);
 const activeGames = ref([]);
 
-const closeModalOnOutsideClick = (event) => {
-  if (event.target === event.currentTarget) {
-    showActiveGamesModal.value = false;
-  }
-};
-
 const submitWithdraw = async () => {
   if (!userData.value?.bankAccounts?.length) {
     showAlert($t("alert_info"), $t("add_bank_first"), "info");
@@ -447,15 +417,9 @@ const submitWithdraw = async () => {
       return;
     }
 
-    // If there are active games, show modal and STOP withdrawals
     if (activeGamesResponse.data.activeGames.length > 0) {
       activeGames.value = activeGamesResponse.data.activeGames;
       showActiveGamesModal.value = true;
-      // showAlert(
-      //   $t("warning"),
-      //   $t("withdrawal_blocked_active_games"),
-      //   "warning"
-      // );
       return;
     }
 
@@ -503,7 +467,7 @@ const fetchUserData = async () => {
       userData.value = data.user;
     }
   } catch (error) {
-    console.error("Error fetching helps:", error);
+    console.error("Error fetching user data:", error);
   }
 };
 
@@ -540,4 +504,49 @@ onMounted(async () => {
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+/* Fade transition for modal overlay */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Popup animation for modal */
+@keyframes popupIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-popupIn {
+  animation: popupIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #15090e;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
+}
+</style>

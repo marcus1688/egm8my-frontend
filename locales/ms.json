@@ -1126,5 +1126,15 @@
   "ok": "OK",
   "bank_details": "Butiran Bank",
   "account_holder": "Pemegang Akaun",
-  "select_bank_modal": "Pilih Bank"
+  "select_bank_modal": "Pilih Bank",
+  "download_qr": "Muat Turun QR",
+  "referral_code": "Kod Rujukan",
+  "referral_link": "Pautan Rujukan",
+  "share_via": "Kongsi Melalui",
+  "unlimited_earnings": "Pendapatan Tanpa Had",
+  "unlimited_earnings_desc": "Tiada had untuk pendapatan dari rujukan anda",
+  "instant_rewards": "Ganjaran Segera",
+  "instant_rewards_desc": "Dapatkan ganjaran serta-merta apabila rakan menyertai",
+  "lifetime_commission": "Komisen Seumur Hidup",
+  "lifetime_commission_desc": "Dapatkan pendapatan dari aktiviti rujukan anda selamanya"
 }
