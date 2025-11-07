@@ -1,9 +1,7 @@
 <template>
   <ClientOnly>
-    <div>
-      <section
-        class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20"
-      >
+    <div class="bg-[#0a0005] min-h-screen">
+      <section class="relative shadow-lg shadow-red-600/20">
         <img
           src="/images/banner/promotion_banner_desktop.png"
           alt="Promotions and Bonuses Banner"
@@ -16,135 +14,133 @@
         />
       </section>
 
-      <section class="py-8 containerWid max-lg:py-4">
-        <div class="mx-auto">
+      <section class="containerWid px-6 py-8 max-lg:px-4 max-lg:py-6">
+        <div class="mb-8 max-lg:mb-6">
           <div
-            class="mb-8 pt-4 pb-3 bg-[#241017] max-lg:mb-2 max-lg:pt-2 max-lg:pb-2 border border-[#3b1c23] rounded-lg"
+            class="flex items-center justify-between mb-6 max-lg:mb-4 max-md:flex-col max-md:items-start max-md:gap-3"
           >
-            <div
-              class="flex justify-between items-center max-[430px]:flex-col max-[430px]:items-start max-[430px]:gap-2 mb-4 max-[430px]:!mb-3 max-lg:mb-2 px-4"
-            >
-              <h2
-                class="homeMainTxt3 font-bold text-[#f0eaea] flex items-center gap-2 max-lg:text-lg"
+            <div>
+              <h1
+                class="text-3xl font-bold text-[#f0eaea] mb-2 max-lg:text-2xl max-sm:text-xl max-lg:mb-1"
               >
-                <span class="text-xl max-lg:text-lg">
-                  {{ tabs.find((t) => t.key === selectedTab)?.label }}
-                  {{ $t("promotion") }}
-                </span>
-              </h2>
-              <p class="text-sm max-[630px]:text-xs text-[#b37a7a]">
-                {{ $t("showing") }}
-                <span class="font-semibold text-[#ff3344]">{{
-                  filteredContent.length
-                }}</span>
-                {{ $t("promotions") }}
+                {{ tabs.find((t) => t.key === selectedTab)?.label }}
+                {{ $t("promotion") }}
+              </h1>
+              <p class="text-sm text-[#b37a7a] max-lg:text-xs">
+                {{ $t("exclusive_rewards_bonuses") }}
               </p>
             </div>
-            <div class="relative px-4 max-lg:px-2">
-              <div
-                class="overflow-x-auto category-scroller scrollbar-hide max-lg:-mx-2 max-lg:px-2"
-              >
-                <div
-                  class="flex gap-2 md:gap-3 pb-2 max-lg:gap-1.5 max-lg:pb-1"
-                  style="width: max-content"
-                >
-                  <button
-                    v-for="(tab, index) in tabs"
-                    :key="index"
-                    @click="selectTab(tab.key)"
-                    class="px-4 py-2.5 max-[630px]:!px-4 max-[630px]:py-2 max-lg:px-3 max-lg:py-2 rounded-lg whitespace-nowrap transition-all text-sm max-[630px]:text-xs max-lg:text-xs font-medium flex items-center gap-2 max-lg:gap-1.5"
-                    :class="
-                      selectedTab === tab.key
-                        ? 'bg-[#a1122d] text-white shadow-md !border-transparent'
-                        : 'bg-[#15090e] text-[#b37a7a] lg:hover:bg-[#2a0f14] border border-[#3b1c23]'
-                    "
-                  >
-                    <img
-                      :src="getCategoryIcon(tab.key)"
-                      alt="Category Icon"
-                      class="w-8 h-auto max-lg:w-6 max-lg:h-6"
-                    />
-                    <span>{{ tab.label }}</span>
-                  </button>
-                </div>
-              </div>
+            <div
+              class="max-md:hidden flex items-center gap-2 px-4 py-2 bg-[#241017] rounded-lg border border-[#3b1c23]"
+            >
+              <i class="bi bi-gift text-[#ff3344]"></i>
+              <span class="text-sm text-[#b37a7a] max-lg:text-xs">
+                <span class="font-bold text-[#ff3344]">{{
+                  filteredContent.length
+                }}</span>
+                {{ $t("offers") }}
+              </span>
             </div>
           </div>
 
-          <div
-            v-if="filteredContent.length > 0"
-            class="grid grid-cols-3 max-xl:grid-cols-2 max-md:grid-cols-1 gap-6"
-          >
+          <div class="relative">
             <div
-              v-for="(promotion, index) in filteredContent"
-              :key="index"
-              class="bg-[#241017] rounded-xl overflow-hidden border border-[#3b1c23] h-full"
+              class="overflow-x-auto scrollbar-hide -mx-6 px-6 max-lg:-mx-4 max-lg:px-4"
             >
-              <div class="flex flex-col h-full">
-                <div class="relative overflow-hidden">
+              <div class="flex gap-2 min-w-max pb-2">
+                <button
+                  v-for="tab in tabs"
+                  :key="tab.key"
+                  @click="selectTab(tab.key)"
+                  class="flex items-center gap-2 px-4 py-2.5 rounded-lg transition-all duration-200 whitespace-nowrap border max-lg:px-3 max-lg:py-2"
+                  :class="
+                    selectedTab === tab.key
+                      ? 'bg-[#ff3344] border-[#ff3344] text-white'
+                      : 'bg-transparent border-[#3b1c23] text-[#b37a7a] lg:hover:border-[#ff3344]/50 lg:hover:text-[#f0eaea]'
+                  "
+                >
                   <img
-                    :src="getPromotionImage(promotion)"
-                    :alt="promotion.title"
-                    class="w-full h-full object-cover"
+                    :src="getCategoryIconByKey(tab.key)"
+                    :alt="tab.label"
+                    class="w-7 h-7 max-sm:w-6 max-sm:h-6 object-contain transition-all"
+                    :class="
+                      selectedTab === tab.key ? 'brightness-0 invert' : ''
+                    "
                   />
 
-                  <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#1A0D13]/80 via-[#1A0D13]/20 to-transparent opacity-60"
-                  ></div>
-                </div>
-
-                <div class="p-4 flex flex-col flex-grow">
-                  <div
-                    class="flex justify-between items-center max-lg:flex-col max-lg:items-start"
-                  >
-                    <h2
-                      v-html="
-                        $i18n.locale === 'zh'
-                          ? promotion?.maintitle
-                          : $i18n.locale === 'ms'
-                          ? promotion?.maintitleMS
-                          : promotion?.maintitleEN
-                      "
-                      class="font-bold text-[#f0eaea] mb-2 line-clamp-1 max-lg:text-text-xs"
-                    ></h2>
-                    <div class="w-[30%] flex justify-end max-lg:w-full">
-                      <button
-                        @click="openPromotionModal(promotion)"
-                        class="w-full py-2 px-4 bg-[#15090e] text-[#b37a7a] lg:hover:bg-[#2a0f14] rounded-lg transition-colors font-medium flex items-center justify-center gap-1 border border-[#3b1c23]"
-                      >
-                        <i class="bi bi-info-circle"></i>
-                        <span class="text-xs">{{ $t("details") }}</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                  <span class="text-sm font-medium max-lg:text-xs">{{
+                    tab.label
+                  }}</span>
+                </button>
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Promotions Grid -->
+        <div v-if="filteredContent.length > 0">
           <div
-            v-else
-            class="bg-[#241017] rounded-xl p-12 text-center border border-[#3b1c23] shadow-sm"
+            class="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-6 max-lg:gap-5"
           >
             <div
-              class="w-16 h-16 rounded-full bg-[#15090e] text-[#ff3344] flex items-center justify-center text-xl mx-auto mb-4 border border-[#3b1c23]"
+              v-for="promotion in filteredContent"
+              :key="promotion._id"
+              class="group bg-[#15090e] rounded-xl overflow-hidden border border-[#3b1c23]/50"
             >
-              <i class="bi bi-search"></i>
+              <div class="relative overflow-hidden bg-[#1A0D13]">
+                <img
+                  :src="getPromotionImage(promotion)"
+                  :alt="promotion.title"
+                  class="w-full h-full object-cover"
+                />
+                <div
+                  class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60"
+                ></div>
+              </div>
+
+              <div class="p-5 max-lg:p-4">
+                <div class="min-h-[3rem]">
+                  <h3
+                    class="text-[#f0eaea] font-semibold text-base mb-4 line-clamp-2 leading-snug max-lg:text-sm max-lg:mb-3"
+                  >
+                    {{
+                      $i18n.locale === "zh"
+                        ? promotion?.maintitle
+                        : $i18n.locale === "ms"
+                        ? promotion?.maintitleMS
+                        : promotion?.maintitleEN
+                    }}
+                  </h3>
+                </div>
+
+                <button
+                  @click="openPromotionModal(promotion)"
+                  class="w-full py-2.5 mt-5 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 border max-lg:py-2 max-lg:text-xs bg-transparent border-[#ff3344] text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white"
+                >
+                  <span>{{ $t("learn_more") }}</span>
+                  <i class="bi bi-arrow-right text-xs"></i>
+                </button>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-[#f0eaea] mb-2">
-              {{ $t("no_promotions_found") }}
-            </h3>
-            <p class="text-[#b37a7a] mb-6 max-w-md mx-auto">
-              {{ $t("no_promotions_available") }}
-              <span class="font-medium">{{ selectedTab }}</span
-              >.
-            </p>
-            <button
-              @click="selectTab('All')"
-              class="px-6 py-3 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors text-sm font-medium inline-flex items-center gap-2"
+          </div>
+        </div>
+
+        <div v-else class="py-16 text-center">
+          <div class="max-w-md mx-auto">
+            <img
+              src="/images/burger-menu/promotions.png"
+              alt=""
+              class="w-24 max-sm:w-18 mx-auto"
+            />
+
+            <h3
+              class="text-xl max-sm:text-base font-semibold text-[#f0eaea] mb-2 max-sm:mb-1"
             >
-              <i class="bi bi-grid"></i>
-              {{ $t("view_all_promotions") }}
-            </button>
+              {{ $t("no_promotions") }}
+            </h3>
+            <p class="text-[#b37a7a] text-sm max-sm:text-xs">
+              {{ $t("no_promotions_in_category") }}
+            </p>
           </div>
         </div>
       </section>
@@ -162,6 +158,7 @@
 const pageLoading = useState("pageLoading");
 const isPromotionModalOpen = ref(false);
 const selectedPromotion = ref(null);
+
 const tabs = [
   { key: "All", label: $t("all") },
   { key: "Live Casino", label: $t("live_casino") },
@@ -173,19 +170,55 @@ const tabs = [
 ];
 
 const promotionData = ref(null);
+const selectedTab = ref("All");
 
-const getCategoryIcon = (category) => {
-  const iconMap = {
-    All: "/images/burger-menu/slots.png",
-    "Slot Games": "/images/burger-menu/slots.png",
-    "Live Casino": "/images/burger-menu/livecasino.png",
-    "E-Sports": "/images/burger-menu/e-sports.png",
-    Sports: "/images/burger-menu/sports.png",
-    Fishing: "/images/burger-menu/fishing.png",
-    Lottery: "/images/burger-menu/lottery.png",
-  };
-  return iconMap[category];
+const categories = [
+  {
+    name: "All",
+    iconActive: "/images/maingameicon/Slot_active.png",
+    iconInactive: "/images/maingameicon/Slot_deactivate.png",
+  },
+  {
+    name: "Slot Games",
+    iconActive: "/images/maingameicon/Slot_active.png",
+    iconInactive: "/images/maingameicon/Slot_deactivate.png",
+  },
+  {
+    name: "Live Casino",
+    iconActive: "/images/maingameicon/Live Casino_active.png",
+    iconInactive: "/images/maingameicon/Live Casino_deactivate.png",
+  },
+  {
+    name: "Sports",
+    iconActive: "/images/maingameicon/Sports_active.png",
+    iconInactive: "/images/maingameicon/Sports_deactivate.png",
+  },
+  {
+    name: "E-Sports",
+    iconActive: "/images/maingameicon/E-Sports_active.png",
+    iconInactive: "/images/maingameicon/E-Sports_deactivate.png",
+  },
+  {
+    name: "Fishing",
+    iconActive: "/images/maingameicon/Fishing_active.png",
+    iconInactive: "/images/maingameicon/Fishing_deactivate.png",
+  },
+  {
+    name: "Lottery",
+    iconActive: "/images/maingameicon/Lottery_active.png",
+    iconInactive: "/images/maingameicon/Lottery_deactivate.png",
+  },
+];
+
+const getCategoryIconByKey = (key) => {
+  const category = categories.find((cat) => cat.name === key);
+  if (!category) return categories[0].iconInactive; // fallback
+
+  return selectedTab.value === key
+    ? category.iconActive
+    : category.iconInactive;
 };
+
 function openPromotionModal(promotion) {
   selectedPromotion.value = {
     promotionimage: promotion.promotionimage,
@@ -215,130 +248,6 @@ function closePromotionModal() {
   isPromotionModalOpen.value = false;
 }
 
-onMounted(async () => {
-  pageLoading.value = true;
-  try {
-    await fetchPromotion();
-  } catch (error) {
-    console.error("Error during initialization:", error);
-  } finally {
-    pageLoading.value = false;
-  }
-});
-
-const promotions = [
-  {
-    title: '288% "Have You BK8?" Welcome Bonus',
-    description:
-      "Power up your play with 288% Welcome Bonus and receive up to MYR2,880!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Welcome+Bonus",
-    category: "Member",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "150% First Deposit Bonus",
-    description:
-      "Get extra value on your first deposit with our 150% Welcome Bonus up to MYR1,500.",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=First+Deposit",
-    category: "Member",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Slots Free Spins Thursday",
-    description:
-      "Enjoy 100 free spins on our most popular slot games every Thursday!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Free+Spins",
-    category: "Slots",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Casino Weekend Cashback",
-    description:
-      "Get up to 15% cashback on your weekend losses, credited every Monday.",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Casino+Cashback",
-    category: "Casino",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Esports Bonus Bet",
-    description:
-      "Place your first Esports bet and get a free bonus bet of the same value!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Esports+Bonus",
-    category: "Esport",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Sports Accumulator Boost",
-    description:
-      "Get up to 70% boost on your accumulator bets when you select 5+ events.",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Sports+Boost",
-    category: "Sports",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Fishing Tournament",
-    description:
-      "Join our weekly fishing tournament and compete for a prize pool of MYR10,000!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Fishing+Tournament",
-    category: "Fishing",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "VIP Exclusive Cashback",
-    description:
-      "VIP members enjoy increased 20% cashback on all games, paid out weekly.",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=VIP+Cashback",
-    category: "VIP",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Lucky Draw Special",
-    description:
-      "Deposit MYR100 or more and get entered into our monthly lucky draw for prizes!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Lucky+Draw",
-    category: "Special",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Crypto Deposit Bonus",
-    description:
-      "Get an additional 5% bonus when you deposit using any cryptocurrency.",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Crypto+Bonus",
-    category: "Crypto",
-    validUntil: "31 March 2025",
-  },
-  {
-    title: "Winner Showcase",
-    description: "Check out our recent big winners and their amazing stories!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Winner+Showcase",
-    category: "Winner",
-    validUntil: null,
-  },
-  {
-    title: "Daily Rewards",
-    description:
-      "Log in daily to receive special rewards and bonuses every day!",
-    image: "https://placehold.co/800x400/1a1d22/454b54?text=Daily+Rewards",
-    category: "Member",
-    validUntil: "31 March 2025",
-  },
-];
-
-const getCategoryColor = (category) => {
-  const colorMap = {
-    All: "text-blue-600",
-    "Slot Games": "text-purple-600",
-    "Live Casino": "text-red-600",
-    "E-Sports": "text-green-600",
-    Sports: "text-orange-600",
-    Fishing: "text-cyan-600",
-    Lottery: "text-yellow-600",
-  };
-
-  return colorMap[category] || "text-gray-600";
-};
-
-const selectedTab = ref("All");
 function selectTab(tabName) {
   selectedTab.value = tabName;
 }
@@ -355,36 +264,12 @@ async function fetchPromotion() {
   }
 }
 
-const chineseImageMapping = {
-  "68a8e6095b0b3524a723a8ba": "68ad709c4fa1a2b251ae614a",
-  "68a834e98c7c0b0fd3bfc317": "68ad70a24fa1a2b251ae6179",
-  "6835810cacaed1c845fb72c4": "687a14c4696757f1e34d8d47", // English promo ID -> Chinese promo ID
-  "6815c2930f91b823519dd20b": "687a1050696757f1e34d8354",
-  "6815be950f91b823519dd144": "687a1320696757f1e34d8979",
-  "6815b6a50f91b823519dcf28": "687a1386696757f1e34d8a71",
-  "6815b3900f91b823519dcdf3": "687a13b7696757f1e34d8aeb",
-  "6815aa1e0f91b823519dcb74": "687a13f7696757f1e34d8b83",
-  "68132db2b08436800e2c1cfe": "687a142b696757f1e34d8c05",
-  "6813257c3e85ca8b7abf9246": "687a1450696757f1e34d8c33",
-  "68131b6d3e85ca8b7abf907a": "687a1478696757f1e34d8ca3",
-};
-
 function getPromotionImage(promotion) {
-  if ($locale.value === "zh") {
-    if (chineseImageMapping[promotion._id]) {
-      const chinesePromo = promotionData.value?.find(
-        (p) => p._id === chineseImageMapping[promotion._id]
-      );
-
-      if (chinesePromo && chinesePromo.promotionimage) {
-        return chinesePromo.promotionimage;
-      }
-    }
-    return promotion.promotionimage2 || promotion.promotionimage;
+  if ($locale.value === "zh" && promotion.promotionimage2) {
+    return promotion.promotionimage2;
   }
-
-  if ($locale.value === "ms") {
-    return promotion.promotionimage3 || promotion.promotionimage;
+  if ($locale.value === "ms" && promotion.promotionimage3) {
+    return promotion.promotionimage3;
   }
 
   return promotion.promotionimage;
@@ -392,34 +277,24 @@ function getPromotionImage(promotion) {
 
 const filteredContent = computed(() => {
   if (!promotionData.value) return [];
-
   let allPromotions = promotionData.value.filter((promo) => {
     return promo.maintitleEN && promo.maintitleEN.trim() !== "";
   });
-
-  // Apply category filter
   if (selectedTab.value === "All") return allPromotions;
-
   return allPromotions.filter((promo) => {
-    if (selectedTab.value === "Live Casino") {
-      return promo.categories.some((cat) => cat.name === "Live Casino");
-    }
-    if (selectedTab.value === "Sports") {
-      return promo.categories.some((cat) => cat.name === "Sports");
-    }
-    if (selectedTab.value === "Slot Games") {
-      return promo.categories.some((cat) => cat.name === "Slot Games");
-    }
-    if (selectedTab.value === "Fishing") {
-      return promo.categories.some((cat) => cat.name === "Fishing");
-    }
-    if (selectedTab.value === "E-Sports") {
-      return promo.categories.some((cat) => cat.name === "E-Sports");
-    }
-    if (selectedTab.value === "Lottery") {
-      return promo.categories.some((cat) => cat.name === "Lottery");
-    }
+    return promo.categories.some((cat) => cat.name === selectedTab.value);
   });
+});
+
+onMounted(async () => {
+  pageLoading.value = true;
+  try {
+    await fetchPromotion();
+  } catch (error) {
+    console.error("Error during initialization:", error);
+  } finally {
+    pageLoading.value = false;
+  }
 });
 
 useHead({
@@ -432,22 +307,17 @@ useHead({
     {
       name: "description",
       content:
-        "Discover EGM8's latest promotions and bonuses including welcome bonuses, free spins, cashback offers, sports betting promotions, VIP rewards, and daily specials. Join Malaysia's premier gaming platform for exclusive deals.",
+        "Discover EGM8's latest promotions and bonuses including welcome bonuses, free spins, cashback offers, sports betting promotions, VIP rewards, and daily specials.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 promotions, casino bonuses Malaysia, welcome bonus, free spins, cashback offers, sports betting bonus, slot promotions, live casino bonus, VIP rewards, daily bonuses, Malaysia casino deals",
+        "EGM8 promotions, casino bonuses Malaysia, welcome bonus, free spins, cashback offers, sports betting bonus, slot promotions, live casino bonus, VIP rewards",
     },
   ],
-  htmlAttrs: {
-    lang: "en",
-  },
+  htmlAttrs: { lang: "en" },
   link: [
-    {
-      rel: "canonical",
-      href: "https://www.egm8my.vip/promotions",
-    },
+    { rel: "canonical", href: "https://www.egm8my.vip/promotions" },
     {
       rel: "alternate",
       hreflang: "x-default",
@@ -463,6 +333,11 @@ useHead({
 </script>
 
 <style scoped>
+.containerWid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -472,64 +347,11 @@ useHead({
   scrollbar-width: none;
 }
 
-button {
-  transition: all 0.25s ease;
-}
-
-.category-scroller {
-  cursor: grab;
-  touch-action: pan-x;
-  -webkit-overflow-scrolling: touch;
-}
-
-.category-scroller:active {
-  cursor: grabbing;
-}
-
-.line-clamp-1 {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
 .line-clamp-2 {
   display: -webkit-box;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-}
-
-.animate-float-slow {
-  animation: float 8s ease-in-out infinite;
-}
-
-.animate-float-medium {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-float-fast {
-  animation: float 4s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin 15s linear infinite;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+  text-overflow: ellipsis;
 }
 </style>

@@ -1117,5 +1117,10 @@
   "vip_benefits": "VIP Exclusive Benefits",
   "vip_subtitle": "Unlock premium rewards and exclusive perks as you level up",
   "vip_tiers": "VIP Tiers",
-  "exclusive_benefits": "Exclusive Benefits"
+  "exclusive_benefits": "Exclusive Benefits",
+  "exclusive_rewards_bonuses": "Exclusive rewards and bonuses for our valued players",
+  "offers": "Offers",
+  "learn_more": "Learn More",
+  "no_promotions": "No Promotions Available",
+  "no_promotions_in_category": "There are currently no promotions in this category"
 }

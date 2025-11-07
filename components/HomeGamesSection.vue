@@ -167,13 +167,15 @@
           <img
             src="/images/burger-menu/gaming.png"
             alt=""
-            class="w-24 mx-auto"
+            class="w-24 max-sm:w-18 mx-auto"
           />
 
-          <h3 class="text-xl font-semibold text-[#f0eaea] mb-2">
+          <h3
+            class="text-xl max-sm:text-base font-semibold text-[#f0eaea] mb-2 max-sm:mb-1"
+          >
             {{ $t("no_games_found") }}
           </h3>
-          <p class="text-[#b37a7a] text-sm">
+          <p class="text-[#b37a7a] text-sm max-sm:text-xs">
             {{ $t("no_games_message") }}
           </p>
         </div>

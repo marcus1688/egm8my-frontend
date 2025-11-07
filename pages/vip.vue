@@ -15,11 +15,10 @@
         />
       </section>
 
-      <!-- Header -->
       <section class="py-6 containerWid px-4 max-lg:py-4">
         <div class="text-center">
           <h1
-            class="text-3xl font-bold text-[#f0eaea] mb-2 max-lg:text-2xl max-lg:mb-1"
+            class="text-3xl font-bold text-[#f0eaea] mb-2 max-lg:text-2xl max-lg:mb-1 max-sm:text-xl"
           >
             {{ localizedTableTitle }}
           </h1>
