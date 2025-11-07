@@ -53,7 +53,6 @@
         </button>
       </div>
 
-      <!-- Modern Close button -->
       <button
         @click="closeAlert"
         class="absolute top-3 right-3 w-7 h-7 flex items-center justify-center rounded-full lg:hover:bg-[#3b1c23] text-[#b37a7a] lg:hover:text-[#ff3344] transition-colors"
