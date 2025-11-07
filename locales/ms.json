@@ -1112,5 +1112,10 @@
   "game_locked": "Permainan Dikunci",
   "game_locked_message": "Permainan ini sedang dikunci. Sila hubungi khidmat pelanggan untuk bantuan.",
   "real_time_transaction_updates": "Kemas kini transaksi langsung",
-  "top_players_weekly_rankings": "Pemain teratas dengan jumlah pertaruhan sah tertinggi minggu ini"
+  "top_players_weekly_rankings": "Pemain teratas dengan jumlah pertaruhan sah tertinggi minggu ini",
+  "benefits": "Faedah",
+  "vip_benefits": "Faedah Eksklusif VIP",
+  "vip_subtitle": "Buka kunci ganjaran premium dan keistimewaan eksklusif apabila anda naik taraf",
+  "vip_tiers": "Tahap VIP",
+  "exclusive_benefits": "Faedah Eksklusif"
 }

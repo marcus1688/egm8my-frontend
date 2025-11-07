@@ -42,7 +42,7 @@
           class="h-auto"
         >
           <div
-            class="bg-[#241017] rounded-xl border border-[#3b1c23] p-6 flex flex-col transition-all duration-300 lg:hover:border-[#ff3344] lg:hover:shadow-lg max-lg:p-5 h-[320px] max-lg:h-[280px]"
+            class="bg-[#241017] rounded-xl border border-[#3b1c23] p-6 flex flex-col transition-all duration-300 max-lg:p-5 h-[320px] max-lg:h-[280px]"
           >
             <!-- Rating Stars -->
             <div class="flex gap-0.5 mb-4 flex-shrink-0">

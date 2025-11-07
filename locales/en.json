@@ -1112,5 +1112,10 @@
   "game_locked": "Game Locked",
   "game_locked_message": "This game is currently locked. Please contact customer service for assistance.",
   "real_time_transaction_updates": "Live transaction updates",
-  "top_players_weekly_rankings": "Top players with highest valid turnover this week"
+  "top_players_weekly_rankings": "Top players with highest valid turnover this week",
+  "benefits": "Benefits",
+  "vip_benefits": "VIP Exclusive Benefits",
+  "vip_subtitle": "Unlock premium rewards and exclusive perks as you level up",
+  "vip_tiers": "VIP Tiers",
+  "exclusive_benefits": "Exclusive Benefits"
 }

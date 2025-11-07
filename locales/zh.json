@@ -1112,5 +1112,10 @@
   "game_locked": "游戏已锁定",
   "game_locked_message": "此游戏目前已被锁定。请联系客服寻求帮助。",
   "real_time_transaction_updates": "实时交易更新",
-  "top_players_weekly_rankings": "本周有效投注额最高的顶级玩家"
+  "top_players_weekly_rankings": "本周有效投注额最高的顶级玩家",
+  "benefits": "优惠",
+  "vip_benefits": "VIP 专属福利",
+  "vip_subtitle": "升级即可解锁高级奖励和专属特权",
+  "vip_tiers": "VIP 等级",
+  "exclusive_benefits": "专属福利"
 }

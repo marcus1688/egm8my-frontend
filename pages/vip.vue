@@ -1,162 +1,116 @@
 <template>
   <ClientOnly>
     <div>
-      <section
-        class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20"
-      >
+      <!-- Banner -->
+      <section class="relative shadow-lg shadow-red-600/20">
         <img
           src="/images/banner/vip_banner_desktop.png"
-          alt="Promotions and Bonuses Banner"
+          alt="VIP"
           class="w-full h-auto lg:block hidden"
         />
         <img
           src="/images/banner/vip_banner_mobile.png"
-          alt="Promotions and Bonuses Banner"
+          alt="VIP"
           class="w-full h-auto lg:hidden block"
         />
       </section>
-      <section class="py-8 relative max-lg:p-4">
-        <div class="mb-4 px-48 max-2xl:px-12 max-lg:px-2 max-lg:hidden hidden">
-          <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
-            <div
-              v-for="level in settingsData.vipLevels"
-              :key="level.id"
-              class="bg-[#1A0D13] rounded-xl shadow-md overflow-hidden transform transition-all lg:hover:scale-105 lg:hover:shadow-lg border border-[#3b1c23]"
-            >
-              <div
-                class="relative h-24 flex items-center justify-center bg-gradient-to-r overflow-hidden"
-                :class="getGradientClass(level.name)"
-              >
-                <div class="absolute inset-0 opacity-20">
-                  <div
-                    class="absolute top-0 left-1/4 w-20 h-20 rounded-full border-2 border-white/20"
-                  ></div>
-                  <div
-                    class="absolute -bottom-10 -right-5 w-16 h-16 rounded-full border-2 border-white/20"
-                  ></div>
-                </div>
-                <div
-                  class="w-16 h-16 rounded-full flex items-center justify-center shadow-inner z-10"
-                  :class="getInnerCircleClass(level.name)"
-                >
-                  <img
-                    v-if="level.iconUrl"
-                    :src="level.iconUrl"
-                    class="w-12 h-12"
-                    alt="VIP icon"
-                  />
-                </div>
-              </div>
-              <div class="p-4 text-center">
-                <h3
-                  class="font-bold text-lg"
-                  :class="{
-                    'text-[#a45e24]': level.name === 'Bronze',
-                    'text-gray-400': level.name === 'Silver',
-                    'text-[#daa520]': level.name === 'Gold',
-                    'text-[#3d898f]': level.name === 'Platinum',
-                    'text-gray-300': level.name === 'Diamond',
-                    'text-[#a855f7]': level.name === 'EGM8 Elite VIP',
-                  }"
-                >
-                  <p class="max-xl:text-sm">
-                    {{ getLocalizedLevelName(level.name) }}
-                  </p>
-                </h3>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- VIP Table -->
-        <div class="px-48 max-2xl:px-12 max-lg:px-0">
-          <div
-            class="bg-[#241017] rounded-xl shadow-lg overflow-hidden border border-[#3b1c23] relative max-lg:rounded-lg max-lg:shadow-md"
+      <!-- Header -->
+      <section class="py-6 containerWid px-4 max-lg:py-4">
+        <div class="text-center">
+          <h1
+            class="text-3xl font-bold text-[#f0eaea] mb-2 max-lg:text-2xl max-lg:mb-1"
           >
-            <!-- Glowing corner effects -->
-            <div
-              class="absolute -top-4 -left-4 w-8 h-8 bg-[#ff3344] rounded-full blur-xl opacity-20 max-lg:w-6 max-lg:h-6"
-            ></div>
-            <div
-              class="absolute -bottom-4 -right-4 w-8 h-8 bg-[#a1122d] rounded-full blur-xl opacity-20 max-lg:w-6 max-lg:h-6"
-            ></div>
+            {{ localizedTableTitle }}
+          </h1>
+          <p class="text-sm text-[#b37a7a] max-lg:text-xs">
+            {{ $t("vip_subtitle") }}
+          </p>
+        </div>
+      </section>
 
-            <div class="overflow-x-auto">
-              <table
-                class="w-full min-w-[900px] max-lg:min-w-[750px] text-nowrap"
-              >
-                <thead>
-                  <tr
-                    class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white"
+      <!-- Desktop Table -->
+      <section class="containerWid pb-8 px-4 hidden lg:block">
+        <div
+          class="bg-[#241017] rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full min-w-[900px]">
+              <thead>
+                <tr class="bg-gradient-to-r from-[#ff3344] to-[#cc2a3a]">
+                  <th
+                    class="py-4 px-4 text-left text-white font-semibold sticky left-0 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] z-10"
                   >
-                    <th class="py-4 px-6 text-left max-lg:py-3 max-lg:px-3">
-                      {{ localizedTableTitle }}
-                    </th>
-                    <th
-                      v-for="level in settingsData.vipLevels"
-                      :key="`header-${level.name}`"
-                      class="py-4 px-4 text-center max-lg:py-3 max-lg:px-2 max-lg:text-sm"
+                    {{ $t("benefits") }}
+                  </th>
+                  <th
+                    v-for="level in settingsData.vipLevels"
+                    :key="`header-${level.name}`"
+                    class="py-4 px-3 text-center"
+                  >
+                    <div class="flex flex-col items-center gap-2">
+                      <img
+                        v-if="level.iconUrl"
+                        :src="level.iconUrl"
+                        alt="VIP"
+                        class="w-14"
+                      />
+                      <span
+                        class="text-white text-sm font-semibold whitespace-nowrap"
+                      >
+                        {{ getLocalizedLevelName(level.name) }}
+                      </span>
+                    </div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <template
+                  v-for="(row, rowIndex) in settingsData.rowHeaders"
+                  :key="row.id"
+                >
+                  <tr v-if="isFirstInGroup(rowIndex)" class="bg-[#1A0D13]">
+                    <td
+                      colspan="7"
+                      class="py-2.5 px-4 font-semibold text-[#ff3344] text-sm border-t-2 border-[#3b1c23]"
                     >
-                      <div class="flex flex-col items-center">
-                        <img
-                          v-if="level.iconUrl"
-                          :src="level.iconUrl"
-                          alt="VIP Icon"
-                          class="w-12 h-auto max-lg:w-8"
-                        />
-                        <span class="max-lg:text-xs">
-                          {{ getLocalizedLevelName(level.name) }}</span
-                        >
-                      </div>
-                    </th>
+                      <i class="bi bi-chevron-right mr-1"></i>
+                      {{ getSectionTitle(row.name) }}
+                    </td>
                   </tr>
-                </thead>
-
-                <tbody>
-                  <template
-                    v-for="(row, rowIndex) in settingsData.rowHeaders"
-                    :key="row.id"
-                  >
-                    <tr v-if="isFirstInGroup(rowIndex)" class="bg-[#15090e]/40">
-                      <td
-                        colspan="7"
-                        class="py-2 px-6 font-medium text-[#ff3344] max-lg:py-1.5 max-lg:px-3 max-lg:text-sm"
+                  <tr class="lg:hover:bg-[#2a0f14]/50 transition-colors">
+                    <td
+                      class="py-3 px-4 border-t border-[#3b1c23] font-medium text-[#f0eaea] text-sm sticky left-0 bg-[#241017] lg:hover:bg-[#2a0f14]/50 z-10"
+                    >
+                      {{ getLocalizedRowName(row.name) }}
+                    </td>
+                    <td
+                      v-for="level in settingsData.vipLevels"
+                      :key="`${level.name}-${row.name}`"
+                      class="py-3 px-3 text-center border-t border-[#3b1c23] text-sm"
+                    >
+                      <span
+                        v-if="
+                          level.benefits &&
+                          level.benefits[row.name]?.toString().toLowerCase() ===
+                            'yes'
+                        "
+                        class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-green-500/20"
                       >
-                        {{ getSectionTitle(row.name) }}
-                      </td>
-                    </tr>
-                    <tr class="lg:hover:bg-[#2a0f14] transition-colors">
-                      <td
-                        class="py-3 px-6 border-t border-[#3b1c23] font-medium max-lg:py-2 max-lg:px-3 max-lg:text-sm text-[#f0eaea]"
+                        <i class="bi bi-check-lg text-green-500 text-lg"></i>
+                      </span>
+                      <span
+                        v-else-if="
+                          level.benefits &&
+                          level.benefits[row.name]?.toString().toLowerCase() ===
+                            'no'
+                        "
+                        class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gray-500/20"
                       >
-                        {{ getLocalizedRowName(row.name) }}
-                      </td>
-                      <td
-                        v-for="level in settingsData.vipLevels"
-                        :key="`${level.name}-${row.name}`"
-                        class="py-3 px-4 text-center border-t border-[#3b1c23] max-lg:py-2 max-lg:px-2 max-lg:text-xs text-gray-300"
-                      >
-                        <span
-                          v-if="
-                            level.benefits &&
-                            level.benefits[row.name]
-                              ?.toString()
-                              .toLowerCase() === 'yes'
-                          "
-                          class="text-green-500"
-                          ><i class="bi bi-check-lg"></i
-                        ></span>
-                        <span
-                          v-else-if="
-                            level.benefits &&
-                            level.benefits[row.name]
-                              ?.toString()
-                              .toLowerCase() === 'no'
-                          "
-                          class="text-gray-400"
-                          ><i class="bi bi-x"></i
-                        ></span>
-                        <template v-else>
+                        <i class="bi bi-x text-gray-500 text-lg"></i>
+                      </span>
+                      <template v-else>
+                        <span class="text-[#f0eaea] font-semibold">
                           {{
                             row.name === "Withdraw Limit" &&
                             level.benefits &&
@@ -179,66 +133,183 @@
                                   row.name
                                 )
                           }}
-                        </template>
-                      </td>
-                    </tr>
-                  </template>
-                </tbody>
-              </table>
-            </div>
+                        </span>
+                      </template>
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
 
-            <!-- Mobile hint -->
-            <div
-              class="text-center text-xs text-[#b37a7a] p-2 border-t border-[#3b1c23] bg-[#15090e] md:hidden max-lg:py-3"
-            >
-              <p>
-                <i class="bi bi-arrow-left-right mr-1"></i>
-                {{ $t("swipe_horizontally") }}
-              </p>
+      <!-- Mobile Tab  -->
+      <section class="lg:hidden containerWid px-4 pb-6">
+        <div class="mb-4">
+          <div class="overflow-x-auto scrollbar-hide -mx-4 px-4">
+            <div class="grid grid-cols-6 gap-2 pb-2" style="min-width: 600px">
+              <button
+                v-for="level in settingsData.vipLevels"
+                :key="level.name"
+                @click="selectedMobileLevel = level"
+                class="flex flex-col items-center gap-2 py-3 rounded-lg transition-all relative"
+              >
+                <div
+                  class="w-22 h-22 max-md:w-18 max-md:h-18 rounded-full flex items-center justify-center transition-all"
+                  :class="
+                    selectedMobileLevel?.name === level.name
+                      ? 'ring-2 ring-[#ff3344] ring-offset-2 ring-offset-[#0a0005] scale-110'
+                      : 'opacity-50'
+                  "
+                >
+                  <img
+                    v-if="level.iconUrl"
+                    :src="level.iconUrl"
+                    alt="VIP"
+                    class="w-20 h-20 max-md:w-16 max-md:h-16"
+                  />
+                </div>
+
+                <span
+                  class="text-sm max-md:text-xs mt-1 font-semibold text-center transition-colors leading-tight"
+                  :class="
+                    selectedMobileLevel?.name === level.name
+                      ? 'text-[#ff3344]'
+                      : 'text-[#b37a7a]'
+                  "
+                >
+                  {{ getLocalizedLevelName(level.name) }}
+                </span>
+
+                <div
+                  v-if="selectedMobileLevel?.name === level.name"
+                  class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-[#ff3344] rounded-full"
+                ></div>
+              </button>
             </div>
           </div>
         </div>
-
-        <!-- Terms and Conditions
-        <div>
-          <div
-            class="bg-[#241017] rounded-xl shadow-lg !py-6 container mx-auto !px-4 border border-[#3b1c23] relative max-lg:rounded-lg max-lg:shadow-md max-lg:!py-4 max-lg:!px-3"
-          >
-            <div
-              class="absolute top-0 right-0 w-20 h-20 overflow-hidden max-lg:w-12 max-lg:h-12"
+        <div v-if="selectedMobileLevel" class="space-y-4">
+          <div class="space-y-3">
+            <template
+              v-for="(row, rowIndex) in settingsData.rowHeaders"
+              :key="row.id"
             >
-              <div
-                class="absolute top-0 right-0 w-4 h-4 bg-[#ff3344] transform rotate-45 translate-x-1/2 -translate-y-1/2 max-lg:w-3 max-lg:h-3"
-              ></div>
-            </div>
-
-            <h3
-              class="text-lg font-bold text-[#f0eaea] mb-4 flex items-center max-lg:text-base max-lg:mb-3"
-            >
-              <i class="bi bi-info-circle text-[#ff3344] mr-2"></i>
-              {{ $t("terms_conditions") }}
-            </h3>
-
-            <div
-              v-if="getLocalizedTerms"
-              class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-[#b37a7a] text-sm max-lg:gap-x-4 max-lg:gap-y-2 max-lg:text-xs"
-            >
-              <ul class="space-y-2 list-none max-lg:space-y-1.5">
-                <li
-                  v-for="(item, index) in getLocalizedTermsArray"
-                  :key="index"
-                  class="flex items-start"
-                >
-                  <span
-                    class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#15090e] text-[#ff3344] text-xs font-bold mr-2 flex-shrink-0 max-lg:w-4 max-lg:h-4 max-lg:text-[10px] max-lg:mr-1.5 border border-[#3b1c23]"
-                    >{{ index + 1 }}</span
+              <div v-if="isFirstInGroup(rowIndex)" class="pt-2 first:pt-0">
+                <div class="flex items-center gap-2 mb-3">
+                  <div class="w-1 h-4 bg-[#ff3344] rounded-full"></div>
+                  <h4
+                    class="text-sm font-bold text-[#ff3344] uppercase tracking-wider"
                   >
-                  <span>{{ item }}</span>
-                </li>
-              </ul>
+                    {{ getSectionTitle(row.name) }}
+                  </h4>
+                  <div class="flex-1 h-px bg-[#3b1c23]"></div>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between py-2.5 px-1 border-b border-[#3b1c23] last:border-b-0"
+              >
+                <span class="text-[0.9rem] text-[#f0eaea] flex-1 pr-4">
+                  {{ getLocalizedRowName(row.name) }}
+                </span>
+
+                <div
+                  v-if="
+                    selectedMobileLevel.benefits &&
+                    selectedMobileLevel.benefits[row.name]
+                      ?.toString()
+                      .toLowerCase() === 'yes'
+                  "
+                  class="flex-shrink-0 flex items-center gap-1.5"
+                >
+                  <span class="text-xs text-green-500 font-medium">{{
+                    $t("yes")
+                  }}</span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                </div>
+                <div
+                  v-else-if="
+                    selectedMobileLevel.benefits &&
+                    selectedMobileLevel.benefits[row.name]
+                      ?.toString()
+                      .toLowerCase() === 'no'
+                  "
+                  class="flex-shrink-0 flex items-center gap-1.5"
+                >
+                  <span class="text-xs text-gray-500 font-medium">{{
+                    $t("no")
+                  }}</span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-gray-500"></div>
+                </div>
+
+                <!-- Value -->
+                <div v-else class="flex-shrink-0 flex items-center gap-1.5">
+                  <span class="text-[0.9rem] font-bold text-[#ff3344]">
+                    {{
+                      row.name === "Withdraw Limit" &&
+                      selectedMobileLevel.benefits &&
+                      selectedMobileLevel.benefits[row.name]
+                        ? formatNumber(
+                            selectedMobileLevel.benefits[row.name],
+                            row.name
+                          )
+                        : (row.name === "Rebate Slot" ||
+                            row.name === "Rebate Live Casino" ||
+                            row.name === "Rebate Sports & Esports") &&
+                          selectedMobileLevel.benefits &&
+                          selectedMobileLevel.benefits[row.name]
+                        ? formatNumber(
+                            selectedMobileLevel.benefits[row.name],
+                            row.name
+                          ) + "%"
+                        : "MYR " +
+                          formatNumber(
+                            selectedMobileLevel.benefits
+                              ? selectedMobileLevel.benefits[row.name]
+                              : "",
+                            row.name
+                          )
+                    }}
+                  </span>
+                  <div class="w-1.5 h-1.5 rounded-full bg-[#ff3344]"></div>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terms Section -->
+      <section
+        v-if="getLocalizedTerms"
+        class="containerWid px-4 pb-8 max-lg:pb-6"
+      >
+        <div
+          class="bg-[#241017] rounded-xl border border-[#3b1c23] p-6 max-lg:p-4"
+        >
+          <h3
+            class="text-lg font-bold text-[#f0eaea] mb-4 flex items-center max-lg:text-base max-lg:mb-3"
+          >
+            <i class="bi bi-info-circle text-[#ff3344] mr-2"></i>
+            {{ $t("terms_conditions") }}
+          </h3>
+          <div class="space-y-2 text-[#b37a7a] text-sm max-lg:text-xs">
+            <div
+              v-for="(item, index) in getLocalizedTermsArray"
+              :key="index"
+              class="flex items-start gap-2"
+            >
+              <span
+                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#15090e] text-[#ff3344] text-xs font-bold flex-shrink-0 border border-[#3b1c23] max-lg:w-5 max-lg:h-5"
+              >
+                {{ index + 1 }}
+              </span>
+              <span class="flex-1">{{ item }}</span>
             </div>
           </div>
-        </div> -->
+        </div>
       </section>
     </div>
   </ClientOnly>
@@ -247,14 +318,13 @@
 <script setup>
 const pageLoading = useState("pageLoading");
 const { get } = useApiEndpoint();
+const selectedMobileLevel = ref(null);
+
 const settingsData = ref({
   tableTitle: "VIP Exclusive Benefits",
   rowHeaders: [],
   vipLevels: [],
-  terms: {
-    en: "",
-    zh: "",
-  },
+  terms: { en: "", zh: "", ms: "" },
 });
 
 const fetchSettings = async () => {
@@ -262,6 +332,9 @@ const fetchSettings = async () => {
     const { data } = await get("vipsettings");
     if (data?.success) {
       settingsData.value = data.data[0];
+      if (settingsData.value.vipLevels.length > 0) {
+        selectedMobileLevel.value = settingsData.value.vipLevels[0];
+      }
     }
   } catch (error) {
     console.error("Error fetching VIP settings:", error);
@@ -270,19 +343,7 @@ const fetchSettings = async () => {
 
 const getLocalizedTermsArray = computed(() => {
   if (!getLocalizedTerms.value) return [];
-  const items = getLocalizedTerms.value
-    .split("\n")
-    .filter((item) => item.trim());
-  const leftColumn = [];
-  const rightColumn = [];
-  items.forEach((item, index) => {
-    if (index < Math.ceil(items.length / 2)) {
-      leftColumn.push(item);
-    } else {
-      rightColumn.push(item);
-    }
-  });
-  return [...leftColumn, ...rightColumn];
+  return getLocalizedTerms.value.split("\n").filter((item) => item.trim());
 });
 
 const formatNumber = (value, rowName) => {
@@ -294,9 +355,7 @@ const formatNumber = (value, rowName) => {
     return value.toUpperCase();
   }
   const number = parseFloat(value);
-  if (isNaN(number)) {
-    return value;
-  }
+  if (isNaN(number)) return value;
   if (rowName === "Withdraw Limit" || rowName === "Total Deposit") {
     return number.toLocaleString("en-US", {
       maximumFractionDigits: 0,
@@ -311,65 +370,23 @@ const formatNumber = (value, rowName) => {
 };
 
 const getLocalizedTerms = computed(() => {
-  if ($locale.value === "zh") {
-    return settingsData.value.terms?.zh;
-  } else if ($locale.value === "ms") {
-    return settingsData.value.terms?.ms;
-  } else {
-    return settingsData.value.terms?.en;
-  }
+  if ($locale.value === "zh") return settingsData.value.terms?.zh;
+  else if ($locale.value === "ms") return settingsData.value.terms?.ms;
+  else return settingsData.value.terms?.en;
 });
 
 const levelNameTranslations = {
-  bronze: {
-    en: "Bronze",
-    zh: "青銅",
-    zh_hk: "青銅",
-    ms: "Gangsa",
-    id: "Perunggu",
-  },
-  silver: {
-    en: "Silver",
-    zh: "白銀",
-    zh_hk: "白銀",
-    ms: "Perak",
-    id: "Perak",
-  },
-  gold: {
-    en: "Gold",
-    zh: "黃金",
-    zh_hk: "黃金",
-    ms: "Emas",
-    id: "Emas",
-  },
-  platinum: {
-    en: "Platinum",
-    zh: "鉑金",
-    zh_hk: "鉑金",
-    ms: "Platinum",
-    id: "Platinum",
-  },
+  bronze: { en: "Bronze", zh: "青銅", ms: "Gangsa" },
+  silver: { en: "Silver", zh: "白銀", ms: "Perak" },
+  gold: { en: "Gold", zh: "黃金", ms: "Emas" },
+  platinum: { en: "Platinum", zh: "鉑金", ms: "Platinum" },
   "egm8 elite vip": {
     en: "EGM8 Elite VIP",
     zh: "EGM8 尊贵贵宾",
-    zh_hk: "EGM8 尊贵贵宾",
     ms: "EGM8 Elite VIP",
-    id: "EGM8 Elite VIP",
   },
-  diamond: {
-    en: "Diamond",
-    zh: "鑽石",
-    zh_hk: "鑽石",
-    ms: "Berlian",
-    id: "Berlian",
-  },
-  royal: {
-    en: "Royal",
-    zh: "至尊",
-    zh_hk: "至尊",
-    ms: "Raja",
-    id: "Royal",
-  },
+  diamond: { en: "Diamond", zh: "鑽石", ms: "Berlian" },
+  royal: { en: "Royal", zh: "至尊", ms: "Raja" },
 };
 
 const getLocalizedLevelName = (name) => {
@@ -378,11 +395,7 @@ const getLocalizedLevelName = (name) => {
 };
 
 const rowNameTranslations = {
-  "Total Deposit": {
-    en: "Total Deposit",
-    zh: "总存款",
-    ms: "Jumlah Deposit",
-  },
+  "Total Deposit": { en: "Total Deposit", zh: "总存款", ms: "Jumlah Deposit" },
   "Upgrade Bonus": {
     en: "Upgrade Bonus",
     zh: "晋级奖励",
@@ -393,16 +406,7 @@ const rowNameTranslations = {
     zh: "VIP每月奖金",
     ms: "Bonus Bulanan VIP",
   },
-  Rebate: {
-    en: "Rebate",
-    zh: "返水比例",
-    ms: "Rebat",
-  },
-  "Rebate Slot": {
-    en: "Rebate Slot",
-    zh: "老虎机返水",
-    ms: "Rebat Slot",
-  },
+  "Rebate Slot": { en: "Rebate Slot", zh: "老虎机返水", ms: "Rebat Slot" },
   "Rebate Live Casino": {
     en: "Rebate Live Casino",
     zh: "真人娱乐返水",
@@ -433,48 +437,6 @@ const localizedTableTitle = computed(() => {
 
 const getLocalizedRowName = (name) => {
   return rowNameTranslations[name]?.[$locale.value] || name;
-};
-
-const getGradientClass = (name) => {
-  switch (name) {
-    case "Bronze":
-    case "Brozne":
-      return "from-[#cd7f32] to-[#a45e24]";
-    case "Silver":
-      return "from-[#c0c0c0] to-[#a0a0a0]";
-    case "Gold":
-      return "from-[#ffd700] to-[#daa520]";
-    case "Platinum":
-      return "from-[#71c4cf] to-[#3d898f]";
-    case "Diamond":
-      return "from-[#b9b9b9] to-[#e0e0e0]";
-    case "EGM8 Elite VIP":
-      return "from-[#4B0082] to-[#800080]";
-    default:
-      console.log("No matching style for:", name);
-      return "from-gray-400 to-gray-500";
-  }
-};
-
-const getInnerCircleClass = (name) => {
-  switch (name) {
-    case "Bronze":
-    case "Brozne":
-      return "bg-[#a45e24] border-2 border-[#cd7f32]";
-    case "Silver":
-      return "bg-[#a0a0a0] border-2 border-[#c0c0c0]";
-    case "Gold":
-      return "bg-[#daa520] border-2 border-[#ffd700]";
-    case "Platinum":
-      return "bg-[#3d898f] border-2 border-[#71c4cf]";
-    case "Diamond":
-      return "bg-[#b9b9b9] border-2 border-[#e0e0e0]";
-    case "EGM8 Elite VIP":
-      return "bg-[#800080] border-2 border-[#9370DB]";
-    default:
-      console.log("No matching inner circle style for:", name);
-      return "bg-gray-500 border-2 border-gray-400";
-  }
 };
 
 const isFirstInGroup = (index) => {
@@ -520,24 +482,15 @@ useHead({
         "EGM8 VIP, VIP membership Malaysia, casino VIP program, exclusive gaming benefits, premium rewards, VIP rebates, monthly VIP bonus, high roller benefits, elite gaming Malaysia, EGM8 premium membership",
     },
   ],
-  htmlAttrs: {
-    lang: "en",
-  },
+  htmlAttrs: { lang: "en" },
   link: [
-    {
-      rel: "canonical",
-      href: "https://www.egm8my.vip/vip",
-    },
+    { rel: "canonical", href: "https://www.egm8my.vip/vip" },
     {
       rel: "alternate",
       hreflang: "x-default",
       href: "https://www.egm8my.vip/vip",
     },
-    {
-      rel: "alternate",
-      hreflang: "en",
-      href: "https://www.egm8my.vip/vip",
-    },
+    { rel: "alternate", hreflang: "en", href: "https://www.egm8my.vip/vip" },
   ],
 });
 
@@ -554,108 +507,27 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(5deg);
-  }
-}
-@keyframes float-medium {
-  0%,
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(-5deg);
-  }
-}
-@keyframes bounce-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-@keyframes pulse-slow {
-  0%,
-  100% {
-    opacity: 0.7;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-@keyframes glow {
-  0%,
-  100% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-@keyframes glow-delayed {
-  0%,
-  100% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.3;
-  }
+.containerWid {
+  max-width: 1920px;
+  margin: 0 auto;
 }
 
-.animate-float-slow {
-  animation: float-slow 10s ease-in-out infinite;
-}
-.animate-float-medium {
-  animation: float-medium 8s ease-in-out infinite;
-  animation-delay: 1s;
-}
-.animate-bounce-slow {
-  animation: bounce-slow 6s ease-in-out infinite;
-  animation-delay: 0.5s;
-}
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-.animate-pulse-slow {
-  animation: pulse-slow 3s ease-in-out infinite;
-}
-.animate-glow {
-  animation: glow 4s ease-in-out infinite;
-}
-.animate-glow-delayed {
-  animation: glow-delayed 4s ease-in-out infinite;
-  animation-delay: 2s;
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
-.text-shadow {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .animate-float-slow,
-  .animate-float-medium,
-  .animate-bounce-slow,
-  .animate-spin-slow {
-    animation: none;
-  }
+table tbody tr td:first-child::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 51, 68, 0.1));
 }
 </style>
