@@ -10,511 +10,352 @@
   </Teleport>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
-      <div class="mb-6 max-lg:mb-2">
-        <h1 class="text-lg font-bold max-lg:text-base">{{ $t("deposit") }}</h1>
+      <div class="mb-6 max-lg:mb-4">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+          {{ $t("deposit") }}
+        </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
           {{ $t("add_funds_description") }}
         </p>
       </div>
 
-      <div>
-        <div
-          v-if="
-            userData &&
-            userData.luckySpinAmount > 0 &&
-            userData.luckySpinClaim === false
-          "
-          class="bg-green-500/10 border border-green-500/30 text-sm text-[#f0eaea] rounded-lg p-4 max-lg:p-3 mb-4 max-lg:mb-3 relative max-lg:text-xs"
-        >
-          <div class="flex items-start gap-2 max-lg:gap-1.5">
-            <div class="text-green-400 mt-0.5 flex-shrink-0">
-              <Icon icon="mdi:gift" class="w-5 h-5 max-lg:w-4 max-lg:h-4" />
-            </div>
-            <div class="w-full">
-              <strong class="text-green-400 block mb-2 max-lg:mb-1.5">{{
-                $t("lucky_spin_reward")
-              }}</strong>
-              <p class="mb-2 max-lg:mb-1.5">
-                {{ $t("lucky_spin_waiting_1") }}
-                <span class="font-bold text-green-400"
-                  >${{ userData.luckySpinAmount }}</span
-                >
-                {{ $t("lucky_spin_waiting_2") }}
-              </p>
-              <p class="mb-2 max-lg:mb-1.5">
-                {{ $t("claim_instructions_1") }}
-                <span class="font-bold text-green-400">$30</span>
-                {{ $t("claim_instructions_2") }}
-              </p>
-              <p class="text-xs max-lg:text-[10px] text-[#b37a7a]">
-                {{ $t("turnover_note") }}
-              </p>
+      <div
+        v-if="
+          userData &&
+          userData.luckySpinAmount > 0 &&
+          userData.luckySpinClaim === false
+        "
+        class="bg-green-500/5 border border-green-500/20 rounded-lg p-4 mb-4 max-lg:p-3"
+      >
+        <div class="flex items-start gap-3">
+          <div
+            class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0"
+          >
+            <Icon icon="mdi:gift" class="w-5 h-5 text-green-400" />
+          </div>
+          <div class="flex-1">
+            <h3 class="font-semibold text-green-400 mb-2 text-sm">
+              {{ $t("lucky_spin_reward") }}
+            </h3>
+            <p class="text-sm text-[#f0eaea] mb-2 max-lg:text-xs">
+              {{ $t("lucky_spin_waiting_1") }}
+              <span class="font-bold text-green-400"
+                >${{ userData.luckySpinAmount }}</span
+              >
+              {{ $t("lucky_spin_waiting_2") }}
+            </p>
+            <p class="text-xs text-[#b37a7a] mb-3">
+              {{ $t("claim_instructions_1") }}
+              <span class="font-semibold text-green-400">$30</span>
+              {{ $t("claim_instructions_2") }}
+            </p>
+            <button
+              @click="selectDepositAmount(30)"
+              class="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium lg:hover:bg-green-600 transition-colors max-lg:px-3 max-lg:py-1.5 max-lg:text-xs"
+            >
+              {{ $t("deposit_30_now") }}
+            </button>
+          </div>
+        </div>
+      </div>
 
-              <div class="mt-3 max-lg:mt-2">
+      <div
+        v-if="selectedOption === 'bank_transfer'"
+        class="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4 mb-4 max-lg:p-3"
+      >
+        <div class="flex items-start gap-3">
+          <Icon
+            icon="mdi:alert"
+            class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"
+          />
+          <div class="flex-1">
+            <h3 class="font-semibold text-amber-400 mb-2 text-sm">
+              {{ $t("notice") }}
+            </h3>
+            <p class="text-sm text-[#f0eaea] mb-1 max-lg:text-xs">
+              {{ $t("bank_transfer_notice_1") }}
+            </p>
+            <p class="text-sm text-amber-400 font-medium max-lg:text-xs">
+              {{ $t("bank_transfer_notice_2") }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="block font-semibold mb-2 text-base">{{
+          $t("deposit_method")
+        }}</label>
+        <div class="grid grid-cols-2 gap-3 max-lg:gap-2">
+          <button
+            v-for="option in depositOptions"
+            :key="option.name"
+            @click="selectOption(option.name)"
+            :class="[
+              'p-4 rounded-lg flex items-center justify-center gap-2 transition-all border text-[0.9rem] max-lg:p-2.5 ',
+              selectedOption === option.name
+                ? 'bg-[#ff3344]/10 border-[#ff3344] text-[#ff3344]'
+                : 'bg-[#241017] border-[#3b1c23] text-[#b37a7a] lg:hover:border-[#ff3344]/50',
+            ]"
+          >
+            <Icon :icon="option.icon" class="text-lg max-lg:text-base" />
+            <span class="font-medium">{{ $t(option.label) }}</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Deposit Amount -->
+      <div class="mb-4">
+        <label class="block font-semibold mb-2 text-base">{{
+          $t("deposit_amount")
+        }}</label>
+        <input
+          type="text"
+          v-model="selectedDepositAmount"
+          :placeholder="$t('amount_placeholder')"
+          @input="onlyNumbers"
+          class="w-full p-4 mb-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-lg:p-2.5"
+        />
+        <div class="flex gap-2 flex-wrap">
+          <button
+            v-for="amount in amounts"
+            :key="amount"
+            @click="selectDepositAmount(amount)"
+            :class="[
+              'px-4 py-2 rounded-lg font-medium transition-all text-[0.9rem] border max-lg:px-3 max-lg:py-1.5 ',
+              selectedDepositAmount === amount.toString()
+                ? 'bg-[#ff3344] text-white border-[#ff3344]'
+                : 'bg-[#241017] text-[#b37a7a] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
+            ]"
+          >
+            RM {{ amount }}
+          </button>
+        </div>
+      </div>
+
+      <div v-if="selectedOption === 'fast_deposit'" class="mb-4">
+        <label class="block font-semibold mb-2 text-base">{{
+          $t("deposit_channel")
+        }}</label>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-lg:gap-2">
+          <button
+            v-for="gateway in paymentGateways"
+            :key="gateway._id"
+            @click="selectPaymentGateway(gateway)"
+            :class="[
+              'p-4 rounded-lg flex items-center justify-center transition-all border min-h-[80px] max-lg:p-3 max-lg:min-h-[60px]',
+              selectedPaymentGateway === gateway
+                ? 'bg-[#ff3344]/10 border-[#ff3344]'
+                : 'bg-[#241017] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
+            ]"
+          >
+            <img
+              v-if="gateway.logo"
+              :src="gateway.logo"
+              :alt="gateway.name"
+              class="h-10 w-auto object-contain max-lg:h-8"
+            />
+          </button>
+        </div>
+      </div>
+
+      <!-- Bank Transfer Options -->
+      <div v-if="selectedOption === 'bank_transfer'" class="mb-4">
+        <label class="block font-semibold mb-2 text-base">{{
+          $t("select_bank")
+        }}</label>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 max-lg:gap-2">
+          <button
+            v-for="bank in depositbank"
+            :key="bank._id"
+            @click="selectBank(bank)"
+            :class="[
+              'p-4 rounded-lg flex items-start gap-3 text-left transition-all border max-lg:p-2.5',
+              selectedBank && selectedBank.bankaccount === bank.bankaccount
+                ? 'bg-[#ff3344]/10 border-[#ff3344]'
+                : 'bg-[#241017] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
+            ]"
+          >
+            <img
+              v-if="bank.qrimage"
+              :src="bank.qrimage"
+              :alt="bank.bankname"
+              class="w-12 h-12 object-contain"
+            />
+            <img
+              v-else
+              src="/images/deposit/bank.png"
+              :alt="bank.bankname"
+              class="w-10 h-10 object-contain max-lg:w-8 max-lg:h-8"
+            />
+            <div class="flex-1 min-w-0">
+              <p class="font-semibold text-[#f0eaea] mb-0.5 text-[0.9rem]">
+                {{ bank.bankname }}
+              </p>
+              <p class="text-sm text-[#b37a7a] mb-1">{{ bank.ownername }}</p>
+              <div class="flex items-center gap-2">
+                <p class="text-sm text-[#b37a7a] truncate">
+                  {{ bank.bankaccount }}
+                </p>
                 <button
-                  @click="selectDepositAmount(30)"
-                  class="px-4 py-1.5 max-lg:px-3 max-lg:py-1 rounded-lg font-medium transition-all bg-green-600 text-white lg:hover:brightness-110 max-lg:text-xs"
+                  type="button"
+                  @click.stop="copyToClipboard(bank.bankaccount)"
+                  class="text-[#ff3344] lg:hover:text-[#cc2a3a] transition-colors flex-shrink-0"
                 >
-                  {{ $t("deposit_30_now") }}
+                  <Icon icon="mdi:content-copy" class="w-3.5 h-3.5" />
                 </button>
               </div>
             </div>
-          </div>
+          </button>
         </div>
+      </div>
 
-        <div v-if="selectedOption === 'bank_transfer'" class="mb-4">
-          <div
-            class="bg-red-500/10 border border-red-500/30 text-sm max-lg:text-xs text-[#f0eaea] rounded-lg p-4 max-lg:p-3"
+      <div class="mb-4">
+        <label class="block font-semibold mb-2 text-base">
+          {{ $t("promotion_optional") }}
+        </label>
+        <div class="relative" ref="promotionDropdown">
+          <button
+            type="button"
+            @click="isPromotionDropdownOpen = !isPromotionDropdownOpen"
+            class="w-full p-3 bg-[#241017] text-left rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] flex items-center justify-between max-lg:p-2.5"
+            :class="selectedPromotion ? 'text-[#f0eaea]' : 'text-[#b37a7a]'"
           >
-            <div class="flex items-start gap-2">
-              <Icon
-                icon="mdi:information-outline"
-                class="text-red-400 mt-0.5 w-5 h-5 max-lg:w-4 max-lg:h-4 flex-shrink-0"
-              />
-              <div class="w-full">
-                <strong class="text-red-400 block mb-2 max-lg:mb-1.5">{{
-                  $t("notice")
-                }}</strong>
-                <p class="mb-2 max-lg:mb-1.5">
-                  {{ $t("bank_transfer_notice_1") }}
-                </p>
-                <p class="text-[#ff3344] font-medium">
-                  {{ $t("bank_transfer_notice_2") }}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Deposit Type Selection -->
-        <div class="mb-6 max-lg:mb-2">
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("deposit_method") }}
-          </label>
-          <div class="flex gap-4 max-lg:gap-2 max-lg:flex-wrap">
-            <button
-              v-for="option in depositOptions"
-              :key="option.name"
-              @click="selectOption(option.name)"
-              :class="[
-                'py-3 px-6 rounded-lg text-center text-sm flex items-center gap-2 transition-colors duration-200 font-medium max-lg:text-xs max-lg:px-4 max-lg:py-2',
-                selectedOption === option.name
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20 border-transparent'
-                  : 'bg-[#15090e]/50 text-[#b37a7a] lg:hover:bg-[#15090e]/70 border border-[#3b1c23]',
-              ]"
-            >
-              <Icon :icon="option.icon" class="text-xl max-lg:text-lg" />
-              {{ $t(option.label) }}
-            </button>
-          </div>
-        </div>
-
-        <!-- Deposit Amount -->
-        <div class="mb-6 max-lg:mb-2">
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("deposit_amount") }}
-          </label>
-          <input
-            type="text"
-            v-model="selectedDepositAmount"
-            :placeholder="$t('amount_placeholder')"
-            @input="onlyNumbers"
-            class="w-full p-3 max-lg:p-2.5 mb-4 max-lg:mb-3 bg-[#15090e]/50 text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 focus:outline-none max-lg:text-sm"
-          />
-          <div class="flex gap-2 flex-wrap">
-            <button
-              v-for="amount in amounts"
-              :key="amount"
-              @click="selectDepositAmount(amount)"
-              :class="[
-                'px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-lg font-medium transition-colors max-lg:text-xs',
-                selectedDepositAmount === amount.toString()
-                  ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white shadow-lg shadow-red-500/20'
-                  : 'bg-[#ff3344]/20 text-[#f0eaea] lg:hover:bg-[#ff3344]/30 border border-[#ff3344]/30',
-              ]"
-            >
-              {{ amount }}
-            </button>
-          </div>
-        </div>
-
-        <!-- Bank Transfer Options -->
-        <div v-if="selectedOption === 'bank_transfer'" class="mb-6 max-lg:mb-2">
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("select_bank") }}
-          </label>
-          <div
-            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 max-lg:gap-3"
-          >
-            <div
-              v-for="bank in depositbank"
-              :key="bank._id"
-              @click="selectBank(bank)"
-              :class="[
-                'flex flex-col p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors',
-                selectedBank && selectedBank.bankaccount === bank.bankaccount
-                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
-              ]"
-            >
-              <div class="w-full flex justify-center mb-3 max-lg:mb-2">
-                <img
-                  v-if="bank.qrimage"
-                  :src="bank.qrimage"
-                  :alt="bank.bankname + ' Logo'"
-                  class="w-16 h-auto max-lg:w-12"
-                />
-                <img
-                  v-else
-                  src="/images/deposit/bank.png"
-                  :alt="bank.bankname + ' Logo'"
-                  class="w-16 h-auto max-lg:w-12"
-                />
-              </div>
-              <div class="flex flex-col">
-                <p class="text-md font-semibold mb-1 max-lg:text-sm">
-                  {{ $t("bank") }}: {{ bank.bankname }}
-                </p>
-                <p class="text-sm mb-1 max-lg:text-xs text-[#b37a7a]">
-                  {{ $t("name") }}: {{ bank.ownername }}
-                </p>
-                <p
-                  class="text-sm flex items-center gap-1 max-lg:text-xs text-[#b37a7a]"
-                >
-                  {{ $t("account_number") }}: {{ bank.bankaccount }}
-                  <button
-                    type="button"
-                    @click.stop="copyToClipboard(bank.bankaccount)"
-                    class="text-[#ff3344] lg:hover:text-[#c21b3a] transition-colors"
-                    title="Copy"
-                  >
-                    <Icon
-                      icon="mdi:content-copy"
-                      class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
-                    />
-                  </button>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fast Deposit Options -->
-        <div
-          v-else-if="selectedOption === 'fast_deposit'"
-          class="mb-6 max-lg:mb-2"
-        >
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("deposit_channel") }}
-          </label>
-          <div class="flex gap-4 max-lg:gap-3 flex-wrap">
-            <button
-              v-for="gateway in paymentGateways"
-              :key="gateway._id"
-              @click="selectPaymentGateway(gateway)"
-              :class="[
-                'py-4 max-lg:py-3 px-6 max-lg:px-4 rounded-lg text-center flex flex-col items-center gap-2 transition-colors',
-                selectedPaymentGateway === gateway
-                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
-              ]"
-            >
-              <img
-                v-if="gateway.logo"
-                :src="gateway.logo"
-                :alt="gateway.name"
-                class="w-20 max-lg:w-16 h-auto"
-              />
-            </button>
-          </div>
-        </div>
-
-        <!-- DGPay -->
-        <div
-          v-if="
-            selectedOption === 'fast_deposit' &&
-            selectedPaymentGateway &&
-            selectedPaymentGateway.name === 'DGPay'
-          "
-          class="mb-6 max-lg:mb-2"
-        >
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("select_bank_for", { provider: "DGPay" }) }}</label
-          >
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-lg:gap-2"
-          >
-            <div
-              v-for="bank in dgpayBanks"
-              :key="bank.code"
-              @click="selectDGPayBank(bank)"
-              :class="[
-                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
-                selectedDGPayBank && selectedDGPayBank.code === bank.code
-                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
-              ]"
-            >
-              <img
-                :src="bank.logo"
-                :alt="bank.name"
-                class="w-16 h-16 max-lg:w-12 max-lg:h-12 object-contain mb-2"
-              />
-              <p class="text-sm max-lg:text-xs font-medium text-center">
-                {{ bank.name }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- TruePay -->
-        <div
-          v-if="
-            selectedOption === 'fast_deposit' &&
-            selectedPaymentGateway &&
-            selectedPaymentGateway.name === 'TruePay'
-          "
-          class="mb-6 max-lg:mb-2"
-        >
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("select_bank_for", { provider: "TruePay" }) }}</label
-          >
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-lg:gap-2"
-          >
-            <div
-              v-for="bank in truepayBanks"
-              :key="bank.code"
-              @click="selectTruePayBank(bank)"
-              :class="[
-                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
-                selectedTruePayBank && selectedTruePayBank.code === bank.code
-                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
-              ]"
-            >
-              <img
-                :src="bank.logo"
-                :alt="bank.name"
-                class="w-16 h-16 max-lg:w-12 max-lg:h-12 object-contain mb-2"
-              />
-              <p class="text-sm max-lg:text-xs font-medium text-center">
-                {{ bank.name }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- LuxePay -->
-        <div
-          v-if="
-            selectedOption === 'fast_deposit' &&
-            selectedPaymentGateway &&
-            selectedPaymentGateway.name === 'LuxePay'
-          "
-          class="mb-6 max-lg:mb-2"
-        >
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("select_bank_for", { provider: "LuxePay" }) }}</label
-          >
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-lg:gap-2"
-          >
-            <div
-              v-for="bank in luxepayBanks"
-              :key="bank.code"
-              @click="selectLuxePayBank(bank)"
-              :class="[
-                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
-                selectedLuxePayBank && selectedLuxePayBank.code === bank.code
-                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
-              ]"
-            >
-              <img
-                :src="bank.logo"
-                :alt="bank.name"
-                class="w-16 h-16 max-lg:w-12 max-lg:h-12 object-contain mb-2"
-              />
-              <p class="text-sm max-lg:text-xs font-medium text-center">
-                {{ bank.name }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- SKL99 -->
-        <div
-          v-if="
-            selectedOption === 'fast_deposit' &&
-            selectedPaymentGateway &&
-            selectedPaymentGateway.name === 'SKL99'
-          "
-          class="mb-6 max-lg:mb-2"
-        >
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("select_bank_for", { provider: "SKL99" }) }}</label
-          >
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-lg:gap-2"
-          >
-            <div
-              v-for="bank in skl99Banks"
-              :key="bank.code"
-              @click="selectSKL99Bank(bank)"
-              :class="[
-                'p-4 max-lg:p-3 rounded-lg cursor-pointer transition-colors flex flex-col items-center',
-                selectedSKL99Bank && selectedSKL99Bank.code === bank.code
-                  ? 'bg-[#ff3344]/20 border-2 border-[#ff3344]'
-                  : 'bg-[#15090e]/50 lg:hover:bg-[#ff3344]/10 border border-[#3b1c23]',
-              ]"
-            >
-              <img
-                :src="bank.logo"
-                :alt="bank.name"
-                class="w-16 h-16 max-lg:w-12 max-lg:h-12 object-contain mb-2"
-              />
-              <p class="text-sm max-lg:text-xs font-medium text-center">
-                {{ bank.name }}
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Promotion Selection -->
-        <div class="mb-6 max-lg:mb-2">
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("promotion_optional") }}
-          </label>
-          <CustomSelect v-model="selectedPromotion">
-            <option
-              :value="null"
-              disabled
-              selected
-              class="bg-[#241017] text-[#b37a7a]"
-            >
-              {{ $t("select_promotion") }}
-            </option>
-            <option value="" class="bg-[#241017] text-[#f0eaea]">
-              {{ $t("without_promotion") }}
-            </option>
-            <option
-              v-for="promotion in promotionlist"
-              :key="promotion._id"
-              :value="promotion"
-              class="bg-[#241017] text-[#f0eaea]"
-            >
-              {{ promotion.maintitleEN }}
-            </option>
-          </CustomSelect>
-        </div>
-
-        <!-- Receipt Upload -->
-        <div v-if="selectedOption === 'bank_transfer'" class="mb-6 max-lg:mb-2">
-          <label class="block font-semibold mb-2 max-lg:mb-1.5 max-lg:text-sm">
-            {{ $t("upload_receipt") }}
-          </label>
-          <div
-            class="flex flex-col items-center justify-center p-6 max-lg:p-4 border-2 border-dashed border-[#3b1c23] rounded-lg bg-[#15090e]/30 cursor-pointer lg:hover:bg-[#ff3344]/10 transition-colors"
-            @click="$refs.fileInput.click()"
-          >
-            <input
-              type="file"
-              ref="fileInput"
-              class="hidden"
-              @change="handleFileUpload"
-              accept="image/*"
+            <span>{{
+              selectedPromotion
+                ? selectedPromotion.maintitleEN
+                : selectedPromotion === ""
+                ? $t("without_promotion")
+                : $t("select_promotion")
+            }}</span>
+            <Icon
+              icon="mdi:chevron-down"
+              class="w-5 h-5 transition-transform"
+              :class="{ 'rotate-180': isPromotionDropdownOpen }"
             />
+          </button>
 
-            <div v-if="!receipt" class="text-center">
-              <Icon
-                icon="mdi:cloud-upload"
-                class="w-12 h-12 max-lg:w-8 max-lg:h-8 mx-auto mb-2 text-[#b37a7a]"
-              />
-              <p class="text-[#b37a7a] max-lg:text-sm">
-                {{ $t("upload_receipt") }}
-              </p>
-            </div>
-
-            <div v-else class="w-full relative">
-              <img
-                :src="receiptPreview"
-                class="w-full h-40 max-lg:h-32 object-contain rounded-lg"
-              />
+          <Transition name="dropdown">
+            <div
+              v-if="isPromotionDropdownOpen"
+              class="absolute z-50 w-full mt-2 bg-[#241017] border border-[#3b1c23] rounded-lg shadow-lg max-h-40 overflow-y-auto scrollbar-thin"
+            >
               <button
-                @click.stop="removeReceipt"
-                class="absolute top-2 right-2 bg-red-500 rounded-full p-1 lg:hover:bg-red-600 transition-colors"
+                type="button"
+                @click="selectPromotion('')"
+                class="w-full p-3 text-left text-[#f0eaea] text-[0.9rem] lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] max-lg:p-2.5"
               >
-                <Icon
-                  icon="mdi:close"
-                  class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-white"
-                />
+                {{ $t("without_promotion") }}
+              </button>
+              <button
+                type="button"
+                v-for="promotion in promotionlist"
+                :key="promotion._id"
+                @click="selectPromotion(promotion)"
+                class="w-full p-3 text-left text-[#f0eaea] text-[0.9rem] lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] last:border-b-0 max-lg:p-2.5"
+                :class="{
+                  'bg-[#ff3344]/10 text-[#ff3344]':
+                    selectedPromotion &&
+                    selectedPromotion._id === promotion._id,
+                }"
+              >
+                {{ promotion.maintitleEN }}
               </button>
             </div>
-          </div>
+          </Transition>
         </div>
+      </div>
 
-        <!-- Submit Button -->
-        <LoadingButton
-          :loading="depositButtonLoading"
-          @click="submitDeposit"
-          class="w-full py-3 max-lg:py-2.5 uppercase bg-gradient-to-r from-[#a1122d] to-[#c21b3a] lg:hover:brightness-110 rounded-lg text-lg max-lg:text-base font-semibold text-white transition-all shadow-lg shadow-red-500/20"
-        >
-          {{ $t("submit") }}
-        </LoadingButton>
-
-        <!-- Important Notice -->
+      <!-- Receipt Upload -->
+      <div v-if="selectedOption === 'bank_transfer'" class="mb-4">
+        <label class="block font-semibold mb-2 text-sm max-lg:text-xs">{{
+          $t("upload_receipt")
+        }}</label>
         <div
-          class="bg-red-500/10 border border-red-500/30 text-sm max-lg:text-xs text-[#f0eaea] rounded-lg p-4 max-lg:p-3 mt-8 max-lg:mt-4 relative"
+          class="relative flex flex-col items-center justify-center p-6 border-2 border-dashed border-[#3b1c23] rounded-lg bg-[#241017] cursor-pointer lg:hover:border-[#ff3344]/50 transition-all max-lg:p-4"
+          @click="$refs.fileInput.click()"
         >
-          <div class="flex items-start gap-2">
-            <Icon
-              icon="mdi:alert-circle-outline"
-              class="text-red-400 mt-0.5 w-5 h-5 max-lg:w-4 max-lg:h-4"
-            />
-            <div class="w-full">
-              <strong class="text-red-400 block mb-2 max-lg:mb-1.5">{{
-                $t("important_notice")
-              }}</strong>
-              <ul
-                class="list-disc ml-5 max-lg:ml-4 space-y-1 max-lg:space-y-0.5"
-              >
-                <li>
-                  {{ $t("notice_1") }}
-                </li>
-                <li>{{ $t("notice_2") }}</li>
-                <template v-if="showFullNotice">
-                  <li>
-                    {{ $t("notice_3") }}
-                  </li>
-                  <li>
-                    {{ $t("notice_4") }}
-                  </li>
-                  <li>
-                    {{ $t("notice_5") }}
-                  </li>
-                  <li>
-                    {{ $t("notice_6") }}
-                  </li>
-                  <li>
-                    {{ $t("notice_7_1") }}
-                    <strong class="text-red-300">{{ $t("notice_7_2") }}</strong>
-                    {{ $t("notice_7_3") }}
-                  </li>
-                </template>
-              </ul>
+          <input
+            type="file"
+            ref="fileInput"
+            class="hidden"
+            @change="handleFileUpload"
+            accept="image/*"
+          />
 
-              <div class="text-right mt-2">
-                <button
-                  class="text-[#ff3344] lg:hover:underline text-sm max-lg:text-xs transition-colors"
-                  @click="showFullNotice = !showFullNotice"
-                >
-                  {{ showFullNotice ? $t("show_less") : $t("show_more") }}
-                </button>
-              </div>
-            </div>
+          <div v-if="!receipt" class="text-center">
+            <Icon
+              icon="mdi:cloud-upload"
+              class="w-10 h-10 text-[#b37a7a] mx-auto mb-2 max-lg:w-8 max-lg:h-8"
+            />
+            <p class="text-sm text-[#b37a7a] max-lg:text-xs">
+              {{ $t("upload_receipt") }}
+            </p>
+          </div>
+
+          <div v-else class="w-full">
+            <img
+              :src="receiptPreview"
+              class="w-full h-48 object-contain rounded-lg max-lg:h-40"
+            />
+            <button
+              @click.stop="removeReceipt"
+              class="absolute top-3 right-3 w-8 h-8 rounded-full bg-red-500 flex items-center justify-center lg:hover:bg-red-600 transition-colors max-lg:w-7 max-lg:h-7"
+            >
+              <Icon
+                icon="mdi:close"
+                class="w-5 h-5 text-white max-lg:w-4 max-lg:h-4"
+              />
+            </button>
           </div>
         </div>
+      </div>
+
+      <!-- Submit Button -->
+      <LoadingButton
+        :loading="depositButtonLoading"
+        @click="submitDeposit"
+        class="w-full py-3 bg-[#ff3344] lg:hover:bg-[#cc2a3a] rounded-lg text-base font-semibold text-white transition-all mb-6 max-lg:py-2.5 max-lg:text-sm max-lg:mb-4"
+      >
+        {{ $t("submit") }}
+      </LoadingButton>
+
+      <!-- Important Notice -->
+      <div class="border border-[#3b1c23] rounded-lg p-4 max-lg:p-3">
+        <div class="flex items-start gap-2 mb-3">
+          <Icon
+            icon="mdi:information"
+            class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+          />
+          <h3 class="font-semibold text-[#ff3344] text-sm">
+            {{ $t("important_notice") }}
+          </h3>
+        </div>
+        <ul
+          class="list-disc ml-7 space-y-1 text-sm text-[#b37a7a] max-lg:text-xs max-lg:ml-6"
+        >
+          <li>{{ $t("notice_1") }}</li>
+          <li>{{ $t("notice_2") }}</li>
+          <template v-if="showFullNotice">
+            <li>{{ $t("notice_3") }}</li>
+            <li>{{ $t("notice_4") }}</li>
+            <li>{{ $t("notice_5") }}</li>
+            <li>{{ $t("notice_6") }}</li>
+            <li>
+              {{ $t("notice_7_1") }}
+              <span class="text-[#ff3344] font-medium">{{
+                $t("notice_7_2")
+              }}</span>
+              {{ $t("notice_7_3") }}
+            </li>
+          </template>
+        </ul>
+        <button
+          class="text-[#ff3344] lg:hover:underline text-sm mt-3 font-medium max-lg:text-xs"
+          @click="showFullNotice = !showFullNotice"
+        >
+          {{ showFullNotice ? $t("show_less") : $t("show_more") }}
+        </button>
       </div>
     </div>
   </UserAccountLayout>
@@ -596,7 +437,7 @@ function removeReceipt() {
 }
 
 function resetForm() {
-  selectedOption.value = "bank_transfer";
+  selectedOption.value = "fast_deposit";
   selectedDepositAmount.value = "";
   selectedBank.value = null;
   receipt.value = null;
@@ -805,7 +646,6 @@ async function submitDeposit() {
 
       if (data.success && data.url) {
         window.open(data.url, "_blank");
-        // if (selectedPromotion.value) await submitBonus(data.depositId);
         resetForm();
       } else {
         showAlert(
@@ -883,13 +723,6 @@ const fetchPaymentGateways = async () => {
   }
 };
 
-function getPlaceholderText() {
-  if (selectedOption.value === "fast_deposit" && selectedPaymentGateway.value) {
-    return `Min: ${selectedPaymentGateway.value.minDeposit}, Max: ${selectedPaymentGateway.value.maxDeposit}`;
-  }
-  return "Enter deposit amount";
-}
-
 function copyToClipboard(text) {
   navigator.clipboard
     .writeText(text)
@@ -901,70 +734,13 @@ function copyToClipboard(text) {
     });
 }
 
-// const selectedDGPayBank = ref(null);
-// const dgpayBanks = [
-//   { name: "Maybank", code: "MAYB", logo: "maybank.png" },
-//   { name: "CIMB", code: "CIMB", logo: "cimb.png" },
-//   { name: "Public Bank", code: "PBBB", logo: "publicbank.png" },
-//   { name: "RHB", code: "RHBB", logo: "rhb.png" },
-//   { name: "Hong Leong", code: "HOLB", logo: "hongleong.png" },
-//   { name: "Affin", code: "AFIN", logo: "affinbank.png" },
-//   { name: "Bank Simpanan Nasional", code: "SINA", logo: "bsn.png" },
-// ];
+const isPromotionDropdownOpen = ref(false);
+const promotionDropdown = ref(null);
 
-// const selectedTruePayBank = ref(null);
-// const truepayBanks = [
-//   { name: "Maybank", code: "MBB", logo: "maybank.png" },
-//   { name: "FPX", code: "FPX", logo: "fpxlogoact.png" },
-//   { name: "DuitNow", code: "FPXDUITNOW", logo: "fpxqr.png" },
-//   { name: "CIMB", code: "CIMB", logo: "cimb.png" },
-//   { name: "Public Bank", code: "PBB", logo: "publicbank.png" },
-//   { name: "Alliance Bank", code: "ALLIANCE", logo: "alliance.png" },
-//   { name: "Agrobank", code: "AGRO", logo: "agro.png" },
-//   { name: "AmBank", code: "AMBANK", logo: "ambank.png" },
-//   // { name: "Boost Bank", code: "BOOST", logo: "boost.png" },
-//   // { name: "Touch 'n Go'", code: "TNGQR", logo: "tng.png" },
-//   // { name: "UOB Bank", code: "UOBM", logo: "uob.png" },
-//   { name: "RHB", code: "RHB", logo: "rhb.png" },
-//   { name: "Hong Leong", code: "HLB", logo: "hongleong.png" },
-//   { name: "Bank Simpanan Nasional", code: "BSN", logo: "bsn.png" },
-// ];
-
-// const selectedLuxePayBank = ref(null);
-// const luxepayBanks = [
-//   { name: "Maybank", code: "MB2U", logo: "maybank.png" },
-//   { name: "CIMB", code: "CIMB", logo: "cimb.png" },
-//   // { name: "Public Bank", code: "PBB", logo: "publicbank.png" },
-//   { name: "Alliance Bank", code: "ABMB", logo: "alliance.png" },
-//   // { name: "Agrobank", code: "AGRO", logo: "agro.png" },
-//   { name: "AmBank", code: "AMBB", logo: "ambank.png" },
-//   // { name: "Boost Bank", code: "BOOST", logo: "boost.png" },
-//   { name: "Affin", code: "AFBB", logo: "affinbank.png" },
-//   { name: "Bank Islam", code: "BIMB", logo: "bim.png" },
-//   { name: "OCBC", code: "OCBC", logo: "ocbc.png" },
-//   { name: "RHB", code: "RHBB", logo: "rhb.png" },
-//   { name: "Hong Leong", code: "HLBB", logo: "hongleong.png" },
-//   { name: "Bank Simpanan Nasional", code: "BSNB", logo: "bsn.png" },
-// ];
-
-// const selectedSKL99Bank = ref(null);
-// const skl99Banks = [
-//   { name: "Maybank", code: "MAYBANK", logo: "maybank.png" },
-//   { name: "CIMB", code: "CIMB", logo: "cimb.png" },
-//   // { name: "Public Bank", code: "PBB", logo: "publicbank.png" },
-//   // { name: "Alliance Bank", code: "ABMB", logo: "alliance.png" },
-//   // { name: "Agrobank", code: "AGRO", logo: "agro.png" },
-//   { name: "AmBank", code: "AMBANK", logo: "ambank.png" },
-//   { name: "Public Bank", code: "PUBLIC_BANK", logo: "publicbank.png" },
-//   { name: "Bank Islam", code: "BANK_ISLAM", logo: "bim.png" },
-//   // { name: "Boost Bank", code: "BOOST", logo: "boost.png" },
-//   // { name: "Affin", code: "AFBB", logo: "affinbank.png" },
-//   // { name: "Bank Islam", code: "BIMB", logo: "bim.png" },
-//   // { name: "OCBC", code: "OCBC", logo: "ocbc.png" },
-//   { name: "RHB", code: "RHB", logo: "rhb.png" },
-//   { name: "Hong Leong", code: "HLB", logo: "hongleong.png" },
-//   // { name: "Bank Simpanan Nasional", code: "BSNB", logo: "bsn.png" },
-// ];
+function selectPromotion(promotion) {
+  selectedPromotion.value = promotion;
+  isPromotionDropdownOpen.value = false;
+}
 
 const selectedDGPayBank = ref(null);
 const dgpayBanks = computed(() => {
@@ -1049,6 +825,23 @@ const fetchAllGameBalances = async () => {
   }
 };
 
+onMounted(() => {
+  const handleClickOutside = (event) => {
+    if (
+      promotionDropdown.value &&
+      !promotionDropdown.value.contains(event.target)
+    ) {
+      isPromotionDropdownOpen.value = false;
+    }
+  };
+
+  document.addEventListener("click", handleClickOutside);
+
+  onBeforeUnmount(() => {
+    document.removeEventListener("click", handleClickOutside);
+  });
+});
+
 onMounted(async () => {
   pageLoading.value = true;
   try {
@@ -1071,3 +864,37 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+/* ... existing styles ... */
+
+/* Dropdown transition */
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.2s ease;
+}
+
+.dropdown-enter-from,
+.dropdown-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+/* Custom scrollbar for dropdown */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #15090e;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
+}
+</style>
