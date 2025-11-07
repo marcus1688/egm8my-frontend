@@ -98,9 +98,6 @@
       <!-- Category Title with Accent -->
       <div class="flex items-center gap-3 mb-6 max-lg:mb-4">
         <div class="flex items-center gap-2">
-          <div
-            class="w-1 h-8 bg-gradient-to-b from-[#ff3344] to-[#cc2a3a] rounded-full max-lg:h-6"
-          ></div>
           <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
             {{ categories[activeCategory].name }}
           </h2>
