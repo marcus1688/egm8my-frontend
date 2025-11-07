@@ -1,102 +1,135 @@
 <template>
-  <section class="py-4">
-    <div class="mx-auto containerWid">
-      <div class="rounded-lg overflow-hidden shadow-md border border-[#3b1c23]">
-        <div
-          class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] p-3 flex justify-between items-center"
-        >
-          <h3 class="text-[#f0eaea] font-bold flex items-center">
-            <i class="bi bi-graph-up-arrow mr-2"></i>
+  <section class="py-4 containerWid max-lg:py-2">
+    <div class="my-4">
+      <div class="my-4">
+        <div class="flex items-center justify-between mb-1">
+          <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
             {{ $t("live_transactions") }}
-          </h3>
+          </h2>
           <div
-            class="flex items-center gap-1 px-2 py-0.5 bg-[#ff3344] text-white uppercase text-xs rounded-full font-medium animate-pulse"
+            class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs rounded-full font-bold shadow-lg shadow-[#ff3344]/30"
           >
+            <span class="relative flex h-2 w-2">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
+              ></span>
+              <span
+                class="relative inline-flex rounded-full h-2 w-2 bg-white"
+              ></span>
+            </span>
             {{ $t("live") }}
-            <span class="h-2 w-2 bg-white rounded-full opacity-75"></span>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <p class="text-sm text-[#b37a7a] max-lg:text-xs">
+            {{ $t("real_time_transaction_updates") }}
+          </p>
+          <div
+            class="flex-1 h-px bg-gradient-to-r from-[#3b1c23] to-transparent"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Transactions Container -->
+      <div
+        class="bg-[#241017] rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg"
+      >
+        <div
+          class="grid grid-cols-2 bg-gradient-to-r from-[#15090e] to-[#1a0a0f] border-b border-[#3b1c23]"
+        >
+          <div class="p-4 border-r border-[#3b1c23] max-lg:p-3">
+            <div class="flex items-center gap-2">
+              <i
+                class="bi bi-arrow-down-circle text-[#4ade80] text-lg max-lg:text-base max-[500px]:text-sm"
+              ></i>
+              <span
+                class="font-semibold text-[#f0eaea] max-lg:text-sm max-[500px]:text-xs"
+                >{{ $t("deposit") }}</span
+              >
+            </div>
+          </div>
+          <div class="p-4 max-lg:p-3">
+            <div class="flex items-center gap-2">
+              <i
+                class="bi bi-arrow-up-circle text-[#ff3344] text-lg max-lg:text-base max-[500px]:text-sm"
+              ></i>
+              <span
+                class="font-semibold text-[#f0eaea] max-lg:text-sm max-[500px]:text-xs"
+                >{{ $t("withdraw") }}</span
+              >
+            </div>
           </div>
         </div>
 
-        <div class="overflow-x-auto">
-          <table class="w-full border-collapse">
-            <thead>
-              <tr class="text-sm">
-                <th
-                  class="p-2 text-left border-r border-b border-[#3b1c23] bg-[#241017] text-[#f0eaea] font-medium w-1/2"
-                  colspan="2"
-                >
-                  {{ $t("deposit") }}
-                </th>
-                <th
-                  class="p-2 text-left border-b border-[#3b1c23] bg-[#15090e] text-[#f0eaea] font-medium w-1/2"
-                  colspan="2"
-                >
-                  {{ $t("withdraw") }}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr
-                v-for="(transaction, index) in transactions"
-                :key="index"
-                class="text-sm lg:hover:bg-[#2a0f14] transition-colors"
-                :class="index % 2 === 0 ? 'bg-[#1a0c0f]' : 'bg-[#1f0e13]'"
-              >
-                <td
-                  class="p-2 border-r border-b border-[#3b1c23] max-lg:w-[30%]"
-                >
-                  <div class="flex items-center">
+        <!-- Transaction Rows -->
+        <div class="divide-y divide-[#3b1c23]">
+          <div
+            v-for="(transaction, index) in transactions"
+            :key="index"
+            class="grid grid-cols-2 lg:hover:bg-[#1A0D13] transition-colors"
+          >
+            <!-- Deposit Column -->
+            <div class="p-4 border-r border-[#3b1c23] max-lg:p-3">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2 min-w-0 flex-1">
+                  <div
+                    class="w-8 h-8 bg-[#1A0D13] max-[500px]:hidden rounded-full flex items-center justify-center flex-shrink-0 border border-[#3b1c23]"
+                  >
+                    <i class="bi bi-person-fill text-[#4ade80] text-xs"></i>
+                  </div>
+                  <div class="min-w-0 flex-1">
                     <div
-                      class="w-8 h-8 bg-[#241017] rounded-full flex items-center justify-center text-[#ff3344] mr-2 max-lg:hidden border border-[#3b1c23]"
+                      class="font-medium text-[#f0eaea] truncate max-lg:text-sm max-[500px]:text-xs"
                     >
-                      <i class="bi bi-person-fill"></i>
+                      {{ maskUsername(transaction.depositUsername) }}
                     </div>
-                    <div>
-                      <div class="font-medium text-[#f0eaea]">
-                        {{ maskUsername(transaction.depositUsername) }}
-                      </div>
-                      <div class="text-xs text-[#b37a7a]">
-                        {{ formatTime(transaction.depositTime) }}
-                      </div>
+                    <div class="text-xs text-[#b37a7a] max-lg:text-[10px]">
+                      {{ formatTime(transaction.depositTime) }}
                     </div>
                   </div>
-                </td>
-                <td
-                  class="p-2 border-r border-b border-[#3b1c23] text-right max-lg:w-[20%]"
-                >
-                  <span class="font-bold text-[#4ade80] max-lg:text-xs"
-                    >+ MYR {{ transaction.depositAmount.toFixed(2) }}</span
+                </div>
+                <div class="text-right flex-shrink-0">
+                  <div
+                    class="font-bold text-[#4ade80] max-lg:text-sm max-[500px]:text-xs"
                   >
-                </td>
-                <td
-                  class="p-2 border-r border-b border-[#3b1c23] max-lg:w-[30%]"
-                >
-                  <div class="flex items-center">
+                    +{{ transaction.depositAmount.toFixed(2) }}
+                  </div>
+                  <div class="text-[10px] text-[#b37a7a]">MYR</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Withdraw Column -->
+            <div class="p-4 max-lg:p-3">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2 min-w-0 flex-1">
+                  <div
+                    class="w-8 h-8 bg-[#1A0D13] max-[500px]:hidden rounded-full flex items-center justify-center flex-shrink-0 border border-[#3b1c23]"
+                  >
+                    <i class="bi bi-person-fill text-[#ff3344] text-xs"></i>
+                  </div>
+                  <div class="min-w-0 flex-1">
                     <div
-                      class="w-8 h-8 bg-[#15090e] rounded-full flex items-center justify-center text-[#ff3344] mr-2 max-lg:hidden border border-[#3b1c23]"
+                      class="font-medium text-[#f0eaea] truncate max-lg:text-sm max-[500px]:text-xs"
                     >
-                      <i class="bi bi-person-fill"></i>
+                      {{ maskUsername(transaction.withdrawUsername) }}
                     </div>
-                    <div>
-                      <div class="font-medium text-[#f0eaea]">
-                        {{ maskUsername(transaction.withdrawUsername) }}
-                      </div>
-                      <div class="text-xs text-[#b37a7a]">
-                        {{ formatTime(transaction.withdrawTime) }}
-                      </div>
+                    <div class="text-xs text-[#b37a7a] max-lg:text-[10px]">
+                      {{ formatTime(transaction.withdrawTime) }}
                     </div>
                   </div>
-                </td>
-                <td
-                  class="p-2 border-b border-[#3b1c23] text-right max-lg:w-[20%]"
-                >
-                  <span class="font-bold text-[#ff3344] max-lg:text-xs"
-                    >- MYR {{ transaction.withdrawAmount.toFixed(2) }}</span
+                </div>
+                <div class="text-right flex-shrink-0">
+                  <div
+                    class="font-bold text-[#ff3344] max-lg:text-sm max-[500px]:text-xs"
                   >
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    -{{ transaction.withdrawAmount.toFixed(2) }}
+                  </div>
+                  <div class="text-[10px] text-[#b37a7a]">MYR</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -146,6 +179,7 @@ function maskUsername(username) {
     return `${firstPart}***${lastPart}`;
   }
 }
+
 async function fetchTransactions() {
   try {
     const { data } = await get("transactions/list");
