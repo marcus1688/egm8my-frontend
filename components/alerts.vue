@@ -6,7 +6,7 @@
   >
     <div
       v-show="visible"
-      class="bg-[#1A0D13] border border-[#3b1c23] rounded-xl p-6 w-[90%] max-w-[380px] text-center shadow-2xl shadow-[#ff3344]/20 relative"
+      class="bg-gradient-to-b from-[#241017] to-[#15090e] border border-[#3b1c23] rounded-xl p-6 w-[90%] max-w-[380px] text-center shadow-2xl shadow-[#ff3344]/20 relative"
       :class="visible ? 'animate-popupIn' : 'animate-popupOut'"
     >
       <div class="flex justify-center mb-4">
@@ -34,14 +34,14 @@
         </div>
       </div>
 
-      <h2 class="text-base font-bold mb-3 text-[#f0eaea]">{{ title }}</h2>
-      <p class="text-[#b37a7a] mb-6 max-lg:text-sm" v-html="message"></p>
+      <h2 class="text-base font-bold mb-1 text-[#f0eaea]">{{ title }}</h2>
+      <p class="text-[#b37a7a] mb-4 max-lg:text-sm" v-html="message"></p>
 
       <div class="flex justify-center">
         <button
           @click="closeAlert"
           :class="[
-            'px-7 py-2.5 max-lg:px-4 max-lg:py-2 rounded-lg font-medium shadow-lg transition-all duration-200 lg:hover:shadow-xl',
+            'px-7 py-2.5 max-lg:px-4 text-sm max-lg:py-2 rounded-lg font-medium shadow-lg transition-all duration-200 lg:hover:shadow-xl',
             type === 'success'
               ? 'bg-gradient-to-r from-green-600 to-green-500 lg:hover:from-green-700 lg:hover:to-green-600 text-white lg:hover:brightness-110'
               : type === 'error'
@@ -49,7 +49,7 @@
               : 'bg-gradient-to-r from-amber-600 to-amber-500 lg:hover:from-amber-700 lg:hover:to-amber-600 text-white lg:hover:brightness-110',
           ]"
         >
-          OK
+          {{ $t("ok") }}
         </button>
       </div>
 
