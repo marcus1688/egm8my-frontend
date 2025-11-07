@@ -2,7 +2,7 @@
   <div>
     <NuxtLinkLocale to="/vip">
       <div
-        class="w-full bg-gradient-to-r from-[#1A0D13] via-[#2a0f14] to-[#1A0D13] p-3 rounded-lg border border-[#3b1c23] shadow-lg shadow-[#ff3344]/10 lg:hover:border-[#ff3344]/50 transition-all duration-300"
+        class="w-full bg-gradient-to-r from-[#1A0D13] via-[#2a0f14] to-[#1A0D13] p-3 rounded-lg border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all duration-300"
       >
         <div class="mb-3 flex items-center justify-between">
           <div class="flex items-center gap-2">

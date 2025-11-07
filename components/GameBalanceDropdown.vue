@@ -8,7 +8,7 @@
     <div class="absolute right-0 top-full w-full h-2 bg-transparent"></div>
 
     <div
-      class="absolute right-0 top-full mt-2 w-80 max-lg:w-72 max-[325px]:w-[17.5rem] max-[315px]:w-[16.5rem] bg-[#1a0d13]/95 backdrop-blur-xl border border-white/10 rounded-lg shadow-2xl z-50 max-lg:right-[-20%]"
+      class="absolute right-0 top-full mt-2 w-80 max-lg:w-72 max-[325px]:w-[17.5rem] max-[315px]:w-[16.5rem] bg-[#1a0d13]/95 backdrop-blur-xl border border-white/10 rounded-lg z-50 max-lg:right-[-20%]"
     >
       <div class="px-4 py-3 border-b border-white/10">
         <div class="flex justify-between items-center">

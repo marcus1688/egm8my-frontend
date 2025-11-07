@@ -17,7 +17,7 @@
 
     <div>
       <header
-        class="relative w-full h-[80px] max-lg:h-[60px] shadow-lg shadow-red-500/20 py-2 border-b-2 border-red-600 z-50"
+        class="relative w-full h-[80px] max-lg:h-[60px] py-2 border-b-2 border-red-600 z-50"
         style="background-image: url('/images/header.png')"
       >
         <div
@@ -154,60 +154,89 @@
                       </div>
                     </NuxtLinkLocale>
 
+                    <div
+                      class="absolute right-0 top-full w-full h-2 bg-transparent"
+                    ></div>
                     <!-- Profile Dropdown Menu -->
                     <div
                       v-if="showProfileMenu"
-                      class="absolute left-1/2 transform -translate-x-1/2 w-80 bg-[#1A0D13] rounded-lg shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] z-50"
+                      class="absolute left-1/2 mt-2 transform -translate-x-1/2 w-80 bg-[#1A0D13] rounded-xl border border-[#3b1c23] z-50 overflow-hidden"
                     >
-                      <!-- User Info Section -->
-                      <div class="p-4 border-b border-[#3b1c23]">
-                        <div class="flex items-center justify-between mb-2">
-                          <p class="text-[#f0eaea] font-medium">
-                            {{ $t("hi") }}, {{ userData.username }}
-                          </p>
-                          <div class="flex flex-col items-center gap-1">
-                            <span class="text-[#b37a7a] text-xs">{{
-                              $t("your_vip_tier_is")
-                            }}</span>
-                            <span
-                              class="text-[#ff3344] text-sm font-medium uppercase"
-                            >
-                              {{
-                                getLocalizedLevelName(userData.viplevel)
-                              }}</span
-                            >
-                          </div>
-                        </div>
+                      <div
+                        class="relative bg-gradient-to-br from-[#241017] to-[#1A0D13] p-4 border-b border-[#3b1c23]"
+                      >
+                        <div
+                          class="absolute top-0 right-0 w-32 h-32 bg-[#ff3344]/5 rounded-full blur-3xl"
+                        ></div>
 
-                        <!-- VIP Progress Bar -->
-                        <VipProgressBar />
+                        <div class="relative z-10">
+                          <div class="flex items-center gap-3 mb-3">
+                            <!-- Avatar -->
+                            <div
+                              class="w-14 h-14 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] p-0.5 flex-shrink-0"
+                            >
+                              <div
+                                class="w-full h-full rounded-full bg-[#1A0D13] flex items-center justify-center"
+                              >
+                                <img
+                                  src="/images/user/icon.png"
+                                  alt="icon"
+                                  class="w-10 h-10"
+                                />
+                              </div>
+                            </div>
+
+                            <!-- User Info -->
+                            <div class="flex-1 min-w-0">
+                              <p
+                                class="text-[#f0eaea] font-bold text-base truncate"
+                              >
+                                {{ userData.username }}
+                              </p>
+                              <div class="flex items-center gap-2 mt-0.5">
+                                <span class="text-[#b37a7a] text-xs">VIP:</span>
+                                <span
+                                  class="px-2 py-0.5 bg-gradient-to-r from-[#ff3344]/20 to-[#cc2a3a]/10 text-[#ff3344] text-xs font-bold rounded-full border border-[#ff3344]/30"
+                                >
+                                  {{ getLocalizedLevelName(userData.viplevel) }}
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <!-- VIP Progress Bar -->
+                          <VipProgressBar />
+                        </div>
                       </div>
 
                       <!-- Menu Items -->
-                      <div>
-                        <!-- Cashier (expandable) -->
-                        <div class="border-b border-[#3b1c23]">
+                      <div class="max-h-[400px] overflow-y-auto scrollbar-thin">
+                        <!-- Cashier Section -->
+                        <div>
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-all duration-200 group"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'cashier' ? null : 'cashier'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <img
-                                src="/images/user/cashier2.png"
-                                alt="Cashier"
-                                class="w-7 h-auto"
-                              />
-
+                              <div
+                                class="w-9 h-9 rounded-lg bg-[#241017] flex items-center justify-center border border-[#3b1c23] lg:group-hover:border-[#ff3344]/30 transition-colors"
+                              >
+                                <img
+                                  src="/images/user/cashier2.png"
+                                  alt="Cashier"
+                                  class="w-6 h-6"
+                                />
+                              </div>
                               <span
-                                class="text-[#f0eaea] font-medium uppercase"
+                                class="text-[#f0eaea] font-semibold text-sm"
                                 >{{ $t("cashier") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-[#b37a7a]"
+                              class="bi text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-all duration-200"
                               :class="
                                 activeMenuItem === 'cashier'
                                   ? 'bi-chevron-up'
@@ -216,72 +245,111 @@
                             ></i>
                           </div>
 
-                          <!-- Cashier Sub Items -->
-                          <div
-                            v-if="activeMenuItem === 'cashier'"
-                            class="border-t border-[#3b1c23]"
+                          <!-- Cashier Sub Items with animation -->
+                          <transition
+                            enter-active-class="transition-all duration-200 ease-out"
+                            enter-from-class="opacity-0 max-h-0"
+                            enter-to-class="opacity-100 max-h-96"
+                            leave-active-class="transition-all duration-200 ease-in"
+                            leave-from-class="opacity-100 max-h-96"
+                            leave-to-class="opacity-0 max-h-0"
                           >
-                            <NuxtLinkLocale
-                              to="/myaccount/deposit"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
+                            <div
+                              v-if="activeMenuItem === 'cashier'"
+                              class="bg-[#15090e]/50 overflow-hidden"
                             >
-                              {{ $t("deposit") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/withdraw"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("withdraw") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/bankaccount"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("bank_account") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/rebate"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("rebate") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/rescue"
-                              class="pl-10 py-3 hidden px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("rescue") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/checkin"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("checkin") }}
-                            </NuxtLinkLocale>
-                          </div>
+                              <NuxtLinkLocale
+                                to="/myaccount/deposit"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-arrow-down-circle text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("deposit") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/withdraw"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-arrow-up-circle text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("withdraw") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/bankaccount"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-bank text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("bank_account") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/rebate"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-cash-coin text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("rebate") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/checkin"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-calendar-check text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("checkin") }}</span
+                                >
+                              </NuxtLinkLocale>
+                            </div>
+                          </transition>
                         </div>
 
-                        <!-- Agent (expandable) -->
-                        <div class="border-b border-[#3b1c23]">
+                        <div class="h-px bg-[#3b1c23]"></div>
+
+                        <!-- Agent Section -->
+                        <div>
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-all duration-200 group"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'agent' ? null : 'agent'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <img
-                                src="/images/user/agent2.png"
-                                alt="agent"
-                                class="w-7 h-auto"
-                              />
+                              <div
+                                class="w-9 h-9 rounded-lg bg-[#241017] flex items-center justify-center border border-[#3b1c23] lg:group-hover:border-[#ff3344]/30 transition-colors"
+                              >
+                                <img
+                                  src="/images/user/agent2.png"
+                                  alt="agent"
+                                  class="w-6 h-6"
+                                />
+                              </div>
                               <span
-                                class="text-[#f0eaea] font-medium uppercase"
+                                class="text-[#f0eaea] font-semibold text-sm"
                                 >{{ $t("agent") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-[#b37a7a]"
+                              class="bi text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-all duration-200"
                               :class="
                                 activeMenuItem === 'agent'
                                   ? 'bi-chevron-up'
@@ -291,60 +359,99 @@
                           </div>
 
                           <!-- Agent Sub Items -->
-                          <div
-                            v-if="activeMenuItem === 'agent'"
-                            class="border-t border-[#3b1c23]"
+                          <transition
+                            enter-active-class="transition-all duration-200 ease-out"
+                            enter-from-class="opacity-0 max-h-0"
+                            enter-to-class="opacity-100 max-h-96"
+                            leave-active-class="transition-all duration-200 ease-in"
+                            leave-from-class="opacity-100 max-h-96"
+                            leave-to-class="opacity-0 max-h-0"
                           >
-                            <NuxtLinkLocale
-                              to="/myaccount/referral"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
+                            <div
+                              v-if="activeMenuItem === 'agent'"
+                              class="bg-[#15090e]/50 overflow-hidden"
                             >
-                              {{ $t("referral") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/downline"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("downline") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/commission"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("commission") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              v-if="userData.positionTaking > 0"
-                              to="/myaccount/agentpt"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("agent_pt") }}
-                            </NuxtLinkLocale>
-                          </div>
+                              <NuxtLinkLocale
+                                to="/myaccount/referral"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-share-fill text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("referral") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/downline"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-diagram-3 text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("downline") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/commission"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-currency-dollar text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("commission") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                v-if="userData.positionTaking > 0"
+                                to="/myaccount/agentpt"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-graph-up text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("agent_pt") }}</span
+                                >
+                              </NuxtLinkLocale>
+                            </div>
+                          </transition>
                         </div>
 
-                        <!-- Profile (expandable) -->
-                        <div class="border-b border-[#3b1c23]">
+                        <div class="h-px bg-[#3b1c23]"></div>
+
+                        <!-- Profile Section -->
+                        <div>
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-all duration-200 group"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'profile' ? null : 'profile'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <img
-                                src="/images/user/profile2.png"
-                                alt="profile"
-                                class="w-7 h-auto"
-                              />
+                              <div
+                                class="w-9 h-9 rounded-lg bg-[#241017] flex items-center justify-center border border-[#3b1c23] lg:group-hover:border-[#ff3344]/30 transition-colors"
+                              >
+                                <img
+                                  src="/images/user/profile2.png"
+                                  alt="profile"
+                                  class="w-6 h-6"
+                                />
+                              </div>
                               <span
-                                class="text-[#f0eaea] font-medium uppercase"
+                                class="text-[#f0eaea] font-semibold text-sm"
                                 >{{ $t("profile") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-[#b37a7a]"
+                              class="bi text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-all duration-200"
                               :class="
                                 activeMenuItem === 'profile'
                                   ? 'bi-chevron-up'
@@ -354,53 +461,84 @@
                           </div>
 
                           <!-- Profile Sub Items -->
-                          <div
-                            v-if="activeMenuItem === 'profile'"
-                            class="border-t border-[#3b1c23]"
+                          <transition
+                            enter-active-class="transition-all duration-200 ease-out"
+                            enter-from-class="opacity-0 max-h-0"
+                            enter-to-class="opacity-100 max-h-96"
+                            leave-active-class="transition-all duration-200 ease-in"
+                            leave-from-class="opacity-100 max-h-96"
+                            leave-to-class="opacity-0 max-h-0"
                           >
-                            <NuxtLinkLocale
-                              to="/myaccount/profile"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
+                            <div
+                              v-if="activeMenuItem === 'profile'"
+                              class="bg-[#15090e]/50 overflow-hidden"
                             >
-                              {{ $t("my_profile") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/messaging"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("messaging") }}
-                            </NuxtLinkLocale>
-                            <NuxtLinkLocale
-                              to="/myaccount/change-password"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
-                            >
-                              {{ $t("change_password") }}
-                            </NuxtLinkLocale>
-                          </div>
+                              <NuxtLinkLocale
+                                to="/myaccount/profile"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-person-circle text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("my_profile") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/messaging"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-envelope text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("messaging") }}</span
+                                >
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
+                                to="/myaccount/change-password"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i class="bi bi-key text-[#ff3344] text-sm"></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("change_password") }}</span
+                                >
+                              </NuxtLinkLocale>
+                            </div>
+                          </transition>
                         </div>
 
-                        <!-- History (expandable) -->
-                        <div class="border-b border-[#3b1c23]">
+                        <div class="h-px bg-[#3b1c23]"></div>
+
+                        <!-- History Section -->
+                        <div>
                           <div
-                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-colors"
+                            class="flex items-center justify-between p-3 lg:hover:bg-[#2a0f14] cursor-pointer transition-all duration-200 group"
                             @click="
                               activeMenuItem =
                                 activeMenuItem === 'history' ? null : 'history'
                             "
                           >
                             <div class="flex items-center gap-3">
-                              <img
-                                src="/images/user/history2.png"
-                                alt="history"
-                                class="w-7 h-auto"
-                              />
+                              <div
+                                class="w-9 h-9 rounded-lg bg-[#241017] flex items-center justify-center border border-[#3b1c23] lg:group-hover:border-[#ff3344]/30 transition-colors"
+                              >
+                                <img
+                                  src="/images/user/history2.png"
+                                  alt="history"
+                                  class="w-6 h-6"
+                                />
+                              </div>
                               <span
-                                class="text-[#f0eaea] font-medium uppercase"
+                                class="text-[#f0eaea] font-semibold text-sm"
                                 >{{ $t("history") }}</span
                               >
                             </div>
                             <i
-                              class="bi text-[#b37a7a]"
+                              class="bi text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-all duration-200"
                               :class="
                                 activeMenuItem === 'history'
                                   ? 'bi-chevron-up'
@@ -410,29 +548,48 @@
                           </div>
 
                           <!-- History Sub Items -->
-                          <div
-                            v-if="activeMenuItem === 'history'"
-                            class="border-t border-[#3b1c23]"
+                          <transition
+                            enter-active-class="transition-all duration-200 ease-out"
+                            enter-from-class="opacity-0 max-h-0"
+                            enter-to-class="opacity-100 max-h-96"
+                            leave-active-class="transition-all duration-200 ease-in"
+                            leave-from-class="opacity-100 max-h-96"
+                            leave-to-class="opacity-0 max-h-0"
                           >
-                            <NuxtLinkLocale
-                              to="/myaccount/transaction-history"
-                              class="pl-10 block py-3 px-2 text-[#f0eaea] lg:hover:bg-[#2a0f14] lg:hover:text-[#ff3344] transition-colors"
+                            <div
+                              v-if="activeMenuItem === 'history'"
+                              class="bg-[#15090e]/50 overflow-hidden"
                             >
-                              {{ $t("transaction_history") }}
-                            </NuxtLinkLocale>
-                          </div>
+                              <NuxtLinkLocale
+                                to="/myaccount/transaction-history"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-clock-history text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                  >{{ $t("transaction_history") }}</span
+                                >
+                              </NuxtLinkLocale>
+                            </div>
+                          </transition>
                         </div>
+                      </div>
 
-                        <!-- Logout -->
-                        <div class="px-4 py-3">
-                          <button
-                            @click="handleLogout"
-                            class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#241017]/60 text-[#ff3344] lg:hover:bg-[#2a0f14] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all"
-                          >
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span class="font-medium">{{ $t("logout") }}</span>
-                          </button>
-                        </div>
+                      <!-- Logout Button -->
+                      <div
+                        class="p-3 bg-gradient-to-r from-[#15090e] to-[#1a0a0f] border-t border-[#3b1c23]"
+                      >
+                        <button
+                          @click="handleLogout"
+                          class="w-full flex items-center justify-center gap-2 py-2.5 rounded-lg bg-[#241017] text-[#ff3344] lg:hover:bg-[#2a0f14] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all font-semibold text-sm group"
+                        >
+                          <i
+                            class="bi bi-box-arrow-right lg:group-hover:translate-x-1 transition-transform"
+                          ></i>
+                          <span>{{ $t("logout") }}</span>
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -488,7 +645,7 @@
 
                 <div
                   v-if="showLanguageMenu"
-                  class="absolute right-0 top-full mt-2 bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-44 transition-all duration-200"
+                  class="absolute right-0 top-full mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] overflow-hidden z-50 w-44 transition-all duration-200"
                 >
                   <div
                     class="absolute -top-1 right-0 w-full h-1 bg-transparent"
@@ -539,7 +696,7 @@
                 <!-- Dropdown Menu -->
                 <div
                   v-if="showMainMenu"
-                  class="absolute right-0 mt-2 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-72"
+                  class="absolute right-0 mt-2 top-full bg-[#1A0D13] rounded-xl border border-[#3b1c23] overflow-hidden z-50 w-72"
                 >
                   <!-- Invisible bridge to prevent gap issues -->
                   <div
@@ -722,7 +879,7 @@
                 ></div>
                 <div
                   v-if="showCountryMenu"
-                  class="absolute mt-2 right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-64"
+                  class="absolute mt-2 right-0 top-full bg-[#1A0D13] rounded-xl border border-[#3b1c23] overflow-hidden z-50 w-64"
                 >
                   <div
                     class="absolute -top-2 right-0 w-full h-2 bg-transparent"
@@ -1011,10 +1168,10 @@
                   <NuxtLinkLocale
                     :to="HeaderNav.find((nav) => nav.name === 'Slots').link"
                     @click="activeDropdown = null"
-                    class="block h-full"
+                    class="game-item group cursor-pointer relative block h-full"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1026,20 +1183,17 @@
                         class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
                       />
                       <div
-                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-20"
+                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-5"
                       >
                         <span
-                          class="text-red-400 font-bold text-sm drop-shadow-lg mb-1 lg:group-hover:text-red-300 transition-colors uppercase tracking-wide"
+                          class="text-red-400 font-bold text-sm mb-1 lg:group-hover:text-red-300 transition-colors uppercase tracking-wide"
                         >
                           {{ $t("view_more") }}
                         </span>
-                        <span class="text-[#b37a7a] text-xs drop-shadow-lg">
+                        <span class="text-[#b37a7a] text-xs">
                           {{ slotKiosks.length - 15 }} {{ $t("games") }}
                         </span>
                       </div>
-                      <div
-                        class="absolute inset-0 bg-gradient-to-t from-[#1A0D13]/50 to-transparent rounded-lg lg:hover:from-red-900/30 transition-all duration-300"
-                      ></div>
                     </div>
                   </NuxtLinkLocale>
                 </div>
@@ -2255,5 +2409,22 @@ watch(
 .game-item:hover ~ .game-item .inactive-overlay,
 .game-grid:has(.game-item:hover) .game-item:not(:hover) .inactive-overlay {
   opacity: 1;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #15090e;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
 }
 </style>
