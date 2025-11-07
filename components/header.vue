@@ -544,15 +544,15 @@
                       <!-- Promotions -->
                       <NuxtLinkLocale
                         to="/promotions"
-                        class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        class="xl:hidden group flex items-center gap-2 p-3 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                          class="w-12 h-12 flex items-center justify-center mb-2"
                         >
                           <img
                             src="/images/burger-menu/promotions.png"
-                            class="w-full h-auto object-contain"
+                            class="w-[80%] h-auto object-contain"
                             alt="promotions"
                           />
                         </div>
@@ -562,7 +562,7 @@
                           >
                             {{ $t("promotions") }}
                           </span>
-                          <p class="text-xs text-[#b37a7a] mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-0.5">
                             {{ $t("promotions_desc") }}
                           </p>
                         </div>
@@ -574,15 +574,15 @@
                       <!-- VIP -->
                       <NuxtLinkLocale
                         to="/vip"
-                        class="xl:hidden group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        class="xl:hidden group flex items-center gap-2 p-3 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                          class="w-12 h-12 flex items-center justify-center mb-2"
                         >
                           <img
                             src="/images/burger-menu/vip.png"
-                            class="w-full h-auto object-contain"
+                            class="w-[80%] h-auto object-contain"
                             alt="vip"
                           />
                         </div>
@@ -592,7 +592,7 @@
                           >
                             {{ $t("vip") }}
                           </span>
-                          <p class="text-xs text-[#b37a7a] mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-0.5">
                             {{ $t("vip_desc") }}
                           </p>
                         </div>
@@ -604,15 +604,13 @@
                       <!-- Refer Friends -->
                       <NuxtLinkLocale
                         to="/myaccount/referral"
-                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        class="group flex items-center gap-2 p-3 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
-                        <div
-                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
-                        >
+                        <div class="w-12 h-12 flex items-center justify-center">
                           <img
                             src="/images/burger-menu/refer.png"
-                            class="w-full h-auto object-contain"
+                            class="w-[80%] h-auto object-contain"
                             alt="refer"
                           />
                         </div>
@@ -622,7 +620,7 @@
                           >
                             {{ $t("refer_a_friend") }}
                           </span>
-                          <p class="text-xs text-[#b37a7a] mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-0.5">
                             {{ $t("refer_a_friend_desc") }}
                           </p>
                         </div>
@@ -635,15 +633,15 @@
                       <NuxtLinkLocale
                         v-if="luckyDrawStatus"
                         to="/luckydraw"
-                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        class="group flex items-center gap-2 p-3 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="showMainMenu = false"
                       >
                         <div
-                          class="w-11 h-11 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
+                          class="w-12 h-12 bg-[#241017] rounded-xl flex items-center justify-center border border-[#3b1c23] flex-shrink-0"
                         >
                           <img
                             src="/images/newicon/dice.png"
-                            class="w-7 h-7 object-contain"
+                            class="w-[80%] h-auto object-contain"
                             alt="Lucky Draw"
                           />
                         </div>
@@ -665,15 +663,15 @@
                       <!-- Blog -->
                       <NuxtLinkLocale
                         to="/blog"
-                        class="group flex items-center gap-4 p-4 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        class="group flex items-center gap-2 p-3 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
                         @click="mobileMenuOpen = false"
                       >
                         <div
-                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                          class="w-12 h-12 flex items-center justify-center mb-2"
                         >
                           <img
                             src="/images/burger-menu/blog.png"
-                            class="w-full h-auto object-contain"
+                            class="w-[80%] h-auto object-contain"
                             alt="blog"
                           />
                         </div>
@@ -683,7 +681,7 @@
                           >
                             {{ $t("blog") }}
                           </span>
-                          <p class="text-xs text-[#b37a7a] mt-1">
+                          <p class="text-xs text-[#b37a7a] mt-0.5">
                             {{ $t("blog_description_short") }}
                           </p>
                         </div>
@@ -743,7 +741,13 @@
                           : null
                       "
                     >
-                      <div class="text-2xl flex-shrink-0">🇲🇾</div>
+                      <div class="text-2xl flex-shrink-0">
+                        <img
+                          src="/images/flags/Malaysia.svg"
+                          alt=""
+                          class="w-5 h-5 rounded-full object-cover"
+                        />
+                      </div>
                       <div class="flex-1">
                         <div class="flex items-center gap-2">
                           <span
@@ -800,7 +804,11 @@
                           : null
                       "
                     >
-                      <div class="text-2xl flex-shrink-0">🇸🇬</div>
+                      <img
+                        src="/images/flags/singapore.png"
+                        alt=""
+                        class="w-5 h-5 rounded-full object-cover"
+                      />
                       <div class="flex-1">
                         <div class="flex items-center gap-2">
                           <span
