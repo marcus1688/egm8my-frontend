@@ -1,45 +1,43 @@
 <template>
   <div
-    class="w-full h-[700px] bg-[#241017] rounded-xl shadow-lg shadow-red-500/20 border border-[#3b1c23] overflow-hidden"
+    class="w-full h-full bg-[#15090e] rounded-xl shadow-lg border border-[#3b1c23] overflow-hidden flex flex-col"
   >
-    <div class="p-4 bg-gradient-to-r from-[#6d0b1d] to-[#8a1126] text-white">
+    <div
+      class="p-5 bg-gradient-to-br from-[#241017] to-[#1A0D13] border-b border-[#3b1c23]"
+    >
       <div class="flex items-center gap-3">
-        <div
-          class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center"
-        >
-          <img src="/images/user/icon.png" alt="icon" class="w-full h-auto" />
-        </div>
-        <div>
-          <h3 class="font-medium uppercase">
+        <img src="/images/user/icon.png" alt="icon" class="w-14 h-14" />
+        <div class="flex-1">
+          <h3 class="font-semibold text-[#f0eaea] text-base uppercase">
             {{ userData?.username || "User" }}
           </h3>
-          <p class="text-xs text-red-100 uppercase">
-            {{ userData?.viplevel || "Standard" }}
-          </p>
+          <div class="flex items-center gap-1.5">
+            <p class="text-[0.8rem] text-[#b37a7a] font-bold italic">
+              {{ userData?.viplevel || "Standard" }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Menu Item -->
-    <div class="py-2">
-      <!-- Cashier Section -->
-      <div class="px-2 mb-1">
-        <div
-          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
-          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'cashier' }"
+    <div class="flex-1 overflow-y-auto scrollbar-thin py-2">
+      <div class="mb-1">
+        <button
           @click="
             activeMenuItem = activeMenuItem === 'cashier' ? null : 'cashier'
           "
+          class="w-full flex items-center justify-between px-4 py-3 transition-colors lg:hover:bg-[#1A0D13]"
+          :class="{ 'bg-[#1A0D13]': activeMenuItem === 'cashier' }"
         >
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 text-[#ff3344]">
+            <div class="w-7 h-7 text-[#ff3344]">
               <img
                 src="/images/user/cashier2.png"
                 alt="Cashier"
                 class="w-full h-auto"
               />
             </div>
-            <span class="text-[#f0eaea] font-medium uppercase">{{
+            <span class="text-base font-medium text-[#f0eaea]">{{
               $t("cashier")
             }}</span>
           </div>
@@ -49,135 +47,99 @@
                 ? 'mdi:chevron-up'
                 : 'mdi:chevron-down'
             "
-            class="text-[#b37a7a] w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5 transition-transform"
           />
-        </div>
+        </button>
 
-        <!-- Cashier Sub Items -->
-        <div
-          v-if="activeMenuItem === 'cashier'"
-          class="mt-1 py-1 border-l-2 border-[#ff3344]"
-        >
-          <NuxtLinkLocale
-            to="/myaccount/deposit"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('deposit'),
-              'text-[#b37a7a]': !isActiveRoute('deposit'),
-            }"
+        <Transition name="slide">
+          <div
+            v-if="activeMenuItem === 'cashier'"
+            class="bg-[#0a0005] border-l-2 border-[#ff3344]/50 ml-4 mt-1"
           >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:arrow-down-box" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("deposit") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/deposit"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('deposit')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:arrow-down-bold-circle" class="w-4 h-4" />
+              <span>{{ $t("deposit") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/withdraw"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('withdraw'),
-              'text-[#b37a7a]': !isActiveRoute('withdraw'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:arrow-up-box" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("withdraw") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/withdraw"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('withdraw')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:arrow-up-bold-circle" class="w-4 h-4" />
+              <span>{{ $t("withdraw") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/bankaccount"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('bankaccount'),
-              'text-[#b37a7a]': !isActiveRoute('bankaccount'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:bank" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("bank_account") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/bankaccount"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('bankaccount')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:bank" class="w-4 h-4" />
+              <span>{{ $t("bank_account") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/rebate"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('rebate'),
-              'text-[#b37a7a]': !isActiveRoute('rebate'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:cash-refund" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("rebate") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/rebate"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('rebate')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:cash-refund" class="w-4 h-4" />
+              <span>{{ $t("rebate") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/rescue"
-            class="hidden items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('rescue'),
-              'text-[#b37a7a]': !isActiveRoute('rescue'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:hand-heart" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("rescue") }}</span>
-            </div>
-          </NuxtLinkLocale>
-
-          <NuxtLinkLocale
-            to="/myaccount/checkin"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('checkin'),
-              'text-[#b37a7a]': !isActiveRoute('checkin'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:calendar-check" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("checkin") }}</span>
-            </div>
-          </NuxtLinkLocale>
-        </div>
+            <NuxtLinkLocale
+              to="/myaccount/checkin"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('checkin')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:calendar-check" class="w-4 h-4" />
+              <span>{{ $t("checkin") }}</span>
+            </NuxtLinkLocale>
+          </div>
+        </Transition>
       </div>
 
       <!-- Agent Section -->
-      <div class="px-2 mb-1">
-        <div
-          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
-          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'agent' }"
+      <div class="mb-1">
+        <button
           @click="activeMenuItem = activeMenuItem === 'agent' ? null : 'agent'"
+          class="w-full flex items-center justify-between px-4 py-3 transition-colors lg:hover:bg-[#1A0D13]"
+          :class="{ 'bg-[#1A0D13]': activeMenuItem === 'agent' }"
         >
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 text-[#ff3344]">
+            <div class="w-7 h-7 text-[#ff3344]">
               <img
                 src="/images/user/agent2.png"
                 alt="agent"
                 class="w-full h-auto"
               />
             </div>
-            <span class="text-[#f0eaea] font-medium uppercase">{{
+            <span class="text-sm font-medium text-[#f0eaea]">{{
               $t("agent")
             }}</span>
           </div>
@@ -185,104 +147,90 @@
             :icon="
               activeMenuItem === 'agent' ? 'mdi:chevron-up' : 'mdi:chevron-down'
             "
-            class="text-[#b37a7a] w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5 transition-transform"
           />
-        </div>
+        </button>
 
         <!-- Agent Sub Items -->
-        <div
-          v-if="activeMenuItem === 'agent'"
-          class="mt-1 border-l-2 border-[#ff3344]"
-        >
-          <NuxtLinkLocale
-            to="/myaccount/referral"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('referral'),
-              'text-[#b37a7a]': !isActiveRoute('referral'),
-            }"
+        <Transition name="slide">
+          <div
+            v-if="activeMenuItem === 'agent'"
+            class="bg-[#0a0005] border-l-2 border-[#ff3344]/50 ml-4 mt-1"
           >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:share-variant" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("referral") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/referral"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('referral')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:share-variant" class="w-4 h-4" />
+              <span>{{ $t("referral") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/downline"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('downline'),
-              'text-[#b37a7a]': !isActiveRoute('downline'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:account-multiple" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("downline") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/downline"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('downline')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:account-multiple" class="w-4 h-4" />
+              <span>{{ $t("downline") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/commission"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('commission'),
-              'text-[#b37a7a]': !isActiveRoute('commission'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:currency-usd" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("commission") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/commission"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('commission')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:currency-usd" class="w-4 h-4" />
+              <span>{{ $t("commission") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            v-if="userData.positionTaking > 0"
-            to="/myaccount/agentpt"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('agentpt'),
-              'text-[#b37a7a]': !isActiveRoute('agentpt'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:chart-timeline-variant" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("agent_pt") }}</span>
-            </div>
-          </NuxtLinkLocale>
-        </div>
+            <NuxtLinkLocale
+              v-if="userData.positionTaking > 0"
+              to="/myaccount/agentpt"
+              class="flex items-center gap-2 py-2 px-4 text-sm transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('agentpt')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:chart-timeline-variant" class="w-4 h-4" />
+              <span>{{ $t("agent_pt") }}</span>
+            </NuxtLinkLocale>
+          </div>
+        </Transition>
       </div>
 
       <!-- Profile Section -->
-      <div class="px-2 mb-1">
-        <div
-          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
-          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'profile' }"
+      <div class="mb-1">
+        <button
           @click="
             activeMenuItem = activeMenuItem === 'profile' ? null : 'profile'
           "
+          class="w-full flex items-center justify-between px-4 py-3 transition-colors lg:hover:bg-[#1A0D13]"
+          :class="{ 'bg-[#1A0D13]': activeMenuItem === 'profile' }"
         >
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 text-[#ff3344]">
+            <div class="w-7 h-7 text-[#ff3344]">
               <img
                 src="/images/user/profile2.png"
                 alt="profile"
                 class="w-full h-auto"
               />
             </div>
-            <span class="text-[#f0eaea] font-medium uppercase">{{
+            <span class="text-sm font-medium text-[#f0eaea]">{{
               $t("profile")
             }}</span>
           </div>
@@ -292,86 +240,76 @@
                 ? 'mdi:chevron-up'
                 : 'mdi:chevron-down'
             "
-            class="text-[#b37a7a] w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5 transition-transform"
           />
-        </div>
+        </button>
 
         <!-- Profile Sub Items -->
-        <div
-          v-if="activeMenuItem === 'profile'"
-          class="mt-1 py-1 border-l-2 border-[#ff3344]"
-        >
-          <NuxtLinkLocale
-            to="/myaccount/profile"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('profile'),
-              'text-[#b37a7a]': !isActiveRoute('profile'),
-            }"
+        <Transition name="slide">
+          <div
+            v-if="activeMenuItem === 'profile'"
+            class="bg-[#0a0005] border-l-2 border-[#ff3344]/50 ml-4 mt-1"
           >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:card-account-details" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("my_profile") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/profile"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('profile')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:card-account-details" class="w-4 h-4" />
+              <span>{{ $t("my_profile") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/messaging"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('messaging'),
-              'text-[#b37a7a]': !isActiveRoute('messaging'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:email" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("messaging") }}</span>
-            </div>
-          </NuxtLinkLocale>
+            <NuxtLinkLocale
+              to="/myaccount/messaging"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('messaging')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:email" class="w-4 h-4" />
+              <span>{{ $t("messaging") }}</span>
+            </NuxtLinkLocale>
 
-          <NuxtLinkLocale
-            to="/myaccount/change-password"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50':
-                isActiveRoute('change-password'),
-              'text-[#b37a7a]': !isActiveRoute('change-password'),
-            }"
-          >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="mdi:key" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("change_password") }}</span>
-            </div>
-          </NuxtLinkLocale>
-        </div>
+            <NuxtLinkLocale
+              to="/myaccount/change-password"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('change-password')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:key" class="w-4 h-4" />
+              <span>{{ $t("change_password") }}</span>
+            </NuxtLinkLocale>
+          </div>
+        </Transition>
       </div>
 
       <!-- History Section -->
-      <div class="px-2 mb-1">
-        <div
-          class="flex items-center justify-between p-3 rounded-lg cursor-pointer transition-colors"
-          :class="{ 'bg-[#ff3344]/10': activeMenuItem === 'history' }"
+      <div class="mb-1">
+        <button
           @click="
             activeMenuItem = activeMenuItem === 'history' ? null : 'history'
           "
+          class="w-full flex items-center justify-between px-4 py-3 transition-colors lg:hover:bg-[#1A0D13]"
+          :class="{ 'bg-[#1A0D13]': activeMenuItem === 'history' }"
         >
           <div class="flex items-center gap-3">
-            <div class="w-8 h-8 text-[#ff3344]">
+            <div class="w-7 h-7 text-[#ff3344]">
               <img
                 src="/images/user/history2.png"
                 alt="history"
                 class="w-full h-auto"
               />
             </div>
-            <span class="text-[#f0eaea] font-medium uppercase">{{
+            <span class="text-sm font-medium text-[#f0eaea]">{{
               $t("history")
             }}</span>
           </div>
@@ -381,33 +319,30 @@
                 ? 'mdi:chevron-up'
                 : 'mdi:chevron-down'
             "
-            class="text-[#b37a7a] w-5 h-5"
+            class="text-[#b37a7a] w-5 h-5 transition-transform"
           />
-        </div>
+        </button>
 
         <!-- History Sub Items -->
-        <div
-          v-if="activeMenuItem === 'history'"
-          class="mt-1 py-1 border-l-2 border-[#ff3344]"
-        >
-          <NuxtLinkLocale
-            to="/myaccount/transaction-history"
-            class="flex items-center py-2.5 px-4 lg:hover:bg-[#15090e]/50 transition-colors text-sm"
-            :class="{
-              'text-[#ff3344] font-medium bg-[#15090e]/50': isActiveRoute(
-                'transaction-history'
-              ),
-              'text-[#b37a7a]': !isActiveRoute('transaction-history'),
-            }"
+        <Transition name="slide">
+          <div
+            v-if="activeMenuItem === 'history'"
+            class="bg-[#0a0005] border-l-2 border-[#ff3344]/50 ml-4 mt-1"
           >
-            <div class="flex items-center w-full">
-              <div class="flex-shrink-0 w-6 flex justify-center">
-                <Icon icon="icon-park-solid:transaction" class="w-4 h-4" />
-              </div>
-              <span class="ml-3">{{ $t("transaction_history") }}</span>
-            </div>
-          </NuxtLinkLocale>
-        </div>
+            <NuxtLinkLocale
+              to="/myaccount/transaction-history"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('transaction-history')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="icon-park-solid:transaction" class="w-4 h-4" />
+              <span>{{ $t("transaction_history") }}</span>
+            </NuxtLinkLocale>
+          </div>
+        </Transition>
       </div>
     </div>
   </div>
@@ -420,13 +355,6 @@ import { useRoute } from "vue-router";
 const userData = useState("userData");
 const route = useRoute();
 const activeMenuItem = ref("cashier");
-const isConfirmAlertVisible = ref(false);
-const confirmAlertTitle = ref("");
-const confirmAlertMessage = ref("");
-const confirmAlertType = ref("warning");
-const { t } = useI18n();
-const localePath = useLocalePath();
-const currentRoute = computed(() => route.path);
 
 const isActiveRoute = (pathSegment) => {
   const pathParts = route.path.split("/");
@@ -438,7 +366,9 @@ watchEffect(() => {
   if (
     route.path.includes("/myaccount/deposit") ||
     route.path.includes("/myaccount/withdraw") ||
-    route.path.includes("/myaccount/bankaccount")
+    route.path.includes("/myaccount/bankaccount") ||
+    route.path.includes("/myaccount/rebate") ||
+    route.path.includes("/myaccount/checkin")
   ) {
     activeMenuItem.value = "cashier";
   } else if (
@@ -459,3 +389,46 @@ watchEffect(() => {
   }
 });
 </script>
+
+<style scoped>
+/* Custom scrollbar */
+.scrollbar-thin::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #0a0005;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 2px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
+}
+
+/* Slide transition */
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.slide-enter-from {
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-10px);
+}
+
+.slide-leave-to {
+  opacity: 0;
+  max-height: 0;
+}
+
+.slide-enter-to,
+.slide-leave-from {
+  opacity: 1;
+  max-height: 500px;
+}
+</style>
