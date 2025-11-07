@@ -6,236 +6,174 @@
     :type="alertType"
     @close="alertVisible = false"
   />
-  <section class="py-4 containerWid max-lg:py-2 max-lg:px-1">
+  <section class="py-8 containerWid max-lg:py-4">
     <div class="mx-auto px-4 max-lg:px-2">
-      <div class="mb-8 max-lg:mb-4">
-        <div class="block lg:hidden">
-          <div class="grid grid-cols-3 gap-2 max-lg:gap-1">
-            <button
-              v-for="(category, index) in [
-                'Slots',
-                'Casino',
-                'Sports',
-                'E-Sports',
-                'Fishing',
-                'Lottery',
-              ]"
-              :key="category"
-              @click="selectCategory(index)"
-              class="relative py-2 px-1 rounded-lg text-xs font-medium transition-all duration-200 flex flex-col items-center justify-center max-lg:py-1.5 border"
-              :class="
-                activeCategory === index
-                  ? 'bg-[#a1122d] text-white border-[#ff3344]'
-                  : 'bg-[#241017] text-[#f0eaea] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
-              "
-            >
-              <i
-                :class="[
-                  getCategoryIcon(category),
-                  'text-lg mb-1 max-lg:text-base max-lg:mb-0.5',
-                  activeCategory === index ? 'text-white' : 'text-[#ff3344]',
-                ]"
-              ></i>
-              <span class="menuText max-lg:text-[10px]">{{ category }}</span>
-              <div
-                v-if="activeCategory === index"
-                class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white"
-              ></div>
-            </button>
-          </div>
+      <!-- Mobile Category Navigation -->
+      <div class="block lg:hidden mb-6">
+        <div class="grid grid-cols-3 gap-2.5">
+          <button
+            v-for="(category, index) in categories"
+            :key="category.name"
+            @click="selectCategory(index)"
+            class="group relative py-3.5 px-2 rounded-xl font-medium transition-all duration-300 flex flex-col items-center justify-center gap-2 overflow-hidden"
+            :class="
+              activeCategory === index
+                ? 'bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] text-white shadow-lg shadow-[#ff3344]/30 scale-105'
+                : 'bg-[#241017] text-[#f0eaea] border border-[#3b1c23]'
+            "
+          >
+            <!-- Hover shine effect -->
+            <div
+              v-if="activeCategory !== index"
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-active:translate-x-full transition-transform duration-500"
+            ></div>
+
+            <div class="relative w-7 h-7 flex items-center justify-center">
+              <img
+                :src="
+                  activeCategory === index
+                    ? category.iconActive
+                    : category.iconInactive
+                "
+                :alt="category.name"
+                class="w-full h-full object-contain transition-all duration-300"
+                :class="
+                  activeCategory === index
+                    ? 'scale-110'
+                    : 'group-active:scale-95'
+                "
+              />
+            </div>
+
+            <span class="relative text-[10px] font-semibold tracking-wide">
+              {{ category.name }}
+            </span>
+
+            <!-- Active indicator -->
+            <div
+              v-if="activeCategory === index"
+              class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-1 bg-white/50 rounded-full blur-[2px]"
+            ></div>
+          </button>
         </div>
-        <div class="hidden lg:flex overflow-x-auto scrollbar-hide">
-          <div class="flex mx-auto space-x-1">
+      </div>
+
+      <!-- Desktop Category Navigation -->
+      <div class="hidden lg:block mb-4">
+        <div class="flex items-center justify-center">
+          <div
+            class="inline-flex items-center gap-2 p-1.5 bg-[#241017] rounded-xl border border-[#3b1c23]"
+          >
             <button
-              v-for="(category, index) in [
-                'Slots',
-                'Casino',
-                'Sports',
-                'E-Sports',
-                'Fishing',
-                'Lottery',
-              ]"
-              :key="category"
+              v-for="(category, index) in categories"
+              :key="category.name"
               @click="selectCategory(index)"
-              class="relative px-4 py-3 rounded-lg font-medium whitespace-nowrap transition-all duration-200 border"
+              class="group relative px-5 py-2.5 rounded-lg font-medium whitespace-nowrap transition-all duration-300"
               :class="
                 activeCategory === index
-                  ? 'bg-[#a1122d] text-white border-[#ff3344]'
-                  : 'bg-[#241017] text-[#f0eaea] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
+                  ? 'bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white'
+                  : 'text-[#f0eaea] lg:hover:bg-[#2a0f14]'
               "
             >
-              <div class="flex items-center space-x-2 menuText">
-                <i
-                  :class="[
-                    getCategoryIcon(category),
-                    activeCategory === index ? 'text-white' : 'text-[#ff3344]',
-                  ]"
-                ></i>
-                <span>{{ category }}</span>
+              <div class="flex items-center gap-2">
+                <img
+                  :src="
+                    activeCategory === index
+                      ? category.iconActive
+                      : category.iconInactive
+                  "
+                  :alt="category.name"
+                  class="w-5 h-5 object-contain"
+                  :class="activeCategory === index ? 'brightness-0 invert' : ''"
+                />
+                <span class="text-sm font-semibold">
+                  {{ category.name }}
+                </span>
               </div>
-              <div
-                v-if="activeCategory === index"
-                class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-white"
-              ></div>
             </button>
           </div>
         </div>
       </div>
 
-      <div class="flex justify-between items-center mb-6 max-lg:mb-3">
-        <h2 class="text-xl font-bold text-[#f0eaea] max-lg:text-lg">
-          {{
-            ["Slots", "Casino", "Sports", "E-Sports", "Fishing", "Lottery"][
-              activeCategory
-            ]
-          }}
-        </h2>
+      <!-- Category Title with Accent -->
+      <div class="flex items-center gap-3 mb-6 max-lg:mb-4">
+        <div class="flex items-center gap-2">
+          <div
+            class="w-1 h-8 bg-gradient-to-b from-[#ff3344] to-[#cc2a3a] rounded-full max-lg:h-6"
+          ></div>
+          <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
+            {{ categories[activeCategory].name }}
+          </h2>
+        </div>
+        <div
+          class="flex-1 h-px bg-gradient-to-r from-[#3b1c23] to-transparent"
+        ></div>
+      </div>
 
-        <div class="flex space-x-2 max-lg:space-x-1">
-          <button
-            @click="viewMode = 'grid'"
-            class="p-2 rounded-md transition-colors max-lg:p-1.5 border"
-            :class="
-              viewMode === 'grid'
-                ? 'bg-[#a1122d] text-white border-[#ff3344]'
-                : 'bg-[#241017] text-[#b37a7a] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
-            "
-          >
-            <i class="bi bi-grid-3x3-gap"></i>
-          </button>
-          <button
-            @click="viewMode = 'list'"
-            class="p-2 rounded-md transition-colors max-lg:p-1.5 border"
-            :class="
-              viewMode === 'list'
-                ? 'bg-[#a1122d] text-white border-[#ff3344]'
-                : 'bg-[#241017] text-[#b37a7a] lg:hover:bg-[#2a0f14] border-[#3b1c23]'
-            "
-          >
-            <i class="bi bi-list"></i>
-          </button>
+      <!-- Games Grid -->
+      <div class="relative">
+        <!-- Subtle background decoration -->
+        <div
+          class="absolute -top-10 -right-10 w-64 h-64 bg-[#ff3344]/5 rounded-full blur-3xl pointer-events-none max-lg:hidden"
+        ></div>
+        <div
+          class="absolute -bottom-10 -left-10 w-64 h-64 bg-[#ff3344]/5 rounded-full blur-3xl pointer-events-none max-lg:hidden"
+        ></div>
+
+        <div
+          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-4 max-md:grid-cols-3 gap-4 max-lg:gap-3"
+        >
+          <!-- Slot Games -->
+          <GameCardGrid
+            v-if="activeCategory === 0"
+            :games="slotKiosks"
+            :onClick="launchGame"
+            :isGameLocked="isGameLocked"
+          />
+
+          <!-- Live Casino -->
+          <GameCardGrid
+            v-if="activeCategory === 1"
+            :games="liveCasinoKiosks"
+            :onClick="launchGame"
+            :isGameLocked="isGameLocked"
+          />
+
+          <!-- Sports -->
+          <GameCardGrid
+            v-if="activeCategory === 2"
+            :games="sportsKiosks"
+            :onClick="launchGame"
+            :isGameLocked="isGameLocked"
+          />
+
+          <!-- E-Sports -->
+          <GameCardGrid
+            v-if="activeCategory === 3"
+            :games="esportsKiosks"
+            :onClick="launchGame"
+            :isGameLocked="isGameLocked"
+          />
+
+          <!-- Fishing -->
+          <GameCardGrid
+            v-if="activeCategory === 4"
+            :games="fishingKiosks"
+            :onClick="launchGame"
+            :isGameLocked="isGameLocked"
+          />
+
+          <!-- Lottery Games -->
+          <GameCardGrid
+            v-if="activeCategory === 5"
+            :games="lotteryKiosks"
+            :onClick="launchGame"
+            :isGameLocked="isGameLocked"
+          />
         </div>
       </div>
 
-      <div
-        v-if="viewMode === 'grid'"
-        class="grid grid-cols-8 max-xl:grid-cols-6 max-lg:grid-cols-4 max-md:grid-cols-3 gap-4 max-lg:gap-2"
-      >
-        <!-- Slot Games -->
-        <GameCardGrid
-          v-if="activeCategory === 0"
-          :games="slotKiosks"
-          :onClick="launchGame"
-          :isGameLocked="isGameLocked"
-        />
-
-        <!-- Live Casino -->
-        <GameCardGrid
-          v-if="activeCategory === 1"
-          :games="liveCasinoKiosks"
-          :onClick="launchGame"
-          :isGameLocked="isGameLocked"
-        />
-
-        <!-- Sports -->
-        <GameCardGrid
-          v-if="activeCategory === 2"
-          :games="sportsKiosks"
-          :onClick="launchGame"
-          :isGameLocked="isGameLocked"
-        />
-
-        <!-- E-Sports -->
-        <GameCardGrid
-          v-if="activeCategory === 3"
-          :games="esportsKiosks"
-          :onClick="launchGame"
-          :isGameLocked="isGameLocked"
-        />
-
-        <!-- Fishing -->
-        <GameCardGrid
-          v-if="activeCategory === 4"
-          :games="fishingKiosks"
-          :onClick="launchGame"
-          :isGameLocked="isGameLocked"
-        />
-
-        <!-- Lottery Games -->
-        <GameCardGrid
-          v-if="activeCategory === 5"
-          :games="lotteryKiosks"
-          :onClick="launchGame"
-          :isGameLocked="isGameLocked"
-        />
-      </div>
-
-      <!-- List View -->
-      <div
-        v-else
-        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] overflow-hidden max-lg:rounded-lg"
-      >
-        <template v-if="activeCategory === 0">
-          <GameListItem
-            v-for="game in slotKiosks"
-            :key="game._id"
-            :game="game"
-            :onClick="launchGame"
-            :isLocked="isGameLocked(game.databaseName)"
-          />
-        </template>
-
-        <template v-else-if="activeCategory === 1">
-          <GameListItem
-            v-for="game in liveCasinoKiosks"
-            :key="game._id"
-            :game="game"
-            :onClick="launchGame"
-            :isLocked="isGameLocked(game.databaseName)"
-          />
-        </template>
-
-        <template v-else-if="activeCategory === 2">
-          <GameListItem
-            v-for="game in sportsKiosks"
-            :key="game._id"
-            :game="game"
-            :onClick="launchGame"
-            :isLocked="isGameLocked(game.databaseName)"
-          />
-        </template>
-
-        <template v-else-if="activeCategory === 3">
-          <GameListItem
-            v-for="game in esportsKiosks"
-            :key="game._id"
-            :game="game"
-            :onClick="launchGame"
-            :isLocked="isGameLocked(game.databaseName)"
-          />
-        </template>
-
-        <template v-else-if="activeCategory === 4">
-          <GameListItem
-            v-for="game in fishingKiosks"
-            :key="game._id"
-            :game="game"
-            :onClick="launchGame"
-            :isLocked="isGameLocked(game.databaseName)"
-          />
-        </template>
-
-        <template v-else-if="activeCategory === 5">
-          <GameListItem
-            v-for="game in lotteryKiosks"
-            :key="game._id"
-            :game="game"
-            :onClick="launchGame"
-            :isLocked="isGameLocked(game.databaseName)"
-          />
-        </template>
-      </div>
-
+      <!-- Enhanced Empty State -->
       <div
         v-if="
           (activeCategory === 0 && slotKiosks.length === 0) ||
@@ -245,28 +183,28 @@
           (activeCategory === 4 && fishingKiosks.length === 0) ||
           (activeCategory === 5 && lotteryKiosks.length === 0)
         "
-        class="py-12 text-center max-lg:py-8"
+        class="py-8 text-center"
       >
-        <div
-          class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#241017] flex items-center justify-center max-lg:w-12 max-lg:h-12 max-lg:mb-3 border border-[#3b1c23]"
-        >
-          <i class="bi bi-search text-[#b37a7a] text-xl max-lg:text-lg"></i>
+        <div class="max-w-md mx-auto">
+          <img
+            src="/images/burger-menu/gaming.png"
+            alt=""
+            class="w-24 mx-auto"
+          />
+
+          <h3 class="text-xl font-semibold text-[#f0eaea] mb-2">
+            {{ $t("no_games_found") }}
+          </h3>
+          <p class="text-[#b37a7a] text-sm">
+            {{ $t("no_games_message") }}
+          </p>
         </div>
-        <h3
-          class="text-lg font-medium text-[#f0eaea] mb-2 max-lg:text-base max-lg:mb-1.5"
-        >
-          {{ $t("no_games_found") }}
-        </h3>
-        <p class="text-[#b37a7a] max-w-md mx-auto max-lg:text-sm">
-          {{ $t("no_games_message") }}
-        </p>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { Icon } from "@iconify/vue";
 const { launchGame, alertVisible, alertTitle, alertMessage, alertType } =
   useGameLauncher();
 const liveCasinoKiosks = useState("liveCasinoKiosks");
@@ -276,25 +214,46 @@ const esportsKiosks = useState("esportsKiosks");
 const fishingKiosks = useState("fishingKiosks");
 const lotteryKiosks = useState("lotteryKiosks");
 const activeCategory = ref(0);
-const viewMode = ref("grid");
 const userGameLocks = useState("userGameLocks");
 const isUserLoggedIn = useState("isUserLoggedIn");
+
+// Define categories with active and inactive images
+const categories = [
+  {
+    name: "Slots",
+    iconActive: "/images/maingameicon/Slot_active.png",
+    iconInactive: "/images/maingameicon/Slot_deactivate.png",
+  },
+  {
+    name: "Casino",
+    iconActive: "/images/maingameicon/Live Casino_active.png",
+    iconInactive: "/images/maingameicon/Live Casino_deactivate.png",
+  },
+  {
+    name: "Sports",
+    iconActive: "/images/maingameicon/Sports_active.png",
+    iconInactive: "/images/maingameicon/Sports_deactivate.png",
+  },
+  {
+    name: "E-Sports",
+    iconActive: "/images/maingameicon/E-Sports_active.png",
+    iconInactive: "/images/maingameicon/E-Sports_deactivate.png",
+  },
+  {
+    name: "Fishing",
+    iconActive: "/images/maingameicon/Fishing_active.png",
+    iconInactive: "/images/maingameicon/Fishing_deactivate.png",
+  },
+  {
+    name: "Lottery",
+    iconActive: "/images/maingameicon/Lottery_active.png",
+    iconInactive: "/images/maingameicon/Lottery_deactivate.png",
+  },
+];
 
 const isGameLocked = (gameDatabaseName) => {
   if (!isUserLoggedIn.value) return false;
   return userGameLocks.value?.[gameDatabaseName]?.lock === true;
-};
-
-const getCategoryIcon = (categoryName) => {
-  const iconMap = {
-    Slots: "bi bi-grid-3x3-gap",
-    Casino: "bi bi-suit-club",
-    Sports: "bi bi-dribbble",
-    "E-Sports": "bi bi-controller",
-    Fishing: "bi bi-water",
-    Lottery: "bi bi-ticket-perforated",
-  };
-  return iconMap[categoryName] || "bi bi-grid";
 };
 
 const selectCategory = (index) => {
@@ -310,5 +269,19 @@ const selectCategory = (index) => {
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 </style>

@@ -876,31 +876,23 @@
           >
             <div class="max-w-[1200px] mx-auto px-6">
               <!-- Header -->
-              <div class="flex justify-between items-center mb-6">
+              <div class="px-3 pt-2 flex justify-between items-center">
                 <div class="flex items-center gap-3">
-                  <div
-                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-600/30"
-                  >
-                    <img
-                      :src="item.icon"
-                      :alt="item.name"
-                      class="w-7 h-7 object-contain brightness-0 invert"
-                    />
-                  </div>
                   <h2
-                    class="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+                    class="text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
                   >
                     {{ item.label }}
                   </h2>
                 </div>
-                <NuxtLinkLocale
-                  :to="`${item.link}`"
-                  class="group flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 text-white font-medium lg:hover:from-red-500 lg:hover:to-red-600 transition-all shadow-lg shadow-red-600/30"
-                >
-                  <span class="text-sm">{{ $t("view_all") }}</span>
-                  <i
-                    class="bi bi-arrow-right text-sm lg:group-hover:translate-x-1 transition-transform"
-                  ></i>
+                <NuxtLinkLocale :to="`${item.link}`" class="group px-3 py-2">
+                  <span
+                    class="flex items-center gap-2 text-sm font-semibold text-gray-400 lg:group-hover:text-[#ff3344] transition-colors duration-300"
+                  >
+                    {{ $t("view_all") }}
+                    <i
+                      class="bi bi-chevron-double-right text-[#ff3344] opacity-60 lg:group-hover:opacity-100 lg:group-hover:translate-x-1 transition-all duration-300"
+                    ></i>
+                  </span>
                 </NuxtLinkLocale>
               </div>
 
@@ -1034,19 +1026,19 @@
                         class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
                       />
                       <div
-                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-4"
+                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-4 z-20"
                       >
                         <span
-                          class="text-yellow-400 font-bold text-xl drop-shadow-lg"
+                          class="text-red-400 font-bold text-sm drop-shadow-lg mb-1 lg:group-hover:text-red-300 transition-colors uppercase tracking-wide"
                         >
-                          View More
+                          {{ $t("view_more") }}
                         </span>
-                        <span class="text-gray-300 text-sm mt-1 drop-shadow-lg">
-                          +{{ slotKiosks.length - 15 }} Games
+                        <span class="text-[#b37a7a] text-xs drop-shadow-lg">
+                          {{ slotKiosks.length - 15 }} {{ $t("games") }}
                         </span>
                       </div>
                       <div
-                        class="absolute inset-0 bg-black/30 rounded-lg lg:lg:hover:bg-black/20 transition-colors duration-300"
+                        class="absolute inset-0 bg-gradient-to-t from-[#1A0D13]/50 to-transparent rounded-lg lg:hover:from-red-900/30 transition-all duration-300"
                       ></div>
                     </div>
                   </NuxtLinkLocale>
@@ -2260,7 +2252,8 @@ watch(
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
 
-.game-grid:hover .game-item:not(:hover) .inactive-overlay {
+.game-item:hover ~ .game-item .inactive-overlay,
+.game-grid:has(.game-item:hover) .game-item:not(:hover) .inactive-overlay {
   opacity: 1;
 }
 </style>

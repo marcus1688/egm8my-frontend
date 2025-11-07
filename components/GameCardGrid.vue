@@ -41,8 +41,7 @@
         <button
           class="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-semibold rounded-lg shadow-lg shadow-[#ff3344]/30 transform scale-90 lg:group-hover:scale-100 lg:group-hover:brightness-110 transition-all duration-300"
         >
-          <Icon icon="mdi:play-circle-outline" class="text-white text-base" />
-          <p class="max-2xl:text-xs">{{ $t("play_now") }}</p>
+          <p class="text-sm">{{ $t("play_now") }}</p>
         </button>
       </div>
     </div>
