@@ -1,26 +1,28 @@
 <template>
   <section class="py-4 containerWid max-lg:py-2">
-    <div
-      class="flex justify-between max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-2 items-center mb-4 max-lg:mb-2"
-    >
-      <div>
-        <h2
-          class="homeMainTxt3 font-bold text-gray-200 flex items-center max-lg:text-lg"
-        >
-          <i class="bi bi-stars text-[#ff3344] mr-2"></i>
+    <div class="mb-6 max-lg:mb-4">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
           {{ $t("promotions") }}
         </h2>
-        <p class="text-sm text-gray-400 mt-1 max-lg:text-xs">
+
+        <NuxtLinkLocale
+          to="/promotions"
+          class="flex items-center gap-2 text-sm font-semibold text-[#ff3344] max-lg:text-xs"
+        >
+          {{ $t("view_all") }}
+          <i class="bi bi-arrow-right"></i>
+        </NuxtLinkLocale>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <p class="text-sm text-[#b37a7a] max-lg:text-xs">
           {{ $t("latest_promotions_description") }}
         </p>
+        <div
+          class="flex-1 h-px bg-gradient-to-r from-[#3b1c23] to-transparent"
+        ></div>
       </div>
-      <NuxtLinkLocale
-        to="/promotions"
-        class="text-[#b37a7a] homeSubTxt1 lg:hover:text-[#f0eaea] lg:hover:underline flex items-center gap-1 transition-colors text-nowrap max-lg:pl-2"
-      >
-        View all
-        <i class="bi bi-chevron-right text-xs"></i>
-      </NuxtLinkLocale>
     </div>
     <div class="mx-auto">
       <div class="relative">
@@ -61,44 +63,29 @@
             :key="index"
           >
             <div
-              class="rounded-lg overflow-hidden shadow-sm lg:hover:shadow-md transition-all duration-300 group bg-[#241017] h-full border border-[#3b1c23] lg:hover:border-[#4e252d]"
+              class="rounded-lg overflow-hidden bg-[#241017] h-full border border-[#3b1c23]"
             >
               <div class="relative overflow-hidden">
                 <NuxtLinkLocale to="/promotions">
                   <img
                     :src="getPromotionImage(promo)"
                     alt="Promotion Image"
-                    class="w-full h-full object-cover lg:group-hover:scale-105 transition-transform duration-500"
+                    class="w-full h-full"
                   />
                 </NuxtLinkLocale>
-              </div>
-              <div class="p-4 hidden">
-                <h3
-                  class="homeMainTxt2 font-medium text-[#f0eaea] mb-2 line-clamp-1"
-                >
-                  {{ promo.maintitleEN }}
-                </h3>
-                <p class="homeSubTxt1 text-[#b37a7a] mb-3 line-clamp-2">
-                  {{ promo.description }}
-                </p>
-                <button
-                  class="w-full py-2 bg-[#a1122d] lg:hover:bg-[#c21b3a] text-white homeMainTxt2 font-medium rounded transition-colors"
-                >
-                  {{ $t("claim_now") }}
-                </button>
               </div>
             </div>
           </swiper-slide>
         </swiper>
         <button
-          class="promo-button-prev max-lg:hidden absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
+          class="promo-button-prev max-lg:hidden absolute top-1/2 -left-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#a1122d] rounded-full flex items-center justify-center text-white transition-all duration-300 lg:hover:bg-[#c21b3a]"
         >
-          <i class="bi bi-chevron-left text-xl"></i>
+          <i class="bi bi-chevron-left text-sm font-bold"></i>
         </button>
         <button
-          class="promo-button-next max-lg:hidden absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#15090e] rounded-full shadow-md flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] lg:hover:text-[#f0eaea] transition-colors border border-[#3b1c23]"
+          class="promo-button-next max-lg:hidden absolute top-1/2 -right-8 z-10 transform -translate-y-1/2 w-10 h-10 bg-[#a1122d] rounded-full flex items-center justify-center text-white transition-all duration-300 lg:hover:bg-[#c21b3a]"
         >
-          <i class="bi bi-chevron-right text-xl"></i>
+          <i class="bi bi-chevron-right text-sm font-bold"></i>
         </button>
       </div>
     </div>
@@ -117,31 +104,13 @@ const pageLoading = useState("pageLoading");
 const promotions = ref([]);
 const { get } = useApiEndpoint();
 
-// Chinese image mapping - same as in your main promotions page
-const chineseImageMapping = {
-  "68a8e6095b0b3524a723a8ba": "68ad709c4fa1a2b251ae614a",
-  "68a834e98c7c0b0fd3bfc317": "68ad70a24fa1a2b251ae6179",
-  "6835810cacaed1c845fb72c4": "687a14c4696757f1e34d8d47", // English promo ID -> Chinese promo ID
-  "6815c2930f91b823519dd20b": "687a1050696757f1e34d8354",
-  "6815be950f91b823519dd144": "687a1320696757f1e34d8979",
-  "6815b6a50f91b823519dcf28": "687a1386696757f1e34d8a71",
-  "6815b3900f91b823519dcdf3": "687a13b7696757f1e34d8aeb",
-  "6815aa1e0f91b823519dcb74": "687a13f7696757f1e34d8b83",
-  "68132db2b08436800e2c1cfe": "687a142b696757f1e34d8c05",
-  "6813257c3e85ca8b7abf9246": "687a1450696757f1e34d8c33",
-  "68131b6d3e85ca8b7abf907a": "687a1478696757f1e34d8ca3",
-};
-
 function getPromotionImage(promotion) {
-  // if ($locale.value === "zh" && chineseImageMapping[promotion._id]) {
-  //   const chinesePromo = promotions.value?.find(
-  //     (p) => p._id === chineseImageMapping[promotion._id]
-  //   );
-
-  //   if (chinesePromo && chinesePromo.promotionimage) {
-  //     return chinesePromo.promotionimage;
-  //   }
-  // }
+  if ($locale.value === "zh" && promotion.promotionimage2) {
+    return promotion.promotionimage2;
+  }
+  if ($locale.value === "ms" && promotion.promotionimage3) {
+    return promotion.promotionimage3;
+  }
 
   return promotion.promotionimage;
 }
