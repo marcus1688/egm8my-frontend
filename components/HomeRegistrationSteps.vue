@@ -1,6 +1,6 @@
 <template>
   <section
-    class="py-4 max-[768px]:hidden containerWid text-[#f0eaea] relative overflow-hidden"
+    class="py-4 max-lg:hidden containerWid text-[#f0eaea] relative overflow-hidden"
   >
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
       <div class="particles-container">
@@ -20,18 +20,21 @@
       </div>
     </div>
     <div class="mx-auto px-4 relative z-10">
-      <div class="text-center mb-12">
+      <div class="text-center mb-8">
         <div
           class="inline-block px-3 py-1 bg-[#241017] rounded-full mb-3 border border-[#3b1c23]"
         >
-          <span class="homeSubTxt1 font-medium text-[#ff3344] uppercase">{{
-            $t("get_started_in_minutes")
-          }}</span>
+          <span
+            class="text-sm max-xl:text-xs font-medium text-[#ff3344] uppercase"
+            >{{ $t("get_started_in_minutes") }}</span
+          >
         </div>
-        <h2 class="homeMainTxt3 font-bold mb-2 text-[#f0eaea]">
+        <h2
+          class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base mb-1"
+        >
           {{ $t("how_to_start_winning") }}
         </h2>
-        <p class="text-[#b37a7a] homeMainTxt2 max-w-2xl mx-auto">
+        <p class="text-[#b37a7a] text-base max-xl:text-sm max-w-2xl mx-auto">
           {{ $t("winning_journey_description") }}
         </p>
       </div>
@@ -50,10 +53,10 @@
             >
               <i :class="step.icon + ' text-3xl text-[#ff3344]'"></i>
             </div>
-            <h3 class="homeMainTxt4 font-bold mb-2 text-[#f0eaea]">
+            <h3 class="text-lg max-xl:text-base font-bold mb-2 text-[#f0eaea]">
               {{ step.title }}
             </h3>
-            <p class="homeSubTxt1 text-[#b37a7a]">
+            <p class="text-sm max-xl:textxs text-[#b37a7a]">
               {{ step.description }}
             </p>
             <div

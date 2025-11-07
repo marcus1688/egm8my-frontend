@@ -1,8 +1,12 @@
 <template>
-  <section class="py-12 containerWid max-lg:py-6 relative overflow-hidden">
+  <section
+    class="max-lg:hidden py-12 containerWid max-lg:py-6 relative overflow-hidden"
+  >
     <div class="mx-auto px-4 max-lg:px-2">
-      <div class="text-center mb-8 max-lg:mb-6">
-        <h2 class="text-3xl font-bold text-[#f0eaea] mb-2 max-lg:text-2xl">
+      <div class="text-center mb-6">
+        <h2
+          class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base mb-1"
+        >
           {{ $t("our_trusted_partners") }}
         </h2>
       </div>

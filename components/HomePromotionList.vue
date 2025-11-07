@@ -2,7 +2,9 @@
   <section class="py-4 containerWid max-lg:py-2">
     <div class="my-4">
       <div class="flex items-center justify-between mb-1">
-        <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
+        <h2
+          class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base"
+        >
           {{ $t("promotions") }}
         </h2>
 

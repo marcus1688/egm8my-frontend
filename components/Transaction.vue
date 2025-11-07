@@ -3,18 +3,20 @@
     <div class="my-4">
       <div class="my-4">
         <div class="flex items-center justify-between mb-1">
-          <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
+          <h2
+            class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base"
+          >
             {{ $t("live_transactions") }}
           </h2>
           <div
-            class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs rounded-full font-bold shadow-lg shadow-[#ff3344]/30"
+            class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs max-sm:text-[0.7rem] rounded-full font-bold shadow-lg shadow-[#ff3344]/30"
           >
-            <span class="relative flex h-2 w-2">
+            <span class="relative flex h-2 w-2 max-sm:w-1 max-sm:h-1">
               <span
                 class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"
               ></span>
               <span
-                class="relative inline-flex rounded-full h-2 w-2 bg-white"
+                class="relative inline-flex rounded-full h-2 w-2 max-sm:w-1 max-sm:h-1 bg-white"
               ></span>
             </span>
             {{ $t("live") }}

@@ -2,8 +2,10 @@
   <section class="py-12 containerWid max-lg:py-6">
     <div class="mx-auto px-4 max-lg:px-2">
       <!-- Section Header -->
-      <div class="mb-10 text-center max-lg:mb-6">
-        <h2 class="text-4xl font-bold text-[#f0eaea] mb-3 max-lg:text-2xl">
+      <div class="mb-4 text-center">
+        <h2
+          class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base mb-1"
+        >
           {{ $t("what_our_players_say") }}
         </h2>
       </div>

@@ -46,7 +46,7 @@
         >
           <button
             @click="toggleExpand"
-            class="group inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white rounded-lg font-semibold transition-all duration-300 lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/30 max-md:px-4 max-md:py-2 max-md:text-sm"
+            class="group inline-flex items-center text-sm gap-2 px-6 py-2.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white rounded-lg font-semibold transition-all duration-300 lg:hover:shadow-lg lg:hover:shadow-[#ff3344]/30 max-md:px-4 max-md:py-2"
           >
             <span>{{ isExpanded ? $t("show_less") : $t("read_more") }}</span>
             <i
