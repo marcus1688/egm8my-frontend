@@ -483,8 +483,12 @@
                 </button>
 
                 <div
+                  class="absolute right-0 top-full w-full h-2 bg-transparent"
+                ></div>
+
+                <div
                   v-if="showLanguageMenu"
-                  class="absolute right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-44 transition-all duration-200"
+                  class="absolute right-0 top-full mt-2 bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-44 transition-all duration-200"
                 >
                   <div
                     class="absolute -top-1 right-0 w-full h-1 bg-transparent"
@@ -528,10 +532,14 @@
                   <i class="bi bi-grid text-lg"></i>
                 </button>
 
+                <div
+                  class="absolute right-0 top-full w-full h-2 bg-transparent"
+                ></div>
+
                 <!-- Dropdown Menu -->
                 <div
                   v-if="showMainMenu"
-                  class="absolute right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-72"
+                  class="absolute right-0 mt-2 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-72"
                 >
                   <!-- Invisible bridge to prevent gap issues -->
                   <div
@@ -710,8 +718,11 @@
                   />
                 </button>
                 <div
+                  class="absolute right-0 top-full w-full h-2 bg-transparent"
+                ></div>
+                <div
                   v-if="showCountryMenu"
-                  class="absolute right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-64"
+                  class="absolute mt-2 right-0 top-full bg-[#1A0D13] rounded-xl shadow-2xl shadow-[#ff3344]/20 border border-[#3b1c23] overflow-hidden z-50 w-64"
                 >
                   <div
                     class="absolute -top-2 right-0 w-full h-2 bg-transparent"
@@ -859,50 +870,64 @@
         <template v-for="item in HeaderNav" :key="`dropdown-${item.name}`">
           <div
             v-show="activeDropdown === item.name"
-            class="absolute left-0 w-full bg-black/95 py-8 z-40 mega-dropdown"
+            class="absolute left-0 w-full bg-[#0a0005] py-8 z-40 mega-dropdown border-t-2 border-red-600/30 shadow-2xl"
             style="top: 100%"
             @mouseenter="activeDropdown = item.name"
             @mouseleave="activeDropdown = null"
           >
-            <div class="max-w-[1100px] mx-auto px-4">
-              <div class="flex justify-between items-center mb-2">
-                <h2 class="text-xl font-bold text-white">{{ item.label }}</h2>
+            <div class="max-w-[1200px] mx-auto px-6">
+              <!-- Header -->
+              <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-gradient-to-br from-red-600 to-red-800 flex items-center justify-center shadow-lg shadow-red-600/30"
+                  >
+                    <img
+                      :src="item.icon"
+                      :alt="item.name"
+                      class="w-7 h-7 object-contain brightness-0 invert"
+                    />
+                  </div>
+                  <h2
+                    class="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent"
+                  >
+                    {{ item.label }}
+                  </h2>
+                </div>
                 <NuxtLinkLocale
                   :to="`${item.link}`"
-                  class="text-sm text-gray-300 lg:hover:text-red-400 flex items-center gap-1"
+                  class="group flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-red-600 to-red-700 text-white font-medium lg:hover:from-red-500 lg:hover:to-red-600 transition-all shadow-lg shadow-red-600/30"
                 >
-                  {{ $t("view_all") }}
-                  <i class="bi bi-arrow-right"></i>
+                  <span class="text-sm">{{ $t("view_all") }}</span>
+                  <i
+                    class="bi bi-arrow-right text-sm lg:group-hover:translate-x-1 transition-transform"
+                  ></i>
                 </NuxtLinkLocale>
               </div>
 
               <!-- Sports Games -->
               <div
                 v-if="item.name === 'Sports'"
-                class="grid grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 gap-5 game-grid"
               >
                 <template v-for="game in sportsKiosks" :key="game._id">
-                  <div class="cursor-pointer">
+                  <div
+                    class="game-item group cursor-pointer relative"
+                    @click="launchGame(game)"
+                  >
                     <div
-                      class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36"
-                      @click="launchGame(game)"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
+                      <!-- Inactive overlay -->
                       <div
-                        class="flex flex-col pt-5 items-center justify-center"
-                      >
-                        <img
-                          :src="game.icon || fallback(game.name)"
-                          :alt="game.name"
-                          class="w-full h-full object-contain z-10 drop-shadow-md"
-                        />
-                        <div
-                          class="bg-black/70 text-white text-center py-2 px-2 z-50 w-full rounded-full"
-                        >
-                          <p class="text-xs font-medium truncate">
-                            {{ game.name }}
-                          </p>
-                        </div>
-                      </div>
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        :src="game.icon || fallback(game.name)"
+                        :alt="game.name"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
                     </div>
                   </div>
                 </template>
@@ -911,30 +936,25 @@
               <!-- E-Sports Games -->
               <div
                 v-if="item.name === 'E-Sports'"
-                class="grid grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 gap-5 game-grid"
               >
                 <template v-for="game in esportsKiosks" :key="game._id">
-                  <div class="cursor-pointer">
+                  <div
+                    class="game-item group cursor-pointer relative"
+                    @click="launchGame(game)"
+                  >
                     <div
-                      class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36"
-                      @click="launchGame(game)"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
                       <div
-                        class="flex flex-col pt-5 items-center justify-center"
-                      >
-                        <img
-                          :src="game.icon || fallback(game.name)"
-                          :alt="game.name"
-                          class="w-full h-full object-contain z-10 drop-shadow-md"
-                        />
-                        <div
-                          class="bg-black/70 text-white text-center py-2 px-2 z-50 w-full rounded-full"
-                        >
-                          <p class="text-xs font-medium truncate">
-                            {{ game.name }}
-                          </p>
-                        </div>
-                      </div>
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        :src="game.icon || fallback(game.name)"
+                        :alt="game.name"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
                     </div>
                   </div>
                 </template>
@@ -943,30 +963,25 @@
               <!-- Casino Games -->
               <div
                 v-if="item.name === 'Casino'"
-                class="grid grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 gap-5 game-grid"
               >
                 <template v-for="game in liveCasinoKiosks" :key="game._id">
-                  <div class="cursor-pointer">
+                  <div
+                    class="game-item group cursor-pointer relative"
+                    @click="launchGame(game)"
+                  >
                     <div
-                      class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36"
-                      @click="launchGame(game)"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
                       <div
-                        class="flex flex-col pt-5 items-center justify-center"
-                      >
-                        <img
-                          :src="game.icon || fallback(game.name)"
-                          :alt="game.name"
-                          class="w-full h-full object-contain z-10 drop-shadow-md"
-                        />
-                        <div
-                          class="bg-black/70 text-white text-center py-2 px-2 z-50 w-full rounded-full"
-                        >
-                          <p class="text-xs font-medium truncate">
-                            {{ game.name }}
-                          </p>
-                        </div>
-                      </div>
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        :src="game.icon || fallback(game.name)"
+                        :alt="game.name"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
                     </div>
                   </div>
                 </template>
@@ -975,57 +990,67 @@
               <!-- Slots Games -->
               <div
                 v-if="item.name === 'Slots'"
-                class="grid grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 gap-5 game-grid"
               >
                 <template v-for="(game, index) in slotKiosks" :key="game._id">
-                  <div v-if="index < 13" class="cursor-pointer">
+                  <div
+                    v-if="index < 15"
+                    class="game-item group cursor-pointer relative"
+                    @click="launchGame(game)"
+                  >
                     <div
-                      class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36"
-                      @click="launchGame(game)"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
                       <div
-                        class="flex flex-col pt-5 items-center justify-center"
-                      >
-                        <img
-                          :src="game.icon || fallback(game.name)"
-                          :alt="game.name"
-                          class="w-full h-full object-contain z-10 drop-shadow-md"
-                        />
-                        <div
-                          class="bg-black/70 text-white text-center py-2 px-2 z-50 w-full rounded-full"
-                        >
-                          <p class="text-xs font-medium truncate">
-                            {{ game.name }}
-                          </p>
-                        </div>
-                      </div>
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        :src="game.icon || fallback(game.name)"
+                        :alt="game.name"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
                     </div>
                   </div>
                 </template>
 
                 <!-- View More Button -->
-                <div v-if="slotKiosks.length > 13" class="cursor-pointer">
+                <div
+                  v-if="slotKiosks.length > 15"
+                  class="game-item group cursor-pointer relative"
+                >
                   <NuxtLinkLocale
                     :to="HeaderNav.find((nav) => nav.name === 'Slots').link"
                     @click="activeDropdown = null"
-                    class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36 h-full"
+                    class="block h-full"
                   >
                     <div
-                      class="flex flex-col pt-5 items-center justify-center h-full min-h-[120px]"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
                       <div
-                        class="w-full h-full bg-gradient-to-br from-red-600 to-red-700 rounded-lg flex flex-col items-center justify-center"
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        src="/images/logo/view_more.png"
+                        alt="View More"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
+                      <div
+                        class="absolute inset-0 flex flex-col items-center justify-center text-center p-4"
                       >
-                        <i
-                          class="bi bi-plus-circle text-white text-3xl mb-2"
-                        ></i>
-                        <span class="text-white text-sm font-semibold">{{
-                          $t("view_more")
-                        }}</span>
-                        <span class="text-white/80 text-xs"
-                          >+{{ slotKiosks.length - 13 }} {{ $t("games") }}</span
+                        <span
+                          class="text-yellow-400 font-bold text-xl drop-shadow-lg"
                         >
+                          View More
+                        </span>
+                        <span class="text-gray-300 text-sm mt-1 drop-shadow-lg">
+                          +{{ slotKiosks.length - 15 }} Games
+                        </span>
                       </div>
+                      <div
+                        class="absolute inset-0 bg-black/30 rounded-lg lg:lg:hover:bg-black/20 transition-colors duration-300"
+                      ></div>
                     </div>
                   </NuxtLinkLocale>
                 </div>
@@ -1034,30 +1059,25 @@
               <!-- Fishing Games -->
               <div
                 v-if="item.name === 'Fishing'"
-                class="grid grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 gap-5 game-grid"
               >
                 <template v-for="game in fishingKiosks" :key="game._id">
-                  <div class="cursor-pointer">
+                  <div
+                    class="game-item group cursor-pointer relative"
+                    @click="launchGame(game)"
+                  >
                     <div
-                      class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36"
-                      @click="launchGame(game)"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
                       <div
-                        class="flex flex-col pt-5 items-center justify-center"
-                      >
-                        <img
-                          :src="game.icon || fallback(game.name)"
-                          :alt="game.name"
-                          class="w-full h-full object-contain z-10 drop-shadow-md"
-                        />
-                        <div
-                          class="bg-black/70 text-white text-center py-2 px-2 z-50 w-full rounded-full"
-                        >
-                          <p class="text-xs font-medium truncate">
-                            {{ game.name }}
-                          </p>
-                        </div>
-                      </div>
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        :src="game.icon || fallback(game.name)"
+                        :alt="game.name"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
                     </div>
                   </div>
                 </template>
@@ -1066,30 +1086,25 @@
               <!-- Lottery Games -->
               <div
                 v-if="item.name === 'Lottery'"
-                class="grid grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 gap-5 game-grid"
               >
                 <template v-for="game in lotteryKiosks" :key="game._id">
-                  <div class="cursor-pointer">
+                  <div
+                    class="game-item group cursor-pointer relative"
+                    @click="launchGame(game)"
+                  >
                     <div
-                      class="relative overflow-hidden rounded-lg transition-transform group lg:hover:scale-105 w-36"
-                      @click="launchGame(game)"
+                      class="aspect-[3/4] flex items-center justify-center p-3 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-800 relative overflow-hidden transition-all duration-300 lg:group-hover:border-red-600 lg:group-hover:shadow-lg lg:group-hover:shadow-red-600/20"
                     >
                       <div
-                        class="flex flex-col pt-5 items-center justify-center"
-                      >
-                        <img
-                          :src="game.icon || fallback(game.name)"
-                          :alt="game.name"
-                          class="w-full h-full object-contain z-10 drop-shadow-md"
-                        />
-                        <div
-                          class="bg-black/70 text-white text-center py-2 px-2 z-50 w-full rounded-full"
-                        >
-                          <p class="text-xs font-medium truncate">
-                            {{ game.name }}
-                          </p>
-                        </div>
-                      </div>
+                        class="inactive-overlay absolute inset-0 bg-black/60 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 pointer-events-none z-10"
+                      ></div>
+
+                      <img
+                        :src="game.icon || fallback(game.name)"
+                        :alt="game.name"
+                        class="w-full h-full object-contain relative z-0 transition-transform duration-300 lg:group-hover:scale-110"
+                      />
                     </div>
                   </div>
                 </template>
@@ -2242,5 +2257,13 @@ watch(
 
 .animate-slideIn {
   animation: slideIn 0.3s ease-out forwards;
+}
+
+.mega-dropdown {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+}
+
+.game-grid:hover .game-item:not(:hover) .inactive-overlay {
+  opacity: 1;
 }
 </style>
