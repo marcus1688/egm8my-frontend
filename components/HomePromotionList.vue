@@ -1,7 +1,7 @@
 <template>
   <section class="py-4 containerWid max-lg:py-2">
-    <div class="mb-6 max-lg:mb-4">
-      <div class="flex items-center justify-between mb-3">
+    <div class="my-4">
+      <div class="flex items-center justify-between mb-1">
         <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
           {{ $t("promotions") }}
         </h2>

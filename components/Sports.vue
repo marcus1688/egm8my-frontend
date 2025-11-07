@@ -1,76 +1,24 @@
 <template>
   <ClientOnly>
-    <div class="py-4 containerWid max-lg:py-2">
-      <div
-        class="flex flex-col sm:flex-row justify-between items-start sm:items-center"
-      >
-        <div class="mb-4">
-          <h2
-            class="homeMainTxt3 font-bold text-gray-200 flex items-center max-lg:text-lg"
-          >
-            <Icon icon="mdi:soccer" class="mr-2 text-red-500" />
+    <div v-if="matches.length > 0" class="py-4 containerWid max-lg:py-2">
+      <div class="my-4">
+        <div class="flex items-center justify-between mb-1">
+          <h2 class="text-2xl font-bold text-[#f0eaea] max-lg:text-xl">
             {{ $t("football_matches") }}
           </h2>
-          <p class="text-sm text-gray-400 mt-1 max-lg:text-xs">
+        </div>
+
+        <div class="flex items-center gap-3">
+          <p class="text-sm text-[#b37a7a] max-lg:text-xs">
             {{ $t("football_matches_subtitle") }}
           </p>
+          <div
+            class="flex-1 h-px bg-gradient-to-r from-[#3b1c23] to-transparent"
+          ></div>
         </div>
-
-        <!-- <div class="mt-4 sm:mt-0 flex items-center">
-          <span v-if="isLoading" class="text-red-400 flex items-center">
-            <Icon icon="mdi:loading" class="animate-spin mr-2" />
-            Loading...
-          </span>
-          <span v-else-if="lastUpdated" class="text-sm text-gray-400">
-            Updated: {{ formatDateTime(lastUpdated) }}
-          </span>
-          <button
-            @click="fetchPremierLeagueData"
-            class="ml-2 p-2 text-red-400 rounded-full lg:hover:bg-gray-800"
-            :disabled="isLoading"
-          >
-            <Icon icon="mdi:refresh" :class="{ 'animate-spin': isLoading }" />
-          </button>
-        </div> -->
       </div>
 
-      <div
-        v-if="isLoading && !matches.length"
-        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] p-8 text-center"
-      >
-        <div
-          class="w-16 h-16 mx-auto bg-[#2a0f14]/60 rounded-full flex items-center justify-center text-[#ff3344] mb-4"
-        >
-          <Icon icon="mdi:loading" class="text-3xl animate-spin" />
-        </div>
-        <h3 class="text-lg font-medium text-[#f0eaea] mb-2">
-          {{ $t("loading") }}
-        </h3>
-        <p class="text-[#b37a7a]">{{ $t("fetching_match_data") }}...</p>
-      </div>
-
-      <div
-        v-else-if="error"
-        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] p-8 text-center"
-      >
-        <div
-          class="w-16 h-16 mx-auto bg-[#2a0f14]/60 rounded-full flex items-center justify-center text-[#ff3344] mb-4"
-        >
-          <Icon icon="mdi:alert" class="text-3xl" />
-        </div>
-        <h3 class="text-lg font-medium text-[#f0eaea] mb-2">
-          {{ $t("failed_to_fetch_data") }}
-        </h3>
-        <p class="text-[#b37a7a]">{{ error }}</p>
-        <button
-          @click="fetchPremierLeagueData"
-          class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors"
-        >
-          {{ $t("try_again") }}
-        </button>
-      </div>
-
-      <div v-else-if="matches.length > 0">
+      <div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div
             v-for="match in matches"
@@ -175,29 +123,6 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div
-        v-else
-        class="bg-[#241017] rounded-xl shadow-sm border border-[#3b1c23] p-8 text-center"
-      >
-        <div
-          class="w-16 h-16 mx-auto bg-[#2a0f14]/60 rounded-full flex items-center justify-center text-[#ff3344] mb-4"
-        >
-          <Icon icon="mdi:calendar" class="text-3xl" />
-        </div>
-        <h3 class="text-lg font-medium text-[#f0eaea] mb-2">
-          {{ $t("no_upcoming_matches") }}
-        </h3>
-        <p class="text-[#b37a7a]">
-          {{ $t("no_matches_scheduled") }}
-        </p>
-        <button
-          @click="fetchPremierLeagueData"
-          class="mt-4 px-4 py-2 bg-[#a1122d] text-white rounded-lg lg:hover:bg-[#c21b3a] transition-colors"
-        >
-          {{ $t("refresh") }}
-        </button>
       </div>
     </div>
   </ClientOnly>
