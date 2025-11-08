@@ -1,6 +1,5 @@
 <template>
   <UserAccountLayout>
-    <!-- Active Games Modal -->
     <Teleport to="body">
       <Transition name="fade">
         <div
@@ -95,7 +94,7 @@
       <div class="mb-6 max-lg:mb-4">
         <div class="flex justify-between items-start gap-3">
           <div class="flex-1">
-            <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+            <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
               {{ $t("withdraw") }}
             </h1>
             <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -126,16 +125,11 @@
       <!-- Withdraw Form -->
       <div class="space-y-4">
         <!-- Available Balance Card -->
-        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+        <div>
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <div
-                class="w-10 h-10 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
-              >
-                <Icon icon="mdi:wallet" class="w-5 h-5 text-[#ff3344]" />
-              </div>
               <div>
-                <p class="text-xs text-[#b37a7a] mb-0.5">
+                <p class="text-[0.8rem] text-[#b37a7a] mb-0.5">
                   {{ $t("available_balance") }}
                 </p>
                 <p class="text-xl font-bold text-[#ff3344]">
@@ -148,7 +142,7 @@
 
         <!-- Withdrawal Amount -->
         <div>
-          <label class="block font-semibold mb-2 text-base">
+          <label class="block font-semibold mb-2 text-base max-lg:text-sm">
             {{ $t("withdrawal_amount") }}
           </label>
           <div class="relative">
@@ -163,14 +157,14 @@
               min="0"
               step="0.01"
               placeholder="0.00"
-              class="w-full pl-16 pr-4 py-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-base max-lg:pl-14 max-lg:py-2.5 max-lg:text-sm"
+              class="w-full pr-4 py-4 pl-16 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-base max-lg:pl-14 max-lg:py-2.5 max-lg:pr-2.5 text-[0.9rem] max-sm:text-sm max-[370px]:text-xs"
             />
           </div>
         </div>
 
         <!-- Bank Account Selection -->
         <div v-if="userData?.bankAccounts?.length">
-          <label class="block font-semibold mb-2 text-base">
+          <label class="block font-semibold mb-2 text-base max-lg:text-sm">
             {{ $t("withdraw_to") }}
           </label>
           <div class="space-y-2">
@@ -180,7 +174,7 @@
               type="button"
               @click="selectedBankId = bank._id"
               :class="[
-                'w-full p-3 rounded-lg flex items-center gap-3 transition-all border text-left',
+                'w-full p-4 max-lg:px-2.5 rounded-lg flex items-center gap-3 transition-all border text-left',
                 selectedBankId === bank._id
                   ? 'bg-[#ff3344]/10 border-[#ff3344]'
                   : 'bg-[#241017] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
@@ -200,7 +194,7 @@
                 </p>
               </div>
               <div
-                class="w-5 h-5 rounded-full border-2 flex items-center justify-center"
+                class="w-5 h-5 max-lg:w-4 max-lg:h-4 rounded-full border-2 flex items-center justify-center"
                 :class="
                   selectedBankId === bank._id
                     ? 'border-[#ff3344]'
@@ -209,7 +203,7 @@
               >
                 <div
                   v-if="selectedBankId === bank._id"
-                  class="w-3 h-3 rounded-full bg-[#ff3344]"
+                  class="w-3 h-3 max-lg:w-2 max-lg:h-2 rounded-full bg-[#ff3344]"
                 ></div>
               </div>
             </button>
@@ -249,27 +243,30 @@
           :loading="withdrawButtonLoading"
           @click="submitWithdraw"
           :disabled="!userData?.bankAccounts?.length"
-          class="w-full py-3 bg-[#ff3344] text-white rounded-lg font-semibold lg:hover:bg-[#cc2a3a] transition-all text-base disabled:opacity-50 disabled:cursor-not-allowed max-lg:py-2.5 max-lg:text-sm"
+          class="w-full py-3 bg-[#ff3344] lg:hover:bg-[#cc2a3a] rounded-lg text-base font-semibold text-white transition-all mb-6 max-lg:py-2.5 max-lg:text-sm max-lg:mb-4"
         >
           {{ $t("request_withdrawal_button") }}
         </LoadingButton>
 
         <!-- Withdrawal Information -->
-        <div class="border border-[#3b1c23] rounded-lg p-4">
+        <div
+          class="border border-[#3b1c23] rounded-lg p-4 max-lg:border-none max-lg:px-0"
+        >
           <h3
-            class="font-semibold text-[#f0eaea] mb-3 text-base flex items-center gap-2"
+            class="font-semibold text-[#f0eaea] mb-2 text-base max-lg:text-sm flex items-center gap-2"
           >
-            <Icon icon="mdi:information" class="w-5 h-5 text-[#ff3344]" />
             {{ $t("withdrawal_information") }}
           </h3>
           <ul class="space-y-3">
-            <li class="flex gap-3">
+            <li class="flex gap-2 max-lg:gap-1.5">
               <Icon
                 icon="mdi:clock-outline"
-                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+                class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
               />
               <div>
-                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                <h4
+                  class="font-medium text-[#f0eaea] text-sm max-lg:text-[0.8rem] mb-0.5"
+                >
                   {{ $t("processing_time") }}
                 </h4>
                 <p class="text-xs text-[#b37a7a]">
@@ -277,13 +274,15 @@
                 </p>
               </div>
             </li>
-            <li class="flex gap-3">
+            <li class="flex gap-2 max-lg:gap-1.5">
               <Icon
                 icon="mdi:cash"
-                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+                class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
               />
               <div>
-                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                <h4
+                  class="font-medium text-[#f0eaea] text-sm max-lg:text-[0.8rem] mb-0.5"
+                >
                   {{ $t("minimum_withdrawal") }}
                 </h4>
                 <p class="text-xs text-[#b37a7a]">
@@ -291,13 +290,15 @@
                 </p>
               </div>
             </li>
-            <li class="flex gap-3">
+            <li class="flex gap-2 max-lg:gap-1.5">
               <Icon
                 icon="mdi:bank"
-                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+                class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
               />
               <div>
-                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                <h4
+                  class="font-medium text-[#f0eaea] text-sm max-lg:text-[0.8rem] mb-0.5"
+                >
                   {{ $t("bank_account") }}
                 </h4>
                 <p class="text-xs text-[#b37a7a]">
@@ -305,13 +306,15 @@
                 </p>
               </div>
             </li>
-            <li class="flex gap-3">
+            <li class="flex gap-2 max-lg:gap-1.5">
               <Icon
                 icon="mdi:shield-check"
-                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+                class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
               />
               <div>
-                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                <h4
+                  class="font-medium text-[#f0eaea] text-sm max-lg:text-[0.8rem] mb-0.5"
+                >
                   {{ $t("verification") }}
                 </h4>
                 <p class="text-xs text-[#b37a7a]">
@@ -319,13 +322,15 @@
                 </p>
               </div>
             </li>
-            <li class="flex gap-3">
+            <li class="flex gap-2 max-lg:gap-1.5">
               <Icon
                 icon="mdi:alert-circle"
-                class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"
+                class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
               />
               <div>
-                <h4 class="font-medium text-[#f0eaea] text-sm mb-0.5">
+                <h4
+                  class="font-medium text-[#f0eaea] text-sm max-lg:text-[0.8rem] mb-0.5"
+                >
                   {{ $t("betting_rules") }}
                 </h4>
                 <p class="text-xs text-[#b37a7a]">

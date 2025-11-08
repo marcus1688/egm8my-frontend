@@ -19,7 +19,7 @@
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
           {{ $t("deposit") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -71,13 +71,15 @@
         v-if="selectedOption === 'bank_transfer'"
         class="bg-amber-500/5 border border-amber-500/20 rounded-lg p-4 mb-4 max-lg:p-3"
       >
-        <div class="flex items-start gap-3">
+        <div class="flex items-start gap-3 max-sm:gap-1.5">
           <Icon
             icon="mdi:alert"
-            class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5"
+            class="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5 max-sm:w-3 max-sm:h-3"
           />
           <div class="flex-1">
-            <h3 class="font-semibold text-amber-400 mb-2 text-sm">
+            <h3
+              class="font-semibold text-amber-400 mb-2 max-sm:mb-1 text-sm max-sm:text-xs"
+            >
               {{ $t("notice") }}
             </h3>
             <p class="text-sm text-[#f0eaea] mb-1 max-lg:text-xs">
@@ -91,7 +93,7 @@
       </div>
 
       <div class="mb-4">
-        <label class="block font-semibold mb-2 text-base">{{
+        <label class="block font-semibold mb-2 text-base max-lg:text-sm">{{
           $t("deposit_method")
         }}</label>
         <div class="grid grid-cols-2 gap-3 max-lg:gap-2">
@@ -100,21 +102,26 @@
             :key="option.name"
             @click="selectOption(option.name)"
             :class="[
-              'p-4 rounded-lg flex items-center justify-center gap-2 transition-all border text-[0.9rem] max-lg:p-2.5 ',
+              'p-4 rounded-lg flex items-center justify-center gap-2 max-[370px]:gap-1 transition-all border text-[0.9rem] max-lg:p-2.5 ',
               selectedOption === option.name
                 ? 'bg-[#ff3344]/10 border-[#ff3344] text-[#ff3344]'
                 : 'bg-[#241017] border-[#3b1c23] text-[#b37a7a] lg:hover:border-[#ff3344]/50',
             ]"
           >
-            <Icon :icon="option.icon" class="text-lg max-lg:text-base" />
-            <span class="font-medium">{{ $t(option.label) }}</span>
+            <Icon
+              :icon="option.icon"
+              class="text-lg max-lg:text-base max-sm:text-sm"
+            />
+            <span class="font-medium max-sm:text-sm max-[370px]:text-xs">{{
+              $t(option.label)
+            }}</span>
           </button>
         </div>
       </div>
 
       <!-- Deposit Amount -->
       <div class="mb-4">
-        <label class="block font-semibold mb-2 text-base">{{
+        <label class="block font-semibold mb-2 text-base max-lg:text-sm">{{
           $t("deposit_amount")
         }}</label>
         <input
@@ -122,7 +129,7 @@
           v-model="selectedDepositAmount"
           :placeholder="$t('amount_placeholder')"
           @input="onlyNumbers"
-          class="w-full p-4 mb-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-lg:p-2.5"
+          class="w-full p-4 mb-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-sm:text-sm max-[370px]:text-xs max-lg:p-2.5"
         />
         <div class="flex gap-2 flex-wrap">
           <button
@@ -130,7 +137,7 @@
             :key="amount"
             @click="selectDepositAmount(amount)"
             :class="[
-              'px-4 py-2 rounded-lg font-medium transition-all text-[0.9rem] border max-lg:px-3 max-lg:py-1.5 ',
+              'px-4 py-2 rounded-lg font-medium transition-all max-sm:text-sm max-[370px]:text-xs text-[0.9rem] border max-lg:px-3 max-lg:py-1.5 ',
               selectedDepositAmount === amount.toString()
                 ? 'bg-[#ff3344] text-white border-[#ff3344]'
                 : 'bg-[#241017] text-[#b37a7a] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
@@ -142,7 +149,7 @@
       </div>
 
       <div v-if="selectedOption === 'fast_deposit'" class="mb-4">
-        <label class="block font-semibold mb-2 text-base">{{
+        <label class="block font-semibold mb-2 text-base max-lg:text-sm">{{
           $t("deposit_channel")
         }}</label>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-lg:gap-2">
@@ -169,16 +176,16 @@
 
       <!-- Bank Transfer Options -->
       <div v-if="selectedOption === 'bank_transfer'" class="mb-4">
-        <label class="block font-semibold mb-2 text-base">{{
+        <label class="block font-semibold mb-2 text-base max-lg:text-sm">{{
           $t("select_bank")
         }}</label>
-        <div class="grid grid-cols-3 md:grid-cols-5 gap-2">
+        <div class="grid grid-cols-5 max-sm:grid-cols-2 gap-2">
           <button
             v-for="bank in depositbank"
             :key="bank._id"
             @click="openBankModal(bank)"
             :class="[
-              ' rounded-lg flex items-center justify-center transition-all border  w-32 h-32',
+              ' rounded-lg flex items-center justify-center transition-all border w-32 h-32 max-sm:w-24 max-sm:h-24',
               selectedBank && selectedBank.bankaccount === bank.bankaccount
                 ? 'bg-[#ff3344]/10 border-[#ff3344]'
                 : 'bg-[#241017] border-[#3b1c23] lg:hover:border-[#ff3344]/50',
@@ -200,14 +207,14 @@
         </div>
       </div>
       <div class="mb-4">
-        <label class="block font-semibold mb-2 text-base">
+        <label class="block font-semibold mb-2 text-base max-lg:text-sm">
           {{ $t("promotion_optional") }}
         </label>
         <div class="relative" ref="promotionDropdown">
           <button
             type="button"
             @click="isPromotionDropdownOpen = !isPromotionDropdownOpen"
-            class="w-full p-3 bg-[#241017] text-left rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] flex items-center justify-between max-lg:p-2.5"
+            class="w-full p-3 bg-[#241017] text-left rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-sm:text-sm max-[370px]:text-xs flex items-center justify-between max-lg:p-2.5"
             :class="selectedPromotion ? 'text-[#f0eaea]' : 'text-[#b37a7a]'"
           >
             <span>{{
@@ -257,7 +264,7 @@
 
       <!-- Receipt Upload -->
       <div v-if="selectedOption === 'bank_transfer'" class="mb-4">
-        <label class="block font-semibold mb-2 text-sm max-lg:text-xs">{{
+        <label class="block font-semibold mb-2 text-base max-lg:text-sm">{{
           $t("upload_receipt")
         }}</label>
         <div
@@ -311,7 +318,7 @@
 
       <!-- Important Notice -->
       <div class="border border-[#3b1c23] rounded-lg p-4 max-lg:p-3">
-        <div class="flex items-start gap-2 mb-3">
+        <div class="flex items-center gap-2 mb-3">
           <Icon
             icon="mdi:information"
             class="w-5 h-5 text-[#ff3344] flex-shrink-0 mt-0.5"

@@ -6,7 +6,7 @@
   >
     <div
       v-show="visible"
-      class="bg-gradient-to-b from-[#241017] to-[#15090e] border border-[#3b1c23] rounded-xl p-6 w-[90%] max-w-[380px] text-center shadow-2xl shadow-[#ff3344]/20 relative"
+      class="bg-gradient-to-b from-[#241017] to-[#15090e] border border-[#3b1c23] rounded-xl p-6 w-[90%] max-w-[380px] text-center relative"
       :class="visible ? 'animate-popupIn' : 'animate-popupOut'"
     >
       <div class="flex justify-center mb-4">
