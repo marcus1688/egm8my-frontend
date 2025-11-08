@@ -3,7 +3,7 @@
     <div class="text-[#f0eaea]">
       <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
           {{ $t("my_profile") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -17,217 +17,240 @@
           <VipProgressBar />
         </div>
 
-        <!-- Account Stats -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-xs text-[#b37a7a] mb-1">
-                  {{ $t("member_since") }}
-                </p>
-                <p class="text-base font-bold text-[#f0eaea]">
-                  {{ formatDate(userData.createdAt) }}
-                </p>
+        <!-- Profile Header -->
+        <div
+          class="bg-[#241017] border border-[#3b1c23] rounded-xl p-5 max-lg:p-4"
+        >
+          <div class="flex items-start justify-between gap-4 max-lg:flex-col">
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-3">
+                <h2
+                  class="text-2xl max-lg:text-xl font-bold text-[#f0eaea] uppercase"
+                >
+                  {{ userData.username }}
+                </h2>
+                <div
+                  class="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-lg"
+                >
+                  <div class="flex items-center gap-1.5">
+                    <Icon icon="mdi:crown" class="w-4 h-4 text-amber-400" />
+                    <span class="text-xs font-bold text-amber-400 uppercase">{{
+                      userData.viplevel || $t("standard")
+                    }}</span>
+                  </div>
+                </div>
               </div>
-              <div
-                class="w-12 h-12 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
-              >
-                <Icon icon="mdi:calendar" class="w-6 h-6 text-[#ff3344]" />
-              </div>
+              <p class="text-sm text-[#b37a7a]">
+                {{ $t("member_since") }} {{ formatDate(userData.createdAt) }}
+              </p>
             </div>
-          </div>
 
-          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-xs text-[#b37a7a] mb-1">{{ $t("vip_level") }}</p>
-                <p class="text-base font-bold text-[#f0eaea] uppercase">
-                  {{ userData.viplevel || $t("standard") }}
-                </p>
-              </div>
-              <div
-                class="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center"
-              >
-                <Icon icon="mdi:crown" class="w-6 h-6 text-green-400" />
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
-            <div class="flex items-center justify-between">
-              <div>
+            <div
+              class="flex items-center gap-3 max-lg:w-full max-lg:justify-between"
+            >
+              <div class="text-right max-lg:text-left">
                 <p class="text-xs text-[#b37a7a] mb-1">
                   {{ $t("account_balance") }}
                 </p>
-                <p class="text-base font-bold text-[#f0eaea]">
+                <p class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
                   ${{ formatAmount(userData.wallet || 0) }}
                 </p>
               </div>
-              <div
-                class="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center"
+              <NuxtLinkLocale
+                to="/myaccount/deposit"
+                class="px-5 py-2.5 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
               >
-                <Icon icon="mdi:wallet" class="w-6 h-6 text-purple-400" />
-              </div>
+                {{ $t("deposit") }}
+              </NuxtLinkLocale>
             </div>
           </div>
         </div>
 
-        <!-- Profile Information -->
-        <div
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
-        >
-          <h3
-            class="font-semibold text-[#f0eaea] mb-4 text-sm flex items-center gap-2"
+        <!-- Two Column Layout -->
+        <div class="grid lg:grid-cols-2 gap-4">
+          <!-- Personal Information -->
+          <div
+            class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
           >
-            <Icon icon="mdi:account" class="w-5 h-5 text-[#ff3344]" />
-            {{ $t("personal_information") }}
-          </h3>
-
-          <div class="space-y-4">
-            <!-- Username -->
-            <div>
-              <label class="block text-xs text-[#b37a7a] mb-2">
-                {{ $t("username") }}
-              </label>
-              <div
-                class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-              >
-                <Icon
-                  icon="mdi:account-circle"
-                  class="w-5 h-5 text-[#ff3344]"
-                />
-                <span class="text-sm text-[#f0eaea] font-medium uppercase">{{
-                  userData.username
-                }}</span>
-              </div>
+            <div class="p-4 border-b border-[#3b1c23]">
+              <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm">
+                {{ $t("personal_information") }}
+              </h3>
             </div>
 
-            <!-- Date of Birth -->
-            <div>
-              <label class="block text-xs text-[#b37a7a] mb-2">
-                {{ $t("date_of_birth") }}
-              </label>
-              <div class="flex items-center gap-2">
+            <div class="p-4 space-y-4">
+              <!-- Username -->
+              <div>
+                <label
+                  class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
+                >
+                  {{ $t("username") }}
+                </label>
                 <div
-                  class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+                  class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg"
                 >
-                  <Icon icon="mdi:cake" class="w-5 h-5 text-[#ff3344]" />
-                  <span class="text-sm text-[#f0eaea]">{{
-                    userData.dob || $t("not_set")
-                  }}</span>
+                  <p class="text-sm font-medium text-[#f0eaea] uppercase">
+                    {{ userData.username }}
+                  </p>
                 </div>
-                <button
-                  v-if="!userData.dob"
-                  @click="showChangeBirthdayModal = true"
-                  class="w-11 h-11 rounded-lg bg-[#ff3344] flex items-center justify-center text-white lg:hover:bg-[#cc2a3a] transition-all"
-                >
-                  <Icon icon="mdi:pencil" class="w-5 h-5" />
-                </button>
               </div>
-            </div>
 
-            <!-- Email -->
-            <div>
-              <label class="block text-xs text-[#b37a7a] mb-2">
-                {{ $t("email") }}
-              </label>
-              <div class="flex items-center gap-2">
-                <div
-                  class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+              <!-- Date of Birth -->
+              <div>
+                <label
+                  class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
                 >
-                  <Icon icon="mdi:email" class="w-5 h-5 text-[#ff3344]" />
-                  <span class="text-sm text-[#f0eaea]">{{
-                    userData.email || $t("not_set")
-                  }}</span>
+                  {{ $t("date_of_birth") }}
+                </label>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+                  >
+                    <p class="text-sm font-medium text-[#f0eaea]">
+                      {{ userData.dob || $t("not_set") }}
+                    </p>
+                  </div>
+                  <button
+                    v-if="!userData.dob"
+                    @click="showChangeBirthdayModal = true"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                  >
+                    {{ $t("add") }}
+                  </button>
                 </div>
-                <button
-                  v-if="!userData.email"
-                  @click="showChangeEmailModal = true"
-                  class="w-11 h-11 rounded-lg bg-[#ff3344] flex items-center justify-center text-white lg:hover:bg-[#cc2a3a] transition-all"
-                >
-                  <Icon icon="mdi:pencil" class="w-5 h-5" />
-                </button>
               </div>
-            </div>
 
-            <!-- Password -->
-            <div>
-              <label class="block text-xs text-[#b37a7a] mb-2">
-                {{ $t("password") }}
-              </label>
-              <div class="flex items-center gap-2">
-                <div
-                  class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+              <!-- Email -->
+              <div>
+                <label
+                  class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
                 >
-                  <Icon icon="mdi:lock" class="w-5 h-5 text-[#ff3344]" />
-                  <span class="text-sm text-[#f0eaea]">••••••••</span>
+                  {{ $t("email") }}
+                </label>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1 min-w-0"
+                  >
+                    <p class="text-sm font-medium text-[#f0eaea] truncate">
+                      {{ userData.email || $t("not_set") }}
+                    </p>
+                  </div>
+                  <button
+                    v-if="!userData.email"
+                    @click="showChangeEmailModal = true"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                  >
+                    {{ $t("add") }}
+                  </button>
                 </div>
-                <NuxtLinkLocale
-                  to="/myaccount/change-password"
-                  class="w-11 h-11 rounded-lg bg-[#ff3344] flex items-center justify-center text-white lg:hover:bg-[#cc2a3a] transition-all"
+              </div>
+
+              <!-- Password -->
+              <div>
+                <label
+                  class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
                 >
-                  <Icon icon="mdi:lock-reset" class="w-5 h-5" />
-                </NuxtLinkLocale>
+                  {{ $t("password") }}
+                </label>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+                  >
+                    <p class="text-sm font-medium text-[#f0eaea]">
+                      ••••••••••••
+                    </p>
+                  </div>
+                  <NuxtLinkLocale
+                    to="/myaccount/change-password"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                  >
+                    {{ $t("change") }}
+                  </NuxtLinkLocale>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Social Media Links -->
-        <div
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
-        >
-          <h3
-            class="font-semibold text-[#f0eaea] mb-4 text-sm flex items-center gap-2"
+          <!-- Social Media Connections -->
+          <div
+            class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
           >
-            <Icon icon="mdi:link-variant" class="w-5 h-5 text-[#ff3344]" />
-            {{ $t("social_media_connections") }}
-          </h3>
-
-          <div class="space-y-4">
-            <!-- Telegram -->
-            <div>
-              <label class="block text-xs text-[#b37a7a] mb-2">
-                {{ $t("telegram") }}
-              </label>
-              <div class="flex items-center gap-2">
-                <div
-                  class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
-                >
-                  <Icon icon="mdi:telegram" class="w-5 h-5 text-[#0088cc]" />
-                  <span class="text-sm text-[#f0eaea]">{{
-                    userData.telegramId || $t("not_set")
-                  }}</span>
-                </div>
-                <button
-                  @click="showChangeTelegramModal = true"
-                  class="w-11 h-11 rounded-lg bg-[#ff3344] flex items-center justify-center text-white lg:hover:bg-[#cc2a3a] transition-all"
-                >
-                  <Icon icon="mdi:pencil" class="w-5 h-5" />
-                </button>
-              </div>
+            <div class="p-4 border-b border-[#3b1c23]">
+              <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm">
+                {{ $t("social_media_connections") }}
+              </h3>
             </div>
 
-            <!-- Facebook -->
-            <div>
-              <label class="block text-xs text-[#b37a7a] mb-2">
-                {{ $t("facebook") }}
-              </label>
-              <div class="flex items-center gap-2">
-                <div
-                  class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+            <div class="p-4 space-y-4">
+              <!-- Telegram -->
+              <div>
+                <label
+                  class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
                 >
-                  <Icon icon="mdi:facebook" class="w-5 h-5 text-[#1877F2]" />
-                  <span class="text-sm text-[#f0eaea]">{{
-                    userData.facebookId || $t("not_set")
-                  }}</span>
+                  <Icon
+                    icon="mdi:telegram"
+                    class="w-4 h-4 inline-block mr-1 text-[#0088cc]"
+                  />
+                  {{ $t("telegram") }}
+                </label>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1 min-w-0"
+                  >
+                    <p class="text-sm font-medium text-[#f0eaea] truncate">
+                      {{ userData.telegramId || $t("not_connected") }}
+                    </p>
+                  </div>
+                  <button
+                    @click="showChangeTelegramModal = true"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                  >
+                    {{ userData.telegramId ? $t("edit") : $t("connect") }}
+                  </button>
                 </div>
-                <button
-                  @click="showChangeFacebookModal = true"
-                  class="w-11 h-11 rounded-lg bg-[#ff3344] flex items-center justify-center text-white lg:hover:bg-[#cc2a3a] transition-all"
+              </div>
+
+              <!-- Facebook -->
+              <div>
+                <label
+                  class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
                 >
-                  <Icon icon="mdi:pencil" class="w-5 h-5" />
-                </button>
+                  <Icon
+                    icon="mdi:facebook"
+                    class="w-4 h-4 inline-block mr-1 text-[#1877F2]"
+                  />
+                  {{ $t("facebook") }}
+                </label>
+                <div class="flex items-center gap-2">
+                  <div
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1 min-w-0"
+                  >
+                    <p class="text-sm font-medium text-[#f0eaea] truncate">
+                      {{ userData.facebookId || $t("not_connected") }}
+                    </p>
+                  </div>
+                  <button
+                    @click="showChangeFacebookModal = true"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                  >
+                    {{ userData.facebookId ? $t("edit") : $t("connect") }}
+                  </button>
+                </div>
+              </div>
+
+              <!-- Info Notice -->
+              <div
+                class="p-3 bg-blue-500/5 border border-blue-500/20 rounded-lg"
+              >
+                <div class="flex gap-2">
+                  <Icon
+                    icon="mdi:information-outline"
+                    class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"
+                  />
+                  <p class="text-xs text-[#b37a7a] leading-relaxed">
+                    {{ $t("social_connect_info") }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

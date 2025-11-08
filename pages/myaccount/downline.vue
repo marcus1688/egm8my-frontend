@@ -112,7 +112,7 @@
           </div>
         </div> -->
 
-        <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
+        <div>
           <div class="flex items-center gap-3 max-lg:flex-col">
             <div class="relative flex-1 max-lg:w-full">
               <Icon
@@ -123,7 +123,7 @@
                 v-model="searchQuery"
                 type="text"
                 :placeholder="$t('search_by_username')"
-                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-10 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors placeholder-[#b37a7a] text-base max-sm:text-sm max-[370px]:text-xs"
+                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-10 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors placeholder-[#b37a7a] text-[0.9rem] max-sm:text-sm max-[370px]:text-xs"
               />
               <button
                 v-if="searchQuery"
@@ -531,21 +531,7 @@ const fetchDownlines = async () => {
     const { get } = useApiEndpoint();
     const { data } = await get("get-downlines");
     if (data.success) {
-      // Duplicate the data 10 times for pagination testing
-      const originalData = data.data.downlines.direct || [];
-      const duplicatedData = [];
-
-      for (let i = 0; i < 50; i++) {
-        originalData.forEach((member, index) => {
-          duplicatedData.push({
-            ...member,
-            _id: `${member._id}_${i}_${index}`, // Unique ID for each duplicated item
-            username: `${member.username}${i > 0 ? i : ""}`, // Add number to username except first iteration
-          });
-        });
-      }
-
-      downlines.value = { direct: duplicatedData };
+      downlines.value = data.data.downlines;
     }
   } catch (error) {
     console.error("Error fetching downlines:", error);

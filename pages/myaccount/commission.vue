@@ -17,23 +17,16 @@
         <div
           class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4 space-y-4"
         >
-          <!-- Info Notice -->
-          <div
-            class="bg-blue-500/5 border border-blue-500/20 rounded-lg p-3 max-lg:p-2.5"
-          >
+          <div>
             <div class="flex gap-2.5">
-              <Icon
-                icon="mdi:information-outline"
-                class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-blue-400 flex-shrink-0 mt-0.5"
-              />
               <div>
                 <h4
-                  class="font-semibold text-blue-400 mb-0.5 text-sm max-lg:text-xs"
+                  class="font-semibold text-blue-400 mb-0.5 text-base max-lg:text-sm s"
                 >
                   {{ $t("weekly_distribution_schedule") }}
                 </h4>
                 <p
-                  class="text-xs max-lg:text-[11px] text-[#b37a7a] leading-relaxed"
+                  class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs text-[#b37a7a] leading-relaxed"
                 >
                   {{ $t("distribution_schedule_description") }}
                 </p>
@@ -41,28 +34,15 @@
             </div>
           </div>
 
-          <!-- Divider -->
           <div class="border-t border-[#3b1c23]"></div>
 
-          <!-- Time Filter & Results -->
           <div class="space-y-3">
             <div class="flex items-center justify-between">
               <label
-                class="text-sm font-semibold text-[#f0eaea] flex items-center gap-2"
+                class="text-base max-lg:text-sm font-semibold text-[#f0eaea] flex items-center gap-2"
               >
-                <Icon icon="mdi:clock-outline" class="w-4 h-4 text-[#ff3344]" />
                 {{ $t("time_period") }}
               </label>
-              <div
-                class="flex items-center gap-2 px-3 py-1 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-              >
-                <span class="text-xs text-[#b37a7a] font-medium">
-                  <span class="text-[#ff3344] font-bold">{{
-                    filteredReports.length
-                  }}</span>
-                  {{ $t("records") }}
-                </span>
-              </div>
             </div>
             <div class="flex gap-2 overflow-x-auto scrollbar-thin pb-1">
               <button
@@ -70,7 +50,7 @@
                 :key="filter.value"
                 @click="selectedTime = filter.value"
                 :class="[
-                  'px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-lg text-sm max-lg:text-xs font-medium whitespace-nowrap transition-all',
+                  'px-4 py-2 max-lg:px-3 max-lg:py-1.5 rounded-lg text-sm max-lg:text-xs font-medium whitespace-nowrap transition-colour',
                   selectedTime === filter.value
                     ? 'bg-[#ff3344] text-white shadow-lg shadow-[#ff3344]/30'
                     : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] hover:border-[#ff3344] hover:text-[#ff3344]',
@@ -81,7 +61,6 @@
             </div>
           </div>
         </div>
-        <!-- Commission Table -->
         <div class="space-y-2">
           <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
             <div class="overflow-x-auto scrollbar-thin">
@@ -91,21 +70,21 @@
                     class="border-b bg-gradient-to-r from-[#15090e] via-[#1a0d13] to-[#15090e] border-[#3b1c23]"
                   >
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div class="flex items-center gap-2 whitespace-nowrap">
                         {{ $t("date") }}
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div class="flex items-center gap-2 whitespace-nowrap">
                         {{ $t("formula") }}
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-end gap-2 whitespace-nowrap"
@@ -114,7 +93,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-end gap-2 whitespace-nowrap"
@@ -123,7 +102,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-end gap-2 whitespace-nowrap"
@@ -132,7 +111,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-end gap-2 whitespace-nowrap"
@@ -141,7 +120,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-end gap-2 whitespace-nowrap"
@@ -150,7 +129,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-center gap-2 whitespace-nowrap"
@@ -394,20 +373,14 @@
         </div>
 
         <!-- Pagination -->
-        <div
-          v-if="filteredReports.length > 0"
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3"
-        >
+        <div v-if="filteredReports.length > 0">
           <div
             class="flex justify-between items-center gap-4 max-lg:flex-col max-lg:gap-3"
           >
-            <!-- Page Info -->
             <div
               class="flex items-center gap-3 max-lg:order-2 max-lg:w-full max-lg:justify-center"
             >
-              <div
-                class="px-3 py-1.5 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-              >
+              <div class="px-3 py-1.5">
                 <span class="text-sm max-lg:text-xs text-[#b37a7a] font-medium">
                   {{ $t("page") }}
                   <span class="text-[#ff3344] font-bold mx-1">{{
@@ -421,7 +394,6 @@
               </div>
             </div>
 
-            <!-- Pagination Controls -->
             <div class="flex items-center gap-2 max-lg:gap-1.5 max-lg:order-1">
               <button
                 @click="currentPage = 1"

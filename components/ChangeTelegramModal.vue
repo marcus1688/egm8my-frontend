@@ -1,90 +1,95 @@
 <template>
   <Teleport to="body">
-    <div
-      class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[60] max-lg:px-4"
-      @click.self="emitClose"
-    >
+    <Transition name="fade">
       <div
-        class="bg-[#1A0D13] border border-[#3b1c23] text-[#f0eaea] rounded-xl w-1/3 p-6 shadow-2xl shadow-[#ff3344]/20 transform transition-transform scale-95 max-lg:w-full max-lg:p-4"
-        role="dialog"
-        aria-modal="true"
+        v-if="isVisible"
+        class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-[99] p-4"
+        @click.self="emitClose"
       >
-        <!-- Title Bar -->
         <div
-          class="flex justify-between items-center mb-4 border-b border-[#3b1c23] pb-3"
+          class="bg-[#1A0D13] border border-[#3b1c23] rounded-lg w-full max-w-md overflow-hidden max-h-[90vh] flex flex-col"
+          @click.stop
+          :class="isVisible ? 'animate-popupIn' : ''"
         >
-          <h2 class="text-xl font-semibold text-[#f0eaea]">
-            {{ $t("change_telegram_id") }}
-          </h2>
-          <button
-            @click="emitClose"
-            class="text-[#b37a7a] lg:hover:text-[#ff3344] transition-colors"
+          <!-- Header -->
+          <div
+            class="p-4 border-b border-[#3b1c23] flex items-center justify-between flex-shrink-0"
           >
-            <Icon icon="mdi:close" class="w-5 h-5" />
-          </button>
-        </div>
+            <h3 class="font-semibold text-[#f0eaea] text-base max-sm:text-sm">
+              {{ $t("change_telegram_id") }}
+            </h3>
 
-        <!-- Input Field -->
-        <div class="space-y-2">
-          <label class="block text-sm font-medium text-[#f0eaea] mb-2">
-            {{ $t("new_telegram_id") }}
-          </label>
-          <div class="relative">
-            <span
-              v-if="!newTelegramId.startsWith('@') && newTelegramId.length > 0"
-              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] pointer-events-none z-10"
+            <button
+              @click="emitClose"
+              class="w-8 h-8 max-sm:w-7 max-sm:h-7 rounded-lg bg-[#241017] border border-[#3b1c23] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all"
             >
-              @
-            </span>
-            <input
-              type="text"
-              v-model="newTelegramId"
-              :placeholder="$t('enter_telegram_id')"
-              class="w-full p-3 max-lg:p-2 rounded-lg border border-[#3b1c23] bg-[#241017]/60 text-[#f0eaea] placeholder-[#b37a7a] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 outline-none transition"
-              :class="{
-                'pl-8':
-                  !newTelegramId.startsWith('@') && newTelegramId.length > 0,
-              }"
-            />
+              <Icon icon="mdi:close" class="w-5 h-5 max-sm:w-4 max-sm:h-4" />
+            </button>
           </div>
-          <p class="text-xs text-[#b37a7a]">
-            {{ $t("telegram_username_note") }}
-          </p>
-        </div>
 
-        <!-- Buttons -->
-        <div class="flex justify-end mt-6 gap-2">
-          <button
-            @click="emitClose"
-            class="px-4 py-2 bg-[#241017]/60 text-[#f0eaea] rounded-lg lg:hover:bg-[#3b1c23] transition border border-[#3b1c23]"
-          >
-            {{ $t("cancel") }}
-          </button>
-          <LoadingButton
-            :loading="telegramButtonLoading"
-            @click="saveTelegramId"
-            class="px-4 py-2 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition shadow-lg shadow-[#ff3344]/30"
-          >
-            {{ $t("save") }}
-          </LoadingButton>
+          <!-- Content -->
+          <div class="p-4 overflow-y-auto flex-1">
+            <label class="block text-sm font-semibold text-[#f0eaea] mb-2">
+              {{ $t("new_telegram_id") }}
+            </label>
+
+            <div class="relative">
+              <input
+                type="text"
+                v-model="newTelegramId"
+                :placeholder="$t('enter_telegram_id')"
+                class="w-full px-4 py-3 pl-12 bg-[#241017] text-[#f0eaea] rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors placeholder-[#b37a7a] text-sm"
+              />
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none"
+              >
+                <Icon icon="mdi:telegram" class="w-5 h-5 text-[#ff3344]" />
+              </div>
+              <div
+                v-if="
+                  !newTelegramId.startsWith('@') && newTelegramId.length > 0
+                "
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-[#b37a7a] text-sm font-mono"
+              >
+                @
+              </div>
+            </div>
+          </div>
+
+          <div class="p-4 border-t border-[#3b1c23] flex gap-2 flex-shrink-0">
+            <button
+              @click="emitClose"
+              class="flex-1 py-2.5 bg-[#241017] border border-[#3b1c23] text-[#f0eaea] rounded-lg font-medium lg:hover:border-[#ff3344]/50 transition-all text-sm max-sm:text-xs"
+            >
+              {{ $t("cancel") }}
+            </button>
+            <LoadingButton
+              :loading="telegramButtonLoading"
+              @click="saveTelegramId"
+              class="flex-1 py-2.5 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm max-sm:text-xs"
+            >
+              {{ $t("save") }}
+            </LoadingButton>
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </Teleport>
 </template>
 
 <script setup>
-import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 
 const telegramButtonLoading = ref(false);
+const isVisible = ref(true);
 const emit = defineEmits(["close", "save"]);
 const newTelegramId = ref("");
 
 const { showAlert } = useAlert();
 
 function emitClose() {
-  emit("close");
+  isVisible.value = false;
+  setTimeout(() => emit("close"), 300);
 }
 
 async function saveTelegramId() {
@@ -105,7 +110,7 @@ async function saveTelegramId() {
       }
       showAlert($t("alert_success"), data.message[$locale.value], "success");
       emit("save", formattedId);
-      emit("close");
+      emitClose();
     } else {
       showAlert($t("alert_info"), data.message[$locale.value], "info");
     }
@@ -121,3 +126,32 @@ async function saveTelegramId() {
   }
 }
 </script>
+
+<style scoped>
+/* Fade Transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+/* Popup Animation */
+@keyframes popupIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-popupIn {
+  animation: popupIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+</style>

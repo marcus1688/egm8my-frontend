@@ -136,7 +136,7 @@
             v-model="selectedDepositAmount"
             :placeholder="$t('amount_placeholder')"
             @input="onlyNumbers"
-            class="w-full pr-4 py-4 pl-16 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-lg:pl-14 max-lg:py-2.5 max-lg:pr-2.5 max-sm:text-sm max-[370px]:text-xs"
+            class="w-full pr-4 py-3.5 pl-16 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-lg:pl-14 max-lg:py-2.5 max-lg:pr-2.5 max-sm:text-sm max-[370px]:text-xs"
           />
         </div>
 
