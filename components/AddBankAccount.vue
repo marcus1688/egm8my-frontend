@@ -10,26 +10,24 @@
           class="bg-[#1A0D13] border border-[#3b1c23] rounded-lg w-full max-w-md overflow-hidden"
           :class="isVisible ? 'animate-popupIn' : ''"
         >
-          <!-- Header -->
           <div
             class="p-4 border-b border-[#3b1c23] flex items-center justify-between"
           >
-            <h3 class="font-semibold text-[#f0eaea] text-base">
+            <h3 class="font-semibold text-[#f0eaea] text-base max-sm:text-sm">
               {{ $t("add_bank_account") }}
             </h3>
+
             <button
               @click="close"
-              class="w-8 h-8 rounded-lg bg-[#241017] border border-[#3b1c23] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all"
+              class="w-8 h-8 max-sm:w-7 max-sm:h-7 rounded-lg bg-[#241017] border border-[#3b1c23] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all"
             >
-              <Icon icon="mdi:close" class="w-5 h-5" />
+              <Icon icon="mdi:close" class="w-5 h-5 max-sm:w-4 max-sm:h-4" />
             </button>
           </div>
 
-          <!-- Content -->
           <div class="p-4 space-y-4">
-            <!-- Account Holder Name -->
             <div>
-              <label class="block font-semibold mb-2 text-sm text-[#f0eaea]">
+              <label class="block text-xs font-semibold text-[#f0eaea] mb-1.5">
                 {{ $t("name") }}
               </label>
               <input
@@ -37,28 +35,33 @@
                 :value="userData.fullname"
                 disabled
                 readonly
-                class="w-full p-3 bg-[#241017] text-[#b37a7a] rounded-lg border border-[#3b1c23] cursor-not-allowed uppercase font-semibold text-sm"
+                class="w-full px-3 py-2.5 bg-[#15090e] text-[#b37a7a] rounded-lg border border-[#3b1c23] cursor-not-allowed uppercase font-medium text-sm"
               />
             </div>
 
-            <!-- Bank Name -->
+            <!-- Bank Name Dropdown -->
             <div>
-              <label class="block font-semibold mb-2 text-sm text-[#f0eaea]">
+              <label class="block text-xs font-semibold text-[#f0eaea] mb-1.5">
                 {{ $t("bank_name") }}
               </label>
               <div class="relative" ref="bankDropdown">
                 <button
                   type="button"
                   @click="isBankDropdownOpen = !isBankDropdownOpen"
-                  class="w-full p-3 bg-[#241017] text-left rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-sm flex items-center justify-between"
-                  :class="
-                    accountData.bankName ? 'text-[#f0eaea]' : 'text-[#b37a7a]'
-                  "
+                  class="w-full px-3 py-2.5 rounded-lg border border-[#3b1c23] transition-all text-sm flex items-center justify-between"
+                  :class="[
+                    isBankDropdownOpen
+                      ? 'bg-[#241017] border-[#ff3344]'
+                      : 'bg-[#241017] hover:border-[#ff3344]/50',
+                    accountData.bankName ? 'text-[#f0eaea]' : 'text-[#b37a7a]',
+                  ]"
                 >
-                  <span>{{ accountData.bankName || $t("select_bank") }}</span>
+                  <span class="font-medium">{{
+                    accountData.bankName || $t("select_bank")
+                  }}</span>
                   <Icon
                     icon="mdi:chevron-down"
-                    class="w-5 h-5 transition-transform"
+                    class="w-5 h-5 text-[#ff3344] transition-transform"
                     :class="{ 'rotate-180': isBankDropdownOpen }"
                   />
                 </button>
@@ -66,18 +69,19 @@
                 <Transition name="dropdown">
                   <div
                     v-if="isBankDropdownOpen"
-                    class="absolute z-50 w-full mt-2 bg-[#241017] border border-[#3b1c23] rounded-lg shadow-lg max-h-40 overflow-y-auto scrollbar-thin"
+                    class="absolute z-50 w-full mt-1.5 bg-[#241017] border border-[#3b1c23] rounded-lg shadow-xl max-h-48 overflow-y-auto scrollbar-thin"
                   >
                     <button
                       type="button"
                       v-for="bank in banklist"
                       :key="bank._id"
                       @click="selectBank(bank.bankname)"
-                      class="w-full p-3 text-left text-[#f0eaea] text-sm lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] last:border-b-0"
-                      :class="{
-                        'bg-[#ff3344]/10 text-[#ff3344]':
-                          accountData.bankName === bank.bankname,
-                      }"
+                      class="w-full px-3 py-2.5 text-left text-sm font-medium transition-colors border-b border-[#3b1c23] last:border-b-0"
+                      :class="
+                        accountData.bankName === bank.bankname
+                          ? 'bg-[#ff3344]/10 text-[#ff3344]'
+                          : 'text-[#f0eaea] hover:bg-[#15090e]'
+                      "
                     >
                       {{ bank.bankname }}
                     </button>
@@ -88,7 +92,7 @@
 
             <!-- Account Number -->
             <div>
-              <label class="block font-semibold mb-2 text-sm text-[#f0eaea]">
+              <label class="block text-xs font-semibold text-[#f0eaea] mb-1.5">
                 {{ $t("account_number") }}
               </label>
               <input
@@ -96,7 +100,7 @@
                 @input="onlyNumbers"
                 type="text"
                 :placeholder="$t('enter_account_number')"
-                class="w-full p-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-sm"
+                class="w-full px-3 py-2.5 bg-[#15090e] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-all text-sm font-medium"
               />
             </div>
 
@@ -105,11 +109,11 @@
               <div class="flex gap-2">
                 <Icon
                   icon="mdi:alert-circle"
-                  class="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5"
+                  class="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5"
                 />
-                <p class="text-xs text-red-200">
+                <p class="text-xs text-red-200 leading-relaxed">
                   {{ $t("name_restriction_1") }}
-                  <strong class="text-red-400">{{
+                  <strong class="text-red-400 font-bold">{{
                     $t("name_restriction_2")
                   }}</strong>
                   {{ $t("name_restriction_3") }}
@@ -118,26 +122,24 @@
             </div>
           </div>
 
-          <!-- Footer -->
           <div class="p-4 border-t border-[#3b1c23] flex gap-2">
             <button
               @click="close"
-              class="flex-1 py-2.5 bg-[#241017] border border-[#3b1c23] text-[#f0eaea] rounded-lg font-medium lg:hover:border-[#ff3344]/50 transition-all text-sm"
+              class="flex-1 py-2.5 bg-[#241017] border border-[#3b1c23] text-[#f0eaea] rounded-lg font-medium lg:hover:border-[#ff3344]/50 transition-all text-sm max-sm:text-xs"
             >
               {{ $t("cancel") }}
             </button>
             <button
               @click="confirmAdd"
               :disabled="addWithdrawBankButtonLoading"
-              class="flex-1 py-2.5 bg-[#ff3344] text-white rounded-lg font-medium lg:hover:bg-[#cc2a3a] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              class="flex-1 py-2.5 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm max-sm:text-xs"
             >
-              <span v-if="!addWithdrawBankButtonLoading">{{
-                $t("confirm")
-              }}</span>
-              <span v-else class="flex items-center justify-center gap-2">
-                <Icon icon="mdi:loading" class="w-4 h-4 animate-spin" />
-                {{ $t("adding") }}...
-              </span>
+              <Icon
+                v-if="addWithdrawBankButtonLoading"
+                icon="mdi:loading"
+                class="w-5 h-5 animate-spin"
+              />
+              <span v-else>{{ $t("confirm") }}</span>
             </button>
           </div>
         </div>

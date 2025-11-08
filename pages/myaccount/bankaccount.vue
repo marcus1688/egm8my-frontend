@@ -5,7 +5,7 @@
       <div class="mb-6 max-lg:mb-4">
         <div class="flex justify-between items-start gap-3">
           <div class="flex-1">
-            <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+            <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
               {{ $t("bank_accounts") }}
             </h1>
             <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -23,15 +23,13 @@
         </div>
       </div>
 
-      <!-- Bank Accounts List -->
       <div v-if="userbank.length" class="space-y-3">
         <div
           v-for="bank in userbank"
           :key="bank._id"
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 lg:hover:border-[#ff3344]/50 transition-all max-lg:p-3"
+          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 max-lg:px-2.5 lg:hover:border-[#ff3344]/50 transition-all max-lg:p-3"
         >
           <div class="flex items-start gap-3">
-            <!-- Bank Icon -->
             <div
               class="w-12 h-12 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center flex-shrink-0 max-lg:w-10 max-lg:h-10"
             >

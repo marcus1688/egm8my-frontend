@@ -87,7 +87,6 @@
             </div>
           </div>
 
-          <!-- Footer -->
           <div class="p-4 border-t border-[#3b1c23] flex gap-2">
             <button
               @click="$emit('close')"

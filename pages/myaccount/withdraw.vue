@@ -11,7 +11,6 @@
             class="bg-[#1A0D13] border border-[#3b1c23] rounded-lg w-full max-w-md overflow-hidden"
             :class="showActiveGamesModal ? 'animate-popupIn' : ''"
           >
-            <!-- Header -->
             <div
               class="p-4 border-b border-[#3b1c23] flex items-center justify-between"
             >
@@ -33,13 +32,11 @@
               </button>
             </div>
 
-            <!-- Content -->
             <div class="p-4">
               <p class="text-sm text-[#b37a7a] mb-4">
                 {{ $t("complete_games_before_withdrawal_mandatory") }}
               </p>
 
-              <!-- Active Games List -->
               <div class="space-y-2 max-h-60 overflow-y-auto scrollbar-thin">
                 <div
                   v-for="game in activeGames"
@@ -66,7 +63,6 @@
               </div>
             </div>
 
-            <!-- Footer -->
             <div class="p-4 border-t border-[#3b1c23]">
               <button
                 @click="showActiveGamesModal = false"
@@ -90,7 +86,6 @@
     </Teleport>
 
     <div class="text-[#f0eaea]">
-      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
         <div class="flex justify-between items-start gap-3">
           <div class="flex-1">
