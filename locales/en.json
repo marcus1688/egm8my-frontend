@@ -1136,5 +1136,14 @@
   "instant_rewards": "Instant Rewards",
   "instant_rewards_desc": "Get rewarded immediately when friends join",
   "lifetime_commission": "Lifetime Commission",
-  "lifetime_commission_desc": "Earn from your referrals' activities forever"
+  "lifetime_commission_desc": "Earn from your referrals' activities forever",
+  "team_overview": "Team Overview",
+  "direct": "Direct",
+  "indirect": "Indirect",
+  "members": "Members",
+  "page": "Page",
+  "of": "of",
+  "results": "Results",
+  "records": "Records",
+  "time_period": "Time Period"
 }

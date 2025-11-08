@@ -1,8 +1,9 @@
 <template>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
+      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-lg font-bold max-lg:text-base">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
           {{ $t("change_password") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -10,216 +11,314 @@
         </p>
       </div>
 
-      <div>
-        <div
-          class="bg-[#ff3344]/10 border border-[#ff3344]/30 rounded-lg p-4 max-lg:p-3 mb-6 max-lg:mb-4"
-        >
-          <div class="flex items-start gap-3 max-lg:gap-2">
-            <div class="flex-shrink-0 mt-0.5">
-              <Icon
-                icon="mdi:information"
-                class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-[#ff3344]"
-              />
+      <div class="grid lg:grid-cols-3 gap-4">
+        <!-- Left Column - Form (2/3 width) -->
+        <div class="lg:col-span-2 space-y-4">
+          <!-- Password Form -->
+          <form
+            @submit.prevent="changePassword"
+            class="bg-[#241017] border border-[#3b1c23] rounded-lg p-6 max-lg:p-4 space-y-5 max-lg:space-y-4"
+          >
+            <div class="flex items-center gap-3 pb-4 border-b border-[#3b1c23]">
+              <div
+                class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center shadow-lg shadow-[#ff3344]/30"
+              >
+                <Icon icon="mdi:lock-reset" class="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h2 class="text-base font-bold text-[#f0eaea]">
+                  {{ $t("change_password") }}
+                </h2>
+                <p class="text-xs text-[#b37a7a]">
+                  {{ $t("enter_password_details") }}
+                </p>
+              </div>
             </div>
+
+            <!-- Current Password -->
             <div>
-              <h3 class="text-sm max-lg:text-xs font-medium text-[#ff3344]">
-                {{ $t("password_requirements") }}
-              </h3>
-              <ul
-                class="mt-1 text-xs max-lg:text-[10px] text-[#f0eaea] space-y-1 max-lg:space-y-0.5"
+              <label
+                for="currentPassword"
+                class="block text-sm font-semibold text-[#f0eaea] mb-2"
               >
-                <li>• {{ $t("at_least_8_chars") }}</li>
-                <li>• {{ $t("include_uppercase") }}</li>
-                <li>• {{ $t("include_lowercase") }}</li>
-                <li>• {{ $t("include_number") }}</li>
-                <li>• {{ $t("include_special_char") }}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <form
-          @submit.prevent="changePassword"
-          class="space-y-4 max-lg:space-y-3"
-        >
-          <!-- Current Password -->
-          <div>
-            <label
-              for="currentPassword"
-              class="block text-sm max-lg:text-xs font-medium text-[#f0eaea] mb-1"
-            >
-              {{ $t("current_password") }}
-            </label>
-            <div class="relative">
-              <input
-                :type="showCurrentPassword ? 'text' : 'password'"
-                id="currentPassword"
-                v-model="currentPassword"
-                class="w-full p-3 max-lg:p-2.5 max-lg:text-sm pr-10 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#f0eaea] placeholder-[#b37a7a] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 outline-none transition"
-                :placeholder="$t('enter_current_password')"
-              />
-              <button
-                type="button"
-                @click="showCurrentPassword = !showCurrentPassword"
-                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
-              >
-                <Icon
-                  :icon="showCurrentPassword ? 'mdi:eye-off' : 'mdi:eye'"
-                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                />
-              </button>
-            </div>
-          </div>
-
-          <!-- New Password -->
-          <div>
-            <label
-              for="newPassword"
-              class="block text-sm max-lg:text-xs font-medium text-[#f0eaea] mb-1"
-            >
-              {{ $t("new_password") }}
-            </label>
-            <div class="relative">
-              <input
-                :type="showNewPassword ? 'text' : 'password'"
-                id="newPassword"
-                v-model="newPassword"
-                class="w-full p-3 max-lg:p-2.5 max-lg:text-sm pr-10 rounded-lg border border-[#3b1c23] bg-[#15090e]/50 text-[#f0eaea] placeholder-[#b37a7a] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50 outline-none transition"
-                :placeholder="$t('enter_new_password')"
-              />
-              <button
-                type="button"
-                @click="showNewPassword = !showNewPassword"
-                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
-              >
-                <Icon
-                  :icon="showNewPassword ? 'mdi:eye-off' : 'mdi:eye'"
-                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                />
-              </button>
-            </div>
-            <!-- Password Strength Indicator -->
-            <div v-if="newPassword" class="mt-2 max-lg:mt-1.5">
-              <div class="flex items-center gap-2">
+                {{ $t("current_password") }}
+              </label>
+              <div class="relative">
                 <div
-                  class="h-1.5 max-lg:h-1 flex-grow rounded-full bg-[#3b1c23] overflow-hidden"
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a]"
                 >
+                  <Icon icon="mdi:lock" class="w-5 h-5" />
+                </div>
+                <input
+                  :type="showCurrentPassword ? 'text' : 'password'"
+                  id="currentPassword"
+                  v-model="currentPassword"
+                  class="w-full pl-11 pr-11 py-3 rounded-lg border border-[#3b1c23] bg-[#15090e] text-[#f0eaea] text-sm placeholder-[#b37a7a] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/20 outline-none transition-all"
+                  :placeholder="$t('enter_current_password')"
+                />
+                <button
+                  type="button"
+                  @click="showCurrentPassword = !showCurrentPassword"
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] hover:text-[#ff3344] transition-colors"
+                >
+                  <Icon
+                    :icon="showCurrentPassword ? 'mdi:eye-off' : 'mdi:eye'"
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- New Password -->
+            <div>
+              <label
+                for="newPassword"
+                class="block text-sm font-semibold text-[#f0eaea] mb-2"
+              >
+                {{ $t("new_password") }}
+              </label>
+              <div class="relative">
+                <div
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a]"
+                >
+                  <Icon icon="mdi:lock-plus" class="w-5 h-5" />
+                </div>
+                <input
+                  :type="showNewPassword ? 'text' : 'password'"
+                  id="newPassword"
+                  v-model="newPassword"
+                  class="w-full pl-11 pr-11 py-3 rounded-lg border border-[#3b1c23] bg-[#15090e] text-[#f0eaea] text-sm placeholder-[#b37a7a] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/20 outline-none transition-all"
+                  :placeholder="$t('enter_new_password')"
+                />
+                <button
+                  type="button"
+                  @click="showNewPassword = !showNewPassword"
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] hover:text-[#ff3344] transition-colors"
+                >
+                  <Icon
+                    :icon="showNewPassword ? 'mdi:eye-off' : 'mdi:eye'"
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+
+              <!-- Password Strength Indicator -->
+              <div v-if="newPassword" class="mt-3">
+                <div class="flex items-center gap-3">
                   <div
-                    class="h-full transition-all duration-300"
+                    class="h-2 flex-grow rounded-full bg-[#15090e] border border-[#3b1c23] overflow-hidden"
+                  >
+                    <div
+                      class="h-full transition-all duration-300 rounded-full"
+                      :class="[
+                        passwordStrength === 'weak' ? 'w-1/4 bg-red-500' : '',
+                        passwordStrength === 'medium'
+                          ? 'w-2/4 bg-yellow-500'
+                          : '',
+                        passwordStrength === 'strong'
+                          ? 'w-3/4 bg-green-500'
+                          : '',
+                        passwordStrength === 'very-strong'
+                          ? 'w-full bg-green-600'
+                          : '',
+                      ]"
+                    ></div>
+                  </div>
+                  <span
+                    class="text-xs font-bold whitespace-nowrap"
                     :class="[
-                      passwordStrength === 'weak' ? 'w-1/4 bg-red-500' : '',
-                      passwordStrength === 'medium'
-                        ? 'w-2/4 bg-yellow-500'
-                        : '',
-                      passwordStrength === 'strong' ? 'w-3/4 bg-green-500' : '',
+                      passwordStrength === 'weak' ? 'text-red-400' : '',
+                      passwordStrength === 'medium' ? 'text-yellow-400' : '',
+                      passwordStrength === 'strong' ? 'text-green-400' : '',
                       passwordStrength === 'very-strong'
-                        ? 'w-full bg-green-600'
+                        ? 'text-green-400'
                         : '',
                     ]"
-                  ></div>
+                  >
+                    {{ passwordStrengthText }}
+                  </span>
                 </div>
-                <span
-                  class="text-xs max-lg:text-[10px] font-medium"
-                  :class="[
-                    passwordStrength === 'weak' ? 'text-red-400' : '',
-                    passwordStrength === 'medium' ? 'text-yellow-400' : '',
-                    passwordStrength === 'strong' ? 'text-green-400' : '',
-                    passwordStrength === 'very-strong' ? 'text-green-400' : '',
-                  ]"
-                >
-                  {{ passwordStrengthText }}
-                </span>
               </div>
             </div>
-          </div>
 
-          <!-- Confirm New Password -->
-          <div>
-            <label
-              for="confirmPassword"
-              class="block text-sm max-lg:text-xs font-medium text-[#f0eaea] mb-1"
-            >
-              {{ $t("confirm_new_password") }}
-            </label>
-            <div class="relative">
-              <input
-                :type="showConfirmPassword ? 'text' : 'password'"
-                id="confirmPassword"
-                v-model="confirmPassword"
-                class="w-full p-3 max-lg:p-2.5 max-lg:text-sm pr-10 rounded-lg border bg-[#15090e]/50 text-[#f0eaea] placeholder-[#b37a7a] outline-none transition"
-                :class="{
-                  'border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/50':
-                    !(confirmPassword && confirmPassword !== newPassword),
-                  'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/50':
-                    confirmPassword && confirmPassword !== newPassword,
-                }"
-                :placeholder="$t('confirm_password_placeholder')"
-              />
+            <!-- Confirm New Password -->
+            <div>
+              <label
+                for="confirmPassword"
+                class="block text-sm font-semibold text-[#f0eaea] mb-2"
+              >
+                {{ $t("confirm_new_password") }}
+              </label>
+              <div class="relative">
+                <div
+                  class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a]"
+                >
+                  <Icon icon="mdi:lock-check" class="w-5 h-5" />
+                </div>
+                <input
+                  :type="showConfirmPassword ? 'text' : 'password'"
+                  id="confirmPassword"
+                  v-model="confirmPassword"
+                  class="w-full pl-11 pr-11 py-3 rounded-lg border bg-[#15090e] text-[#f0eaea] text-sm placeholder-[#b37a7a] outline-none transition-all"
+                  :class="{
+                    'border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/20':
+                      !(confirmPassword && confirmPassword !== newPassword),
+                    'border-red-500 focus:border-red-500 focus:ring-2 focus:ring-red-500/20':
+                      confirmPassword && confirmPassword !== newPassword,
+                  }"
+                  :placeholder="$t('confirm_password_placeholder')"
+                />
+                <button
+                  type="button"
+                  @click="showConfirmPassword = !showConfirmPassword"
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] hover:text-[#ff3344] transition-colors"
+                >
+                  <Icon
+                    :icon="showConfirmPassword ? 'mdi:eye-off' : 'mdi:eye'"
+                    class="w-5 h-5"
+                  />
+                </button>
+              </div>
+              <p
+                v-if="confirmPassword && confirmPassword !== newPassword"
+                class="mt-2 text-xs text-red-400 flex items-center gap-1"
+              >
+                <Icon icon="mdi:alert-circle" class="w-3.5 h-3.5" />
+                {{ $t("passwords_not_match") }}
+              </p>
+              <p
+                v-else-if="confirmPassword && confirmPassword === newPassword"
+                class="mt-2 text-xs text-green-400 flex items-center gap-1"
+              >
+                <Icon icon="mdi:check-circle" class="w-3.5 h-3.5" />
+                {{ $t("passwords_match") }}
+              </p>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
               <button
-                type="button"
-                @click="showConfirmPassword = !showConfirmPassword"
-                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] lg:hover:text-[#f0eaea] transition-colors"
+                type="submit"
+                :disabled="isButtonDisabled || buttonLoading"
+                class="w-full py-3.5 bg-[#ff3344] text-white text-sm font-bold rounded-xl hover:bg-[#cc2a3a] transition-all focus:outline-none focus:ring-2 focus:ring-[#ff3344]/50 disabled:opacity-40 disabled:cursor-not-allowed shadow-lg shadow-[#ff3344]/30 flex items-center justify-center gap-2"
               >
                 <Icon
-                  :icon="showConfirmPassword ? 'mdi:eye-off' : 'mdi:eye'"
-                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                  v-if="!buttonLoading"
+                  icon="mdi:shield-lock"
+                  class="w-5 h-5"
                 />
+                <Icon
+                  v-if="buttonLoading"
+                  icon="mdi:loading"
+                  class="w-5 h-5 animate-spin"
+                />
+                <span>{{
+                  buttonLoading ? $t("processing") : $t("update_password")
+                }}</span>
               </button>
             </div>
-            <p
-              v-if="confirmPassword && confirmPassword !== newPassword"
-              class="mt-1 text-xs max-lg:text-[10px] text-red-400"
-            >
-              {{ $t("passwords_not_match") }}
-            </p>
-          </div>
+          </form>
+        </div>
 
-          <div class="pt-4 max-lg:pt-2">
-            <button
-              type="submit"
-              :disabled="isButtonDisabled || buttonLoading"
-              class="w-full py-3 max-lg:py-2.5 max-lg:text-sm bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white rounded-lg lg:hover:brightness-110 transition-all focus:outline-none focus:ring-2 focus:ring-[#ff3344]/50 focus:ring-offset-2 focus:ring-offset-[#241017] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-            >
-              <span v-if="!buttonLoading">{{ $t("update_password") }}</span>
-              <div v-else class="flex items-center gap-2">
-                <Icon
-                  icon="mdi:loading"
-                  class="w-5 h-5 max-lg:w-4 max-lg:h-4 animate-spin"
-                />
-                {{ $t("processing") }}...
-              </div>
-            </button>
-          </div>
-        </form>
-
-        <div class="mt-8 max-lg:mt-6">
+        <!-- Right Column - Info (1/3 width) -->
+        <div class="space-y-4">
+          <!-- Password Requirements -->
           <div
-            class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 max-lg:p-3"
+            class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
           >
-            <div class="flex gap-3 max-lg:gap-2">
+            <div class="flex items-center gap-2 mb-4">
               <div
-                class="w-8 h-8 max-lg:w-7 max-lg:h-7 bg-amber-500/20 rounded-full flex-shrink-0 flex items-center justify-center"
+                class="w-8 h-8 rounded-lg bg-[#ff3344]/10 flex items-center justify-center"
               >
-                <Icon
-                  icon="mdi:shield-lock"
-                  class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5 text-amber-400"
-                />
+                <Icon icon="mdi:information" class="w-4 h-4 text-[#ff3344]" />
               </div>
-
-              <div>
-                <h3 class="font-medium text-amber-400 mb-1 max-lg:text-sm">
-                  {{ $t("security_tips") }}
-                </h3>
-                <ul
-                  class="text-sm max-lg:text-xs text-[#f0eaea] space-y-2 max-lg:space-y-1"
-                >
-                  <li>• {{ $t("use_unique_password") }}</li>
-                  <li>• {{ $t("never_share_password") }}</li>
-                  <li>• {{ $t("use_password_manager") }}</li>
-                  <li>• {{ $t("change_regularly") }}</li>
-                </ul>
-              </div>
+              <h3 class="text-sm font-semibold text-[#ff3344]">
+                {{ $t("password_requirements") }}
+              </h3>
             </div>
+            <ul class="text-xs text-[#f0eaea] space-y-2">
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("at_least_8_chars") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("include_uppercase") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("include_lowercase") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("include_number") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("include_special_char") }}</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Security Tips -->
+          <div
+            class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
+          >
+            <div class="flex items-center gap-2 mb-4">
+              <div
+                class="w-8 h-8 rounded-lg bg-amber-500/10 flex items-center justify-center"
+              >
+                <Icon icon="mdi:shield-check" class="w-4 h-4 text-amber-400" />
+              </div>
+              <h3 class="text-sm font-semibold text-amber-400">
+                {{ $t("security_tips") }}
+              </h3>
+            </div>
+            <ul class="text-xs text-[#f0eaea] space-y-2">
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:shield-star"
+                  class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("use_unique_password") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:shield-star"
+                  class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("never_share_password") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:shield-star"
+                  class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("use_password_manager") }}</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <Icon
+                  icon="mdi:shield-star"
+                  class="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5"
+                />
+                <span>{{ $t("change_regularly") }}</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

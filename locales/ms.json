@@ -1136,5 +1136,14 @@
   "instant_rewards": "Ganjaran Segera",
   "instant_rewards_desc": "Dapatkan ganjaran serta-merta apabila rakan menyertai",
   "lifetime_commission": "Komisen Seumur Hidup",
-  "lifetime_commission_desc": "Dapatkan pendapatan dari aktiviti rujukan anda selamanya"
+  "lifetime_commission_desc": "Dapatkan pendapatan dari aktiviti rujukan anda selamanya",
+  "team_overview": "Ringkasan Pasukan",
+  "direct": "Langsung",
+  "indirect": "Tidak Langsung",
+  "members": "Ahli",
+  "page": "Halaman",
+  "of": "daripada",
+  "results": "Hasil",
+  "records": "Rekod",
+  "time_period": "Tempoh Masa"
 }

@@ -16,37 +16,94 @@
         <div
           class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
         >
-          <h3
-            class="font-semibold text-[#f0eaea] mb-4 text-sm flex items-center gap-2"
-          >
-            <Icon icon="mdi:chart-box" class="w-5 h-5 text-[#ff3344]" />
-            {{ $t("team_overview") }}
-          </h3>
+          <div class="flex items-center justify-between mb-4 max-lg:mb-3">
+            <h3
+              class="font-semibold text-[#f0eaea] text-sm flex items-center gap-2"
+            >
+              <Icon icon="mdi:chart-box" class="w-5 h-5 text-[#ff3344]" />
+              {{ $t("team_overview") }}
+            </h3>
+          </div>
 
           <div class="grid grid-cols-3 gap-4 max-lg:gap-3">
-            <div class="text-center">
-              <div
-                class="text-3xl font-bold text-[#ff3344] mb-1 max-lg:text-2xl"
-              >
-                {{ statsData?.all?.registeredUsers || 0 }}
+            <!-- Total -->
+            <div
+              class="bg-[#15090e] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-[#ff3344]/50 transition-colors"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg bg-[#ff3344]/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <Icon
+                    icon="mdi:account-group"
+                    class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-[#ff3344]"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-2xl max-lg:text-xl font-bold text-[#ff3344]">
+                    {{ statsData?.all?.registeredUsers || 0 }}
+                  </div>
+                </div>
               </div>
-              <div class="text-xs text-[#b37a7a]">{{ $t("total") }}</div>
+              <div
+                class="text-xs text-[#b37a7a] uppercase tracking-wide font-medium"
+              >
+                {{ $t("total") }}
+              </div>
             </div>
-            <div class="text-center border-x border-[#3b1c23]">
-              <div
-                class="text-3xl font-bold text-green-400 mb-1 max-lg:text-2xl"
-              >
-                {{ statsData?.direct?.registeredUsers || 0 }}
+
+            <!-- Direct -->
+            <div
+              class="bg-[#15090e] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-green-500/50 transition-colors"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <Icon
+                    icon="mdi:account-multiple-check"
+                    class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-green-400"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="text-2xl max-lg:text-xl font-bold text-green-400">
+                    {{ statsData?.direct?.registeredUsers || 0 }}
+                  </div>
+                </div>
               </div>
-              <div class="text-xs text-[#b37a7a]">{{ $t("direct") }}</div>
+              <div
+                class="text-xs text-[#b37a7a] uppercase tracking-wide font-medium"
+              >
+                {{ $t("direct") }}
+              </div>
             </div>
-            <div class="text-center">
-              <div
-                class="text-3xl font-bold text-purple-400 mb-1 max-lg:text-2xl"
-              >
-                {{ statsData?.indirect?.registeredUsers || 0 }}
+
+            <!-- Indirect -->
+            <div
+              class="bg-[#15090e] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-purple-500/50 transition-colors"
+            >
+              <div class="flex items-center gap-3 mb-2">
+                <div
+                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <Icon
+                    icon="mdi:account-network"
+                    class="w-5 h-5 max-lg:w-4 max-lg:h-4 text-purple-400"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div
+                    class="text-2xl max-lg:text-xl font-bold text-purple-400"
+                  >
+                    {{ statsData?.indirect?.registeredUsers || 0 }}
+                  </div>
+                </div>
               </div>
-              <div class="text-xs text-[#b37a7a]">{{ $t("indirect") }}</div>
+              <div
+                class="text-xs text-[#b37a7a] uppercase tracking-wide font-medium"
+              >
+                {{ $t("indirect") }}
+              </div>
             </div>
           </div>
         </div>
@@ -54,6 +111,7 @@
         <!-- Search & Filter Bar -->
         <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
           <div class="flex items-center gap-3 max-lg:flex-col">
+            <!-- Search Input -->
             <div class="relative flex-1 max-lg:w-full">
               <Icon
                 icon="mdi:magnify"
@@ -63,257 +121,321 @@
                 v-model="searchQuery"
                 type="text"
                 :placeholder="$t('search_by_username')"
-                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-4 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors placeholder-[#b37a7a] text-sm"
+                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-10 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/20 focus:outline-none transition-all placeholder-[#b37a7a] text-sm"
               />
-            </div>
-            <div
-              class="flex items-center gap-2 text-sm text-[#b37a7a] max-lg:w-full max-lg:justify-between"
-            >
-              <span
-                >{{ $t("showing") }} {{ filteredDownlines.length }}
-                {{ $t("members") }}</span
+              <button
+                v-if="searchQuery"
+                @click="searchQuery = ''"
+                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#b37a7a] hover:text-[#ff3344] transition-colors"
               >
+                <Icon icon="mdi:close-circle" class="w-5 h-5" />
+              </button>
+            </div>
+
+            <!-- Results Counter -->
+            <div
+              class="flex items-center gap-2 px-4 py-2.5 bg-[#15090e] border border-[#3b1c23] rounded-lg max-lg:w-full max-lg:justify-center"
+            >
+              <Icon icon="mdi:filter-outline" class="w-4 h-4 text-[#ff3344]" />
+              <span class="text-sm text-[#b37a7a] font-medium">
+                {{ $t("showing") }}
+                <span class="text-[#ff3344] font-bold mx-1">{{
+                  filteredDownlines.length
+                }}</span>
+                {{ $t("members") }}
+              </span>
             </div>
           </div>
         </div>
 
-        <!-- Members List -->
         <div class="space-y-2">
-          <!-- Desktop: Table View -->
-          <div
-            class="hidden md:block bg-[#241017] border border-[#3b1c23] rounded-lg overflow-hidden"
-          >
-            <table class="w-full">
-              <thead>
-                <tr class="bg-[#15090e] border-b border-[#3b1c23]">
-                  <th
-                    v-for="header in tableHeaders"
-                    :key="header.key"
-                    @click="handleSort(header.key)"
-                    class="px-4 py-3 text-left text-xs font-semibold text-[#f0eaea] uppercase cursor-pointer lg:hover:bg-[#241017] transition-colors"
-                  >
-                    <div class="flex items-center gap-2">
-                      {{ header.label }}
-                      <Icon
-                        v-if="header.sortable"
-                        :icon="
-                          sortConfig.key === header.key
-                            ? sortConfig.direction === 'asc'
-                              ? 'mdi:arrow-up'
-                              : 'mdi:arrow-down'
-                            : 'mdi:unfold-more-horizontal'
-                        "
-                        class="w-4 h-4 text-[#b37a7a]"
-                      />
-                    </div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="member in paginatedDownlines"
-                  :key="member._id"
-                  class="border-b border-[#3b1c23] lg:hover:bg-[#15090e]/30 transition-colors"
-                >
-                  <td class="px-4 py-4">
-                    <div class="flex items-center gap-3">
-                      <div
-                        class="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm"
-                      >
-                        {{ member.username.substring(0, 2).toUpperCase() }}
+          <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
+            <div class="overflow-x-auto scrollbar-thin">
+              <table class="w-full">
+                <thead>
+                  <tr class="border-b bg-[#15090e] border-[#3b1c23]">
+                    <th
+                      v-for="header in tableHeaders"
+                      :key="header.key"
+                      @click="handleSort(header.key)"
+                      :class="[
+                        'px-4 py-4 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider transition-all max-lg:px-3 max-lg:py-3',
+                        header.sortable
+                          ? 'cursor-pointer hover:bg-[#241017]/50'
+                          : '',
+                      ]"
+                    >
+                      <div class="flex items-center gap-2 whitespace-nowrap">
+                        <span>{{ header.label }}</span>
+                        <Icon
+                          v-if="header.sortable"
+                          :icon="
+                            sortConfig.key === header.key
+                              ? sortConfig.direction === 'asc'
+                                ? 'mdi:arrow-up'
+                                : 'mdi:arrow-down'
+                              : 'mdi:unfold-more-horizontal'
+                          "
+                          class="w-4 h-4 text-[#ff3344] max-lg:w-3 max-lg:h-3"
+                        />
                       </div>
-                      <span
-                        class="text-sm font-semibold text-[#f0eaea] uppercase"
-                      >
-                        {{ member.username }}
-                      </span>
-                    </div>
-                  </td>
-                  <td class="px-4 py-4">
-                    <span
-                      class="inline-flex items-center px-2.5 py-1 bg-[#ff3344]/10 border border-[#ff3344]/30 rounded text-xs font-medium text-[#ff3344]"
-                    >
-                      {{ member.viplevel }}
-                    </span>
-                  </td>
-                  <td class="px-4 py-4">
-                    <div class="flex items-center gap-2">
-                      <div
-                        class="w-2 h-2 rounded-full"
-                        :class="member.status ? 'bg-green-400' : 'bg-red-400'"
-                      ></div>
-                      <span
-                        class="text-sm"
-                        :class="
-                          member.status ? 'text-green-400' : 'text-red-400'
-                        "
-                      >
-                        {{ member.status ? $t("active") : $t("inactive") }}
-                      </span>
-                    </div>
-                  </td>
-                  <td class="px-4 py-4 text-sm text-[#b37a7a]">
-                    {{ formatDate(member.lastdepositdate) }}
-                  </td>
-                  <td class="px-4 py-4 text-sm text-[#b37a7a]">
-                    {{ formatDate(member.createdAt) }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Member Rows -->
+                  <tr
+                    v-for="(member, index) in paginatedDownlines"
+                    :key="member._id"
+                    class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300"
+                  >
+                    <!-- Member Column -->
+                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                      <div class="flex items-center gap-3 max-lg:gap-2">
+                        <div class="relative flex-shrink-0">
+                          <div
+                            class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30 group-hover:scale-110 transition-transform"
+                          >
+                            {{ member.username.substring(0, 2).toUpperCase() }}
+                          </div>
+                          <div
+                            class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 max-lg:w-3 max-lg:h-3 rounded-full border-2 border-[#241017]"
+                            :class="
+                              member.status ? 'bg-green-400' : 'bg-gray-500'
+                            "
+                          ></div>
+                        </div>
+                        <div class="min-w-0">
+                          <span
+                            class="text-sm max-lg:text-xs font-bold text-[#f0eaea] uppercase block truncate"
+                          >
+                            {{ member.username }}
+                          </span>
+                          <span
+                            class="text-[10px] text-[#b37a7a] hidden lg:block"
+                            >ID: #{{ paginationStart + index + 1 }}</span
+                          >
+                        </div>
+                      </div>
+                    </td>
 
-          <!-- Mobile: Card View -->
-          <div class="md:hidden space-y-2">
-            <div
-              v-for="member in paginatedDownlines"
-              :key="member._id"
-              class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4"
-            >
-              <div class="flex items-start justify-between mb-3">
-                <div class="flex items-center gap-3">
-                  <div
-                    class="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold"
-                  >
-                    {{ member.username.substring(0, 2).toUpperCase() }}
-                  </div>
-                  <div>
-                    <p
-                      class="text-sm font-semibold text-[#f0eaea] uppercase mb-1"
-                    >
-                      {{ member.username }}
-                    </p>
-                    <span
-                      class="inline-flex items-center px-2 py-0.5 bg-[#ff3344]/10 border border-[#ff3344]/30 rounded text-xs text-[#ff3344]"
-                    >
-                      {{ member.viplevel }}
-                    </span>
-                  </div>
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <div
-                    class="w-2 h-2 rounded-full"
-                    :class="member.status ? 'bg-green-400' : 'bg-red-400'"
-                  ></div>
-                  <span
-                    class="text-xs"
-                    :class="member.status ? 'text-green-400' : 'text-red-400'"
-                  >
-                    {{ member.status ? $t("active") : $t("inactive") }}
-                  </span>
-                </div>
-              </div>
-              <div
-                class="grid grid-cols-2 gap-3 pt-3 border-t border-[#3b1c23]"
-              >
-                <div>
-                  <p class="text-xs text-[#b37a7a] mb-0.5">
-                    {{ $t("last_deposit") }}
-                  </p>
-                  <p class="text-sm text-[#f0eaea]">
-                    {{ formatDate(member.lastdepositdate) }}
-                  </p>
-                </div>
-                <div>
-                  <p class="text-xs text-[#b37a7a] mb-0.5">
-                    {{ $t("joined") }}
-                  </p>
-                  <p class="text-sm text-[#f0eaea]">
-                    {{ formatDate(member.createdAt) }}
-                  </p>
-                </div>
-              </div>
+                    <!-- VIP Column -->
+                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                      <span
+                        class="inline-flex items-center gap-1 px-2.5 py-1 max-lg:px-2 max-lg:py-0.5 bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 border border-[#ff3344]/40 rounded-lg text-xs max-lg:text-[10px] font-bold text-[#ff3344] shadow-sm whitespace-nowrap"
+                      >
+                        <Icon
+                          icon="mdi:crown"
+                          class="w-3 h-3 max-lg:w-2.5 max-lg:h-2.5"
+                        />
+                        {{ member.viplevel }}
+                      </span>
+                    </td>
+
+                    <!-- Status Column -->
+                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                      <div class="flex items-center gap-2 max-lg:gap-1.5">
+                        <div class="relative">
+                          <div
+                            class="w-2 h-2 max-lg:w-1.5 max-lg:h-1.5 rounded-full"
+                            :class="
+                              member.status ? 'bg-green-400' : 'bg-gray-500'
+                            "
+                          ></div>
+                          <div
+                            class="w-2 h-2 max-lg:w-1.5 max-lg:h-1.5 rounded-full absolute top-0 left-0 animate-ping"
+                            :class="
+                              member.status ? 'bg-green-400' : 'bg-gray-500'
+                            "
+                            v-if="member.status"
+                          ></div>
+                        </div>
+                        <span
+                          class="text-sm max-lg:text-xs font-semibold whitespace-nowrap"
+                          :class="
+                            member.status ? 'text-green-400' : 'text-gray-400'
+                          "
+                        >
+                          {{ member.status ? $t("active") : $t("inactive") }}
+                        </span>
+                      </div>
+                    </td>
+
+                    <!-- Last Deposit Column -->
+                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                      <div class="flex items-center gap-2 max-lg:gap-1.5">
+                        <Icon
+                          icon="mdi:cash-clock"
+                          class="w-4 h-4 max-lg:w-3 max-lg:h-3 text-[#ff3344] flex-shrink-0"
+                        />
+                        <span
+                          class="text-sm max-lg:text-xs font-medium text-[#f0eaea] whitespace-nowrap"
+                          >{{ formatDate(member.lastdepositdate) }}</span
+                        >
+                      </div>
+                    </td>
+
+                    <!-- Register Date Column -->
+                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                      <div class="flex items-center gap-2 max-lg:gap-1.5">
+                        <Icon
+                          icon="mdi:calendar-check"
+                          class="w-4 h-4 max-lg:w-3 max-lg:h-3 text-green-400 flex-shrink-0"
+                        />
+                        <span
+                          class="text-sm max-lg:text-xs font-medium text-[#f0eaea] whitespace-nowrap"
+                          >{{ formatDate(member.createdAt) }}</span
+                        >
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Empty State Row -->
+                  <tr v-if="paginatedDownlines.length === 0">
+                    <td colspan="5" class="px-4 py-16 max-lg:py-12">
+                      <div class="flex flex-col items-center">
+                        <div
+                          class="w-20 h-20 max-lg:w-16 max-lg:h-16 rounded-2xl bg-[#ff3344]/10 flex items-center justify-center mb-5 max-lg:mb-4"
+                        >
+                          <Icon
+                            icon="mdi:account-group-outline"
+                            class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
+                          />
+                        </div>
+                        <h3
+                          class="text-[#f0eaea] font-bold mb-2 text-base max-lg:text-sm"
+                        >
+                          {{ $t("no_downline_found") }}
+                        </h3>
+                        <p
+                          class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-5 text-center max-w-sm px-4"
+                        >
+                          {{ $t("start_sharing") }}
+                        </p>
+                        <button
+                          @click="
+                            $router.push(localePath('/myaccount/referral'))
+                          "
+                          class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30"
+                        >
+                          <Icon
+                            icon="mdi:share-variant"
+                            class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                          />
+                          {{ $t("share_referral_code") }}
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
+        </div>
 
-          <!-- Empty State -->
+        <div v-if="paginatedDownlines.length > 0">
           <div
-            v-if="paginatedDownlines.length === 0"
-            class="bg-[#241017] border border-[#3b1c23] rounded-lg py-16"
+            class="flex justify-between items-center gap-4 max-lg:flex-col max-lg:gap-3"
           >
-            <div class="flex flex-col items-center">
-              <div
-                class="w-20 h-20 rounded-full bg-[#ff3344]/10 flex items-center justify-center mb-4"
+            <div
+              class="flex items-center gap-3 max-lg:order-2 max-lg:w-full max-lg:justify-center"
+            >
+              <div class="px-3 py-1.5">
+                <span class="text-sm max-lg:text-xs text-[#b37a7a] font-medium">
+                  {{ $t("page") }}
+                  <span class="text-[#ff3344] font-bold mx-1">{{
+                    currentPage
+                  }}</span>
+                  {{ $t("of") }}
+                  <span class="text-[#f0eaea] font-bold mx-1">{{
+                    totalPages
+                  }}</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 max-lg:gap-1.5 max-lg:order-1">
+              <button
+                @click="currentPage = 1"
+                :disabled="currentPage === 1"
+                class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
               >
                 <Icon
-                  icon="mdi:account-group-outline"
-                  class="w-10 h-10 text-[#ff3344]"
+                  icon="mdi:chevron-double-left"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
                 />
+              </button>
+
+              <!-- Previous Page -->
+              <button
+                @click="currentPage--"
+                :disabled="currentPage === 1"
+                class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+              >
+                <Icon
+                  icon="mdi:chevron-left"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
+              </button>
+
+              <!-- Page Numbers - Desktop: Show 5, Mobile: Show 3 -->
+              <div class="hidden lg:flex gap-1.5">
+                <button
+                  v-for="page in displayedPages"
+                  :key="page"
+                  @click="currentPage = page"
+                  :class="[
+                    'w-9 h-9 rounded-lg font-bold text-sm transition-all',
+                    currentPage === page
+                      ? 'bg-[#ff3344] text-white shadow-lg shadow-[#ff3344]/30'
+                      : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] hover:text-[#ff3344] hover:border-[#ff3344]',
+                  ]"
+                >
+                  {{ page }}
+                </button>
               </div>
-              <h3 class="text-[#f0eaea] font-bold mb-2 text-base">
-                {{ $t("no_downline_found") }}
-              </h3>
-              <p class="text-[#b37a7a] text-sm mb-6 text-center max-w-sm px-4">
-                {{ $t("start_sharing") }}
-              </p>
+
+              <!-- Page Numbers - Mobile: Show 3 pages only -->
+              <div class="flex lg:hidden gap-1">
+                <button
+                  v-for="page in mobileDisplayedPages"
+                  :key="page"
+                  @click="currentPage = page"
+                  :class="[
+                    'w-8 h-8 rounded-lg font-bold text-xs transition-all',
+                    currentPage === page
+                      ? 'bg-[#ff3344] text-white shadow-lg shadow-[#ff3344]/30'
+                      : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23]',
+                  ]"
+                >
+                  {{ page }}
+                </button>
+              </div>
+
+              <!-- Next Page -->
               <button
-                @click="$router.push(localePath('/myaccount/referral'))"
-                class="flex items-center gap-2 px-6 py-3 bg-[#ff3344] text-white rounded-lg font-semibold lg:hover:bg-[#cc2a3a] transition-all text-sm"
+                @click="currentPage++"
+                :disabled="currentPage === totalPages"
+                class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
               >
-                <Icon icon="mdi:share-variant" class="w-5 h-5" />
-                {{ $t("share_referral_code") }}
+                <Icon
+                  icon="mdi:chevron-right"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
+              </button>
+
+              <!-- Last Page -->
+              <button
+                @click="currentPage = totalPages"
+                :disabled="currentPage === totalPages"
+                class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+              >
+                <Icon
+                  icon="mdi:chevron-double-right"
+                  class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                />
               </button>
             </div>
-          </div>
-        </div>
-
-        <!-- Pagination -->
-        <div
-          v-if="paginatedDownlines.length > 0"
-          class="flex justify-between items-center gap-4 max-lg:flex-col"
-        >
-          <div class="text-[#b37a7a] text-sm">
-            {{ $t("page") }} {{ currentPage }} {{ $t("of") }} {{ totalPages }}
-          </div>
-
-          <div class="flex items-center gap-2">
-            <button
-              @click="currentPage = 1"
-              :disabled="currentPage === 1"
-              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Icon icon="mdi:chevron-double-left" class="w-5 h-5" />
-            </button>
-
-            <button
-              @click="currentPage--"
-              :disabled="currentPage === 1"
-              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Icon icon="mdi:chevron-left" class="w-5 h-5" />
-            </button>
-
-            <div class="flex gap-1">
-              <button
-                v-for="page in displayedPages"
-                :key="page"
-                @click="currentPage = page"
-                :class="[
-                  'w-9 h-9 rounded-lg font-semibold text-sm transition-all',
-                  currentPage === page
-                    ? 'bg-[#ff3344] text-white'
-                    : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] lg:hover:bg-[#241017]',
-                ]"
-              >
-                {{ page }}
-              </button>
-            </div>
-
-            <button
-              @click="currentPage++"
-              :disabled="currentPage === totalPages"
-              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Icon icon="mdi:chevron-right" class="w-5 h-5" />
-            </button>
-
-            <button
-              @click="currentPage = totalPages"
-              :disabled="currentPage === totalPages"
-              class="w-9 h-9 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:bg-[#241017] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <Icon icon="mdi:chevron-double-right" class="w-5 h-5" />
-            </button>
           </div>
         </div>
       </div>
@@ -376,6 +498,25 @@ const displayedPages = computed(() => {
   ];
 });
 
+const mobileDisplayedPages = computed(() => {
+  if (totalPages.value <= 3) {
+    return Array.from({ length: totalPages.value }, (_, i) => i + 1);
+  }
+
+  // If on first page
+  if (currentPage.value === 1) {
+    return [1, 2, 3];
+  }
+
+  // If on last page
+  if (currentPage.value === totalPages.value) {
+    return [totalPages.value - 2, totalPages.value - 1, totalPages.value];
+  }
+
+  // Middle pages
+  return [currentPage.value - 1, currentPage.value, currentPage.value + 1];
+});
+
 const fetchTeamStats = async () => {
   try {
     isLoading.value = true;
@@ -415,7 +556,21 @@ const fetchDownlines = async () => {
     const { get } = useApiEndpoint();
     const { data } = await get("get-downlines");
     if (data.success) {
-      downlines.value = data.data.downlines;
+      // Duplicate the data 10 times for pagination testing
+      const originalData = data.data.downlines.direct || [];
+      const duplicatedData = [];
+
+      for (let i = 0; i < 50; i++) {
+        originalData.forEach((member, index) => {
+          duplicatedData.push({
+            ...member,
+            _id: `${member._id}_${i}_${index}`, // Unique ID for each duplicated item
+            username: `${member.username}${i > 0 ? i : ""}`, // Add number to username except first iteration
+          });
+        });
+      }
+
+      downlines.value = { direct: duplicatedData };
     }
   } catch (error) {
     console.error("Error fetching downlines:", error);
@@ -491,3 +646,30 @@ onMounted(async () => {
   }
 });
 </script>
+
+<style scoped>
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: #15090e;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #3b1c23;
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: #ff3344;
+}
+
+/* Firefox scrollbar */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: #3b1c23 #15090e;
+}
+</style>

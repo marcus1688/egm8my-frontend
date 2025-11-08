@@ -1136,5 +1136,14 @@
   "instant_rewards": "即时奖励",
   "instant_rewards_desc": "好友加入即可立即获得奖励",
   "lifetime_commission": "终身佣金",
-  "lifetime_commission_desc": "从推荐用户的活动中永久获利"
+  "lifetime_commission_desc": "从推荐用户的活动中永久获利",
+  "team_overview": "团队概览",
+  "direct": "直属",
+  "indirect": "间接",
+  "members": "成员",
+  "page": "页",
+  "of": "共",
+  "results": "结果",
+  "records": "记录",
+  "time_period": "时间段"
 }
