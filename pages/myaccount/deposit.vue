@@ -124,13 +124,22 @@
         <label class="block font-semibold mb-2 text-base max-lg:text-sm">{{
           $t("deposit_amount")
         }}</label>
-        <input
-          type="text"
-          v-model="selectedDepositAmount"
-          :placeholder="$t('amount_placeholder')"
-          @input="onlyNumbers"
-          class="w-full p-4 mb-3 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-sm:text-sm max-[370px]:text-xs max-lg:p-2.5"
-        />
+
+        <div class="relative mb-3">
+          <div
+            class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"
+          >
+            <span class="text-[#b37a7a] text-sm font-medium">MYR</span>
+          </div>
+          <input
+            type="text"
+            v-model="selectedDepositAmount"
+            :placeholder="$t('amount_placeholder')"
+            @input="onlyNumbers"
+            class="w-full pr-4 py-4 pl-16 bg-[#241017] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors text-[0.9rem] max-lg:pl-14 max-lg:py-2.5 max-lg:pr-2.5 max-sm:text-sm max-[370px]:text-xs"
+          />
+        </div>
+
         <div class="flex gap-2 flex-wrap">
           <button
             v-for="amount in amounts"

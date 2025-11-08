@@ -11,9 +11,8 @@
     </Teleport>
 
     <div class="text-[#f0eaea]">
-      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
           {{ $t("referral") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -22,12 +21,10 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Main Referral Card - Split Layout -->
         <div
           class="bg-[#241017] border border-[#3b1c23] rounded-lg overflow-hidden"
         >
           <div class="grid md:grid-cols-[300px_1fr] max-lg:grid-cols-1">
-            <!-- Left: QR Code Section -->
             <div
               class="bg-[#15090e] border-r border-[#3b1c23] p-6 flex flex-col items-center justify-center max-lg:border-r-0 max-lg:border-b max-lg:p-4"
             >
@@ -42,21 +39,19 @@
               </div>
               <button
                 @click="downloadQRCode"
-                class="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-[#ff3344] text-white rounded-lg font-medium lg:hover:bg-[#cc2a3a] transition-all text-sm"
+                class="w-full flex items-center justify-center gap-2 py-3 max-lg:py-2.5 bg-[#ff3344] text-white rounded-lg font-medium lg:hover:bg-[#cc2a3a] transition-all text-sm"
               >
                 <Icon icon="mdi:download" class="w-4 h-4" />
                 {{ $t("download_qr") }}
               </button>
             </div>
 
-            <!-- Right: Referral Details -->
             <div class="p-6 max-lg:p-4 space-y-4">
-              <!-- Referral Code Row -->
               <div
                 class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg"
               >
                 <div class="flex-1">
-                  <label class="text-xs text-[#b37a7a] mb-1 block">{{
+                  <label class="text-[0.8rem] text-[#b37a7a] mb-1 block">{{
                     $t("referral_code")
                   }}</label>
                   <p class="font-mono font-bold text-[#f0eaea] text-lg">
@@ -65,18 +60,17 @@
                 </div>
                 <button
                   @click="copyText(userData.referralCode)"
-                  class="w-10 h-10 rounded-lg bg-[#ff3344]/10 border border-[#ff3344] flex items-center justify-center text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white transition-all"
+                  class="w-9 h-9 rounded-lg bg-[#ff3344]/10 border border-[#ff3344] flex items-center justify-center text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white transition-all"
                 >
-                  <Icon icon="mdi:content-copy" class="w-5 h-5" />
+                  <Icon icon="mdi:content-copy" class="w-4 h-4" />
                 </button>
               </div>
 
-              <!-- Referral Link Row -->
               <div
                 class="flex items-center gap-3 p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg"
               >
                 <div class="flex-1 min-w-0">
-                  <label class="text-xs text-[#b37a7a] mb-1 block">{{
+                  <label class="text-[0.8rem] text-[#b37a7a] mb-1 block">{{
                     $t("referral_link")
                   }}</label>
                   <p class="font-mono text-[#f0eaea] text-sm truncate">
@@ -85,15 +79,15 @@
                 </div>
                 <button
                   @click="copyText(userData.referralLink)"
-                  class="w-10 h-10 rounded-lg bg-[#ff3344]/10 border border-[#ff3344] flex items-center justify-center text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white transition-all flex-shrink-0"
+                  class="w-9 h-9 rounded-lg bg-[#ff3344]/10 border border-[#ff3344] flex items-center justify-center text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white transition-all flex-shrink-0"
                 >
-                  <Icon icon="mdi:content-copy" class="w-5 h-5" />
+                  <Icon icon="mdi:content-copy" class="w-4 h-4" />
                 </button>
               </div>
 
               <!-- Social Share -->
               <div>
-                <label class="text-xs text-[#b37a7a] mb-2 block">{{
+                <label class="text-[0.8rem] text-[#b37a7a] mb-2 block">{{
                   $t("share_via")
                 }}</label>
                 <div class="flex gap-2 flex-wrap">
@@ -142,77 +136,69 @@
           </div>
         </div>
 
-        <!-- How It Works - Horizontal Steps -->
         <div
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
+          class="bg-[#241017] border border-[#3b1c23] rounded-xl p-5 max-lg:p-4"
         >
-          <h3
-            class="font-semibold text-[#f0eaea] mb-4 text-sm flex items-center gap-2"
-          >
-            <Icon icon="mdi:lightbulb-on" class="w-5 h-5 text-[#ff3344]" />
+          <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm mb-4">
             {{ $t("how_it_works") }}
           </h3>
 
-          <div class="grid md:grid-cols-3 gap-4 max-lg:gap-3">
-            <div class="relative">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center flex-shrink-0 text-white font-bold"
-                >
-                  1
-                </div>
-                <div class="flex-1">
-                  <h4 class="font-semibold text-[#f0eaea] text-sm mb-1">
-                    {{ $t("share_your_code") }}
-                  </h4>
-                  <p class="text-xs text-[#b37a7a] leading-relaxed">
-                    {{ $t("share_code_description") }}
-                  </p>
-                </div>
-              </div>
-              <!-- Arrow -->
+          <div class="space-y-4">
+            <div class="flex gap-3">
               <div
-                class="hidden md:block absolute top-5 -right-5 text-[#3b1c23]"
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ff3344]/30"
               >
-                <Icon icon="mdi:arrow-right" class="w-8 h-8" />
-              </div>
-            </div>
-
-            <div class="relative">
-              <div class="flex items-start gap-3">
-                <div
-                  class="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center flex-shrink-0 text-white font-bold"
-                >
-                  2
-                </div>
-                <div class="flex-1">
-                  <h4 class="font-semibold text-[#f0eaea] text-sm mb-1">
-                    {{ $t("friends_sign_up") }}
-                  </h4>
-                  <p class="text-xs text-[#b37a7a] leading-relaxed">
-                    {{ $t("sign_up_description") }}
-                  </p>
-                </div>
-              </div>
-              <!-- Arrow -->
-              <div
-                class="hidden md:block absolute top-5 -right-5 text-[#3b1c23]"
-              >
-                <Icon icon="mdi:arrow-right" class="w-8 h-8" />
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <div
-                class="w-10 h-10 rounded-full bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center flex-shrink-0 text-white font-bold"
-              >
-                3
+                <span class="text-sm font-bold text-white">1</span>
               </div>
               <div class="flex-1">
-                <h4 class="font-semibold text-[#f0eaea] text-sm mb-1">
+                <h4
+                  class="font-semibold text-[#f0eaea] text-[0.9rem] max-sm:text-sm mb-1"
+                >
+                  {{ $t("share_your_code") }}
+                </h4>
+                <p
+                  class="text-sm max-lg:text-xs text-[#b37a7a] leading-relaxed"
+                >
+                  {{ $t("share_code_description") }}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ff3344]/30"
+              >
+                <span class="text-sm font-bold text-white">2</span>
+              </div>
+              <div class="flex-1">
+                <h4
+                  class="font-semibold text-[#f0eaea] text-[0.9rem] max-sm:text-sm mb-1"
+                >
+                  {{ $t("friends_sign_up") }}
+                </h4>
+                <p
+                  class="text-sm max-lg:text-xs text-[#b37a7a] leading-relaxed"
+                >
+                  {{ $t("sign_up_description") }}
+                </p>
+              </div>
+            </div>
+
+            <div class="flex gap-3">
+              <div
+                class="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center flex-shrink-0 shadow-lg shadow-[#ff3344]/30"
+              >
+                <span class="text-sm font-bold text-white">3</span>
+              </div>
+              <div class="flex-1">
+                <h4
+                  class="font-semibold text-[#f0eaea] text-[0.9rem] max-sm:text-sm mb-1"
+                >
                   {{ $t("earn_rewards") }}
                 </h4>
-                <p class="text-xs text-[#b37a7a] leading-relaxed">
+                <p
+                  class="text-sm max-lg:text-xs text-[#b37a7a] leading-relaxed"
+                >
                   {{ $t("earn_rewards_description") }}
                 </p>
               </div>
@@ -220,102 +206,162 @@
           </div>
         </div>
 
-        <!-- Benefits Grid -->
-        <div class="grid md:grid-cols-3 gap-3">
-          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
-            <div
-              class="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center mb-3"
-            >
-              <Icon icon="mdi:cash-multiple" class="w-5 h-5 text-blue-400" />
-            </div>
-            <h4 class="font-semibold text-[#f0eaea] text-sm mb-1">
-              {{ $t("unlimited_earnings") }}
-            </h4>
-            <p class="text-xs text-[#b37a7a]">
-              {{ $t("unlimited_earnings_desc") }}
-            </p>
+        <div
+          class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
+        >
+          <div class="p-4 border-b border-[#3b1c23]">
+            <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm">
+              {{ $t("referral_benefits") }}
+            </h3>
           </div>
 
-          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
-            <div
-              class="w-10 h-10 rounded-lg bg-green-500/10 flex items-center justify-center mb-3"
-            >
-              <Icon icon="mdi:gift" class="w-5 h-5 text-green-400" />
+          <div
+            class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-[#3b1c23]"
+          >
+            <div class="p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="w-10 h-10 max-sm:w-8 max-sm:h-8 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <Icon
+                    icon="mdi:cash-multiple"
+                    class="w-5 h-5 max-sm:w-4 max-sm:h-4 text-blue-400"
+                  />
+                </div>
+                <div>
+                  <h4
+                    class="font-semibold text-[#f0eaea] mb-1 max-sm:text-sm max-[370px]:text-xs text-[0.9rem]"
+                  >
+                    {{ $t("unlimited_earnings") }}
+                  </h4>
+                  <p
+                    class="text-sm max-lg:text-xs text-[#b37a7a] leading-relaxed"
+                  >
+                    {{ $t("unlimited_earnings_desc") }}
+                  </p>
+                </div>
+              </div>
             </div>
-            <h4 class="font-semibold text-[#f0eaea] text-sm mb-1">
-              {{ $t("instant_rewards") }}
-            </h4>
-            <p class="text-xs text-[#b37a7a]">
-              {{ $t("instant_rewards_desc") }}
-            </p>
-          </div>
 
-          <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
-            <div
-              class="w-10 h-10 rounded-lg bg-purple-500/10 flex items-center justify-center mb-3"
-            >
-              <Icon icon="mdi:account-group" class="w-5 h-5 text-purple-400" />
+            <div class="p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="w-10 h-10 max-sm:w-8 max-sm:h-8 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <Icon
+                    icon="mdi:gift"
+                    class="w-5 h-5 max-sm:w-4 max-sm:h-4 text-green-400"
+                  />
+                </div>
+                <div>
+                  <h4
+                    class="font-semibold text-[#f0eaea] mb-1 max-sm:text-sm max-[370px]:text-xs text-[0.9rem]"
+                  >
+                    {{ $t("instant_rewards") }}
+                  </h4>
+                  <p
+                    class="text-sm max-lg:text-xs text-[#b37a7a] leading-relaxed"
+                  >
+                    {{ $t("instant_rewards_desc") }}
+                  </p>
+                </div>
+              </div>
             </div>
-            <h4 class="font-semibold text-[#f0eaea] text-sm mb-1">
-              {{ $t("lifetime_commission") }}
-            </h4>
-            <p class="text-xs text-[#b37a7a]">
-              {{ $t("lifetime_commission_desc") }}
-            </p>
+
+            <div class="p-4">
+              <div class="flex items-start gap-3">
+                <div
+                  class="w-10 h-10 max-sm:w-8 max-sm:h-8 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0"
+                >
+                  <Icon
+                    icon="mdi:account-group"
+                    class="w-5 h-5 max-sm:w-4 max-sm:h-4 text-purple-400"
+                  />
+                </div>
+                <div>
+                  <h4
+                    class="font-semibold text-[#f0eaea] mb-1 max-sm:text-sm max-[370px]:text-xs text-[0.9rem]"
+                  >
+                    {{ $t("lifetime_commission") }}
+                  </h4>
+                  <p
+                    class="text-sm max-lg:text-xs text-[#b37a7a] leading-relaxed"
+                  >
+                    {{ $t("lifetime_commission_desc") }}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Terms & Conditions - Collapsible -->
-        <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
+        <!-- Terms & Conditions - Clean Accordion -->
+        <div
+          class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
+        >
           <button
             @click="showTerms = !showTerms"
-            class="w-full p-4 flex items-center justify-between lg:hover:bg-[#241017] transition-colors"
+            class="w-full p-4 flex items-center justify-between hover:bg-[#15090e]/50 transition-colors"
           >
-            <div class="flex items-center gap-2">
-              <Icon icon="mdi:file-document" class="w-5 h-5 text-[#ff3344]" />
-              <h3 class="font-semibold text-[#f0eaea] text-sm">
-                {{ $t("terms_conditions") }}
-              </h3>
-            </div>
+            <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm">
+              {{ $t("terms_conditions") }}
+            </h3>
             <Icon
               icon="mdi:chevron-down"
-              class="w-5 h-5 text-[#b37a7a] transition-transform"
+              class="w-5 h-5 text-[#ff3344] transition-transform"
               :class="{ 'rotate-180': showTerms }"
             />
           </button>
 
           <Transition name="expand">
-            <div v-if="showTerms" class="px-4 pb-4">
-              <ul class="space-y-2 pt-2">
-                <li class="flex gap-2 text-xs text-[#b37a7a]">
-                  <Icon
-                    icon="mdi:circle-small"
-                    class="w-4 h-4 flex-shrink-0 mt-0.5"
-                  />
-                  <span>{{ $t("term_1") }}</span>
-                </li>
-                <li class="flex gap-2 text-xs text-[#b37a7a]">
-                  <Icon
-                    icon="mdi:circle-small"
-                    class="w-4 h-4 flex-shrink-0 mt-0.5"
-                  />
-                  <span>{{ $t("term_2") }}</span>
-                </li>
-                <li class="flex gap-2 text-xs text-[#b37a7a]">
-                  <Icon
-                    icon="mdi:circle-small"
-                    class="w-4 h-4 flex-shrink-0 mt-0.5"
-                  />
-                  <span>{{ $t("term_3") }}</span>
-                </li>
-                <li class="flex gap-2 text-xs text-[#b37a7a]">
-                  <Icon
-                    icon="mdi:circle-small"
-                    class="w-4 h-4 flex-shrink-0 mt-0.5"
-                  />
-                  <span>{{ $t("term_4") }}</span>
-                </li>
-              </ul>
+            <div
+              v-if="showTerms"
+              class="border-t border-[#3b1c23] p-4 space-y-2.5"
+            >
+              <div class="flex gap-2.5">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <p
+                  class="text-sm max-lg:text-xs text-[#f0eaea] leading-relaxed"
+                >
+                  {{ $t("term_1") }}
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <p
+                  class="text-sm max-lg:text-xs text-[#f0eaea] leading-relaxed"
+                >
+                  {{ $t("term_2") }}
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <p
+                  class="text-sm max-lg:text-xs text-[#f0eaea] leading-relaxed"
+                >
+                  {{ $t("term_3") }}
+                </p>
+              </div>
+              <div class="flex gap-2.5">
+                <Icon
+                  icon="mdi:check-circle"
+                  class="w-4 h-4 text-[#ff3344] flex-shrink-0 mt-0.5"
+                />
+                <p
+                  class="text-sm max-lg:text-xs text-[#f0eaea] leading-relaxed"
+                >
+                  {{ $t("term_4") }}
+                </p>
+              </div>
             </div>
           </Transition>
         </div>

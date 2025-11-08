@@ -1,9 +1,8 @@
 <template>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
-      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
           {{ $t("downline") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -12,27 +11,30 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Stats Overview Card -->
-        <div
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4"
+        <!-- <div
+          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4 max-sm:px-2"
         >
           <div class="flex items-center justify-between mb-4 max-lg:mb-3">
             <h3
-              class="font-semibold text-[#f0eaea] text-sm flex items-center gap-2"
+              class="font-semibold text-[#f0eaea] text-base max-lg:text-sm flex items-center gap-2"
             >
-              <Icon icon="mdi:chart-box" class="w-5 h-5 text-[#ff3344]" />
+              <Icon
+                icon="mdi:chart-box"
+                class="w-6 h-6 max-lg:w-5 max-lg:h-5 text-[#ff3344]"
+              />
               {{ $t("team_overview") }}
             </h3>
           </div>
 
-          <div class="grid grid-cols-3 gap-4 max-lg:gap-3">
-            <!-- Total -->
+          <div
+            class="grid grid-cols-3 gap-4 max-sm:gap-2 max-lg:gap-3 max-[400px]:gap-1"
+          >
             <div
-              class="bg-[#15090e] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-[#ff3344]/50 transition-colors"
+              class="bg-[#15090e] border max-[500px]:items-center max-[500px]:flex max-[500px]:flex-col border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-[#ff3344]/50 transition-colors"
             >
               <div class="flex items-center gap-3 mb-2">
                 <div
-                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg bg-[#ff3344]/10 flex items-center justify-center flex-shrink-0"
+                  class="w-10 max-[500px]:hidden h-10 max-lg:w-9 max-lg:h-9 max-[500px]:w-8 max-[500px]:h-8 rounded-lg bg-[#ff3344]/10 flex items-center justify-center flex-shrink-0"
                 >
                   <Icon
                     icon="mdi:account-group"
@@ -40,7 +42,9 @@
                   />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <div class="text-2xl max-lg:text-xl font-bold text-[#ff3344]">
+                  <div
+                    class="text-2xl max-lg:text-xl max-[500px]:text-lg font-bold text-[#ff3344]"
+                  >
                     {{ statsData?.all?.registeredUsers || 0 }}
                   </div>
                 </div>
@@ -52,13 +56,12 @@
               </div>
             </div>
 
-            <!-- Direct -->
             <div
               class="bg-[#15090e] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-green-500/50 transition-colors"
             >
               <div class="flex items-center gap-3 mb-2">
                 <div
-                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0"
+                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 max-[500px]:w-8 max-[500px]:h-8 rounded-lg bg-green-500/10 flex items-center justify-center flex-shrink-0"
                 >
                   <Icon
                     icon="mdi:account-multiple-check"
@@ -66,7 +69,9 @@
                   />
                 </div>
                 <div class="flex-1 min-w-0">
-                  <div class="text-2xl max-lg:text-xl font-bold text-green-400">
+                  <div
+                    class="text-2xl max-lg:text-xl max-[500px]:text-lg font-bold text-green-400"
+                  >
                     {{ statsData?.direct?.registeredUsers || 0 }}
                   </div>
                 </div>
@@ -78,13 +83,12 @@
               </div>
             </div>
 
-            <!-- Indirect -->
             <div
               class="bg-[#15090e] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 hover:border-purple-500/50 transition-colors"
             >
               <div class="flex items-center gap-3 mb-2">
                 <div
-                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0"
+                  class="w-10 h-10 max-lg:w-9 max-lg:h-9 max-[500px]:w-8 max-[500px]:h-8 rounded-lg bg-purple-500/10 flex items-center justify-center flex-shrink-0"
                 >
                   <Icon
                     icon="mdi:account-network"
@@ -93,7 +97,7 @@
                 </div>
                 <div class="flex-1 min-w-0">
                   <div
-                    class="text-2xl max-lg:text-xl font-bold text-purple-400"
+                    class="text-2xl max-lg:text-xl max-[500px]:text-lg font-bold text-purple-400"
                   >
                     {{ statsData?.indirect?.registeredUsers || 0 }}
                   </div>
@@ -106,12 +110,10 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Search & Filter Bar -->
         <div class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4">
           <div class="flex items-center gap-3 max-lg:flex-col">
-            <!-- Search Input -->
             <div class="relative flex-1 max-lg:w-full">
               <Icon
                 icon="mdi:magnify"
@@ -121,7 +123,7 @@
                 v-model="searchQuery"
                 type="text"
                 :placeholder="$t('search_by_username')"
-                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-10 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:ring-2 focus:ring-[#ff3344]/20 focus:outline-none transition-all placeholder-[#b37a7a] text-sm"
+                class="w-full bg-[#15090e] text-[#f0eaea] pl-10 pr-10 py-2.5 rounded-lg border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-colors placeholder-[#b37a7a] text-base max-sm:text-sm max-[370px]:text-xs"
               />
               <button
                 v-if="searchQuery"
@@ -130,20 +132,6 @@
               >
                 <Icon icon="mdi:close-circle" class="w-5 h-5" />
               </button>
-            </div>
-
-            <!-- Results Counter -->
-            <div
-              class="flex items-center gap-2 px-4 py-2.5 bg-[#15090e] border border-[#3b1c23] rounded-lg max-lg:w-full max-lg:justify-center"
-            >
-              <Icon icon="mdi:filter-outline" class="w-4 h-4 text-[#ff3344]" />
-              <span class="text-sm text-[#b37a7a] font-medium">
-                {{ $t("showing") }}
-                <span class="text-[#ff3344] font-bold mx-1">{{
-                  filteredDownlines.length
-                }}</span>
-                {{ $t("members") }}
-              </span>
             </div>
           </div>
         </div>
@@ -159,7 +147,7 @@
                       :key="header.key"
                       @click="handleSort(header.key)"
                       :class="[
-                        'px-4 py-4 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider transition-all max-lg:px-3 max-lg:py-3',
+                        'px-4 py-4 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider transition-all max-lg:px-3 max-lg:py-3',
                         header.sortable
                           ? 'cursor-pointer hover:bg-[#241017]/50'
                           : '',
@@ -183,27 +171,19 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- Member Rows -->
                   <tr
-                    v-for="(member, index) in paginatedDownlines"
+                    v-for="member in paginatedDownlines"
                     :key="member._id"
                     class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300"
                   >
-                    <!-- Member Column -->
                     <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
                       <div class="flex items-center gap-3 max-lg:gap-2">
                         <div class="relative flex-shrink-0">
                           <div
-                            class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30 group-hover:scale-110 transition-transform"
+                            class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs"
                           >
                             {{ member.username.substring(0, 2).toUpperCase() }}
                           </div>
-                          <div
-                            class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 max-lg:w-3 max-lg:h-3 rounded-full border-2 border-[#241017]"
-                            :class="
-                              member.status ? 'bg-green-400' : 'bg-gray-500'
-                            "
-                          ></div>
                         </div>
                         <div class="min-w-0">
                           <span
@@ -211,15 +191,10 @@
                           >
                             {{ member.username }}
                           </span>
-                          <span
-                            class="text-[10px] text-[#b37a7a] hidden lg:block"
-                            >ID: #{{ paginationStart + index + 1 }}</span
-                          >
                         </div>
                       </div>
                     </td>
 
-                    <!-- VIP Column -->
                     <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
                       <span
                         class="inline-flex items-center gap-1 px-2.5 py-1 max-lg:px-2 max-lg:py-0.5 bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 border border-[#ff3344]/40 rounded-lg text-xs max-lg:text-[10px] font-bold text-[#ff3344] shadow-sm whitespace-nowrap"

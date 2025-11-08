@@ -33,7 +33,7 @@
                   >
                     {{ $t("rebate_rewards_ready") }}
                   </h3>
-                  <p class="text-xs text-[#b37a7a]">
+                  <p class="text-sm max-sm:text-xs text-[#b37a7a]">
                     {{ $t("rebate_rewards_based") }}
                   </p>
                 </div>
