@@ -174,7 +174,7 @@
                       v-for="mail in paginatedMails"
                       :key="mail._id"
                       @click="openMail(mail)"
-                      class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300 cursor-pointer"
+                      class="group border-b border-[#3b1c23] last:border-b-0 lg:hover:bg-gradient-to-r lg:hover:from-[#ff3344]/5 lg:hover:to-transparent transition-all duration-300 cursor-pointer"
                     >
                       <!-- Date Column -->
                       <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
@@ -287,7 +287,7 @@
                           <button
                             v-if="currentFilter !== 'all'"
                             @click="filterMails('all')"
-                            class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs"
+                            class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold lg:hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs"
                           >
                             <Icon
                               icon="mdi:refresh"
@@ -334,7 +334,7 @@
                 <button
                   @click="currentPage = 1"
                   :disabled="currentPage === 1"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-double-left"
@@ -345,7 +345,7 @@
                 <button
                   @click="prevPage"
                   :disabled="currentPage === 1"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-left"
@@ -362,7 +362,7 @@
                       'w-9 h-9 rounded-lg font-bold text-sm transition-all',
                       currentPage === page
                         ? 'bg-[#ff3344] text-white shadow-lg shadow-[#ff3344]/30'
-                        : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] hover:text-[#ff3344] hover:border-[#ff3344]',
+                        : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344]',
                     ]"
                   >
                     {{ page }}
@@ -388,7 +388,7 @@
                 <button
                   @click="nextPage"
                   :disabled="currentPage === totalPages"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-right"
@@ -399,7 +399,7 @@
                 <button
                   @click="currentPage = totalPages"
                   :disabled="currentPage === totalPages"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-double-right"
@@ -472,7 +472,7 @@
                     <tr
                       v-for="announcement in paginatedAnnouncements"
                       :key="announcement._id"
-                      class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300"
+                      class="group border-b border-[#3b1c23] last:border-b-0 lg:hover:bg-gradient-to-r lg:hover:from-[#ff3344]/5 lg:hover:to-transparent transition-all duration-300"
                     >
                       <!-- Date Column -->
                       <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
@@ -516,7 +516,7 @@
                         <div class="flex justify-center">
                           <button
                             @click="openMailModal(announcement)"
-                            class="inline-flex items-center gap-1 px-2.5 py-1 max-lg:px-2 max-lg:py-0.5 bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 border border-[#ff3344]/40 rounded-lg text-xs max-lg:text-[10px] font-bold text-[#ff3344] shadow-sm whitespace-nowrap hover:shadow-md transition-all"
+                            class="inline-flex items-center gap-1 px-2.5 py-1 max-lg:px-2 max-lg:py-0.5 bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 border border-[#ff3344]/40 rounded-lg text-xs max-lg:text-[10px] font-bold text-[#ff3344] shadow-sm whitespace-nowrap lg:hover:shadow-md transition-all"
                           >
                             <Icon
                               icon="mdi:eye"
@@ -553,7 +553,7 @@
                           <button
                             v-if="selectedAnnouncementTab !== 'All'"
                             @click="selectedAnnouncementTab = 'All'"
-                            class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30"
+                            class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold lg:hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30"
                           >
                             <Icon
                               icon="mdi:refresh"
@@ -600,7 +600,7 @@
                 <button
                   @click="announcementCurrentPage = 1"
                   :disabled="announcementCurrentPage === 1"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-double-left"
@@ -611,7 +611,7 @@
                 <button
                   @click="prevAnnouncementPage"
                   :disabled="announcementCurrentPage === 1"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-left"
@@ -628,7 +628,7 @@
                       'w-9 h-9 rounded-lg font-bold text-sm transition-all',
                       announcementCurrentPage === page
                         ? 'bg-[#ff3344] text-white shadow-lg shadow-[#ff3344]/30'
-                        : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] hover:text-[#ff3344] hover:border-[#ff3344]',
+                        : 'bg-[#15090e] text-[#b37a7a] border border-[#3b1c23] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344]',
                     ]"
                   >
                     {{ page }}
@@ -654,7 +654,7 @@
                 <button
                   @click="nextAnnouncementPage"
                   :disabled="announcementCurrentPage === announcementTotalPages"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-right"
@@ -665,7 +665,7 @@
                 <button
                   @click="announcementCurrentPage = announcementTotalPages"
                   :disabled="announcementCurrentPage === announcementTotalPages"
-                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] hover:text-[#ff3344] hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
+                  class="w-9 h-9 max-lg:w-8 max-lg:h-8 rounded-lg border border-[#3b1c23] bg-[#15090e] flex items-center justify-center text-[#b37a7a] lg:hover:text-[#ff3344] lg:hover:border-[#ff3344] transition-all disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:text-[#b37a7a] disabled:hover:border-[#3b1c23]"
                 >
                   <Icon
                     icon="mdi:chevron-double-right"

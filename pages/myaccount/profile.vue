@@ -54,7 +54,7 @@
               </p>
               <NuxtLinkLocale
                 to="/myaccount/deposit"
-                class="text-xs max-sm:text-[0.7rem] text-[#ff3344] hover:text-[#cc2a3a] underline transition-all"
+                class="text-xs max-sm:text-[0.7rem] text-[#ff3344] lg:hover:text-[#cc2a3a] underline transition-all"
               >
                 {{ $t("top_up_balance") }}
               </NuxtLinkLocale>
@@ -114,7 +114,7 @@
                   <button
                     v-if="!userData.dob"
                     @click="showChangeBirthdayModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("add") }}
                   </button>
@@ -141,7 +141,7 @@
                   <button
                     v-if="!userData.email"
                     @click="showChangeEmailModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("add") }}
                   </button>
@@ -167,7 +167,7 @@
                   </div>
                   <NuxtLinkLocale
                     to="/myaccount/change-password"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("change") }}
                   </NuxtLinkLocale>
@@ -208,7 +208,7 @@
                   </div>
                   <button
                     @click="showChangeTelegramModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ userData.telegramId ? $t("edit") : $t("connect") }}
                   </button>
@@ -238,7 +238,7 @@
                   </div>
                   <button
                     @click="showChangeFacebookModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ userData.facebookId ? $t("edit") : $t("connect") }}
                   </button>
