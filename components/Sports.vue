@@ -28,17 +28,22 @@
           :key="match.fixtureId"
           class="bg-[#241017] rounded-xl shadow-lg overflow-hidden border border-[#3b1c23] transition-all duration-300"
         >
+          <!-- Match Header - Fixed Height -->
           <div
-            class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] px-4 py-2.5 border-b border-[#3b1c23]"
+            class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] px-4 py-2.5 border-b border-[#3b1c23] h-14 flex items-center"
           >
-            <div class="flex justify-between items-center">
-              <div class="flex items-center text-xs text-[#b37a7a]">
-                <Icon icon="mdi:stadium" class="mr-1.5 text-sm" />
-                <span class="font-medium">{{
+            <div class="flex justify-between items-center w-full min-w-0">
+              <div
+                class="flex items-center text-xs text-[#b37a7a] min-w-0 flex-1 mr-2"
+              >
+                <Icon icon="mdi:stadium" class="mr-1.5 text-sm flex-shrink-0" />
+                <span class="font-medium truncate">{{
                   match.venue?.name || $t("tbd")
                 }}</span>
               </div>
-              <div class="text-xs text-[#b37a7a] font-medium">
+              <div
+                class="text-xs text-[#b37a7a] font-medium truncate flex-shrink-0 max-w-[40%]"
+              >
                 {{ match.venue?.city || "" }}
               </div>
             </div>
@@ -136,7 +141,6 @@
               </div>
             </div>
 
-            <!-- Date/Time -->
             <div
               class="text-xs text-center text-[#b37a7a] pt-4 mt-4 border-t border-[#3b1c23] flex items-center justify-center gap-2"
             >
@@ -147,21 +151,16 @@
         </div>
       </div>
 
-      <!-- Mobile/Tablet Swiper -->
-      <div class="lg:hidden relative">
+      <div class="lg:hidden">
         <swiper
-          :modules="[Autoplay, Navigation]"
-          :slidesPerView="1"
-          :spaceBetween="16"
-          :loop="true"
-          :autoplay="false"
-          :navigation="{
-            nextEl: '.match-button-next',
-            prevEl: '.match-button-prev',
-          }"
+          :modules="[]"
+          :slidesPerView="1.1"
+          :spaceBetween="12"
+          :loop="false"
+          :centeredSlides="false"
           :breakpoints="{
             640: {
-              slidesPerView: 2,
+              slidesPerView: 2.2,
               spaceBetween: 16,
             },
           }"
@@ -171,26 +170,30 @@
             <div
               class="bg-[#241017] rounded-xl shadow-lg overflow-hidden border border-[#3b1c23] h-full"
             >
-              <!-- Match Header -->
               <div
-                class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] px-4 py-2.5 border-b border-[#3b1c23]"
+                class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] px-3 py-2 border-b border-[#3b1c23] h-12 flex items-center"
               >
-                <div class="flex justify-between items-center">
-                  <div class="flex items-center text-xs text-[#b37a7a]">
-                    <Icon icon="mdi:stadium" class="mr-1.5 text-sm" />
-                    <span class="font-medium">{{
+                <div class="flex justify-between items-center w-full min-w-0">
+                  <div
+                    class="flex items-center text-xs text-[#b37a7a] min-w-0 flex-1 mr-2"
+                  >
+                    <Icon
+                      icon="mdi:stadium"
+                      class="mr-1 text-xs flex-shrink-0"
+                    />
+                    <span class="font-medium truncate text-[10px]">{{
                       match.venue?.name || $t("tbd")
                     }}</span>
                   </div>
-                  <div class="text-xs text-[#b37a7a] font-medium">
+                  <div
+                    class="text-[10px] text-[#b37a7a] font-medium truncate flex-shrink-0 max-w-[35%]"
+                  >
                     {{ match.venue?.city || "" }}
                   </div>
                 </div>
               </div>
 
-              <!-- Match Content -->
               <div class="p-4">
-                <!-- Live Status Badge -->
                 <div
                   v-if="match.status.short !== 'NS'"
                   class="flex justify-center mb-3"
@@ -217,9 +220,7 @@
                   </div>
                 </div>
 
-                <!-- Teams Grid -->
                 <div class="grid grid-cols-12 gap-2 items-start">
-                  <!-- Home Team Column -->
                   <div class="col-span-5 flex flex-col items-center">
                     <div
                       class="w-14 h-14 flex items-center justify-center p-2 rounded-xl bg-[#1A0D13] mb-2"
@@ -238,7 +239,6 @@
                     </p>
                   </div>
 
-                  <!-- VS or Score Column -->
                   <div
                     class="col-span-2 flex flex-col items-center justify-center"
                   >
@@ -269,7 +269,6 @@
                     </div>
                   </div>
 
-                  <!-- Away Team Column -->
                   <div class="col-span-5 flex flex-col items-center">
                     <div
                       class="w-14 h-14 flex items-center justify-center p-2 rounded-xl bg-[#1A0D13] mb-2"
@@ -289,7 +288,6 @@
                   </div>
                 </div>
 
-                <!-- Date/Time -->
                 <div
                   class="text-xs text-center text-[#b37a7a] pt-3 mt-3 border-t border-[#3b1c23] flex items-center justify-center gap-1.5"
                 >
@@ -311,10 +309,7 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
 
 const pageLoading = useState("pageLoading");
 const { get } = useApiEndpoint();
