@@ -1147,5 +1147,13 @@
   "records": "Rekod",
   "time_period": "Tempoh Masa",
   "add": "Tambah",
-  "referral_benefits": "Faedah Rujukan"
+  "referral_benefits": "Faedah Rujukan",
+  "change": "Tukar",
+  "edit": "Edit",
+  "connect": "Sambung",
+  "not_connected": "Tidak Disambungkan",
+  "social_connect_info": "Hubungkan akaun sosial anda untuk sokongan dan kemas kini yang lebih pantas",
+  "personal_information": "Maklumat Peribadi",
+  "social_media_connections": "Sambungan Media Sosial",
+  "top_up_balance": "Tambah Baki"
 }

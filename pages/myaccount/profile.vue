@@ -12,74 +12,71 @@
       </div>
 
       <div class="space-y-4">
-        <!-- VIP Progress Bar (Mobile Only) -->
-        <div class="lg:hidden">
-          <VipProgressBar />
-        </div>
-
-        <!-- Profile Header -->
         <div
-          class="bg-[#241017] border border-[#3b1c23] rounded-xl p-5 max-lg:p-4"
+          class="bg-[#241017] border border-[#3b1c23] rounded-xl max-lg:rounded-lg px-4 py-5 max-sm:px-3 max-sm:py-3"
         >
-          <div class="flex items-start justify-between gap-4 max-lg:flex-col">
+          <div class="flex items-start justify-between gap-4 max-sm:flex-col">
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-3">
                 <h2
-                  class="text-2xl max-lg:text-xl font-bold text-[#f0eaea] uppercase"
+                  class="text-2xl max-lg:text-xl max-sm:text-lg font-bold text-[#f0eaea] uppercase"
                 >
                   {{ userData.username }}
                 </h2>
                 <div
-                  class="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-lg"
+                  class="px-3 py-1 max-sm:py-0.5 bg-amber-500/10 border border-amber-500/20 rounded-lg"
                 >
                   <div class="flex items-center gap-1.5">
-                    <Icon icon="mdi:crown" class="w-4 h-4 text-amber-400" />
-                    <span class="text-xs font-bold text-amber-400 uppercase">{{
-                      userData.viplevel || $t("standard")
-                    }}</span>
+                    <Icon
+                      icon="mdi:crown"
+                      class="w-4 h-4 max-sm:w-3 max-sm:h-3 text-amber-400"
+                    />
+                    <span
+                      class="text-xs max-sm:text-[0.7rem] font-bold text-amber-400 uppercase"
+                      >{{ userData.viplevel || $t("standard") }}</span
+                    >
                   </div>
                 </div>
               </div>
-              <p class="text-sm text-[#b37a7a]">
+              <p class="text-[0.8rem] max-sm:text-xs text-[#b37a7a]">
                 {{ $t("member_since") }} {{ formatDate(userData.createdAt) }}
               </p>
             </div>
 
-            <div
-              class="flex items-center gap-3 max-lg:w-full max-lg:justify-between"
-            >
-              <div class="text-right max-lg:text-left">
-                <p class="text-xs text-[#b37a7a] mb-1">
-                  {{ $t("account_balance") }}
-                </p>
-                <p class="text-2xl max-lg:text-xl font-bold text-[#f0eaea]">
-                  ${{ formatAmount(userData.wallet || 0) }}
-                </p>
-              </div>
+            <div class="text-right max-lg:text-left">
+              <p class="text-xs text-[#b37a7a] mb-1">
+                {{ $t("account_balance") }}
+              </p>
+              <p
+                class="text-2xl max-lg:text-xl max-sm:text-lg font-bold text-[#f0eaea]"
+              >
+                ${{ formatAmount(userData.wallet || 0) }}
+              </p>
               <NuxtLinkLocale
                 to="/myaccount/deposit"
-                class="px-5 py-2.5 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                class="text-xs max-sm:text-[0.7rem] text-[#ff3344] hover:text-[#cc2a3a] underline transition-all"
               >
-                {{ $t("deposit") }}
+                {{ $t("top_up_balance") }}
               </NuxtLinkLocale>
             </div>
           </div>
         </div>
 
-        <!-- Two Column Layout -->
+        <div class="lg:hidden">
+          <VipProgressBar />
+        </div>
+
         <div class="grid lg:grid-cols-2 gap-4">
-          <!-- Personal Information -->
           <div
-            class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
+            class="bg-[#241017] border border-[#3b1c23] rounded-xl max-lg:rounded-lg overflow-hidden"
           >
-            <div class="p-4 border-b border-[#3b1c23]">
+            <div class="p-4 max-sm:p-3 border-b border-[#3b1c23]">
               <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm">
                 {{ $t("personal_information") }}
               </h3>
             </div>
 
-            <div class="p-4 space-y-4">
-              <!-- Username -->
+            <div class="p-4 space-y-4 max-sm:p-3">
               <div>
                 <label
                   class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
@@ -87,9 +84,11 @@
                   {{ $t("username") }}
                 </label>
                 <div
-                  class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg"
+                  class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-md"
                 >
-                  <p class="text-sm font-medium text-[#f0eaea] uppercase">
+                  <p
+                    class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs font-medium text-[#f0eaea] uppercase"
+                  >
                     {{ userData.username }}
                   </p>
                 </div>
@@ -104,16 +103,18 @@
                 </label>
                 <div class="flex items-center gap-2">
                   <div
-                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-md flex-1"
                   >
-                    <p class="text-sm font-medium text-[#f0eaea]">
+                    <p
+                      class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs font-medium text-[#f0eaea] uppercase"
+                    >
                       {{ userData.dob || $t("not_set") }}
                     </p>
                   </div>
                   <button
                     v-if="!userData.dob"
                     @click="showChangeBirthdayModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("add") }}
                   </button>
@@ -129,16 +130,18 @@
                 </label>
                 <div class="flex items-center gap-2">
                   <div
-                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1 min-w-0"
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-md flex-1"
                   >
-                    <p class="text-sm font-medium text-[#f0eaea] truncate">
+                    <p
+                      class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs font-medium text-[#f0eaea] truncate"
+                    >
                       {{ userData.email || $t("not_set") }}
                     </p>
                   </div>
                   <button
                     v-if="!userData.email"
                     @click="showChangeEmailModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("add") }}
                   </button>
@@ -154,15 +157,17 @@
                 </label>
                 <div class="flex items-center gap-2">
                   <div
-                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1"
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-md flex-1"
                   >
-                    <p class="text-sm font-medium text-[#f0eaea]">
+                    <p
+                      class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs font-medium text-[#f0eaea]"
+                    >
                       ••••••••••••
                     </p>
                   </div>
                   <NuxtLinkLocale
                     to="/myaccount/change-password"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("change") }}
                   </NuxtLinkLocale>
@@ -171,18 +176,16 @@
             </div>
           </div>
 
-          <!-- Social Media Connections -->
           <div
-            class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
+            class="bg-[#241017] border border-[#3b1c23] rounded-xl max-lg:rounded-lg overflow-hidden"
           >
-            <div class="p-4 border-b border-[#3b1c23]">
+            <div class="p-4 max-sm:p-3 border-b border-[#3b1c23]">
               <h3 class="font-bold text-[#f0eaea] text-base max-lg:text-sm">
                 {{ $t("social_media_connections") }}
               </h3>
             </div>
 
             <div class="p-4 space-y-4">
-              <!-- Telegram -->
               <div>
                 <label
                   class="block text-xs font-semibold text-[#b37a7a] mb-2 uppercase tracking-wide"
@@ -195,15 +198,17 @@
                 </label>
                 <div class="flex items-center gap-2">
                   <div
-                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1 min-w-0"
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-md flex-1 min-w-0"
                   >
-                    <p class="text-sm font-medium text-[#f0eaea] truncate">
+                    <p
+                      class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs font-medium text-[#f0eaea] truncate"
+                    >
                       {{ userData.telegramId || $t("not_connected") }}
                     </p>
                   </div>
                   <button
                     @click="showChangeTelegramModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ userData.telegramId ? $t("edit") : $t("connect") }}
                   </button>
@@ -223,33 +228,20 @@
                 </label>
                 <div class="flex items-center gap-2">
                   <div
-                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-lg flex-1 min-w-0"
+                    class="p-3 bg-[#15090e] border border-[#3b1c23] rounded-md flex-1 min-w-0"
                   >
-                    <p class="text-sm font-medium text-[#f0eaea] truncate">
+                    <p
+                      class="text-[0.9rem] max-sm:text-sm max-[370px]:text-xs font-medium text-[#f0eaea] truncate"
+                    >
                       {{ userData.facebookId || $t("not_connected") }}
                     </p>
                   </div>
                   <button
                     @click="showChangeFacebookModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all text-sm whitespace-nowrap"
+                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ userData.facebookId ? $t("edit") : $t("connect") }}
                   </button>
-                </div>
-              </div>
-
-              <!-- Info Notice -->
-              <div
-                class="p-3 bg-blue-500/5 border border-blue-500/20 rounded-lg"
-              >
-                <div class="flex gap-2">
-                  <Icon
-                    icon="mdi:information-outline"
-                    class="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5"
-                  />
-                  <p class="text-xs text-[#b37a7a] leading-relaxed">
-                    {{ $t("social_connect_info") }}
-                  </p>
                 </div>
               </div>
             </div>
@@ -292,7 +284,6 @@ import moment from "moment-timezone";
 const { checkAuth } = useAuthCheck();
 await checkAuth();
 const userData = useState("userData");
-
 const showChangeEmailModal = ref(false);
 const showChangeTelegramModal = ref(false);
 const showChangeFacebookModal = ref(false);

@@ -1147,5 +1147,13 @@
   "records": "Records",
   "time_period": "Time Period",
   "add": "Add",
-  "referral_benefits": "Referral Benefits"
+  "referral_benefits": "Referral Benefits",
+  "change": "Change",
+  "edit": "Edit",
+  "connect": "Connect",
+  "not_connected": "Not Connected",
+  "social_connect_info": "Link your social accounts for faster support and updates",
+  "personal_information": "Personal Information",
+  "social_media_connections": "Social Media Connections",
+  "top_up_balance": "Top Up Balance"
 }

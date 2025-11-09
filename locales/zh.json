@@ -1147,5 +1147,13 @@
   "records": "记录",
   "time_period": "时间段",
   "add": "添加",
-  "referral_benefits": "推荐福利"
+  "referral_benefits": "推荐福利",
+  "change": "更改",
+  "edit": "編輯",
+  "connect": "連接",
+  "not_connected": "未連接",
+  "social_connect_info": "連接您的社交賬戶以獲得更快的支持和更新",
+  "personal_information": "个人信息",
+  "social_media_connections": "社交媒体连接",
+  "top_up_balance": "充值余额"
 }

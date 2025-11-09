@@ -1,8 +1,8 @@
 <template>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
-      <div class="mb-4 max-lg:mb-3">
-        <h1 class="text-lg font-bold max-lg:text-base">
+      <div class="mb-6 max-lg:mb-4">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
           {{ $t("messaging") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -11,7 +11,6 @@
       </div>
 
       <div>
-        <!-- Tab navigations -->
         <div class="mb-6 max-lg:mb-4">
           <div class="flex border-b border-[#3b1c23]">
             <button
@@ -49,12 +48,12 @@
         <div v-if="activeTab === 'notification'">
           <!-- Actions Section -->
           <div
-            class="flex justify-between items-center mb-4 max-lg:mb-3 max-lg:flex-col max-lg:items-start max-lg:gap-2"
+            class="flex justify-between items-center mb-4 max-lg:mb-3 max-sm:flex-col max-sm:items-start max-lg:gap-2"
           >
             <div class="relative">
               <button
                 @click="showFilter = !showFilter"
-                class="flex items-center justify-between gap-2 px-4 py-2.5 bg-[#15090e] text-[#f0eaea] rounded-lg border border-[#3b1c23] hover:border-[#ff3344] transition-all text-sm min-w-[200px]"
+                class="flex items-center justify-between gap-2 px-4 max-sm:px-2.5 py-2.5 bg-[#15090e] text-[#f0eaea] rounded-lg border border-[#3b1c23] hover:border-[#ff3344] transition-all text-sm min-w-[200px]"
               >
                 <div class="flex items-center gap-2">
                   <Icon
@@ -76,19 +75,17 @@
               <Transition name="fade">
                 <div
                   v-if="showFilter"
-                  class="absolute left-0 top-full mt-2 w-full bg-[#241017] border border-[#3b1c23] rounded-lg shadow-xl z-50 overflow-hidden"
+                  class="absolute left-0 top-full mt-2 w-full bg-[#241017] border border-[#3b1c23] rounded-lg shadow-lg z-50 max-h-40 overflow-y-auto scrollbar-thin"
                 >
                   <button
                     @click="
                       filterMails('all');
                       showFilter = false;
                     "
-                    :class="[
-                      'block w-full text-left px-4 py-3 text-sm text-[#f0eaea] hover:bg-[#ff3344]/10 transition-colors',
-                      currentFilter === 'all'
-                        ? 'bg-[#ff3344]/20 text-[#ff3344]'
-                        : '',
-                    ]"
+                    class="w-full p-3 text-left text-[#f0eaea] text-[0.9rem] lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] max-lg:p-2.5"
+                    :class="{
+                      'bg-[#ff3344]/10 text-[#ff3344]': currentFilter === 'all',
+                    }"
                   >
                     {{ $t("all_messages") }}
                   </button>
@@ -97,12 +94,11 @@
                       filterMails('read');
                       showFilter = false;
                     "
-                    :class="[
-                      'block w-full text-left px-4 py-3 text-sm text-[#f0eaea] hover:bg-[#ff3344]/10 transition-colors border-t border-[#3b1c23]',
-                      currentFilter === 'read'
-                        ? 'bg-[#ff3344]/20 text-[#ff3344]'
-                        : '',
-                    ]"
+                    class="w-full p-3 text-left text-[#f0eaea] text-[0.9rem] lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] max-lg:p-2.5"
+                    :class="{
+                      'bg-[#ff3344]/10 text-[#ff3344]':
+                        currentFilter === 'read',
+                    }"
                   >
                     {{ $t("read_messages") }}
                   </button>
@@ -111,12 +107,11 @@
                       filterMails('unread');
                       showFilter = false;
                     "
-                    :class="[
-                      'block w-full text-left px-4 py-3 text-sm text-[#f0eaea] hover:bg-[#ff3344]/10 transition-colors border-t border-[#3b1c23]',
-                      currentFilter === 'unread'
-                        ? 'bg-[#ff3344]/20 text-[#ff3344]'
-                        : '',
-                    ]"
+                    class="w-full p-3 text-left text-[#f0eaea] text-[0.9rem] lg:hover:bg-[#15090e] transition-colors border-b border-[#3b1c23] last:border-b-0 max-lg:p-2.5"
+                    :class="{
+                      'bg-[#ff3344]/10 text-[#ff3344]':
+                        currentFilter === 'unread',
+                    }"
                   >
                     {{ $t("unread_messages") }}
                   </button>
@@ -126,201 +121,198 @@
 
             <button
               @click="markAllAsRead"
-              class="flex items-center gap-2 text-[#ff3344] lg:hover:text-[#c21b3a] max-lg:text-sm transition-colors"
+              class="flex items-center gap-2 max-sm:px-2.5 text-[#ff3344] lg:hover:text-[#c21b3a] text-sm transition-colors"
             >
-              <Icon
-                icon="mdi:check-all"
-                class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-              />
+              <Icon icon="mdi:check-all" class="w-4 h-4" />
               <span>{{ $t("mark_all_read") }}</span>
             </button>
           </div>
 
           <!-- Messages Table -->
-          <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
-            <div class="overflow-x-auto scrollbar-thin">
-              <table class="w-full min-w-[600px]">
-                <thead>
-                  <tr
-                    class="border-b bg-gradient-to-r from-[#15090e] via-[#1a0d13] to-[#15090e] border-[#3b1c23]"
-                  >
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider w-1/4"
+          <div class="space-y-2">
+            <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
+              <div class="overflow-x-auto scrollbar-thin">
+                <table class="w-full min-w-[600px]">
+                  <thead>
+                    <tr
+                      class="border-b bg-gradient-to-r from-[#15090e] via-[#1a0d13] to-[#15090e] border-[#3b1c23]"
                     >
-                      <div class="flex items-center gap-2 whitespace-nowrap">
-                        {{ $t("time") }}
-                      </div>
-                    </th>
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider w-1/4"
-                    >
-                      <div class="flex items-center gap-2 whitespace-nowrap">
-                        {{ $t("title") }}
-                      </div>
-                    </th>
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider hidden md:table-cell"
-                    >
-                      <div class="flex items-center gap-2 whitespace-nowrap">
-                        {{ $t("content") }}
-                      </div>
-                    </th>
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-xs font-bold text-[#f0eaea] uppercase tracking-wider w-32"
-                    >
-                      <div
-                        class="flex items-center justify-center gap-2 whitespace-nowrap"
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                       >
-                        {{ $t("status") }}
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="mail in paginatedMails"
-                    :key="mail._id"
-                    @click="openMail(mail)"
-                    class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300 cursor-pointer"
-                  >
-                    <!-- Date Column -->
-                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <div class="flex items-center gap-3 max-lg:gap-2">
-                        <div class="relative flex-shrink-0">
-                          <div
-                            class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30 group-hover:scale-110 transition-transform"
-                          >
-                            <Icon
-                              icon="mdi:email"
-                              class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                            />
-                          </div>
+                        <div class="flex items-center gap-2 whitespace-nowrap">
+                          {{ $t("time") }}
                         </div>
-                        <div class="min-w-0">
-                          <span
-                            class="text-sm max-lg:text-xs font-bold text-[#f0eaea] block truncate"
-                            :class="!mail.isRead ? 'text-[#ff3344]' : ''"
-                          >
-                            {{ formatDate(mail.createdAt) }}
-                          </span>
-                        </div>
-                      </div>
-                    </td>
-
-                    <!-- Title Column -->
-                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <span
-                        class="text-sm max-lg:text-xs font-medium text-[#f0eaea]"
-                        :class="!mail.isRead ? 'font-bold' : ''"
+                      </th>
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                       >
-                        {{ truncateText(getLocalizedTitle(mail), 30) }}
-                      </span>
-                    </td>
-
-                    <!-- Content Column -->
-                    <td
-                      class="px-4 py-5 max-lg:px-3 max-lg:py-4 hidden md:table-cell"
-                    >
-                      <span class="text-sm text-[#b37a7a]">
-                        {{ truncateText(getLocalizedContent(mail), 50) }}
-                      </span>
-                    </td>
-
-                    <!-- Status Column -->
-                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <div class="flex justify-center">
+                        <div class="flex items-center gap-2 whitespace-nowrap">
+                          {{ $t("title") }}
+                        </div>
+                      </th>
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider hidden md:table-cell"
+                      >
+                        <div class="flex items-center gap-2 whitespace-nowrap">
+                          {{ $t("content") }}
+                        </div>
+                      </th>
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      >
                         <div
-                          class="inline-flex items-center gap-2 max-lg:gap-1.5 px-3 py-1.5 max-lg:px-2.5 max-lg:py-1 rounded-lg"
-                          :class="
-                            mail.isRead ? 'bg-green-500/10' : 'bg-amber-500/10'
-                          "
+                          class="flex items-center justify-center gap-2 whitespace-nowrap"
                         >
-                          <div
-                            class="relative flex items-center justify-center"
-                          >
+                          {{ $t("status") }}
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="mail in paginatedMails"
+                      :key="mail._id"
+                      @click="openMail(mail)"
+                      class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300 cursor-pointer"
+                    >
+                      <!-- Date Column -->
+                      <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                        <div class="flex items-center gap-3 max-lg:gap-2">
+                          <div class="relative flex-shrink-0">
                             <div
-                              class="w-2 h-2 max-lg:w-1.5 max-lg:h-1.5 rounded-full"
-                              :class="
-                                mail.isRead ? 'bg-green-400' : 'bg-amber-400'
-                              "
-                            ></div>
-                            <div
-                              v-if="!mail.isRead"
-                              class="absolute w-2 h-2 max-lg:w-1.5 max-lg:h-1.5 rounded-full animate-ping"
-                              :class="
-                                mail.isRead ? 'bg-green-400' : 'bg-amber-400'
-                              "
-                            ></div>
+                              class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30 group-hover:scale-110 transition-transform"
+                            >
+                              <Icon
+                                icon="mdi:email"
+                                class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                              />
+                            </div>
                           </div>
-                          <span
-                            class="text-xs max-lg:text-[11px] font-bold uppercase tracking-wide whitespace-nowrap"
+                          <div class="min-w-0">
+                            <span
+                              class="text-sm max-lg:text-xs font-bold text-[#f0eaea] block truncate"
+                              :class="!mail.isRead ? 'text-[#ff3344]' : ''"
+                            >
+                              {{ formatDate(mail.createdAt) }}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+
+                      <!-- Title Column -->
+                      <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                        <span
+                          class="text-sm max-lg:text-xs font-medium text-[#f0eaea]"
+                          :class="!mail.isRead ? 'font-bold' : ''"
+                        >
+                          {{ truncateText(getLocalizedTitle(mail), 30) }}
+                        </span>
+                      </td>
+
+                      <!-- Content Column -->
+                      <td
+                        class="px-4 py-5 max-lg:px-3 max-lg:py-4 hidden md:table-cell"
+                      >
+                        <span class="text-sm text-[#b37a7a]">
+                          {{ truncateText(getLocalizedContent(mail), 50) }}
+                        </span>
+                      </td>
+
+                      <!-- Status Column -->
+                      <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                        <div class="flex justify-center">
+                          <div
+                            class="inline-flex items-center gap-2 max-lg:gap-1.5 px-3 py-1.5 max-lg:px-2.5 max-lg:py-1 rounded-lg"
                             :class="
-                              mail.isRead ? 'text-green-400' : 'text-amber-400'
+                              mail.isRead
+                                ? 'bg-green-500/10'
+                                : 'bg-amber-500/10'
                             "
                           >
-                            {{ mail.isRead ? $t("read") : $t("unread") }}
-                          </span>
+                            <div
+                              class="relative flex items-center justify-center"
+                            >
+                              <div
+                                class="w-2 h-2 max-lg:w-1.5 max-lg:h-1.5 rounded-full"
+                                :class="
+                                  mail.isRead ? 'bg-green-400' : 'bg-amber-400'
+                                "
+                              ></div>
+                              <div
+                                v-if="!mail.isRead"
+                                class="absolute w-2 h-2 max-lg:w-1.5 max-lg:h-1.5 rounded-full animate-ping"
+                                :class="
+                                  mail.isRead ? 'bg-green-400' : 'bg-amber-400'
+                                "
+                              ></div>
+                            </div>
+                            <span
+                              class="text-xs max-lg:text-[11px] font-bold uppercase tracking-wide whitespace-nowrap"
+                              :class="
+                                mail.isRead
+                                  ? 'text-green-400'
+                                  : 'text-amber-400'
+                              "
+                            >
+                              {{ mail.isRead ? $t("read") : $t("unread") }}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                  </tr>
+                      </td>
+                    </tr>
 
-                  <!-- Empty State -->
-                  <tr v-if="paginatedMails.length === 0">
-                    <td colspan="4" class="px-4 py-16 max-lg:py-12">
-                      <div class="flex flex-col items-center">
-                        <div
-                          class="w-20 h-20 max-lg:w-16 max-lg:h-16 rounded-2xl bg-[#ff3344]/10 flex items-center justify-center mb-5 max-lg:mb-4"
-                        >
-                          <Icon
-                            icon="mdi:email-outline"
-                            class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
-                          />
+                    <!-- Empty State -->
+                    <tr v-if="paginatedMails.length === 0">
+                      <td colspan="4" class="px-4 py-16 max-lg:py-12">
+                        <div class="flex flex-col items-center">
+                          <div
+                            class="w-20 h-20 max-lg:w-16 max-lg:h-16 rounded-2xl bg-[#ff3344]/10 flex items-center justify-center mb-5 max-lg:mb-4"
+                          >
+                            <Icon
+                              icon="mdi:email-outline"
+                              class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
+                            />
+                          </div>
+                          <h3
+                            class="text-[#f0eaea] font-bold mb-2 text-base max-lg:text-sm"
+                          >
+                            {{ $t("no_messages_found") }}
+                          </h3>
+                          <p
+                            class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-5 text-center max-w-sm px-4"
+                          >
+                            {{ $t("no_messages_category") }}
+                          </p>
+                          <button
+                            v-if="currentFilter !== 'all'"
+                            @click="filterMails('all')"
+                            class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs"
+                          >
+                            <Icon
+                              icon="mdi:refresh"
+                              class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                            />
+                            {{ $t("view_all_messages") }}
+                          </button>
                         </div>
-                        <h3
-                          class="text-[#f0eaea] font-bold mb-2 text-base max-lg:text-sm"
-                        >
-                          {{ $t("no_messages_found") }}
-                        </h3>
-                        <p
-                          class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-5 text-center max-w-sm px-4"
-                        >
-                          {{ $t("no_messages_category") }}
-                        </p>
-                        <button
-                          v-if="currentFilter !== 'all'"
-                          @click="filterMails('all')"
-                          class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30"
-                        >
-                          <Icon
-                            icon="mdi:refresh"
-                            class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                          />
-                          {{ $t("view_all_messages") }}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
           <!-- Pagination -->
-          <div
-            v-if="paginatedMails.length > 0"
-            class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 mt-4"
-          >
+          <div v-if="paginatedMails.length > 0">
             <div
-              class="flex justify-between items-center gap-4 max-lg:flex-col max-lg:gap-3"
+              class="flex justify-between items-center gap-4 mt-4 max-lg:flex-col max-lg:gap-3"
             >
-              <!-- Page Info -->
               <div
                 class="flex items-center gap-3 max-lg:order-2 max-lg:w-full max-lg:justify-center"
               >
-                <div
-                  class="px-3 py-1.5 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-                >
+                <div class="px-3 py-1.5">
                   <span
                     class="text-sm max-lg:text-xs text-[#b37a7a] font-medium"
                   >
@@ -336,7 +328,6 @@
                 </div>
               </div>
 
-              <!-- Pagination Controls -->
               <div
                 class="flex items-center gap-2 max-lg:gap-1.5 max-lg:order-1"
               >
@@ -435,7 +426,7 @@
                 :class="
                   selectedAnnouncementTab === category
                     ? 'text-[#ff3344] border-b-2 border-[#ff3344]'
-                    : 'text-[#b37a7a] lg:hover:text-[#f0eaea] lg:hover:border-b-2 lg:hover:border-[#3b1c23]'
+                    : 'text-[#b37a7a] lg:hover:text-[#f0eaea] lg:hover:border-b-2 '
                 "
               >
                 {{ category }}
@@ -444,154 +435,150 @@
           </div>
 
           <!-- Announcements Table -->
-          <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
-            <div class="overflow-x-auto scrollbar-thin">
-              <table class="w-full min-w-[600px]">
-                <thead>
-                  <tr
-                    class="border-b bg-gradient-to-r from-[#15090e] via-[#1a0d13] to-[#15090e] border-[#3b1c23]"
-                  >
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider w-1/4"
+          <div class="space-y-2">
+            <div class="border border-[#3b1c23] rounded-lg overflow-hidden">
+              <div class="overflow-x-auto scrollbar-thin">
+                <table class="w-full min-w-[600px]">
+                  <thead>
+                    <tr
+                      class="border-b bg-gradient-to-r from-[#15090e] via-[#1a0d13] to-[#15090e] border-[#3b1c23]"
                     >
-                      <div class="flex items-center gap-2 whitespace-nowrap">
-                        {{ $t("date") }}
-                      </div>
-                    </th>
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
-                    >
-                      <div class="flex items-center gap-2 whitespace-nowrap">
-                        {{ $t("title") }}
-                      </div>
-                    </th>
-                    <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-xs font-bold text-[#f0eaea] uppercase tracking-wider w-32"
-                    >
-                      <div
-                        class="flex items-center justify-center gap-2 whitespace-nowrap"
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                       >
-                        {{ $t("action") }}
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr
-                    v-for="announcement in paginatedAnnouncements"
-                    :key="announcement._id"
-                    class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300"
-                  >
-                    <!-- Date Column -->
-                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <div class="flex items-center gap-3 max-lg:gap-2">
-                        <div class="relative flex-shrink-0">
-                          <div
-                            class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30 group-hover:scale-110 transition-transform"
-                          >
-                            <Icon
-                              icon="mdi:bullhorn"
-                              class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                            />
+                        <div class="flex items-center gap-2 whitespace-nowrap">
+                          {{ $t("date") }}
+                        </div>
+                      </th>
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      >
+                        <div class="flex items-center gap-2 whitespace-nowrap">
+                          {{ $t("title") }}
+                        </div>
+                      </th>
+                      <th
+                        class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      >
+                        <div
+                          class="flex items-center justify-center gap-2 whitespace-nowrap"
+                        >
+                          {{ $t("action") }}
+                        </div>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      v-for="announcement in paginatedAnnouncements"
+                      :key="announcement._id"
+                      class="group border-b border-[#3b1c23] last:border-b-0 hover:bg-gradient-to-r hover:from-[#ff3344]/5 hover:to-transparent transition-all duration-300"
+                    >
+                      <!-- Date Column -->
+                      <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                        <div class="flex items-center gap-3 max-lg:gap-2">
+                          <div class="relative flex-shrink-0">
+                            <div
+                              class="w-11 h-11 max-lg:w-9 max-lg:h-9 rounded-xl bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] flex items-center justify-center text-white font-bold text-sm max-lg:text-xs"
+                            >
+                              <Icon
+                                icon="mdi:bullhorn"
+                                class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                              />
+                            </div>
+                          </div>
+                          <div class="min-w-0">
+                            <span
+                              class="text-sm max-lg:text-xs font-bold text-[#f0eaea] block truncate"
+                            >
+                              {{ formatDate(announcement.createdAt) }}
+                            </span>
                           </div>
                         </div>
-                        <div class="min-w-0">
-                          <span
-                            class="text-sm max-lg:text-xs font-bold text-[#f0eaea] block truncate"
+                      </td>
+
+                      <!-- Title Column -->
+                      <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                        <span
+                          class="text-sm max-lg:text-xs font-medium text-[#f0eaea]"
+                        >
+                          {{
+                            truncateText(
+                              getLocalizedAnnouncementTitle(announcement),
+                              60
+                            )
+                          }}
+                        </span>
+                      </td>
+
+                      <!-- Action Column -->
+                      <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
+                        <div class="flex justify-center">
+                          <button
+                            @click="openMailModal(announcement)"
+                            class="inline-flex items-center gap-1 px-2.5 py-1 max-lg:px-2 max-lg:py-0.5 bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 border border-[#ff3344]/40 rounded-lg text-xs max-lg:text-[10px] font-bold text-[#ff3344] shadow-sm whitespace-nowrap hover:shadow-md transition-all"
                           >
-                            {{ formatDate(announcement.createdAt) }}
-                          </span>
+                            <Icon
+                              icon="mdi:eye"
+                              class="w-3 h-3 max-lg:w-2.5 max-lg:h-2.5"
+                            />
+                            {{ $t("view") }}
+                          </button>
                         </div>
-                      </div>
-                    </td>
+                      </td>
+                    </tr>
 
-                    <!-- Title Column -->
-                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <span
-                        class="text-sm max-lg:text-xs font-medium text-[#f0eaea]"
-                      >
-                        {{
-                          truncateText(
-                            getLocalizedAnnouncementTitle(announcement),
-                            60
-                          )
-                        }}
-                      </span>
-                    </td>
-
-                    <!-- Action Column -->
-                    <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <div class="flex justify-center">
-                        <button
-                          @click="openMailModal(announcement)"
-                          class="inline-flex items-center gap-1 px-3 py-1.5 max-lg:px-2.5 max-lg:py-1 bg-gradient-to-r from-[#ff3344]/10 to-[#ff3344]/20 border border-[#ff3344]/40 rounded-lg text-xs max-lg:text-[10px] font-bold text-[#ff3344] shadow-sm whitespace-nowrap hover:shadow-md transition-all"
-                        >
-                          <Icon
-                            icon="mdi:eye"
-                            class="w-3.5 h-3.5 max-lg:w-3 max-lg:h-3"
-                          />
-                          {{ $t("view") }}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <!-- Empty State -->
-                  <tr v-if="paginatedAnnouncements.length === 0">
-                    <td colspan="3" class="px-4 py-16 max-lg:py-12">
-                      <div class="flex flex-col items-center">
-                        <div
-                          class="w-20 h-20 max-lg:w-16 max-lg:h-16 rounded-2xl bg-[#ff3344]/10 flex items-center justify-center mb-5 max-lg:mb-4"
-                        >
-                          <Icon
-                            icon="mdi:bullhorn-outline"
-                            class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
-                          />
+                    <!-- Empty State -->
+                    <tr v-if="paginatedAnnouncements.length === 0">
+                      <td colspan="3" class="px-4 py-16 max-lg:py-12">
+                        <div class="flex flex-col items-center">
+                          <div
+                            class="w-20 h-20 max-lg:w-16 max-lg:h-16 rounded-2xl bg-[#ff3344]/10 flex items-center justify-center mb-5 max-lg:mb-4"
+                          >
+                            <Icon
+                              icon="mdi:bullhorn-outline"
+                              class="w-10 h-10 max-lg:w-8 max-lg:h-8 text-[#ff3344]"
+                            />
+                          </div>
+                          <h3
+                            class="text-[#f0eaea] font-bold mb-2 text-base max-lg:text-sm"
+                          >
+                            {{ $t("no_announcements_found") }}
+                          </h3>
+                          <p
+                            class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-5 text-center max-w-sm px-4"
+                          >
+                            {{ $t("no_announcements_category") }}
+                          </p>
+                          <button
+                            v-if="selectedAnnouncementTab !== 'All'"
+                            @click="selectedAnnouncementTab = 'All'"
+                            class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30"
+                          >
+                            <Icon
+                              icon="mdi:refresh"
+                              class="w-5 h-5 max-lg:w-4 max-lg:h-4"
+                            />
+                            {{ $t("view_all_announcements") }}
+                          </button>
                         </div>
-                        <h3
-                          class="text-[#f0eaea] font-bold mb-2 text-base max-lg:text-sm"
-                        >
-                          {{ $t("no_announcements_found") }}
-                        </h3>
-                        <p
-                          class="text-[#b37a7a] text-sm max-lg:text-xs mb-6 max-lg:mb-5 text-center max-w-sm px-4"
-                        >
-                          {{ $t("no_announcements_category") }}
-                        </p>
-                        <button
-                          v-if="selectedAnnouncementTab !== 'All'"
-                          @click="selectedAnnouncementTab = 'All'"
-                          class="flex items-center gap-2 px-6 py-3 max-lg:px-5 max-lg:py-2.5 bg-[#ff3344] text-white rounded-xl font-semibold hover:bg-[#cc2a3a] transition-all text-sm max-lg:text-xs shadow-lg shadow-[#ff3344]/30"
-                        >
-                          <Icon
-                            icon="mdi:refresh"
-                            class="w-5 h-5 max-lg:w-4 max-lg:h-4"
-                          />
-                          {{ $t("view_all_announcements") }}
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
           <!-- Pagination -->
-          <div
-            v-if="paginatedAnnouncements.length > 0"
-            class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3 mt-4"
-          >
+          <div v-if="paginatedAnnouncements.length > 0">
             <div
-              class="flex justify-between items-center gap-4 max-lg:flex-col max-lg:gap-3"
+              class="flex justify-between items-center gap-4 mt-4 max-lg:flex-col max-lg:gap-3"
             >
-              <!-- Page Info -->
               <div
                 class="flex items-center gap-3 max-lg:order-2 max-lg:w-full max-lg:justify-center"
               >
-                <div
-                  class="px-3 py-1.5 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-                >
+                <div class="px-3 py-1.5">
                   <span
                     class="text-sm max-lg:text-xs text-[#b37a7a] font-medium"
                   >
@@ -607,7 +594,6 @@
                 </div>
               </div>
 
-              <!-- Pagination Controls -->
               <div
                 class="flex items-center gap-2 max-lg:gap-1.5 max-lg:order-1"
               >
@@ -701,6 +687,7 @@
     />
   </UserAccountLayout>
 </template>
+
 <script setup>
 import { Icon } from "@iconify/vue";
 import UserAccountLayout from "~/layouts/UserAccountLayout.vue";
