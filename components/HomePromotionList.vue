@@ -29,13 +29,11 @@
     <div class="mx-auto">
       <div class="relative">
         <swiper
-          :modules="[Autoplay, Navigation, Pagination]"
-          :slidesPerView="1"
-          :spaceBetween="16"
-          :loop="true"
-          :pagination="{
-            clickable: true,
-          }"
+          :modules="[Autoplay, Navigation]"
+          :slidesPerView="1.1"
+          :spaceBetween="12"
+          :loop="false"
+          :centeredSlides="false"
           :autoplay="{
             delay: 4000,
             disableOnInteraction: false,
@@ -46,11 +44,11 @@
           }"
           :breakpoints="{
             540: {
-              slidesPerView: 2,
+              slidesPerView: 2.2,
               spaceBetween: 16,
             },
             850: {
-              slidesPerView: 3,
+              slidesPerView: 3.2,
               spaceBetween: 20,
             },
             1365: {
@@ -159,34 +157,25 @@ onMounted(async () => {
 </script>
 
 <style scoped>
-@media (max-width: 1023px) {
-  :deep(.promotion-swiper .swiper-pagination) {
-    bottom: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-  }
-
-  :deep(.promotion-swiper .swiper-pagination-bullet) {
-    width: 8px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 1;
-    transition: all 0.3s;
-    border-radius: 50%;
-  }
-
-  :deep(.promotion-swiper .swiper-pagination-bullet-active) {
-    background: #ff3344;
-    width: 24px;
-    border-radius: 4px;
-  }
+/* Disabled state for navigation buttons */
+:deep(.promo-button-prev.swiper-button-disabled),
+:deep(.promo-button-next.swiper-button-disabled) {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+  background: #3b1c23 !important;
 }
 
-/* 大屏幕隐藏 pagination */
+/* Active state hover - only when not disabled */
+:deep(.promo-button-prev:not(.swiper-button-disabled)),
+:deep(.promo-button-next:not(.swiper-button-disabled)) {
+  background: #a1122d;
+}
+
 @media (min-width: 1024px) {
-  :deep(.promotion-swiper .swiper-pagination) {
-    display: none;
+  :deep(.promo-button-prev:not(.swiper-button-disabled):hover),
+  :deep(.promo-button-next:not(.swiper-button-disabled):hover) {
+    background: #c21b3a !important;
   }
 }
 </style>

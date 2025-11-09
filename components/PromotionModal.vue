@@ -8,7 +8,7 @@
       >
         <div
           v-show="show"
-          class="bg-[#15090e] border border-[#3b1c23] rounded-xl shadow-2xl max-w-4xl w-full overflow-hidden max-h-[70vh] h-[70vh] flex flex-col"
+          class="bg-[#15090e] border border-[#3b1c23] rounded-xl shadow-2xl max-w-4xl w-full overflow-hidden max-h-[70vh] flex flex-col"
           :class="show ? 'animate-popupIn' : 'animate-popupOut'"
           role="dialog"
           aria-modal="true"
@@ -38,7 +38,7 @@
               />
             </div>
 
-            <div class="p-6 max-lg:p-4">
+            <div v-if="promotion.content" class="p-6 max-lg:p-4">
               <div v-html="promotion.content" class="promotion-content"></div>
             </div>
           </div>

@@ -1,9 +1,8 @@
 <template>
   <UserAccountLayout>
     <div class="text-[#f0eaea]">
-      <!-- Page Header -->
       <div class="mb-6 max-lg:mb-4">
-        <h1 class="text-xl font-bold mb-1 max-lg:text-lg">
+        <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
           {{ $t("transaction_history") }}
         </h1>
         <p class="text-[#b37a7a] text-sm max-lg:text-xs">
@@ -12,18 +11,12 @@
       </div>
 
       <div class="space-y-4">
-        <!-- Transaction Type Selection -->
-        <!-- Filters Card -->
         <div
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-5 max-lg:p-4 space-y-4"
+          class="bg-[#241017] border border-[#3b1c23] rounded-xl p-5 max-lg:p-4 space-y-4"
         >
-          <!-- Transaction Type -->
           <div>
             <div class="flex items-center justify-between mb-3">
-              <label
-                class="text-sm font-semibold text-[#f0eaea] flex items-center gap-2"
-              >
-                <Icon icon="mdi:shape" class="w-4 h-4 text-[#ff3344]" />
+              <label class="text-base max-lg:text-sm font-bold text-[#f0eaea]">
                 {{ $t("transaction_type") }}
               </label>
             </div>
@@ -50,23 +43,9 @@
           <!-- Transaction Time -->
           <div>
             <div class="flex items-center justify-between mb-3">
-              <label
-                class="text-sm font-semibold text-[#f0eaea] flex items-center gap-2"
-              >
-                <Icon icon="mdi:clock-outline" class="w-4 h-4 text-[#ff3344]" />
-                {{ $t("transaction_time") }}
+              <label class="text-base max-lg:text-sm font-bold text-[#f0eaea]">
+                {{ $t("time_period") }}
               </label>
-              <button
-                v-if="selectedType !== 'All' || selectedTime !== 'All'"
-                @click="resetFilters"
-                class="flex items-center gap-2 px-4 py-2 max-lg:px-3 max-lg:py-1.5 bg-[#15090e] text-[#b37a7a] rounded-lg text-sm max-lg:text-xs font-medium hover:text-[#ff3344] hover:border-[#ff3344] border border-[#3b1c23] transition-all"
-              >
-                <Icon
-                  icon="mdi:refresh"
-                  class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
-                />
-                <span>{{ $t("reset_filters") }}</span>
-              </button>
             </div>
             <div class="flex gap-2 overflow-x-auto scrollbar-thin pb-1">
               <button
@@ -88,25 +67,10 @@
           <!-- Divider -->
           <div class="border-t border-[#3b1c23]"></div>
 
-          <!-- Info & Results -->
+          <!-- Bottom Actions -->
           <div
-            class="flex items-center justify-between gap-4 max-lg:flex-col max-lg:items-start"
+            class="flex items-center justify-between gap-4 max-lg:flex-col max-lg:items-stretch"
           >
-            <!-- Info Notice -->
-            <div class="flex items-center gap-2.5">
-              <div
-                class="w-8 h-8 max-lg:w-7 max-lg:h-7 rounded-lg bg-blue-500/10 flex items-center justify-center flex-shrink-0"
-              >
-                <Icon
-                  icon="mdi:information"
-                  class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5 text-blue-400"
-                />
-              </div>
-              <p class="text-xs text-[#b37a7a]">
-                {{ $t("transactions_local_time") }}
-              </p>
-            </div>
-
             <!-- Results Counter -->
             <div
               class="flex items-center gap-2 px-4 py-2 max-lg:px-3 max-lg:py-1.5 bg-[#15090e] border border-[#3b1c23] rounded-lg"
@@ -120,6 +84,19 @@
                 {{ $t("results") }}
               </span>
             </div>
+
+            <!-- Reset Button -->
+            <button
+              v-if="selectedType !== 'All' || selectedTime !== 'All'"
+              @click="resetFilters"
+              class="flex items-center justify-center gap-2 px-5 py-2.5 max-lg:px-4 max-lg:py-2 bg-[#ff3344] text-white rounded-lg text-sm max-lg:text-xs font-semibold hover:bg-[#cc2a3a] transition-all shadow-lg shadow-[#ff3344]/30"
+            >
+              <Icon
+                icon="mdi:refresh"
+                class="w-4 h-4 max-lg:w-3.5 max-lg:h-3.5"
+              />
+              <span>{{ $t("reset_filters") }}</span>
+            </button>
           </div>
         </div>
 
@@ -133,21 +110,21 @@
                     class="border-b bg-gradient-to-r from-[#15090e] via-[#1a0d13] to-[#15090e] border-[#3b1c23]"
                   >
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div class="flex items-center gap-2 whitespace-nowrap">
                         {{ $t("date") }}
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div class="flex items-center gap-2 whitespace-nowrap">
                         {{ $t("type") }}
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-right text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-end gap-2 whitespace-nowrap"
@@ -156,7 +133,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-center text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div
                         class="flex items-center justify-center gap-2 whitespace-nowrap"
@@ -165,7 +142,7 @@
                       </div>
                     </th>
                     <th
-                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
+                      class="px-4 py-4 max-lg:px-3 max-lg:py-3 text-left text-[0.8rem] max-lg:text-xs font-bold text-[#f0eaea] uppercase tracking-wider"
                     >
                       <div class="flex items-center gap-2 whitespace-nowrap">
                         {{ $t("remark") }}
@@ -327,17 +304,11 @@
 
                     <!-- Remark Column -->
                     <td class="px-4 py-5 max-lg:px-3 max-lg:py-4">
-                      <div class="flex items-center gap-2 max-lg:gap-1.5">
-                        <Icon
-                          icon="mdi:note-text"
-                          class="w-4 h-4 max-lg:w-3 max-lg:h-3 text-[#b37a7a] flex-shrink-0"
-                        />
-                        <span
-                          class="text-sm max-lg:text-xs font-medium text-[#f0eaea] whitespace-nowrap"
-                        >
-                          {{ transaction.promotionnameEN || "-" }}
-                        </span>
-                      </div>
+                      <span
+                        class="text-sm max-lg:text-xs font-medium text-[#f0eaea]"
+                      >
+                        {{ transaction.promotionnameEN || "-" }}
+                      </span>
                     </td>
                   </tr>
 
@@ -383,20 +354,14 @@
         </div>
 
         <!-- Pagination -->
-        <div
-          v-if="filteredTransactions.length > 0"
-          class="bg-[#241017] border border-[#3b1c23] rounded-lg p-4 max-lg:p-3"
-        >
+        <div v-if="filteredTransactions.length > 0">
           <div
             class="flex justify-between items-center gap-4 max-lg:flex-col max-lg:gap-3"
           >
-            <!-- Page Info -->
             <div
               class="flex items-center gap-3 max-lg:order-2 max-lg:w-full max-lg:justify-center"
             >
-              <div
-                class="px-3 py-1.5 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-              >
+              <div class="px-3 py-1.5">
                 <span class="text-sm max-lg:text-xs text-[#b37a7a] font-medium">
                   {{ $t("page") }}
                   <span class="text-[#ff3344] font-bold mx-1">{{
@@ -408,19 +373,8 @@
                   }}</span>
                 </span>
               </div>
-              <div
-                class="px-3 py-1.5 bg-[#15090e] border border-[#3b1c23] rounded-lg"
-              >
-                <span class="text-sm max-lg:text-xs text-[#b37a7a] font-medium">
-                  {{ getStartEntry() }}-{{ getEndEntry() }} {{ $t("of") }}
-                  <span class="text-[#f0eaea] font-bold mx-1">{{
-                    filteredTransactions.length
-                  }}</span>
-                </span>
-              </div>
             </div>
 
-            <!-- Pagination Controls -->
             <div class="flex items-center gap-2 max-lg:gap-1.5 max-lg:order-1">
               <button
                 @click="currentPage = 1"
