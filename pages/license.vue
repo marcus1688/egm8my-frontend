@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Hero Section -->
     <section class="relative max-lg:max-w-[100vw] shadow-lg shadow-red-600/20">
       <img
         src="/images/banner/license_banner_desktop.png"
