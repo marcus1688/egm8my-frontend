@@ -115,35 +115,15 @@ async function fetchSmsStatus() {
 
 async function fetchUserGameLocks() {
   try {
-    const [locksResponse, restrictionsResponse] = await Promise.all([
-      get("user/game-locks"),
-      get("user/game-restrictions"),
-    ]);
-    console.log(locksResponse.data);
-    console.log(restrictionsResponse.data);
-    const gameLocks = {};
-    if (locksResponse.data.success) {
-      Object.assign(gameLocks, locksResponse.data.data.gameLock || {});
+    const { data } = await get("user/game-locks");
+    if (data.success) {
+      userGameLocks.value = data.data.gameLock || {};
+    } else {
+      userGameLocks.value = {};
     }
-    if (
-      restrictionsResponse.data.success &&
-      restrictionsResponse.data.hasRestrictions
-    ) {
-      const allowedGames = restrictionsResponse.data.allowedGames;
-      allKiosks.value.forEach((kiosk) => {
-        if (kiosk.databaseName) {
-          if (!allowedGames.includes(kiosk.databaseName)) {
-            gameLocks[kiosk.databaseName] = {
-              lock: true,
-              reason: "promotion_restriction",
-            };
-          }
-        }
-      });
-    }
-    userGameLocks.value = gameLocks;
   } catch (error) {
     console.error("Error fetching game locks:", error);
+    userGameLocks.value = {};
   }
 }
 
