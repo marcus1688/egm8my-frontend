@@ -19,7 +19,7 @@
             <div class="flex-1">
               <div class="flex items-center gap-3 mb-3">
                 <h2
-                  class="text-2xl max-lg:text-xl max-sm:text-lg font-bold text-[#f0eaea] uppercase"
+                  class="text-xl max-lg:text-xl max-sm:text-lg font-bold text-[#f0eaea] uppercase"
                 >
                   {{ userData.username }}
                 </h2>
@@ -48,7 +48,7 @@
                 {{ $t("account_balance") }}
               </p>
               <p
-                class="text-2xl max-lg:text-xl max-sm:text-lg font-bold text-[#f0eaea]"
+                class="text-xl max-lg:text-xl max-sm:text-lg font-bold text-[#f0eaea]"
               >
                 ${{ formatAmount(userData.wallet || 0) }}
               </p>

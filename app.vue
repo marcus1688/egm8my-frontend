@@ -119,6 +119,7 @@ async function fetchUserGameLocks() {
       get("user/game-locks"),
       get("user/game-restrictions"),
     ]);
+    console.log(locksResponse.data);
     console.log(restrictionsResponse.data);
     const gameLocks = {};
     if (locksResponse.data.success) {
