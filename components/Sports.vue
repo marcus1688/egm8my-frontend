@@ -113,11 +113,7 @@
                   </div>
                 </div>
                 <div v-else class="w-14 mt-6">
-                  <img
-                    src="/images/VS Image/VS 3.png"
-                    alt="VS"
-                    class="w-full"
-                  />
+                  <img src="/images/vsimage/3.png" alt="VS" class="w-full" />
                 </div>
               </div>
 
@@ -262,7 +258,7 @@
                     </div>
                     <div v-else class="w-10 mt-4">
                       <img
-                        src="/images/VS Image/VS 3.png"
+                        src="/images/vsimage/3.png"
                         alt="VS"
                         class="w-full"
                       />
