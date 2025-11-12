@@ -24,7 +24,7 @@
                   {{ userData.username }}
                 </h2>
                 <div
-                  class="px-3 py-1 max-sm:py-0.5 bg-amber-500/10 border border-amber-500/20 rounded-lg"
+                  class="px-3 py-2 bg-amber-500/10 border border-amber-500/20 rounded-lg"
                 >
                   <div class="flex items-center gap-1.5">
                     <Icon
@@ -141,7 +141,7 @@
                   <button
                     v-if="!userData.email"
                     @click="showChangeEmailModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 max-lg:py-2 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("add") }}
                   </button>
@@ -167,7 +167,7 @@
                   </div>
                   <NuxtLinkLocale
                     to="/myaccount/change-password"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 max-lg:py-2 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ $t("change") }}
                   </NuxtLinkLocale>
@@ -208,7 +208,7 @@
                   </div>
                   <button
                     @click="showChangeTelegramModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 max-lg:py-2 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ userData.telegramId ? $t("edit") : $t("connect") }}
                   </button>
@@ -238,7 +238,7 @@
                   </div>
                   <button
                     @click="showChangeFacebookModal = true"
-                    class="px-4 py-3 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
+                    class="px-4 py-3 max-lg:py-2 bg-[#ff3344] text-white rounded-md font-semibold lg:hover:bg-[#cc2a3a] transition-all text-[0.9rem] max-sm:text-sm max-[370px]:text-xs whitespace-nowrap"
                   >
                     {{ userData.facebookId ? $t("edit") : $t("connect") }}
                   </button>

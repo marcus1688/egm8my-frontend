@@ -621,7 +621,7 @@
 
               <!-- Language Selector -->
               <div
-                class="relative hidden lg:flex"
+                class="relative hidden"
                 @mouseenter="showLanguageMenu = true"
                 @mouseleave="showLanguageMenu = false"
               >
@@ -869,9 +869,22 @@
                   class="p-1.5 lg:hover:bg-[#2a0f14] rounded-full transition-colors flex items-center justify-center"
                 >
                   <img
+                    v-if="isMalaysiaDomain"
+                    src="/images/flags/malaysia.png"
+                    alt="Malaysia"
+                    class="w-8 h-auto"
+                  />
+                  <img
+                    v-else-if="isSingaporeDomain"
+                    src="/images/flags/singapore.png"
+                    alt="Singapore"
+                    class="w-8 h-auto"
+                  />
+                  <img
+                    v-else
                     :src="generalSetting.logoimage"
                     alt="Region"
-                    class="w-8 h-8 object-contain rounded-full"
+                    class="w-8 h-auto"
                   />
                 </button>
                 <div
@@ -885,7 +898,7 @@
                     class="absolute -top-2 right-0 w-full h-2 bg-transparent"
                   ></div>
                   <div class="p-2">
-                    <div class="px-3 py-2">
+                    <div class="px-3 pb-2">
                       <span
                         class="text-xs font-semibold text-[#b37a7a] uppercase tracking-wider"
                       >
@@ -894,128 +907,95 @@
                     </div>
 
                     <!-- Malaysia -->
-                    <a
-                      href="https://www.egm8my.vip"
-                      target="_self"
-                      :class="[
-                        'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
-                        currentregion === 'malaysia'
-                          ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
-                          : 'lg:hover:bg-[#2a0f14] cursor-pointer',
-                      ]"
-                      @click="
-                        currentregion === 'malaysia'
-                          ? $event.preventDefault()
-                          : null
-                      "
-                    >
-                      <div class="text-2xl flex-shrink-0">
+                    <div class="mb-2">
+                      <div class="flex items-center gap-2 px-3 py-2">
                         <img
-                          src="/images/flags/Malaysia.svg"
-                          alt=""
-                          class="w-5 h-5 rounded-full object-cover"
+                          src="/images/flags/malaysia.png"
+                          alt="Malaysia"
+                          class="w-7 h-auto"
                         />
+                        <span class="text-sm font-semibold text-[#f0eaea]">
+                          {{ $t("malaysia") }}
+                        </span>
                       </div>
-                      <div class="flex-1">
-                        <div class="flex items-center gap-2">
-                          <span
+                      <div class="px-3">
+                        <div class="flex rounded-lg overflow-hidden">
+                          <button
+                            @click="switchToMalaysia('en')"
                             :class="[
-                              'text-sm font-semibold transition-colors block',
-                              currentregion === 'malaysia'
-                                ? 'text-[#7a5a5a]'
-                                : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
+                              'flex-1 text-center px-3 py-2 text-sm transition-colors border-r border-[#3b1c23]',
+                              locale === 'en' && isMalaysiaDomain
+                                ? ' text-[#ff3344] font-semibold'
+                                : 'text-[#f0eaea]  lg:hover:text-[#ff3344]',
                             ]"
                           >
-                            {{ $t("malaysia") }}
-                          </span>
-                          <span
-                            v-if="currentregion === 'malaysia'"
-                            class="text-xs text-[#ff3344] font-medium px-2 py-0.5 bg-[#ff3344]/10 rounded"
+                            English
+                          </button>
+                          <button
+                            @click="switchToMalaysia('ms')"
+                            :class="[
+                              'flex-1 text-center px-3 py-2 text-sm transition-colors border-r border-[#3b1c23]',
+                              locale === 'ms' && isMalaysiaDomain
+                                ? ' text-[#ff3344] font-semibold'
+                                : 'text-[#f0eaea]  lg:hover:text-[#ff3344]',
+                            ]"
                           >
-                            {{ $t("current") }}
-                          </span>
+                            Malay
+                          </button>
+                          <button
+                            @click="switchToMalaysia('zh')"
+                            :class="[
+                              'flex-1 text-center px-3 py-2 text-sm transition-colors',
+                              locale === 'zh' && isMalaysiaDomain
+                                ? ' text-[#ff3344] font-semibold'
+                                : 'text-[#f0eaea]  lg:hover:text-[#ff3344]',
+                            ]"
+                          >
+                            中文
+                          </button>
                         </div>
-                        <p
-                          :class="[
-                            'text-xs mt-0.5',
-                            currentregion === 'malaysia'
-                              ? 'text-[#7a5a5a]'
-                              : 'text-[#b37a7a]',
-                          ]"
-                        >
-                          egm8my.vip
-                        </p>
                       </div>
-                      <i
-                        v-if="currentregion !== 'malaysia'"
-                        class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
-                      ></i>
-                      <i
-                        v-else
-                        class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
-                      ></i>
-                    </a>
+                    </div>
 
                     <!-- Singapore -->
-                    <a
-                      href="https://www.egm8sg.vip"
-                      target="_self"
-                      :class="[
-                        'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
-                        currentregion === 'singapore'
-                          ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
-                          : 'lg:hover:bg-[#2a0f14] cursor-pointer',
-                      ]"
-                      @click="
-                        currentregion === 'singapore'
-                          ? $event.preventDefault()
-                          : null
-                      "
-                    >
-                      <img
-                        src="/images/flags/singapore.png"
-                        alt=""
-                        class="w-5 h-5 rounded-full object-cover"
-                      />
-                      <div class="flex-1">
-                        <div class="flex items-center gap-2">
-                          <span
+                    <div>
+                      <div class="flex items-center gap-2 px-3 py-2">
+                        <img
+                          src="/images/flags/singapore.png"
+                          alt="Singapore"
+                          class="w-7 h-auto"
+                        />
+                        <span class="text-sm font-semibold text-[#f0eaea]">
+                          {{ $t("singapore") }}
+                        </span>
+                      </div>
+                      <div class="px-3">
+                        <div class="flex rounded-lg overflow-hidden">
+                          <button
+                            @click="switchToSingapore('en')"
                             :class="[
-                              'text-sm font-semibold transition-colors block',
-                              currentregion === 'singapore'
-                                ? 'text-[#7a5a5a]'
-                                : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
+                              'flex-1 text-center px-3 py-2 text-sm transition-colors border-r border-[#3b1c23]',
+                              locale === 'en' && isSingaporeDomain
+                                ? ' text-[#ff3344] font-semibold'
+                                : 'text-[#f0eaea]  lg:hover:text-[#ff3344]',
                             ]"
                           >
-                            {{ $t("singapore") }}
-                          </span>
-                          <span
-                            v-if="currentregion === 'singapore'"
-                            class="text-xs text-[#ff3344] font-medium px-2 py-0.5 bg-[#ff3344]/10 rounded"
+                            English
+                          </button>
+                          <button
+                            @click="switchToSingapore('zh')"
+                            :class="[
+                              'flex-1 text-center px-3 py-2 text-sm transition-colors',
+                              locale === 'zh' && isSingaporeDomain
+                                ? ' text-[#ff3344] font-semibold'
+                                : 'text-[#f0eaea]  lg:hover:text-[#ff3344]',
+                            ]"
                           >
-                            {{ $t("current") }}
-                          </span>
+                            中文
+                          </button>
                         </div>
-                        <p
-                          :class="[
-                            'text-xs mt-0.5',
-                            currentregion === 'singapore'
-                              ? 'text-[#7a5a5a]'
-                              : 'text-[#b37a7a]',
-                          ]"
-                        >
-                          egm8sg.vip
-                        </p>
                       </div>
-                      <i
-                        v-if="currentregion !== 'singapore'"
-                        class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
-                      ></i>
-                      <i
-                        v-else
-                        class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
-                      ></i>
-                    </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1317,7 +1297,7 @@
                     class="h-auto w-16"
                   />
                   <div class="flex items-center gap-2">
-                    <div class="relative language-dropdown">
+                    <div class="relative language-dropdown hidden">
                       <button
                         @click.stop="showLanguageMenu = !showLanguageMenu"
                         class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
@@ -1369,141 +1349,28 @@
 
                     <div class="relative">
                       <button
-                        @click.stop="
-                          showCountryMenuMobile = !showCountryMenuMobile
-                        "
+                        @click.stop="showLanguagePanel = true"
                         class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
                       >
                         <img
+                          v-if="isMalaysiaDomain"
+                          src="/images/flags/malaysia.png"
+                          alt="Malaysia"
+                          class="w-5 h-auto"
+                        />
+                        <img
+                          v-else-if="isSingaporeDomain"
+                          src="/images/flags/singapore.png"
+                          alt="Singapore"
+                          class="w-5 h-auto"
+                        />
+                        <img
+                          v-else
                           :src="generalSetting.logoimage"
                           alt="Region"
-                          class="w-5 h-5 object-contain rounded-full"
+                          class="w-5 h-auto"
                         />
                       </button>
-                      <div
-                        v-if="showCountryMenuMobile"
-                        class="relative z-[999]"
-                      >
-                        <div
-                          class="lg:hidden fixed flex items-center justify-center inset-0 bg-black/80 backdrop-blur-sm z-40"
-                          @click="showCountryMenuMobile = false"
-                        ></div>
-                        <div
-                          class="absolute right-0 mt-2 bg-[#1A0D13] border border-[#3b1c23] rounded-lg shadow-2xl shadow-[#ff3344]/20 z-50 w-52"
-                        >
-                          <div class="p-2">
-                            <div class="px-3 py-2">
-                              <span
-                                class="text-xs font-semibold text-[#b37a7a] uppercase tracking-wider"
-                              >
-                                {{ $t("select_region") }}
-                              </span>
-                            </div>
-
-                            <!-- Malaysia -->
-                            <a
-                              href="https://www.egm8my.vip"
-                              target="_self"
-                              :class="[
-                                'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
-                                currentregion === 'malaysia'
-                                  ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
-                                  : 'lg:hover:bg-[#2a0f14] cursor-pointer',
-                              ]"
-                              @click="
-                                currentregion === 'malaysia'
-                                  ? $event.preventDefault()
-                                  : null
-                              "
-                            >
-                              <div class="text-2xl flex-shrink-0">🇲🇾</div>
-                              <div class="flex-1">
-                                <div class="flex items-center gap-2">
-                                  <span
-                                    :class="[
-                                      'text-sm font-semibold transition-colors block',
-                                      currentregion === 'malaysia'
-                                        ? 'text-[#7a5a5a]'
-                                        : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
-                                    ]"
-                                  >
-                                    {{ $t("malaysia") }}
-                                  </span>
-                                </div>
-                                <p
-                                  :class="[
-                                    'text-xs mt-0.5',
-                                    currentregion === 'malaysia'
-                                      ? 'text-[#7a5a5a]'
-                                      : 'text-[#b37a7a]',
-                                  ]"
-                                >
-                                  egm8my.vip
-                                </p>
-                              </div>
-                              <i
-                                v-if="currentregion !== 'malaysia'"
-                                class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
-                              ></i>
-                              <i
-                                v-else
-                                class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
-                              ></i>
-                            </a>
-
-                            <!-- Singapore -->
-                            <a
-                              href="https://www.egm8sg.vip"
-                              target="_self"
-                              :class="[
-                                'group flex items-center gap-3 p-3 rounded-xl transition-all duration-200',
-                                currentregion === 'singapore'
-                                  ? 'opacity-50 cursor-not-allowed bg-[#2a0f14]/30'
-                                  : 'lg:hover:bg-[#2a0f14] cursor-pointer',
-                              ]"
-                              @click="
-                                currentregion === 'singapore'
-                                  ? $event.preventDefault()
-                                  : null
-                              "
-                            >
-                              <div class="text-2xl flex-shrink-0">🇸🇬</div>
-                              <div class="flex-1">
-                                <div class="flex items-center gap-2">
-                                  <span
-                                    :class="[
-                                      'text-sm font-semibold transition-colors block',
-                                      currentregion === 'singapore'
-                                        ? 'text-[#7a5a5a]'
-                                        : 'text-[#f0eaea] lg:group-hover:text-[#ff3344]',
-                                    ]"
-                                  >
-                                    {{ $t("singapore") }}
-                                  </span>
-                                </div>
-                                <p
-                                  :class="[
-                                    'text-xs mt-0.5',
-                                    currentregion === 'singapore'
-                                      ? 'text-[#7a5a5a]'
-                                      : 'text-[#b37a7a]',
-                                  ]"
-                                >
-                                  egm8sg.vip
-                                </p>
-                              </div>
-                              <i
-                                v-if="currentregion !== 'singapore'"
-                                class="bi bi-box-arrow-up-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors text-sm"
-                              ></i>
-                              <i
-                                v-else
-                                class="bi bi-check-circle-fill text-[#7a5a5a] text-sm"
-                              ></i>
-                            </a>
-                          </div>
-                        </div>
-                      </div>
                     </div>
 
                     <button
@@ -1520,543 +1387,680 @@
                 class="flex-1 overflow-y-auto pb-4 scrollbar-thin"
                 style="overflow-x: hidden"
               >
-                <div v-if="!userData" class="px-4 pt-3 flex gap-3">
-                  <NuxtLinkLocale
-                    to="/login"
-                    @click="closeMobileMenu"
-                    class="flex-1 py-2 text-center bg-gradient-to-r from-yellow-700 to-yellow-600 rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-yellow-600/30 transition-all lg:hover:from-yellow-600 lg:hover:to-yellow-500"
+                <!-- Language Selection Panel -->
+                <div v-if="showLanguagePanel" class="h-full flex flex-col">
+                  <div
+                    class="px-4 py-4 border-b border-[#3b1c23] flex items-center gap-3"
                   >
-                    {{ $t("log_in") }}
-                  </NuxtLinkLocale>
-                  <NuxtLinkLocale
-                    to="/register"
-                    @click="closeMobileMenu"
-                    class="flex-1 py-2 text-center bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-[#ff3344]/30"
+                    <button
+                      @click="showLanguagePanel = false"
+                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
+                    >
+                      <i class="bi bi-arrow-left"></i>
+                    </button>
+                    <span class="text-sm font-semibold text-[#f0eaea]">
+                      {{ $t("select_region") }}
+                    </span>
+                  </div>
+
+                  <div class="flex-1 px-4 pt-2">
+                    <div>
+                      <!-- Malaysia -->
+                      <div class="mb-2">
+                        <div class="flex items-center gap-2 py-2">
+                          <img
+                            src="/images/flags/malaysia.png"
+                            alt="Malaysia"
+                            class="w-7 h-auto"
+                          />
+                          <span class="text-sm font-semibold text-[#f0eaea]">
+                            {{ $t("malaysia") }}
+                          </span>
+                        </div>
+                        <div>
+                          <div class="flex rounded-lg overflow-hidden">
+                            <button
+                              @click="
+                                switchToMalaysia('en');
+                                showLanguagePanel = false;
+                              "
+                              :class="[
+                                'flex-1 text-center px-3 py-2 text-sm transition-colors border-r border-[#3b1c23]',
+                                locale === 'en' && isMalaysiaDomain
+                                  ? 'text-[#ff3344] font-semibold'
+                                  : 'text-[#f0eaea]',
+                              ]"
+                            >
+                              English
+                            </button>
+                            <button
+                              @click="
+                                switchToMalaysia('ms');
+                                showLanguagePanel = false;
+                              "
+                              :class="[
+                                'flex-1 text-center px-3 py-2 text-sm transition-colors border-r border-[#3b1c23]',
+                                locale === 'ms' && isMalaysiaDomain
+                                  ? 'text-[#ff3344] font-semibold'
+                                  : 'text-[#f0eaea]',
+                              ]"
+                            >
+                              Malay
+                            </button>
+                            <button
+                              @click="
+                                switchToMalaysia('zh');
+                                showLanguagePanel = false;
+                              "
+                              :class="[
+                                'flex-1 text-center px-3 py-2 text-sm transition-colors',
+                                locale === 'zh' && isMalaysiaDomain
+                                  ? 'text-[#ff3344] font-semibold'
+                                  : 'text-[#f0eaea]',
+                              ]"
+                            >
+                              中文
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Singapore -->
+                      <div>
+                        <div class="flex items-center gap-2 py-2">
+                          <img
+                            src="/images/flags/singapore.png"
+                            alt="Singapore"
+                            class="w-7 h-auto"
+                          />
+                          <span class="text-sm font-semibold text-[#f0eaea]">
+                            {{ $t("singapore") }}
+                          </span>
+                        </div>
+                        <div>
+                          <div class="flex rounded-lg overflow-hidden">
+                            <button
+                              @click="
+                                switchToSingapore('en');
+                                showLanguagePanel = false;
+                              "
+                              :class="[
+                                'flex-1 text-center px-3 py-2 text-sm transition-colors border-r border-[#3b1c23]',
+                                locale === 'en' && isSingaporeDomain
+                                  ? 'text-[#ff3344] font-semibold'
+                                  : 'text-[#f0eaea]',
+                              ]"
+                            >
+                              English
+                            </button>
+                            <button
+                              @click="
+                                switchToSingapore('zh');
+                                showLanguagePanel = false;
+                              "
+                              :class="[
+                                'flex-1 text-center px-3 py-2 text-sm transition-colors',
+                                locale === 'zh' && isSingaporeDomain
+                                  ? 'text-[#ff3344] font-semibold'
+                                  : 'text-[#f0eaea]',
+                              ]"
+                            >
+                              中文
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="!showLanguagePanel">
+                  <div v-if="!userData" class="px-4 pt-3 flex gap-3">
+                    <NuxtLinkLocale
+                      to="/login"
+                      @click="closeMobileMenu"
+                      class="flex-1 py-2 text-center bg-gradient-to-r from-yellow-700 to-yellow-600 rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-yellow-600/30 transition-all lg:hover:from-yellow-600 lg:hover:to-yellow-500"
+                    >
+                      {{ $t("log_in") }}
+                    </NuxtLinkLocale>
+                    <NuxtLinkLocale
+                      to="/register"
+                      @click="closeMobileMenu"
+                      class="flex-1 py-2 text-center bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-lg text-white font-medium mobileMenuText shadow-lg shadow-[#ff3344]/30"
+                    >
+                      {{ $t("register") }}
+                    </NuxtLinkLocale>
+                  </div>
+
+                  <div
+                    v-if="isUserLoggedIn"
+                    class="px-4 py-3 bg-[#241017]/60 border-b border-[#3b1c23]"
                   >
-                    {{ $t("register") }}
-                  </NuxtLinkLocale>
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center gap-2">
+                        <div
+                          class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center"
+                        >
+                          <img
+                            src="/images/user/icon.png"
+                            alt="icon"
+                            class="w-full h-auto"
+                          />
+                        </div>
+                        <div>
+                          <p class="text-sm font-medium text-[#f0eaea]">
+                            {{ userData?.username || "User" }}
+                          </p>
+                          <p class="text-xs text-[#b37a7a]">
+                            {{ userData?.viplevel || "Standard" }}
+                          </p>
+                        </div>
+                      </div>
+                      <div class="text-sm text-[#ff3344] font-medium">
+                        <div
+                          @click="showBalanceDropdown = !showBalanceDropdown"
+                          class="flex items-center gap-1 cursor-pointer"
+                        >
+                          <span
+                            >MYR
+                            {{ userData?.wallet?.toFixed(2) || "0.00" }}</span
+                          >
+                          <i class="bi bi-caret-down-fill text-xs ml-0.5"></i>
+                        </div>
+                        <GameBalanceDropdown
+                          v-if="showBalanceDropdown"
+                          @close="showBalanceDropdown = false"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div v-if="isUserLoggedIn" class="px-4 pt-2 pb-1">
+                    <div
+                      class="bg-[#1A0D13] p-1 rounded-xl flex shadow-sm border border-[#3b1c23]"
+                    >
+                      <button
+                        @click="mobileTab = 'games'"
+                        class="relative flex-1 flex items-center justify-center py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
+                        :class="
+                          mobileTab === 'games'
+                            ? 'text-white'
+                            : 'text-[#8a6d6d]'
+                        "
+                      >
+                        <div
+                          v-if="mobileTab === 'games'"
+                          class="absolute inset-0 bg-[#9e1c34] rounded-lg shadow-md transition-all duration-300"
+                        ></div>
+
+                        <div
+                          class="relative flex items-center justify-center gap-1.5 z-10"
+                        >
+                          <i class="bi bi-controller text-lg"></i>
+                          <span>{{ $t("games") }}</span>
+                        </div>
+                      </button>
+
+                      <button
+                        @click="mobileTab = 'account'"
+                        class="relative flex-1 flex items-center justify-center py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
+                        :class="
+                          mobileTab === 'account'
+                            ? 'text-white'
+                            : 'text-[#8a6d6d]'
+                        "
+                      >
+                        <div
+                          v-if="mobileTab === 'account'"
+                          class="absolute inset-0 bg-[#9e1c34] rounded-lg shadow-md transition-all duration-300"
+                        ></div>
+
+                        <div
+                          class="relative flex items-center justify-center gap-1.5 z-10"
+                        >
+                          <i class="bi bi-person-circle text-lg"></i>
+                          <span>{{ $t("account") }}</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div v-if="mobileTab === 'games'" class="px-4 pt-3">
+                    <div class="grid grid-cols-2 gap-3">
+                      <NuxtLinkLocale
+                        v-for="item in HeaderNav"
+                        :key="item.name"
+                        :to="item.link"
+                        @click="closeMobileMenu"
+                        class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      >
+                        <div
+                          class="w-11 h-11 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            :src="item.icon"
+                            :alt="item.name"
+                            class="w-full h-auto object-contain"
+                          />
+                        </div>
+                        <span
+                          class="text-sm font-medium text-[#f0eaea] text-center lg:group-hover:text-[#ff3344] transition-colors"
+                        >
+                          {{ item.label }}
+                        </span>
+                      </NuxtLinkLocale>
+                    </div>
+
+                    <div
+                      class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-[#3b1c23]"
+                    >
+                      <NuxtLinkLocale
+                        to="/promotions"
+                        @click="closeMobileMenu"
+                        class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      >
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            src="/images/burger-menu/promotions.png"
+                            class="w-full h-auto object-contain"
+                            alt="Promotions"
+                          />
+                        </div>
+                        <span
+                          class="text-sm font-medium text-center text-white lg:group-hover:text-white transition-colors"
+                        >
+                          {{ $t("promotions") }}
+                        </span>
+                      </NuxtLinkLocale>
+
+                      <NuxtLinkLocale
+                        to="/vip"
+                        @click="closeMobileMenu"
+                        class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      >
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            src="/images/burger-menu/vip.png"
+                            class="w-full h-auto object-contain"
+                            alt="VIP"
+                          />
+                        </div>
+                        <span
+                          class="text-sm font-medium text-white text-center lg:group-hover:text-yellow-200 transition-colors"
+                        >
+                          {{ $t("vip") }}
+                        </span>
+                      </NuxtLinkLocale>
+
+                      <NuxtLinkLocale
+                        to="/blog"
+                        @click="closeMobileMenu"
+                        class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      >
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            src="/images/burger-menu/blog.png"
+                            class="w-full h-auto object-contain"
+                            alt="BLOG"
+                          />
+                        </div>
+                        <span
+                          class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
+                        >
+                          {{ $t("blog") }}
+                        </span>
+                      </NuxtLinkLocale>
+                    </div>
+
+                    <div
+                      v-if="isUserLoggedIn"
+                      class="py-4 bg-[#1A0D13] flex justify-center"
+                    >
+                      <button
+                        @click="handleLogout"
+                        class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
+                      >
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="font-medium text-sm">{{
+                          $t("logout")
+                        }}</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div v-if="mobileTab === 'account'" class="px-4 pt-3">
+                    <div class="mb-3">
+                      <div
+                        @click="
+                          mobileActiveSubmenu =
+                            mobileActiveSubmenu === 'cashier' ? null : 'cashier'
+                        "
+                        class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 lg:hover:bg-[#2a0f14]"
+                        :class="{
+                          'border-[#ff3344]/30 bg-[#241017]':
+                            mobileActiveSubmenu === 'cashier',
+                        }"
+                      >
+                        <div class="flex items-center justify-between">
+                          <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 text-[#ff3344]">
+                              <img
+                                src="/images/user/cashier2.png"
+                                alt="Cashier"
+                                class="w-full h-auto"
+                              />
+                            </div>
+                            <span class="text-sm font-semibold text-[#f0eaea]">
+                              {{ $t("cashier") }}
+                            </span>
+                          </div>
+                          <i
+                            class="bi text-[#b37a7a] transition-transform duration-300"
+                            :class="
+                              mobileActiveSubmenu === 'cashier'
+                                ? 'bi-chevron-up rotate-270'
+                                : 'bi-chevron-down rotate-0'
+                            "
+                          ></i>
+                        </div>
+                      </div>
+
+                      <Transition
+                        enter-active-class="transition-all duration-300 ease-out"
+                        enter-from-class="opacity-0 transform -translate-y-2 scale-95"
+                        enter-to-class="opacity-100 transform translate-y-0 scale-100"
+                        leave-active-class="transition-all duration-200 ease-in"
+                        leave-from-class="opacity-100 transform translate-y-0 scale-100"
+                        leave-to-class="opacity-0 transform -translate-y-2 scale-95"
+                      >
+                        <div
+                          v-if="mobileActiveSubmenu === 'cashier'"
+                          class="mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] shadow-sm p-2 origin-top"
+                        >
+                          <NuxtLinkLocale
+                            to="/myaccount/deposit"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i
+                              class="bi bi-arrow-down-circle text-[#ff3344]"
+                            ></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("deposit")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            to="/myaccount/withdraw"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-arrow-up-circle text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("withdraw")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            to="/myaccount/rescue"
+                            @click="closeMobileMenu"
+                            class="hidden items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-heart-pulse text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("rescue")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            to="/myaccount/checkin"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-calendar-check text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("checkin")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            v-if="luckyDrawStatus"
+                            to="/luckydraw"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-dice-5 text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("lucky_draw")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            to="/myaccount/bankaccount"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-bank text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("bank_account")
+                            }}</span>
+                          </NuxtLinkLocale>
+                        </div>
+                      </Transition>
+                    </div>
+
+                    <div class="mb-3">
+                      <div
+                        @click="
+                          mobileActiveSubmenu =
+                            mobileActiveSubmenu === 'agent' ? null : 'agent'
+                        "
+                        class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 lg:hover:bg-[#2a0f14]"
+                        :class="{
+                          'border-[#ff3344]/30 bg-[#241017]':
+                            mobileActiveSubmenu === 'agent',
+                        }"
+                      >
+                        <div class="flex items-center justify-between">
+                          <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 text-[#ff3344]">
+                              <img
+                                src="/images/user/agent2.png"
+                                alt="agent"
+                                class="w-full h-auto"
+                              />
+                            </div>
+                            <span class="text-sm font-semibold text-[#f0eaea]">
+                              {{ $t("agent") }}
+                            </span>
+                          </div>
+                          <i
+                            class="bi text-[#b37a7a] transition-transform duration-300"
+                            :class="
+                              mobileActiveSubmenu === 'agent'
+                                ? 'bi-chevron-up rotate-270'
+                                : 'bi-chevron-down rotate-0'
+                            "
+                          ></i>
+                        </div>
+                      </div>
+
+                      <Transition
+                        enter-active-class="transition-all duration-300 ease-out"
+                        enter-from-class="opacity-0 transform -translate-y-2 scale-95"
+                        enter-to-class="opacity-100 transform translate-y-0 scale-100"
+                        leave-active-class="transition-all duration-200 ease-in"
+                        leave-from-class="opacity-100 transform translate-y-0 scale-100"
+                        leave-to-class="opacity-0 transform -translate-y-2 scale-95"
+                      >
+                        <div
+                          v-if="mobileActiveSubmenu === 'agent'"
+                          class="mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] shadow-sm p-2 origin-top"
+                        >
+                          <NuxtLinkLocale
+                            to="/myaccount/referral"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-share-fill text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("referral")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            to="/myaccount/downline"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-diagram-3 text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("downline")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            to="/myaccount/commission"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-currency-dollar text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("commission")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
+                            v-if="userData?.positionTaking > 0"
+                            to="/myaccount/agentpt"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-graph-up text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("agent_pt")
+                            }}</span>
+                          </NuxtLinkLocale>
+                        </div>
+                      </Transition>
+                    </div>
+
+                    <div
+                      v-if="isUserLoggedIn"
+                      class="pb-4 pt-1 bg-[#1A0D13] flex justify-center"
+                    >
+                      <button
+                        @click="handleLogout"
+                        class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
+                      >
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="font-medium text-sm">{{
+                          $t("logout")
+                        }}</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
 
                 <div
-                  v-if="isUserLoggedIn"
-                  class="px-4 py-3 bg-[#241017]/60 border-b border-[#3b1c23]"
+                  class="px-2 py-2 flex max-lg:hidden justify-center border-t border-gray-700 bg-gray-950"
                 >
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                      <div
-                        class="w-10 h-10 rounded-full bg-[#ff3344]/20 flex items-center justify-center"
-                      >
-                        <img
-                          src="/images/user/icon.png"
-                          alt="icon"
-                          class="w-full h-auto"
-                        />
-                      </div>
-                      <div>
-                        <p class="text-sm font-medium text-[#f0eaea]">
-                          {{ userData?.username || "User" }}
-                        </p>
-                        <p class="text-xs text-[#b37a7a]">
-                          {{ userData?.viplevel || "Standard" }}
-                        </p>
-                      </div>
-                    </div>
-                    <div class="text-sm text-[#ff3344] font-medium">
-                      <div
-                        @click="showBalanceDropdown = !showBalanceDropdown"
-                        class="flex items-center gap-1 cursor-pointer"
-                      >
-                        <span
-                          >MYR
-                          {{ userData?.wallet?.toFixed(2) || "0.00" }}</span
-                        >
-                        <i class="bi bi-caret-down-fill text-xs ml-0.5"></i>
-                      </div>
-                      <GameBalanceDropdown
-                        v-if="showBalanceDropdown"
-                        @close="showBalanceDropdown = false"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div v-if="isUserLoggedIn" class="px-4 pt-2 pb-1">
-                  <div
-                    class="bg-[#1A0D13] p-1 rounded-xl flex shadow-sm border border-[#3b1c23]"
-                  >
-                    <button
-                      @click="mobileTab = 'games'"
-                      class="relative flex-1 flex items-center justify-center py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
-                      :class="
-                        mobileTab === 'games' ? 'text-white' : 'text-[#8a6d6d]'
-                      "
-                    >
-                      <div
-                        v-if="mobileTab === 'games'"
-                        class="absolute inset-0 bg-[#9e1c34] rounded-lg shadow-md transition-all duration-300"
-                      ></div>
-
-                      <div
-                        class="relative flex items-center justify-center gap-1.5 z-10"
-                      >
-                        <i class="bi bi-controller text-lg"></i>
-                        <span>{{ $t("games") }}</span>
-                      </div>
-                    </button>
-
-                    <button
-                      @click="mobileTab = 'account'"
-                      class="relative flex-1 flex items-center justify-center py-2.5 rounded-lg text-sm font-medium transition-all duration-300"
-                      :class="
-                        mobileTab === 'account'
-                          ? 'text-white'
-                          : 'text-[#8a6d6d]'
-                      "
-                    >
-                      <div
-                        v-if="mobileTab === 'account'"
-                        class="absolute inset-0 bg-[#9e1c34] rounded-lg shadow-md transition-all duration-300"
-                      ></div>
-
-                      <div
-                        class="relative flex items-center justify-center gap-1.5 z-10"
-                      >
-                        <i class="bi bi-person-circle text-lg"></i>
-                        <span>{{ $t("account") }}</span>
-                      </div>
-                    </button>
-                  </div>
-                </div>
-
-                <div v-if="mobileTab === 'games'" class="px-4 pt-3">
-                  <div class="grid grid-cols-2 gap-3">
+                  <div class="grid grid-cols-5">
                     <NuxtLinkLocale
-                      v-for="item in HeaderNav"
-                      :key="item.name"
-                      :to="item.link"
+                      to="/license"
                       @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
                     >
                       <div
-                        class="w-11 h-11 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        class="w-6 h-6 bg-purple-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-purple-800/30 transition-colors"
                       >
-                        <img
-                          :src="item.icon"
-                          :alt="item.name"
-                          class="w-full h-auto object-contain"
-                        />
-                      </div>
-                      <span
-                        class="text-sm font-medium text-[#f0eaea] text-center lg:group-hover:text-[#ff3344] transition-colors"
-                      >
-                        {{ item.label }}
-                      </span>
-                    </NuxtLinkLocale>
-                  </div>
-
-                  <div
-                    class="grid grid-cols-2 gap-3 mt-3 pt-3 border-t border-[#3b1c23]"
-                  >
-                    <NuxtLinkLocale
-                      to="/promotions"
-                      @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
-                    >
-                      <div
-                        class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
-                      >
-                        <img
-                          src="/images/burger-menu/promotions.png"
-                          class="w-full h-auto object-contain"
-                          alt="Promotions"
-                        />
-                      </div>
-                      <span
-                        class="text-sm font-medium text-center text-white lg:group-hover:text-white transition-colors"
-                      >
-                        {{ $t("promotions") }}
-                      </span>
-                    </NuxtLinkLocale>
-
-                    <NuxtLinkLocale
-                      to="/vip"
-                      @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
-                    >
-                      <div
-                        class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
-                      >
-                        <img
-                          src="/images/burger-menu/vip.png"
-                          class="w-full h-auto object-contain"
-                          alt="VIP"
-                        />
-                      </div>
-                      <span
-                        class="text-sm font-medium text-white text-center lg:group-hover:text-yellow-200 transition-colors"
-                      >
-                        {{ $t("vip") }}
-                      </span>
-                    </NuxtLinkLocale>
-
-                    <NuxtLinkLocale
-                      to="/blog"
-                      @click="closeMobileMenu"
-                      class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
-                    >
-                      <div
-                        class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
-                      >
-                        <img
-                          src="/images/burger-menu/blog.png"
-                          class="w-full h-auto object-contain"
-                          alt="BLOG"
-                        />
-                      </div>
-                      <span
-                        class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
-                      >
-                        {{ $t("blog") }}
-                      </span>
-                    </NuxtLinkLocale>
-                  </div>
-
-                  <div
-                    v-if="isUserLoggedIn"
-                    class="py-4 bg-[#1A0D13] flex justify-center"
-                  >
-                    <button
-                      @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
-                    >
-                      <i class="bi bi-box-arrow-right"></i>
-                      <span class="font-medium text-sm">{{
-                        $t("logout")
-                      }}</span>
-                    </button>
-                  </div>
-                </div>
-
-                <div v-if="mobileTab === 'account'" class="px-4 pt-3">
-                  <div class="mb-3">
-                    <div
-                      @click="
-                        mobileActiveSubmenu =
-                          mobileActiveSubmenu === 'cashier' ? null : 'cashier'
-                      "
-                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 lg:hover:bg-[#2a0f14]"
-                      :class="{
-                        'border-[#ff3344]/30 bg-[#241017]':
-                          mobileActiveSubmenu === 'cashier',
-                      }"
-                    >
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                          <div class="w-10 h-10 text-[#ff3344]">
-                            <img
-                              src="/images/user/cashier2.png"
-                              alt="Cashier"
-                              class="w-full h-auto"
-                            />
-                          </div>
-                          <span class="text-sm font-semibold text-[#f0eaea]">
-                            {{ $t("cashier") }}
-                          </span>
-                        </div>
                         <i
-                          class="bi text-[#b37a7a] transition-transform duration-300"
-                          :class="
-                            mobileActiveSubmenu === 'cashier'
-                              ? 'bi-chevron-up rotate-270'
-                              : 'bi-chevron-down rotate-0'
-                          "
+                          class="bi bi-shield-check text-purple-400 text-xs"
                         ></i>
                       </div>
-                    </div>
+                      <span
+                        class="text-[9px] font-medium text-gray-300 text-center"
+                      >
+                        {{ $t("license") }}
+                      </span>
+                    </NuxtLinkLocale>
 
-                    <Transition
-                      enter-active-class="transition-all duration-300 ease-out"
-                      enter-from-class="opacity-0 transform -translate-y-2 scale-95"
-                      enter-to-class="opacity-100 transform translate-y-0 scale-100"
-                      leave-active-class="transition-all duration-200 ease-in"
-                      leave-from-class="opacity-100 transform translate-y-0 scale-100"
-                      leave-to-class="opacity-0 transform -translate-y-2 scale-95"
+                    <NuxtLinkLocale
+                      to="/termscondition"
+                      @click="closeMobileMenu"
+                      class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
                     >
                       <div
-                        v-if="mobileActiveSubmenu === 'cashier'"
-                        class="mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] shadow-sm p-2 origin-top"
+                        class="w-6 h-6 bg-blue-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-blue-800/30 transition-colors"
                       >
-                        <NuxtLinkLocale
-                          to="/myaccount/deposit"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-arrow-down-circle text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("deposit")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          to="/myaccount/withdraw"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-arrow-up-circle text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("withdraw")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          to="/myaccount/rescue"
-                          @click="closeMobileMenu"
-                          class="hidden items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-heart-pulse text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("rescue")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          to="/myaccount/checkin"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-calendar-check text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("checkin")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          v-if="luckyDrawStatus"
-                          to="/luckydraw"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-dice-5 text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("lucky_draw")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          to="/myaccount/bankaccount"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-bank text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("bank_account")
-                          }}</span>
-                        </NuxtLinkLocale>
+                        <i class="bi bi-file-text text-blue-400 text-xs"></i>
                       </div>
-                    </Transition>
-                  </div>
+                      <span
+                        class="text-[9px] font-medium text-gray-300 text-center"
+                      >
+                        {{ $t("terms") }}
+                      </span>
+                    </NuxtLinkLocale>
 
-                  <div class="mb-3">
-                    <div
-                      @click="
-                        mobileActiveSubmenu =
-                          mobileActiveSubmenu === 'agent' ? null : 'agent'
-                      "
-                      class="p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-sm cursor-pointer transition-all duration-200 lg:hover:bg-[#2a0f14]"
-                      :class="{
-                        'border-[#ff3344]/30 bg-[#241017]':
-                          mobileActiveSubmenu === 'agent',
-                      }"
+                    <NuxtLinkLocale
+                      to="/responsible"
+                      @click="closeMobileMenu"
+                      class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
                     >
-                      <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                          <div class="w-10 h-10 text-[#ff3344]">
-                            <img
-                              src="/images/user/agent2.png"
-                              alt="agent"
-                              class="w-full h-auto"
-                            />
-                          </div>
-                          <span class="text-sm font-semibold text-[#f0eaea]">
-                            {{ $t("agent") }}
-                          </span>
-                        </div>
+                      <div
+                        class="w-6 h-6 bg-green-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-green-800/30 transition-colors"
+                      >
+                        <i class="bi bi-heart-pulse text-green-400 text-xs"></i>
+                      </div>
+                      <span
+                        class="text-[9px] font-medium text-gray-300 text-center"
+                      >
+                        {{ $t("gaming") }}
+                      </span>
+                    </NuxtLinkLocale>
+
+                    <NuxtLinkLocale
+                      to="/helpcenter"
+                      @click="closeMobileMenu"
+                      class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
+                    >
+                      <div
+                        class="w-6 h-6 bg-red-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-red-800/30 transition-colors"
+                      >
                         <i
-                          class="bi text-[#b37a7a] transition-transform duration-300"
-                          :class="
-                            mobileActiveSubmenu === 'agent'
-                              ? 'bi-chevron-up rotate-270'
-                              : 'bi-chevron-down rotate-0'
-                          "
+                          class="bi bi-question-circle text-red-400 text-xs"
                         ></i>
                       </div>
-                    </div>
+                      <span
+                        class="text-[9px] font-medium text-gray-300 text-center"
+                      >
+                        {{ $t("help") }}
+                      </span>
+                    </NuxtLinkLocale>
 
-                    <Transition
-                      enter-active-class="transition-all duration-300 ease-out"
-                      enter-from-class="opacity-0 transform -translate-y-2 scale-95"
-                      enter-to-class="opacity-100 transform translate-y-0 scale-100"
-                      leave-active-class="transition-all duration-200 ease-in"
-                      leave-from-class="opacity-100 transform translate-y-0 scale-100"
-                      leave-to-class="opacity-0 transform -translate-y-2 scale-95"
+                    <NuxtLinkLocale
+                      to="/faq"
+                      @click="closeMobileMenu"
+                      class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
                     >
                       <div
-                        v-if="mobileActiveSubmenu === 'agent'"
-                        class="mt-2 bg-[#1A0D13] rounded-xl border border-[#3b1c23] shadow-sm p-2 origin-top"
+                        class="w-6 h-6 bg-indigo-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-indigo-800/30 transition-colors"
                       >
-                        <NuxtLinkLocale
-                          to="/myaccount/referral"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-share-fill text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("referral")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          to="/myaccount/downline"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-diagram-3 text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("downline")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          to="/myaccount/commission"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-currency-dollar text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("commission")
-                          }}</span>
-                        </NuxtLinkLocale>
-
-                        <NuxtLinkLocale
-                          v-if="userData?.positionTaking > 0"
-                          to="/myaccount/agentpt"
-                          @click="closeMobileMenu"
-                          class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                        >
-                          <i class="bi bi-graph-up text-[#ff3344]"></i>
-                          <span class="text-[#f0eaea] text-sm">{{
-                            $t("agent_pt")
-                          }}</span>
-                        </NuxtLinkLocale>
+                        <i class="bi bi-chat-dots text-indigo-400 text-xs"></i>
                       </div>
-                    </Transition>
+                      <span
+                        class="text-[9px] font-medium text-gray-300 text-center"
+                      >
+                        {{ $t("faq") }}
+                      </span>
+                    </NuxtLinkLocale>
                   </div>
-
-                  <div
-                    v-if="isUserLoggedIn"
-                    class="pb-4 pt-1 bg-[#1A0D13] flex justify-center"
-                  >
-                    <button
-                      @click="handleLogout"
-                      class="w-full py-2 rounded-lg bg-[#241017]/60 text-[#ff3344] border border-[#3b1c23] lg:hover:border-[#ff3344]/50 transition-all flex items-center justify-center gap-2"
-                    >
-                      <i class="bi bi-box-arrow-right"></i>
-                      <span class="font-medium text-sm">{{
-                        $t("logout")
-                      }}</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="px-2 py-2 flex max-lg:hidden justify-center border-t border-gray-700 bg-gray-950"
-              >
-                <div class="grid grid-cols-5">
-                  <NuxtLinkLocale
-                    to="/license"
-                    @click="closeMobileMenu"
-                    class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
-                  >
-                    <div
-                      class="w-6 h-6 bg-purple-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-purple-800/30 transition-colors"
-                    >
-                      <i class="bi bi-shield-check text-purple-400 text-xs"></i>
-                    </div>
-                    <span
-                      class="text-[9px] font-medium text-gray-300 text-center"
-                    >
-                      {{ $t("license") }}
-                    </span>
-                  </NuxtLinkLocale>
-
-                  <NuxtLinkLocale
-                    to="/termscondition"
-                    @click="closeMobileMenu"
-                    class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
-                  >
-                    <div
-                      class="w-6 h-6 bg-blue-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-blue-800/30 transition-colors"
-                    >
-                      <i class="bi bi-file-text text-blue-400 text-xs"></i>
-                    </div>
-                    <span
-                      class="text-[9px] font-medium text-gray-300 text-center"
-                    >
-                      {{ $t("terms") }}
-                    </span>
-                  </NuxtLinkLocale>
-
-                  <NuxtLinkLocale
-                    to="/responsible"
-                    @click="closeMobileMenu"
-                    class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
-                  >
-                    <div
-                      class="w-6 h-6 bg-green-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-green-800/30 transition-colors"
-                    >
-                      <i class="bi bi-heart-pulse text-green-400 text-xs"></i>
-                    </div>
-                    <span
-                      class="text-[9px] font-medium text-gray-300 text-center"
-                    >
-                      {{ $t("gaming") }}
-                    </span>
-                  </NuxtLinkLocale>
-
-                  <NuxtLinkLocale
-                    to="/helpcenter"
-                    @click="closeMobileMenu"
-                    class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
-                  >
-                    <div
-                      class="w-6 h-6 bg-red-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-red-800/30 transition-colors"
-                    >
-                      <i class="bi bi-question-circle text-red-400 text-xs"></i>
-                    </div>
-                    <span
-                      class="text-[9px] font-medium text-gray-300 text-center"
-                    >
-                      {{ $t("help") }}
-                    </span>
-                  </NuxtLinkLocale>
-
-                  <NuxtLinkLocale
-                    to="/faq"
-                    @click="closeMobileMenu"
-                    class="flex flex-col items-center p-2 lg:hover:bg-gray-700 rounded-lg transition-colors group"
-                  >
-                    <div
-                      class="w-6 h-6 bg-indigo-900/30 rounded-lg flex items-center justify-center mb-1 lg:group-hover:bg-indigo-800/30 transition-colors"
-                    >
-                      <i class="bi bi-chat-dots text-indigo-400 text-xs"></i>
-                    </div>
-                    <span
-                      class="text-[9px] font-medium text-gray-300 text-center"
-                    >
-                      {{ $t("faq") }}
-                    </span>
-                  </NuxtLinkLocale>
                 </div>
               </div>
             </div>
@@ -2094,6 +2098,7 @@ const isConfirmAlertVisible = ref(false);
 const confirmAlertTitle = ref("");
 const confirmAlertMessage = ref("");
 const confirmAlertType = ref("warning");
+const showLanguagePanel = ref(false);
 const activeMenuItem = ref("profile");
 const showProfileMenu = ref(false);
 const userData = useState("userData");
@@ -2232,6 +2237,7 @@ const closeMobileMenu = () => {
   mobileActiveSubmenu.value = null;
   showLanguageMenu.value = false;
   showBalanceDropdown.value = false;
+  showLanguagePanel.value = false;
 };
 
 const handleLogout = () => {
@@ -2303,6 +2309,38 @@ const performLogout = async () => {
     confirmAlertMessage.value = $t("logout_failed");
     confirmAlertType.value = "error";
     isConfirmAlertVisible.value = true;
+  }
+};
+
+const currentDomain = computed(() => {
+  if (process.client) {
+    return window.location.hostname;
+  }
+  return "";
+});
+
+const isMalaysiaDomain = computed(() => currentDomain.value.includes("egm8my"));
+const isSingaporeDomain = computed(() =>
+  currentDomain.value.includes("egm8sg")
+);
+
+const switchToMalaysia = (lang) => {
+  const hostname = window.location.hostname;
+  const langPath = lang === "en" ? "" : `/${lang}`;
+  if (!hostname.includes("egm8my")) {
+    window.location.href = `https://www.egm8my.vip${langPath}`;
+  } else {
+    changeLocale(lang);
+  }
+};
+
+const switchToSingapore = (lang) => {
+  const hostname = window.location.hostname;
+  const langPath = lang === "en" ? "" : `/${lang}`;
+  if (!hostname.includes("egm8sg")) {
+    window.location.href = `https://www.egm8sg.vip${langPath}`;
+  } else {
+    changeLocale(lang);
   }
 };
 
