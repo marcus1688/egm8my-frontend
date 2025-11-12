@@ -35,7 +35,7 @@
             </div>
           </div>
           <div
-            class="grid grid-cols-8 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-4"
+            class="grid grid-cols-8 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-3 gap-4"
           >
             <div
               v-for="game in regularKiosks"

@@ -79,9 +79,7 @@
 
         <!-- Promotions Grid -->
         <div v-if="filteredContent.length > 0">
-          <div
-            class="grid grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 gap-6 max-lg:gap-5"
-          >
+          <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-6 max-lg:gap-5">
             <div
               v-for="promotion in filteredContent"
               :key="promotion._id"
@@ -99,9 +97,9 @@
               </div>
 
               <div class="p-5 max-lg:p-4">
-                <div class="min-h-[3rem]">
+                <div class="h-4 flex items-start">
                   <h3
-                    class="text-[#f0eaea] font-semibold text-base mb-4 line-clamp-2 leading-snug max-lg:text-sm max-lg:mb-3"
+                    class="text-[#f0eaea] font-semibold text-base leading-snug max-lg:text-sm overflow-hidden text-ellipsis whitespace-nowrap"
                   >
                     {{
                       $i18n.locale === "zh"
@@ -115,7 +113,7 @@
 
                 <button
                   @click="openPromotionModal(promotion)"
-                  class="w-full py-2.5 mt-5 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 border max-lg:py-2 max-lg:text-xs bg-transparent border-[#ff3344] text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white"
+                  class="w-full py-2.5 mt-5 max-lg:mt-3 rounded-lg font-medium text-sm transition-all duration-200 flex items-center justify-center gap-2 border max-lg:py-2 max-lg:text-xs bg-transparent border-[#ff3344] text-[#ff3344] lg:hover:bg-[#ff3344] lg:hover:text-white"
                 >
                   <span>{{ $t("learn_more") }}</span>
                   <i class="bi bi-arrow-right text-xs"></i>
@@ -349,7 +347,7 @@ useHead({
 
 .line-clamp-2 {
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
