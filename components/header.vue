@@ -2114,7 +2114,7 @@ const i18nCookie = useCookie("i18n_redirected", {
 });
 const languageOptions = [
   { name: "English", flag: "/images/flags/England.svg", code: "en" },
-  { name: "Malay", flag: "/images/flags/Malaysia.svg", code: "ms" },
+  { name: "Malay", flag: "/images/flags/Malaysia.png", code: "ms" },
   { name: "中文", flag: "/images/flags/China.svg", code: "zh" },
 ];
 
@@ -2327,6 +2327,10 @@ const isSingaporeDomain = computed(() =>
 const switchToMalaysia = (lang) => {
   const hostname = window.location.hostname;
   const langPath = lang === "en" ? "" : `/${lang}`;
+  if (hostname === "localhost" || hostname === "127.0.0.1") {
+    changeLocale(lang);
+    return;
+  }
   if (!hostname.includes("egm8my")) {
     window.location.href = `https://www.egm8my.vip${langPath}`;
   } else {
@@ -2337,6 +2341,10 @@ const switchToMalaysia = (lang) => {
 const switchToSingapore = (lang) => {
   const hostname = window.location.hostname;
   const langPath = lang === "en" ? "" : `/${lang}`;
+  if (hostname === "localhost" || hostname === "127.0.0.1") {
+    changeLocale(lang);
+    return;
+  }
   if (!hostname.includes("egm8sg")) {
     window.location.href = `https://www.egm8sg.vip${langPath}`;
   } else {
