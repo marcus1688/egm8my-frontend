@@ -6,7 +6,7 @@
     :type="alertType"
     @close="alertVisible = false"
   />
-  <section class="py-8 containerWid max-lg:py-4">
+  <section class="py-8 containerWid max-lg:py-2">
     <div class="mx-auto px-4 max-lg:px-2">
       <!-- Mobile Category Navigation -->
       <div class="block lg:hidden mb-6">
@@ -99,7 +99,7 @@
         ></div>
 
         <div
-          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 gap-4 max-lg:gap-3 max-sm:grid-cols-3 max-[450px]:grid-cols-2"
+          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 gap-4 max-lg:gap-3 max-sm:grid-cols-3"
         >
           <!-- Slot Games -->
           <GameCardGrid

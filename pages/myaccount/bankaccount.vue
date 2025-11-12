@@ -205,9 +205,9 @@ onMounted(async () => {
   pageLoading.value = true;
   try {
     await fetchUserBank();
-    if (userbank.value.length === 0) {
-      showModal.value = true;
-    }
+    // if (userbank.value.length === 0) {
+    //   showModal.value = true;
+    // }
   } catch (error) {
     console.error("Error during initialization:", error);
   } finally {

@@ -6,7 +6,7 @@
       seoData.contentBlocks &&
       seoData.contentBlocks.length > 0
     "
-    class="py-8 containerWid max-lg:py-4"
+    class="py-8 containerWid max-lg:py-2"
   >
     <div class="mx-auto px-4 max-lg:px-2">
       <div

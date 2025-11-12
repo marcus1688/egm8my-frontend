@@ -10,7 +10,7 @@
         : 'cursor-pointer',
     ]"
   >
-    <div class="relative inline-block group">
+    <div>
       <img
         :src="game.icon || fallback(game.name)"
         :alt="game.name"

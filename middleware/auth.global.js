@@ -15,12 +15,12 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       if (data.success) {
         isUserLoggedIn.value = true;
         userData.value = data.user;
-        if (
-          userData.value.bankAccounts.length === 0 &&
-          to.path !== localePath("/myaccount/bankaccount")
-        ) {
-          return navigateTo(localePath("/myaccount/bankaccount"));
-        }
+        // if (
+        //   userData.value.bankAccounts.length === 0 &&
+        //   to.path !== localePath("/myaccount/bankaccount")
+        // ) {
+        //   return navigateTo(localePath("/myaccount/bankaccount"));
+        // }
       } else {
         isUserLoggedIn.value = false;
         userData.value = null;

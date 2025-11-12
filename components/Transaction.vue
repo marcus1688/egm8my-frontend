@@ -1,6 +1,6 @@
 <template>
   <section class="py-4 containerWid max-lg:py-2">
-    <div class="my-4">
+    <div>
       <div class="my-4">
         <div class="flex items-center justify-between mb-1">
           <h2

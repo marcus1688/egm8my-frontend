@@ -89,9 +89,28 @@
       <div class="mb-6 max-lg:mb-4">
         <div class="flex justify-between items-start gap-3">
           <div class="flex-1">
-            <h1 class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base">
-              {{ $t("withdraw") }}
-            </h1>
+            <div class="flex items-end justify-between">
+              <h1
+                class="text-xl font-bold mb-1 max-lg:text-lg max-sm:text-base"
+              >
+                {{ $t("withdraw") }}
+              </h1>
+              <button
+                type="button"
+                @click="checkTurnoverRequirements"
+                :disabled="turnoverCheckLoading"
+                class="flex items-center gap-2 lg:hidden bg-[#241017] border border-[#3b1c23] text-[#f0eaea] font-medium py-2.5 px-4 rounded-lg lg:hover:border-[#ff3344]/50 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap max-lg:py-2 max-lg:px-3 max-lg:text-xs"
+              >
+                <Icon
+                  :icon="
+                    turnoverCheckLoading ? 'mdi:loading' : 'mdi:clipboard-check'
+                  "
+                  class="w-4 h-4"
+                  :class="{ 'animate-spin': turnoverCheckLoading }"
+                />
+                <span>{{ $t("check_turnover_requirements") }}</span>
+              </button>
+            </div>
             <p class="text-[#b37a7a] text-sm max-lg:text-xs">
               {{ $t("request_withdrawal") }}
             </p>
@@ -100,7 +119,7 @@
             type="button"
             @click="checkTurnoverRequirements"
             :disabled="turnoverCheckLoading"
-            class="flex items-center gap-2 bg-[#241017] border border-[#3b1c23] text-[#f0eaea] font-medium py-2.5 px-4 rounded-lg lg:hover:border-[#ff3344]/50 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap max-lg:py-2 max-lg:px-3 max-lg:text-xs"
+            class="flex items-center gap-2 max-lg:hidden bg-[#241017] border border-[#3b1c23] text-[#f0eaea] font-medium py-2.5 px-4 rounded-lg lg:hover:border-[#ff3344]/50 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap max-lg:py-2 max-lg:px-3 max-lg:text-xs"
           >
             <Icon
               :icon="
@@ -109,10 +128,7 @@
               class="w-4 h-4"
               :class="{ 'animate-spin': turnoverCheckLoading }"
             />
-            <span class="max-lg:hidden">{{
-              $t("check_turnover_requirements")
-            }}</span>
-            <span class="lg:hidden">{{ $t("check") }}</span>
+            <span>{{ $t("check_turnover_requirements") }}</span>
           </button>
         </div>
       </div>
@@ -237,7 +253,12 @@
           :loading="withdrawButtonLoading"
           @click="submitWithdraw"
           :disabled="!userData?.bankAccounts?.length"
-          class="w-full py-3 bg-[#ff3344] lg:hover:bg-[#cc2a3a] rounded-lg text-base font-semibold text-white transition-all mb-6 max-lg:py-2.5 max-lg:text-sm max-lg:mb-4"
+          :class="[
+            'w-full py-3 rounded-lg text-base font-semibold text-white transition-all mb-6 max-lg:py-2.5 max-lg:text-sm max-lg:mb-4',
+            !userData?.bankAccounts?.length
+              ? 'bg-gray-400 cursor-not-allowed opacity-60'
+              : 'bg-[#ff3344] lg:hover:bg-[#cc2a3a]',
+          ]"
         >
           {{ $t("request_withdrawal_button") }}
         </LoadingButton>

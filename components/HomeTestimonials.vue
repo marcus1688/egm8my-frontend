@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 containerWid max-lg:py-6">
+  <section class="py-12 containerWid max-lg:py-2">
     <div class="mx-auto px-4 max-lg:px-2">
       <!-- Section Header -->
       <div class="mb-4 text-center">
