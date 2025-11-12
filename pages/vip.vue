@@ -36,9 +36,9 @@
           <div class="overflow-x-auto">
             <table class="w-full min-w-[900px]">
               <thead>
-                <tr class="bg-gradient-to-r from-[#ff3344] to-[#cc2a3a]">
+                <tr class="bg-gradient-to-r from-[#8b0f1f] to-[#6b0a18]">
                   <th
-                    class="py-4 px-4 text-left text-white font-semibold sticky left-0 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] z-10"
+                    class="py-4 px-4 text-left text-white font-semibold sticky left-0 bg-gradient-to-r from-[#8b0f1f] to-[#6b0a18] z-10"
                   >
                     {{ $t("benefits") }}
                   </th>
