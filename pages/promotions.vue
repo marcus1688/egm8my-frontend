@@ -183,8 +183,8 @@ const categories = [
   },
   {
     name: "Live Casino",
-    iconActive: "/images/maingameicon/Live Casino_active.png",
-    iconInactive: "/images/maingameicon/Live Casino_deactivate.png",
+    iconActive: "/images/maingameicon/LiveCasino_active.png",
+    iconInactive: "/images/maingameicon/LiveCasino_deactivate.png",
   },
   {
     name: "Sports",
