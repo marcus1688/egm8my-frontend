@@ -138,7 +138,7 @@
 
           <div
             v-if="paginatedGames.length > 0"
-            class="grid grid-cols-8 max-2xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-2 gap-5 max-lg:gap-3"
+            class="grid grid-cols-8 max-2xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-3 gap-5 max-lg:gap-3"
           >
             <div
               v-for="game in paginatedGames"
@@ -194,17 +194,21 @@
               </div>
 
               <div class="border-t border-[#3b1c23]">
-                <div class="p-2 pt-3 text-center">
+                <div
+                  class="p-2 pt-3 text-center max-lg:h-12 h-16 flex items-center justify-center"
+                >
                   <h4
-                    class="text-sm max-md:text-xs font-medium text-[#f0eaea] break-words hyphens-auto"
+                    class="text-sm max-md:text-xs font-medium text-[#f0eaea] break-words hyphens-auto line-clamp-2"
                   >
                     {{ getLocalizedGameName(game) }}
                   </h4>
                 </div>
 
-                <!-- RTP row - only shows if RTP exists -->
-                <div v-if="game.RTP" class="px-2 pb-2.5 flex justify-center">
-                  <div class="flex items-center justify-center gap-2">
+                <div class="px-2 pb-2.5 flex justify-center h-8">
+                  <div
+                    v-if="game.RTP"
+                    class="flex items-center justify-center gap-2"
+                  >
                     <div class="h-0.5 w-4 bg-[#3b1c23] rounded-full"></div>
                     <div
                       class="flex items-center bg-[#15090e] rounded-full px-2 py-0.5 border border-[#3b1c23]"
