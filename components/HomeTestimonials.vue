@@ -1,5 +1,5 @@
 <template>
-  <section class="py-12 containerWid max-lg:py-2">
+  <section class="py-6 containerWid max-lg:py-2">
     <div class="mx-auto px-4 max-lg:px-2">
       <!-- Section Header -->
       <div class="mb-4 text-center">
@@ -91,7 +91,9 @@
       </swiper>
 
       <!-- Pagination -->
-      <div class="testimonial-pagination flex justify-center mt-8"></div>
+      <div
+        class="testimonial-pagination flex justify-center mt-8 max-md:mt-3"
+      ></div>
     </div>
   </section>
 </template>

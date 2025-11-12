@@ -1,6 +1,6 @@
 <template>
   <section
-    class="max-lg:hidden py-12 containerWid max-lg:py-2 relative overflow-hidden"
+    class="max-lg:hidden py-6 containerWid max-lg:py-2 relative overflow-hidden"
   >
     <div class="mx-auto px-4 max-lg:px-2">
       <div class="text-center mb-6">
