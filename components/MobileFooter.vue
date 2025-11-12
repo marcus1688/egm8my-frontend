@@ -80,20 +80,20 @@
         to="/myaccount/rebate"
         :class="[
           'flex flex-col items-center justify-center text-xs max-[370px]:text-[0.7rem] z-30 px-2 pt-2 cursor-pointer transition-colors',
-          isActiveRoute('/myaccount/commission')
+          isActiveRoute('/myaccount/rebate')
             ? 'text-[#ff3344] rounded-md'
             : 'text-[#b37a7a]',
         ]"
       >
         <component
           :is="
-            isActiveRoute('/myaccount/commission')
+            isActiveRoute('/myaccount/rebate')
               ? BanknotesSolid
               : BanknotesOutline
           "
           class="w-6 h-6 max-[370px]:w-5 max-[370px]:h-5 transition-colors"
           :class="
-            isActiveRoute('/myaccount/commission')
+            isActiveRoute('/myaccount/rebate')
               ? 'text-[#ff3344]'
               : 'text-[#b37a7a]'
           "
