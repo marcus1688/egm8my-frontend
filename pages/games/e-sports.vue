@@ -35,7 +35,7 @@
             </div>
           </div>
           <div
-            class="grid grid-cols-8 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-3 gap-4"
+            class="grid grid-cols-8 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 max-sm:grid-cols-3 gap-x-2"
           >
             <div
               v-for="game in regularKiosks"
@@ -43,7 +43,7 @@
               @click="launchGame(game)"
               class="relative cursor-pointer group"
             >
-              <div class="relative inline-block group">
+              <div>
                 <img
                   :src="game.icon || fallback(game.name)"
                   :alt="game.name"
