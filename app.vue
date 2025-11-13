@@ -169,12 +169,49 @@ watch(
   { immediate: true }
 );
 
+const preloadAllImages = async () => {
+  if (!process.client) return;
+  try {
+    const imagePromises = [];
+    const preloadImage = (src) => {
+      if (!src) return Promise.resolve();
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => {
+          resolve();
+        };
+        img.onerror = () => {
+          resolve();
+        };
+        img.src = src;
+      });
+    };
+    const bannerImages = import.meta.glob(
+      "/public/images/banner/*.{png,jpg,jpeg,gif,webp}",
+      {
+        eager: true,
+        query: "?url",
+        import: "default",
+      }
+    );
+    Object.keys(bannerImages).forEach((path) => {
+      const url = path.replace("/public", "");
+      imagePromises.push(preloadImage(url));
+    });
+    await Promise.all(imagePromises);
+    // console.log("🎉 所有图片预加载完成!总共:", imagePromises.length, "张");
+  } catch (error) {
+    console.error("❌ 预加载图片时发生错误:", error);
+  }
+};
+
 onMounted(async () => {
   await Promise.all([
     fetchGeneralSetting(),
     fetchKiosks(),
     fetchSmsStatus(),
     fetchLuckyDrawStatus(),
+    preloadAllImages(),
   ]);
 });
 
