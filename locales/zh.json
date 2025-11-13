@@ -1175,5 +1175,7 @@
   "wide_game_selection": "总流水竞赛",
   "players_can_compete_across_broad_range_game_categories_sports_live_casino_slots_fishing_lottery": "玩家根据所有游戏类别的总流水进行竞争，让每个人都有平等的获胜机会。",
   "leaderboard": "排行榜",
-  "leaderboard_description_short": "竞争顶级奖品"
+  "leaderboard_description_short": "竞争顶级奖品",
+  "your_rank": "您的排名",
+  "turnover": "流水"
 }

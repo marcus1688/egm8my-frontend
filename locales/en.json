@@ -1175,5 +1175,7 @@
   "wide_game_selection": "Total Turnover Competition",
   "players_can_compete_across_broad_range_game_categories_sports_live_casino_slots_fishing_lottery": "Players compete based on their total turnover across all game categories combined, giving everyone an equal opportunity to win.",
   "leaderboard": "Leaderboard",
-  "leaderboard_description_short": "Compete for top prizes"
+  "leaderboard_description_short": "Compete for top prizes",
+  "your_rank": "Your Rank",
+  "turnover": "Turnover"
 }

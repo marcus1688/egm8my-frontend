@@ -95,8 +95,65 @@
         </div>
 
         <div
-          class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] border-t border-[#3b1c23] px-6 py-4 max-lg:px-4 max-lg:py-3"
+          class="bg-gradient-to-r from-[#15090e] to-[#1a0a0f] border-t border-[#3b1c23] px-4 py-4 max-lg:px-2 max-lg:py-3"
         >
+          <div
+            v-if="isRanked && myRank"
+            class="mb-3 p-4 bg-gradient-to-r from-[#241017] to-[#1a0a0f] rounded-lg border border-[#ff3344]/50 shadow-lg shadow-[#ff3344]/10 max-lg:p-2"
+          >
+            <div class="flex items-center justify-between gap-4 max-lg:gap-3">
+              <div class="flex items-center gap-3 min-w-0 flex-1 max-lg:gap-2">
+                <div
+                  :class="[
+                    'w-12 h-12 rounded-full flex items-center justify-center font-bold flex-shrink-0 shadow-md',
+                    'max-lg:w-10 max-lg:h-10 max-sm:w-9 max-sm:h-9',
+                    myRank.rank <= 3
+                      ? 'bg-gradient-to-br from-[#ff3344] to-[#cc2a3a] text-white'
+                      : 'bg-[#15090e] text-[#f0eaea] border-2 border-[#ff3344]/30',
+                  ]"
+                >
+                  <span
+                    :class="[
+                      'font-bold',
+                      myRank.rank >= 100
+                        ? 'text-lg max-lg:text-base max-sm:text-sm'
+                        : myRank.rank >= 10
+                        ? 'text-lg max-lg:text-base max-sm:text-sm'
+                        : 'text-lg max-lg:text-base max-sm:text-sm',
+                    ]"
+                  >
+                    {{ myRank.rank }}
+                  </span>
+                </div>
+
+                <div class="min-w-0 flex-1">
+                  <div class="text-xs text-[#b37a7a] mb-0.5 max-lg:text-[10px]">
+                    {{ $t("your_rank") }}
+                  </div>
+                  <div
+                    class="font-semibold text-[#f0eaea] truncate max-lg:text-sm max-sm:text-xs"
+                  >
+                    {{ myRank.username }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="text-right flex-shrink-0">
+                <div class="text-xs text-[#b37a7a] mb-0.5 max-lg:text-[10px]">
+                  {{ $t("turnover") }}
+                </div>
+                <div
+                  class="font-bold text-[#4ade80] text-xl max-lg:text-lg max-sm:text-base"
+                >
+                  {{ formatNumber(myRank.totalValidTurnover) }}
+                </div>
+                <div class="text-[10px] text-[#b37a7a] max-lg:text-[9px]">
+                  MYR
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div
             class="flex items-center justify-center gap-2 text-xs text-[#b37a7a] max-lg:text-[10px]"
           >
@@ -111,9 +168,12 @@
 
 <script setup>
 const pageLoading = useState("pageLoading");
+const isUserLoggedIn = useState("isUserLoggedIn");
 const { post, get } = useApiEndpoint();
 const isLoading = ref(true);
 const error = ref(null);
+const myRank = ref(null);
+const isRanked = ref(false);
 const leaderboardData = ref([]);
 const metadata = ref({
   startDate: "",
@@ -240,9 +300,30 @@ const fetchLeaderboardData = async () => {
   }
 };
 
+const fetchMyRank = async () => {
+  try {
+    const { data } = await get("weeklyturnover/myrank");
+    console.log(data);
+    if (data && data.success && data.ranked) {
+      isRanked.value = true;
+      myRank.value = data;
+    } else {
+      isRanked.value = false;
+      myRank.value = null;
+    }
+  } catch (err) {
+    console.error("Error fetching my rank:", err);
+    isRanked.value = false;
+    myRank.value = null;
+  }
+};
+
 onMounted(async () => {
   try {
     await fetchLeaderboardData();
+    if (isUserLoggedIn.value) {
+      await fetchMyRank();
+    }
   } catch (error) {
     console.error("Error during initialization:", error);
   }
