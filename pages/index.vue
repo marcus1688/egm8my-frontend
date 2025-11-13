@@ -61,7 +61,7 @@
       <Sports />
       <HomePromotionList />
       <Transaction />
-      <Leaderboard />
+      <!-- <Leaderboard /> -->
       <HomeRegistrationSteps />
       <HomeGamesSection />
       <TrustedPartners />

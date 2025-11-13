@@ -1,10 +1,7 @@
 <template>
-  <section
-    v-if="leaderboardData.length > 0"
-    class="py-4 max-lg:hidden containerWid max-lg:py-2"
-  >
+  <section v-if="leaderboardData.length > 0">
     <!-- Header Section -->
-    <div class="my-4">
+    <div class="my-2">
       <div class="flex items-center justify-between mb-1">
         <h2
           class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base"
@@ -12,7 +9,7 @@
           {{ $t("weekly_turnover_leaderboard") }}
         </h2>
         <div
-          class="flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs rounded-full font-bold shadow-lg shadow-[#ff3344]/30 max-lg:text-[10px] max-lg:px-2 max-lg:py-1"
+          class="max-lg:hidden flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs rounded-full font-bold shadow-lg shadow-[#ff3344]/30 max-lg:text-[10px] max-lg:px-2 max-lg:py-1"
         >
           <i class="bi bi-calendar-week"></i>
           <span>{{
@@ -21,13 +18,18 @@
         </div>
       </div>
 
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 max-lg:flex-col max-lg:items-start">
         <p class="text-sm text-[#b37a7a] max-lg:text-xs">
           {{ $t("top_players_weekly_rankings") }}
         </p>
         <div
-          class="flex-1 h-px bg-gradient-to-r from-[#3b1c23] to-transparent"
-        ></div>
+          class="lg:hidden flex items-center gap-2 px-3 py-1.5 bg-gradient-to-r from-[#ff3344] to-[#cc2a3a] text-white text-xs rounded-full font-bold shadow-lg shadow-[#ff3344]/30 max-lg:text-[10px] max-lg:px-2 max-lg:py-1"
+        >
+          <i class="bi bi-calendar-week"></i>
+          <span>{{
+            formatDatePeriod(metadata.startDate, metadata.endDate)
+          }}</span>
+        </div>
       </div>
     </div>
 
