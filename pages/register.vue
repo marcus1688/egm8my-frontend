@@ -847,8 +847,15 @@ onMounted(() => {
     }
   }, 100);
 
-  if (props.referralId) {
-    form.value.referralCode = props.referralId;
+  if (props.referralId || referralFromUrl.value) {
+    const referralCode = props.referralId || referralFromUrl.value;
+    form.value.referralCode = referralCode;
+    localStorage.setItem("referralCode", referralCode);
+  } else {
+    const savedReferralCode = localStorage.getItem("referralCode");
+    if (savedReferralCode) {
+      form.value.referralCode = savedReferralCode;
+    }
   }
 });
 </script>

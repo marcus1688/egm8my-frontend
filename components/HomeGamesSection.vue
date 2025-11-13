@@ -99,7 +99,7 @@
         ></div>
 
         <div
-          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 gap-4 max-lg:gap-3 max-sm:grid-cols-3"
+          class="relative grid grid-cols-9 max-xl:grid-cols-6 max-lg:grid-cols-5 max-md:grid-cols-4 gap-x-2 max-sm:grid-cols-3"
         >
           <!-- Slot Games -->
           <GameCardGrid
