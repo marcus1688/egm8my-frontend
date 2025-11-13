@@ -854,6 +854,36 @@
                           class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
                         ></i>
                       </NuxtLinkLocale>
+
+                      <!-- Leaderboard -->
+                      <NuxtLinkLocale
+                        to="/leaderboard"
+                        class="group flex items-center gap-2 p-3 rounded-xl lg:hover:bg-[#2a0f14] transition-all duration-200 border border-transparent lg:hover:border-[#ff3344]/20 lg:hover:shadow-sm lg:hover:shadow-[#ff3344]/10"
+                        @click="mobileMenuOpen = false"
+                      >
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mb-2"
+                        >
+                          <img
+                            src="/images/burger-menu/leaderboard.png"
+                            class="w-[80%] h-auto object-contain"
+                            alt="leaderboard"
+                          />
+                        </div>
+                        <div class="flex-1">
+                          <span
+                            class="text-sm font-semibold text-[#f0eaea] lg:group-hover:text-[#ff3344] transition-colors block"
+                          >
+                            {{ $t("leaderboard") }}
+                          </span>
+                          <p class="text-xs text-[#b37a7a] mt-0.5">
+                            {{ $t("leaderboard_description_short") }}
+                          </p>
+                        </div>
+                        <i
+                          class="bi bi-chevron-right text-[#b37a7a] lg:group-hover:text-[#ff3344] transition-colors"
+                        ></i>
+                      </NuxtLinkLocale>
                     </div>
                   </div>
                 </div>
@@ -1825,6 +1855,27 @@
                           class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
                         >
                           {{ $t("blog") }}
+                        </span>
+                      </NuxtLinkLocale>
+
+                      <NuxtLinkLocale
+                        to="/leaderboard"
+                        @click="closeMobileMenu"
+                        class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      >
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            src="/images/burger-menu/leaderboard.png"
+                            class="w-full h-auto object-contain"
+                            alt="Leaderboard"
+                          />
+                        </div>
+                        <span
+                          class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
+                        >
+                          {{ $t("leaderboard") }}
                         </span>
                       </NuxtLinkLocale>
                     </div>
