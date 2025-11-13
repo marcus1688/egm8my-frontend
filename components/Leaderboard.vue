@@ -1,7 +1,7 @@
 <template>
   <section v-if="leaderboardData.length > 0">
     <!-- Header Section -->
-    <div class="my-2">
+    <div class="my-2 lg:my-4">
       <div class="flex items-center justify-between mb-1">
         <h2
           class="text-2xl font-bold text-[#f0eaea] max-xl:text-xl max-md:text-base"
