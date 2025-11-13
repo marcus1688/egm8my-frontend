@@ -1514,7 +1514,122 @@
                   </div>
                 </div>
 
-                <div v-if="!showLanguagePanel">
+                <!-- Balance Panel -->
+                <div v-if="showBalancePanel" class="h-full flex flex-col">
+                  <div
+                    class="px-4 py-4 border-b border-[#3b1c23] flex items-center gap-3"
+                  >
+                    <button
+                      @click="showBalancePanel = false"
+                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
+                    >
+                      <i class="bi bi-arrow-left"></i>
+                    </button>
+                    <span class="text-sm font-semibold text-[#f0eaea]">
+                      {{ $t("game_balances") }}
+                    </span>
+                  </div>
+
+                  <div class="flex-1 px-4 py-4 overflow-y-auto">
+                    <div v-if="isBalancePanelLoading" class="py-12">
+                      <div class="flex flex-col items-center justify-center">
+                        <div class="relative w-10 h-10 mb-3">
+                          <div
+                            class="absolute inset-0 border-2 border-white/10 rounded-full"
+                          ></div>
+                          <div
+                            class="absolute inset-0 border-t-2 border-[#ff3344] rounded-full animate-spin"
+                          ></div>
+                        </div>
+                        <p class="text-[#f0eaea] font-medium text-sm mb-1">
+                          {{ $t("loading_balances") }}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div v-if="!isBalancePanelLoading">
+                      <!-- Main Wallet -->
+                      <div
+                        class="mb-4 p-3 bg-[#ff3344]/10 rounded-lg border border-[#ff3344]/30"
+                      >
+                        <div class="flex items-center justify-between">
+                          <div class="flex items-center gap-3">
+                            <img src="/images/egm8my.png" alt="" class="w-8" />
+                            <div>
+                              <p class="text-sm font-semibold text-[#f0eaea]">
+                                {{ $t("main_wallet") }}
+                              </p>
+                              <p class="text-xs text-[#b37a7a]">
+                                {{ $t("main_balance") }}
+                              </p>
+                            </div>
+                          </div>
+                          <span class="font-semibold text-[#ff3344] text-base">
+                            {{ userData.wallet.toFixed(2) }}
+                          </span>
+                        </div>
+                      </div>
+
+                      <!-- Game Balances -->
+                      <div class="space-y-2">
+                        <div
+                          v-for="game in panelGameBalances"
+                          :key="game.game"
+                          class="p-3 bg-[#241017]/60 rounded-lg border border-[#3b1c23]"
+                        >
+                          <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                              <div
+                                class="w-10 h-10 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center"
+                              >
+                                <span class="font-bold text-xs text-[#f0eaea]">
+                                  {{ game.game.substring(0, 2).toUpperCase() }}
+                                </span>
+                              </div>
+                              <div>
+                                <p class="text-sm font-medium text-[#f0eaea]">
+                                  {{ game.game }}
+                                </p>
+                                <p class="text-xs text-[#b37a7a]">
+                                  {{ $t("game_balance") }}
+                                </p>
+                              </div>
+                            </div>
+                            <span class="font-medium text-[#f0eaea] text-sm">
+                              {{ parseFloat(game.balance || 0).toFixed(2) }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Total Balance -->
+                      <div
+                        class="mt-4 p-3 bg-[#15090e] rounded-lg border border-[#3b1c23]"
+                      >
+                        <div class="flex justify-between items-center">
+                          <span class="text-sm font-semibold text-[#f0eaea]">{{
+                            $t("total_balance")
+                          }}</span>
+                          <span class="font-bold text-[#ff3344] text-base">{{
+                            panelTotalBalance.toFixed(2)
+                          }}</span>
+                        </div>
+                      </div>
+
+                      <!-- Restore Button -->
+                      <button
+                        @click="refreshPanelBalances"
+                        :disabled="isBalancePanelLoading"
+                        class="w-full mt-4 py-2.5 bg-[#ff3344] text-white font-medium rounded-lg lg:hover:bg-[#c21b3a] transition-all flex items-center justify-center gap-2"
+                      >
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        {{ $t("restore") }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <div v-if="!showLanguagePanel && !showBalancePanel">
                   <div v-if="!userData" class="px-4 pt-3 flex gap-3">
                     <NuxtLinkLocale
                       to="/login"
@@ -1558,7 +1673,7 @@
                       </div>
                       <div class="text-sm text-[#ff3344] font-medium">
                         <div
-                          @click="showBalanceDropdown = !showBalanceDropdown"
+                          @click="showBalancePanel = true"
                           class="flex items-center gap-1 cursor-pointer"
                         >
                           <span
@@ -1567,10 +1682,6 @@
                           >
                           <i class="bi bi-caret-down-fill text-xs ml-0.5"></i>
                         </div>
-                        <GameBalanceDropdown
-                          v-if="showBalanceDropdown"
-                          @close="showBalanceDropdown = false"
-                        />
                       </div>
                     </div>
                   </div>
@@ -2095,6 +2206,9 @@ const luckyDrawStatus = useState("luckyDrawStatus");
 const localePath = useLocalePath();
 const isLogoutSuccess = ref(false);
 const isConfirmAlertVisible = ref(false);
+const showBalancePanel = ref(false);
+const isBalancePanelLoading = ref(false);
+const panelGameBalances = ref([]);
 const confirmAlertTitle = ref("");
 const confirmAlertMessage = ref("");
 const confirmAlertType = ref("warning");
@@ -2238,6 +2352,7 @@ const closeMobileMenu = () => {
   showLanguageMenu.value = false;
   showBalanceDropdown.value = false;
   showLanguagePanel.value = false;
+  showBalancePanel.value = false;
 };
 
 const handleLogout = () => {
@@ -2408,6 +2523,57 @@ const getLocalizedLevelName = (name) => {
   const lowerName = name.toLowerCase();
   return levelNameTranslations[lowerName]?.[$locale.value] || name;
 };
+
+const panelTotalBalance = computed(() => {
+  let total = userData.value?.wallet || 0;
+  panelGameBalances.value.forEach((game) => {
+    total += parseFloat(game.balance || 0);
+  });
+  return total;
+});
+
+const fetchPanelGameBalances = async () => {
+  isBalancePanelLoading.value = true;
+  try {
+    const { data } = await post("game/checkallgamebalance");
+    if (data.success) {
+      panelGameBalances.value = data.games;
+    }
+  } catch (error) {
+    console.error("Error fetching game balances:", error);
+  } finally {
+    isBalancePanelLoading.value = false;
+  }
+};
+
+const refreshPanelBalances = async () => {
+  isBalancePanelLoading.value = true;
+  try {
+    const { data } = await post("game/transferout/all");
+    if (data.success) {
+      await fetchPanelGameBalances();
+      await fetchUserData();
+      alertTitle.value = $t("success");
+      alertMessage.value = $t("balances_restored");
+      alertType.value = "success";
+      alertVisible.value = true;
+    }
+  } catch (error) {
+    console.error("Error restoring balances:", error);
+    alertTitle.value = $t("error");
+    alertMessage.value = $t("failed_restore_balances");
+    alertType.value = "error";
+    alertVisible.value = true;
+  } finally {
+    isBalancePanelLoading.value = false;
+  }
+};
+
+watch(showBalancePanel, (newValue) => {
+  if (newValue) {
+    fetchPanelGameBalances();
+  }
+});
 
 watch(
   () => router.currentRoute.value,
