@@ -1185,5 +1185,6 @@
   "profile_updated": "资料更新成功",
   "update_failed": "更新资料失败",
   "fullname_required": "全名是必填项",
-  "dob_required": "出生日期是必填项"
+  "dob_required": "出生日期是必填项",
+  "or": "或者"
 }

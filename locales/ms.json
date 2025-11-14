@@ -1185,5 +1185,6 @@
   "profile_updated": "Profil berjaya dikemas kini",
   "update_failed": "Gagal mengemaskini profil",
   "fullname_required": "Nama penuh diperlukan",
-  "dob_required": "Tarikh lahir diperlukan"
+  "dob_required": "Tarikh lahir diperlukan",
+  "or": "ATAU"
 }

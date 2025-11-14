@@ -1,12 +1,9 @@
 <template>
   <div class="relative w-full">
-    <!-- ✅ Google 按钮容器（隐藏） -->
     <div
       ref="googleButtonDiv"
       class="opacity-0 absolute pointer-events-none"
     ></div>
-
-    <!-- ✅ 自定义按钮 -->
     <button
       @click="handleGoogleLogin"
       :disabled="!isReady || isProcessing"
@@ -79,7 +76,6 @@ onMounted(() => {
       initializeGoogleSignIn();
     }
   }, 100);
-
   setTimeout(() => {
     clearInterval(checkGoogle);
     if (!isReady.value) {
@@ -88,67 +84,171 @@ onMounted(() => {
   }, 10000);
 });
 
+// function initializeGoogleSignIn() {
+//   try {
+//     window.google.accounts.id.initialize({
+//       client_id: config.public.googleClientId,
+//       callback: handleCredentialResponse,
+//       auto_select: false,
+//     });
+//     window.google.accounts.id.renderButton(googleButtonDiv.value, {
+//       type: "standard",
+//       theme: "outline",
+//       size: "large",
+//     });
+//     isReady.value = true;
+//     console.log("Google Sign-In initialized");
+//   } catch (error) {
+//     console.error("Failed to initialize Google Sign-In:", error);
+//   }
+// }
+
 function initializeGoogleSignIn() {
   try {
+    console.log("🔧 Initializing Google Sign-In...");
     window.google.accounts.id.initialize({
       client_id: config.public.googleClientId,
       callback: handleCredentialResponse,
       auto_select: false,
     });
+    renderGoogleButton();
+    isReady.value = true;
+    console.log("✅ Google Sign-In initialized successfully");
+  } catch (error) {
+    console.error("❌ Failed to initialize Google Sign-In:", error);
+  }
+}
 
-    // ✅ 使用 renderButton - 不受 One Tap 限制
+function renderGoogleButton() {
+  console.log("🎨 Rendering Google button...");
+  if (googleButtonDiv.value) {
+    googleButtonDiv.value.innerHTML = "";
     window.google.accounts.id.renderButton(googleButtonDiv.value, {
       type: "standard",
       theme: "outline",
       size: "large",
     });
+    console.log("✅ Google button rendered");
 
-    isReady.value = true;
-    console.log("Google Sign-In initialized");
-  } catch (error) {
-    console.error("Failed to initialize Google Sign-In:", error);
+    // 检查按钮是否存在
+    setTimeout(() => {
+      const btn = googleButtonDiv.value?.querySelector('div[role="button"]');
+      console.log("🔍 Button found:", btn ? "YES" : "NO", btn);
+    }, 100);
+  } else {
+    console.log("❌ googleButtonDiv is null");
   }
 }
 
-// ✅ 点击时触发隐藏的 Google 按钮
+// function handleGoogleLogin() {
+//   if (!isReady.value || isProcessing.value) {
+//     return;
+//   }
+//   const btn = googleButtonDiv.value?.querySelector('div[role="button"]');
+//   if (btn) {
+//     btn.click();
+//   }
+// }
+
 function handleGoogleLogin() {
+  console.log("👆 handleGoogleLogin called");
+  console.log("📊 State:", {
+    isReady: isReady.value,
+    isProcessing: isProcessing.value,
+  });
+
   if (!isReady.value || isProcessing.value) {
+    console.log("⚠️ Button disabled or processing");
     return;
   }
 
-  // 触发 Google 按钮点击
   const btn = googleButtonDiv.value?.querySelector('div[role="button"]');
+  console.log("🔍 Looking for Google button:", btn);
+
   if (btn) {
+    console.log("✅ Google button found, clicking...");
     btn.click();
+    console.log("👆 Google button clicked");
+  } else {
+    console.log("❌ Google button NOT found!");
+    console.log(
+      "📦 googleButtonDiv content:",
+      googleButtonDiv.value?.innerHTML
+    );
   }
 }
 
+// async function handleCredentialResponse(response) {
+//   if (isProcessing.value) {
+//     return;
+//   }
+//   isProcessing.value = true;
+//   pageLoading.value = true;
+//   try {
+//     const { data } = await post("google-login", {
+//       credential: response.credential,
+//       referralCode: props.referralCode,
+//     });
+//     if (data.success) {
+//       localStorage.setItem("token", data.token);
+//       localStorage.setItem("refreshToken", data.refreshToken);
+//       localStorage.setItem("gametoken", data.newGameToken);
+//       showAlert(
+//         $t("success"),
+//         data.message[$locale.value] || $t("login_successful"),
+//         "success"
+//       );
+//       setTimeout(() => {
+//         alertVisible.value = false;
+//         router.push(localePath("/"));
+//       }, 800);
+//     } else {
+//       showAlert(
+//         data.status === "inactive" ? $t("warning") : $t("info"),
+//         data.message[$locale.value] || $t("login_failed"),
+//         data.status === "inactive" ? "warning" : "info"
+//       );
+//       isProcessing.value = false;
+//     }
+//   } catch (error) {
+//     console.error("Google 登录错误:", error);
+//     showAlert(
+//       $t("error"),
+//       error?.response?.data?.message?.en || $t("network_error"),
+//       "error"
+//     );
+//     isProcessing.value = false;
+//   } finally {
+//     pageLoading.value = false;
+//   }
+// }
 async function handleCredentialResponse(response) {
+  console.log("🎉 handleCredentialResponse called");
+  console.log("📦 Response:", response);
+
   if (isProcessing.value) {
+    console.log("⚠️ Already processing, skipping...");
     return;
   }
 
+  console.log("🔄 Starting login process...");
   isProcessing.value = true;
   pageLoading.value = true;
 
   try {
+    console.log("📤 Sending to backend...");
     const { data } = await post("google-login", {
       credential: response.credential,
       referralCode: props.referralCode,
     });
 
+    console.log("📥 Backend response:", data);
+
     if (data.success) {
+      console.log("✅ Login successful!");
       localStorage.setItem("token", data.token);
       localStorage.setItem("refreshToken", data.refreshToken);
       localStorage.setItem("gametoken", data.newGameToken);
-
-      if (
-        ["51f645b1", "ad440661", "156ef7b3"].includes(props.referralFromUrl) &&
-        typeof window !== "undefined" &&
-        typeof fbq !== "undefined"
-      ) {
-        fbq("track", "CompleteRegistration");
-      }
 
       showAlert(
         $t("success"),
@@ -157,27 +257,62 @@ async function handleCredentialResponse(response) {
       );
 
       setTimeout(() => {
+        console.log("🚀 Redirecting...");
         alertVisible.value = false;
         router.push(localePath("/"));
       }, 800);
     } else {
+      console.log("⚠️ Login failed:", data.message);
       showAlert(
         data.status === "inactive" ? $t("warning") : $t("info"),
         data.message[$locale.value] || $t("login_failed"),
         data.status === "inactive" ? "warning" : "info"
       );
       isProcessing.value = false;
+      console.log("🔄 Re-rendering button after failure...");
+      setTimeout(renderGoogleButton, 500);
     }
   } catch (error) {
-    console.error("Google 登录错误:", error);
+    console.error("❌ Google 登录错误:", error);
     showAlert(
       $t("error"),
       error?.response?.data?.message?.en || $t("network_error"),
       "error"
     );
     isProcessing.value = false;
+    console.log("🔄 Re-rendering button after error...");
+    setTimeout(renderGoogleButton, 500);
   } finally {
     pageLoading.value = false;
+    console.log("🏁 Login process finished");
   }
 }
+
+onMounted(() => {
+  console.log("🚀 Component mounted");
+
+  const checkGoogle = setInterval(() => {
+    if (window.google?.accounts?.id) {
+      console.log("✅ Google SDK loaded");
+      clearInterval(checkGoogle);
+      initializeGoogleSignIn();
+    }
+  }, 100);
+
+  setTimeout(() => {
+    clearInterval(checkGoogle);
+    if (!isReady.value) {
+      console.error("❌ Google SDK failed to load after 10s");
+    }
+  }, 10000);
+
+  // 监听窗口焦点
+  window.addEventListener("focus", () => {
+    console.log("👀 Window focused");
+    if (!isProcessing.value && isReady.value) {
+      console.log("🔄 Re-rendering button on focus...");
+      setTimeout(renderGoogleButton, 300);
+    }
+  });
+});
 </script>
