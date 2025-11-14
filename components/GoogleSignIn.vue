@@ -4,6 +4,7 @@
       @success="handleSuccess"
       @error="handleError"
       type="standard"
+      ux-mode="redirect"
       :theme="theme"
       :size="size"
       :text="text"
@@ -82,19 +83,6 @@ watch(isUserLoggedIn, (newValue, oldValue) => {
   }
 });
 
-const resetGoogleButton = () => {
-  console.log("Resetting Google button...");
-  isProcessing.value = false;
-
-  if (window.google && window.google.accounts) {
-    try {
-      window.google.accounts.id.cancel();
-    } catch (error) {
-      console.log("Google reset error:", error);
-    }
-  }
-};
-
 const handleSuccess = async (response) => {
   if (isProcessing.value) {
     console.log("Already processing, skipping...");
@@ -127,7 +115,6 @@ const handleSuccess = async (response) => {
         data.status === "inactive" ? "warning" : "info"
       );
       isProcessing.value = false;
-      setTimeout(resetGoogleButton, 1000);
     }
   } catch (error) {
     console.error("Google 登录错误:", error);
@@ -137,7 +124,6 @@ const handleSuccess = async (response) => {
       "error"
     );
     isProcessing.value = false;
-    setTimeout(resetGoogleButton, 1000);
   } finally {
     pageLoading.value = false;
   }
@@ -146,28 +132,7 @@ const handleSuccess = async (response) => {
 const handleError = (error) => {
   console.error("Google Sign-In 错误:", error);
   showAlert($t("error"), $t("google_signin_failed"), "error");
-  setTimeout(resetGoogleButton, 1000);
 };
-
-onMounted(() => {
-  document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "visible") {
-      setTimeout(() => {
-        if (!isProcessing.value) {
-          resetGoogleButton();
-        }
-      }, 500);
-    }
-  });
-
-  window.addEventListener("focus", () => {
-    setTimeout(() => {
-      if (!isProcessing.value) {
-        resetGoogleButton();
-      }
-    }, 500);
-  });
-});
 </script>
 
 <style scoped>
