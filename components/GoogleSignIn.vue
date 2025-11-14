@@ -1,5 +1,6 @@
 <template>
   <GoogleSignInButton
+    class="w-full"
     @success="handleSuccess"
     @error="handleError"
     :type="type"
@@ -99,3 +100,15 @@ const handleError = (error) => {
   showAlert($t("error"), $t("google_signin_failed"), "error");
 };
 </script>
+
+<style scoped>
+:deep(.S9gUrf-YoZ4jf) {
+  width: 100% !important;
+}
+:deep(.nsm7Bb-HzV7m-LgbsSe) {
+  width: 100% !important;
+}
+:deep(.nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf) {
+  width: 100% !important;
+}
+</style>
