@@ -29,7 +29,7 @@ export default defineNuxtPlugin(() => {
   };
   loadGoogleSDK()
     .then(() => {
-      console.log("✅ Google SDK loaded globally");
+      // console.log("✅ Google SDK loaded globally");
     })
     .catch((error) => {
       console.error("❌ Failed to load Google SDK:", error);
