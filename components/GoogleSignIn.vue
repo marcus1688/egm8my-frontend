@@ -3,7 +3,6 @@
     class="w-full"
     @success="handleSuccess"
     @error="handleError"
-    ux-mode="redirect"
     :type="type"
     :theme="theme"
     :size="size"
