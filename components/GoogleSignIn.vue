@@ -1,25 +1,15 @@
 <template>
   <div class="w-full">
+    <!-- ✅ 隐藏的 Google 按钮 -->
     <div
-      id="g_id_onload"
-      :data-client_id="googleClientId"
-      data-callback="handleGoogleCallback"
-      data-auto_prompt="false"
-      data-width="400"
+      ref="googleButtonContainer"
+      style="position: absolute; visibility: hidden; pointer-events: none"
     ></div>
 
-    <div
-      class="g_id_signin"
-      data-type="standard"
-      data-shape="rectangular"
-      data-theme="outline"
-      data-text="signin_with"
-      data-size="large"
-      data-logo_alignment="left"
-    ></div>
-
+    <!-- ✅ 自定义按钮 -->
     <button
-      id="custom-google-btn"
+      ref="customGoogleBtn"
+      @click="triggerGoogleLogin"
       class="relative w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <svg class="w-5 h-5" viewBox="0 0 24 24">
@@ -55,6 +45,7 @@ const props = defineProps({
     default: "",
   },
 });
+
 const config = useRuntimeConfig();
 const { post } = useApiEndpoint();
 const router = useRouter();
@@ -62,79 +53,112 @@ const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
 const { showAlert, alertVisible } = useAlert();
 const googleClientId = computed(() => config.public.googleClientId);
+const googleButtonContainer = ref(null);
+const customGoogleBtn = ref(null);
 
-if (process.client) {
-  window.handleGoogleCallback = async (response) => {
-    pageLoading.value = true;
-    try {
-      const { data } = await post("google-login", {
-        credential: response.credential,
-        referralCode: props.referralCode,
-      });
-      if (data.success) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("refreshToken", data.refreshToken);
-        localStorage.setItem("gametoken", data.newGameToken);
-        if (
-          ["51f645b1", "ad440661", "156ef7b3"].includes(
-            props.referralFromUrl
-          ) &&
-          typeof fbq !== "undefined"
-        ) {
-          fbq("track", "CompleteRegistration");
-        }
-        showAlert(
-          $t("success"),
-          data.message[$locale.value] || $t("login_successful"),
-          "success"
-        );
-        setTimeout(() => {
-          alertVisible.value = false;
-          router.push(localePath("/"));
-        }, 800);
-      } else {
-        showAlert(
-          data.status === "inactive" ? $t("warning") : $t("info"),
-          data.message[$locale.value] || $t("login_failed"),
-          data.status === "inactive" ? "warning" : "info"
-        );
+// ✅ 回调函数
+const handleCredentialResponse = async (response) => {
+  pageLoading.value = true;
+
+  try {
+    console.log("Google callback triggered");
+    const { data } = await post("google-login", {
+      credential: response.credential,
+      referralCode: props.referralCode,
+    });
+
+    if (data.success) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("refreshToken", data.refreshToken);
+      localStorage.setItem("gametoken", data.newGameToken);
+
+      if (
+        ["51f645b1", "ad440661", "156ef7b3"].includes(props.referralFromUrl) &&
+        typeof fbq !== "undefined"
+      ) {
+        fbq("track", "CompleteRegistration");
       }
-    } catch (error) {
-      console.error("Google 登录错误:", error);
+
       showAlert(
-        $t("error"),
-        error?.response?.data?.message?.en || $t("network_error"),
-        "error"
+        $t("success"),
+        data.message[$locale.value] || $t("login_successful"),
+        "success"
       );
-    } finally {
-      pageLoading.value = false;
+
+      setTimeout(() => {
+        alertVisible.value = false;
+        router.push(localePath("/"));
+      }, 800);
+    } else {
+      showAlert(
+        data.status === "inactive" ? $t("warning") : $t("info"),
+        data.message[$locale.value] || $t("login_failed"),
+        data.status === "inactive" ? "warning" : "info"
+      );
     }
-  };
-}
+  } catch (error) {
+    console.error("Google 登录错误:", error);
+    showAlert(
+      $t("error"),
+      error?.response?.data?.message?.en || $t("network_error"),
+      "error"
+    );
+  } finally {
+    pageLoading.value = false;
+  }
+};
+
+// ✅ 点击自定义按钮时触发 Google 登录
+const triggerGoogleLogin = () => {
+  const gBtn = googleButtonContainer.value?.querySelector('div[role="button"]');
+  if (gBtn) {
+    console.log("Triggering Google button click");
+    gBtn.click();
+  } else {
+    console.error("Google button not found");
+  }
+};
+
+// ✅ 渲染 Google 按钮
+const renderGoogleButton = () => {
+  if (!window.google?.accounts?.id || !googleButtonContainer.value) {
+    console.warn("Google SDK or container not ready");
+    return;
+  }
+
+  console.log("Rendering Google button...");
+
+  // 1. 初始化
+  window.google.accounts.id.initialize({
+    client_id: googleClientId.value,
+    callback: handleCredentialResponse,
+  });
+
+  // 2. 清空容器
+  googleButtonContainer.value.innerHTML = "";
+
+  // 3. 渲染按钮
+  window.google.accounts.id.renderButton(googleButtonContainer.value, {
+    theme: "outline",
+    size: "large",
+    text: "signin_with",
+    shape: "rectangular",
+    logo_alignment: "left",
+  });
+
+  console.log("✅ Google button rendered");
+};
 
 onMounted(() => {
-  setTimeout(() => {
-    const googleBtn = document.getElementById("custom-google-btn");
-    if (googleBtn) {
-      googleBtn.addEventListener("click", () => {
-        const gBtn = document.querySelector('.g_id_signin div[role="button"]');
-        if (gBtn) {
-          gBtn.click();
-        }
-      });
+  // 等待 Google SDK 加载
+  const checkSDK = setInterval(() => {
+    if (window.google?.accounts?.id && googleButtonContainer.value) {
+      clearInterval(checkSDK);
+      renderGoogleButton();
     }
-  }, 1000);
-});
+  }, 100);
 
-onUnmounted(() => {
-  if (process.client) {
-    delete window.handleGoogleCallback;
-  }
+  // 超时保护
+  setTimeout(() => clearInterval(checkSDK), 10000);
 });
 </script>
-
-<style scoped>
-.g_id_signin {
-  display: none;
-}
-</style>
