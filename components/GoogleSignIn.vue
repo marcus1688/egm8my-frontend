@@ -65,7 +65,7 @@ const { post } = useApiEndpoint();
 const router = useRouter();
 const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
-const { showAlert } = useAlert();
+const { showAlert, alertVisible } = useAlert();
 const isProcessing = ref(false);
 const isUserLoggedIn = useState("isUserLoggedIn");
 
@@ -104,6 +104,7 @@ const handleSuccess = async (response) => {
         "success"
       );
       setTimeout(() => {
+        alertVisible.value = false;
         router.push(localePath("/"));
       }, 800);
     } else {
