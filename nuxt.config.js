@@ -23,6 +23,11 @@ export default defineNuxtConfig({
           type: "text/javascript",
           defer: true,
         },
+        {
+          src: "https://accounts.google.com/gsi/client",
+          async: true,
+          defer: true,
+        },
       ],
       link: [
         {
@@ -63,6 +68,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       apiUrl: APIURL,
+      googleClientId:
+        "1083167078252-ahld76fsgas145iv3790f2e6493ud3rk.apps.googleusercontent.com",
     },
   },
 
