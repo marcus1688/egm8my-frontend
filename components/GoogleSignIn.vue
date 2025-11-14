@@ -105,10 +105,43 @@ const handleError = (error) => {
 :deep(.S9gUrf-YoZ4jf) {
   width: 100% !important;
 }
+
 :deep(.nsm7Bb-HzV7m-LgbsSe) {
   width: 100% !important;
+  border: none !important;
+  outline: none !important;
 }
+
+:deep(.nsm7Bb-HzV7m-LgbsSe:hover) {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+:deep(.nsm7Bb-HzV7m-LgbsSe:focus) {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 :deep(.nsm7Bb-HzV7m-LgbsSe-Bz112c-haAclf) {
   width: 100% !important;
+}
+
+:deep(div[role="button"]) {
+  border: none !important;
+  outline: none !important;
+}
+
+:deep(div[role="button"]:hover) {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+:deep(div[role="button"]:focus) {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 </style>
