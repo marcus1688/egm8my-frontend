@@ -1,12 +1,9 @@
 <template>
   <div class="w-full">
-    <!-- ✅ 隐藏的 Google 按钮 -->
     <div
       ref="googleButtonContainer"
       style="position: absolute; visibility: hidden; pointer-events: none"
     ></div>
-
-    <!-- ✅ 自定义按钮 -->
     <button
       ref="customGoogleBtn"
       @click="triggerGoogleLogin"
@@ -56,35 +53,22 @@ const googleClientId = computed(() => config.public.googleClientId);
 const googleButtonContainer = ref(null);
 const customGoogleBtn = ref(null);
 
-// ✅ 回调函数
 const handleCredentialResponse = async (response) => {
   pageLoading.value = true;
-
   try {
-    console.log("Google callback triggered");
     const { data } = await post("google-login", {
       credential: response.credential,
       referralCode: props.referralCode,
     });
-
     if (data.success) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("refreshToken", data.refreshToken);
       localStorage.setItem("gametoken", data.newGameToken);
-
-      if (
-        ["51f645b1", "ad440661", "156ef7b3"].includes(props.referralFromUrl) &&
-        typeof fbq !== "undefined"
-      ) {
-        fbq("track", "CompleteRegistration");
-      }
-
       showAlert(
         $t("success"),
         data.message[$locale.value] || $t("login_successful"),
         "success"
       );
-
       setTimeout(() => {
         alertVisible.value = false;
         router.push(localePath("/"));
@@ -108,36 +92,22 @@ const handleCredentialResponse = async (response) => {
   }
 };
 
-// ✅ 点击自定义按钮时触发 Google 登录
 const triggerGoogleLogin = () => {
   const gBtn = googleButtonContainer.value?.querySelector('div[role="button"]');
   if (gBtn) {
-    console.log("Triggering Google button click");
     gBtn.click();
-  } else {
-    console.error("Google button not found");
   }
 };
 
-// ✅ 渲染 Google 按钮
 const renderGoogleButton = () => {
   if (!window.google?.accounts?.id || !googleButtonContainer.value) {
-    console.warn("Google SDK or container not ready");
     return;
   }
-
-  console.log("Rendering Google button...");
-
-  // 1. 初始化
   window.google.accounts.id.initialize({
     client_id: googleClientId.value,
     callback: handleCredentialResponse,
   });
-
-  // 2. 清空容器
   googleButtonContainer.value.innerHTML = "";
-
-  // 3. 渲染按钮
   window.google.accounts.id.renderButton(googleButtonContainer.value, {
     theme: "outline",
     size: "large",
@@ -145,12 +115,9 @@ const renderGoogleButton = () => {
     shape: "rectangular",
     logo_alignment: "left",
   });
-
-  console.log("✅ Google button rendered");
 };
 
 onMounted(() => {
-  // 等待 Google SDK 加载
   const checkSDK = setInterval(() => {
     if (window.google?.accounts?.id && googleButtonContainer.value) {
       clearInterval(checkSDK);
@@ -158,7 +125,6 @@ onMounted(() => {
     }
   }, 100);
 
-  // 超时保护
   setTimeout(() => clearInterval(checkSDK), 10000);
 });
 </script>
