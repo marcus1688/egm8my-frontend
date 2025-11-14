@@ -67,6 +67,20 @@ const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
 const { showAlert } = useAlert();
 const isProcessing = ref(false);
+const isUserLoggedIn = useState("isUserLoggedIn");
+
+watch(isUserLoggedIn, (newValue, oldValue) => {
+  if (oldValue === true && newValue === false) {
+    isProcessing.value = false;
+    if (window.google && window.google.accounts) {
+      try {
+        window.google.accounts.id.cancel();
+      } catch (error) {
+        console.log("Google reset error:", error);
+      }
+    }
+  }
+});
 
 const handleSuccess = async (response) => {
   if (isProcessing.value) {
