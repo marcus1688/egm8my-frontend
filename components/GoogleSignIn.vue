@@ -1,26 +1,26 @@
 <template>
-  <GoogleSignInButton
-    class="w-full"
-    @success="handleSuccess"
-    @error="handleError"
-    :type="type"
-    :theme="theme"
-    :size="size"
-    :shape="shape"
-  />
-  <!-- <div class="relative w-full group">
-    <GoogleSignInButton
-      class="opacity-0 absolute inset-0 w-full h-full cursor-pointer z-10"
-      @success="handleSuccess"
-      @error="handleError"
-      ux-mode="redirect"
-      type="standard"
-      theme="outline"
-      size="large"
-    />
+  <div class="w-full">
+    <div
+      id="g_id_onload"
+      :data-client_id="googleClientId"
+      data-callback="handleGoogleCallback"
+      data-auto_prompt="false"
+      data-width="400"
+    ></div>
+
+    <div
+      class="g_id_signin"
+      data-type="standard"
+      data-shape="rectangular"
+      data-theme="outline"
+      data-text="signin_with"
+      data-size="large"
+      data-logo_alignment="left"
+    ></div>
+
     <button
-      type="button"
-      class="relative w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 group-hover:bg-gray-50 group-hover:border-gray-300 transition-all pointer-events-none"
+      id="custom-google-btn"
+      class="relative w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <svg class="w-5 h-5" viewBox="0 0 24 24">
         <path
@@ -41,7 +41,7 @@
         />
       </svg>
     </button>
-  </div> -->
+  </div>
 </template>
 
 <script setup>
@@ -54,83 +54,87 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  type: {
-    type: String,
-    default: "icon",
-  },
-  theme: {
-    type: String,
-    default: "filled_black",
-  },
-  size: {
-    type: String,
-    default: "large",
-  },
-  shape: {
-    type: String,
-    default: "rectangular",
-  },
-  width: {
-    type: Number,
-    default: 500,
-  },
 });
-
+const config = useRuntimeConfig();
 const { post } = useApiEndpoint();
 const router = useRouter();
 const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
-const { showAlert } = useAlert();
+const { showAlert, alertVisible } = useAlert();
+const googleClientId = computed(() => config.public.googleClientId);
 
-const handleSuccess = async (response) => {
-  pageLoading.value = true;
-  try {
-    const { data } = await post("google-login", {
-      credential: response.credential,
-      referralCode: props.referralCode,
-    });
-    if (data.success) {
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("refreshToken", data.refreshToken);
-      localStorage.setItem("gametoken", data.newGameToken);
-      if (
-        (props.referralFromUrl === "51f645b1" ||
-          props.referralFromUrl === "ad440661" ||
-          props.referralFromUrl === "156ef7b3") &&
-        typeof window !== "undefined" &&
-        typeof fbq !== "undefined"
-      ) {
-        fbq("track", "CompleteRegistration");
+if (process.client) {
+  window.handleGoogleCallback = async (response) => {
+    pageLoading.value = true;
+    try {
+      const { data } = await post("google-login", {
+        credential: response.credential,
+        referralCode: props.referralCode,
+      });
+      if (data.success) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        localStorage.setItem("gametoken", data.newGameToken);
+        if (
+          ["51f645b1", "ad440661", "156ef7b3"].includes(
+            props.referralFromUrl
+          ) &&
+          typeof fbq !== "undefined"
+        ) {
+          fbq("track", "CompleteRegistration");
+        }
+        showAlert(
+          $t("success"),
+          data.message[$locale.value] || $t("login_successful"),
+          "success"
+        );
+        setTimeout(() => {
+          alertVisible.value = false;
+          router.push(localePath("/"));
+        }, 800);
+      } else {
+        showAlert(
+          data.status === "inactive" ? $t("warning") : $t("info"),
+          data.message[$locale.value] || $t("login_failed"),
+          data.status === "inactive" ? "warning" : "info"
+        );
       }
+    } catch (error) {
+      console.error("Google 登录错误:", error);
       showAlert(
-        $t("success"),
-        data.message[$locale.value] || $t("login_successful"),
-        "success"
+        $t("error"),
+        error?.response?.data?.message?.en || $t("network_error"),
+        "error"
       );
-      setTimeout(() => {
-        router.push(localePath("/"));
-      }, 1000);
-    } else {
-      showAlert(
-        data.status === "inactive" ? $t("warning") : $t("info"),
-        data.message[$locale.value] || $t("login_failed"),
-        data.status === "inactive" ? "warning" : "info"
-      );
+    } finally {
+      pageLoading.value = false;
     }
-  } catch (error) {
-    console.error("Google 登录错误:", error);
-    showAlert(
-      $t("error"),
-      error.response?.data?.message?.en || $t("network_error"),
-      "error"
-    );
-  } finally {
-    pageLoading.value = false;
-  }
-};
+  };
+}
 
-const handleError = (error) => {
-  console.error("Google Sign-In 错误:", error);
-  showAlert($t("error"), $t("google_signin_failed"), "error");
-};
+onMounted(() => {
+  setTimeout(() => {
+    const googleBtn = document.getElementById("custom-google-btn");
+    if (googleBtn) {
+      googleBtn.addEventListener("click", () => {
+        const gBtn = document.querySelector('.g_id_signin div[role="button"]');
+        if (gBtn) {
+          gBtn.click();
+        }
+      });
+    }
+  }, 1000);
+});
+
+onUnmounted(() => {
+  if (process.client) {
+    delete window.handleGoogleCallback;
+  }
+});
 </script>
+
+<style scoped>
+.g_id_signin {
+  display: none;
+}
+</style>
