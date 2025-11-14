@@ -76,6 +76,7 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    "nuxt-vue3-google-signin",
     "@nuxtjs/google-fonts",
     "@nuxtjs/i18n",
     "@nuxt/image",
