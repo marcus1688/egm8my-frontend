@@ -23,11 +23,6 @@ export default defineNuxtConfig({
           type: "text/javascript",
           defer: true,
         },
-        {
-          src: "https://accounts.google.com/gsi/client",
-          async: true,
-          defer: true,
-        },
       ],
       link: [
         {
@@ -81,7 +76,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "nuxt-vue3-google-signin",
     "@nuxtjs/google-fonts",
     "@nuxtjs/i18n",
     "@nuxt/image",
