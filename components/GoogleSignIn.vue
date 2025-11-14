@@ -1,5 +1,15 @@
 <template>
-  <div class="relative w-full group">
+  <GoogleSignInButton
+    class="w-full"
+    @success="handleSuccess"
+    @error="handleError"
+    ux-mode="redirect"
+    :type="type"
+    :theme="theme"
+    :size="size"
+    :shape="shape"
+  />
+  <!-- <div class="relative w-full group">
     <GoogleSignInButton
       class="opacity-0 absolute inset-0 w-full h-full cursor-pointer z-10"
       @success="handleSuccess"
@@ -32,7 +42,7 @@
         />
       </svg>
     </button>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
