@@ -1177,5 +1177,13 @@
   "leaderboard": "Leaderboard",
   "leaderboard_description_short": "Compete for top prizes",
   "your_rank": "Your Rank",
-  "turnover": "Turnover"
+  "turnover": "Turnover",
+  "complete_profile": "Complete Your Profile",
+  "complete_profile_desc": "Please complete your profile to continue",
+  "phone_required": "Phone number is required",
+  "phone_required_info": "Phone number is required for account verification and security",
+  "profile_updated": "Profile updated successfully",
+  "update_failed": "Failed to update profile",
+  "fullname_required": "Full name is required",
+  "dob_required": "Date of birth is required"
 }

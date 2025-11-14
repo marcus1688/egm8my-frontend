@@ -1177,5 +1177,13 @@
   "leaderboard": "Papan Pendahulu",
   "leaderboard_description_short": "Bersaing untuk hadiah teratas",
   "your_rank": "Kedudukan Anda",
-  "turnover": "Pusing Ganti"
+  "turnover": "Pusing Ganti",
+  "complete_profile": "Lengkapkan Profil",
+  "complete_profile_desc": "Sila lengkapkan profil anda untuk meneruskan",
+  "phone_required": "Nombor telefon diperlukan",
+  "phone_required_info": "Nombor telefon diperlukan untuk pengesahan dan keselamatan akaun",
+  "profile_updated": "Profil berjaya dikemas kini",
+  "update_failed": "Gagal mengemaskini profil",
+  "fullname_required": "Nama penuh diperlukan",
+  "dob_required": "Tarikh lahir diperlukan"
 }

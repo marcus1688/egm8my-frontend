@@ -1177,5 +1177,13 @@
   "leaderboard": "排行榜",
   "leaderboard_description_short": "竞争顶级奖品",
   "your_rank": "您的排名",
-  "turnover": "流水"
+  "turnover": "流水",
+  "complete_profile": "完善资料",
+  "complete_profile_desc": "请完善您的资料以继续",
+  "phone_required": "电话号码是必填项",
+  "phone_required_info": "电话号码用于账户验证和安全",
+  "profile_updated": "资料更新成功",
+  "update_failed": "更新资料失败",
+  "fullname_required": "全名是必填项",
+  "dob_required": "出生日期是必填项"
 }

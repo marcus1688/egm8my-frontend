@@ -282,6 +282,23 @@
                   </span>
                 </LoadingButton>
               </form>
+              <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-[#3b1c23]"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                  <span class="px-2 bg-[#241017]/60 text-[#b37a7a]">
+                    {{ $t("or") }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-3 justify-items-center">
+                <GoogleSignIn
+                  :referral-code="form.referralCode || referralFromUrl || ''"
+                />
+              </div>
+
               <div
                 class="pt-2 text_3 text-[#f0eaea] mt-4 max-[314px]:!mt-0 text-center border-t border-[#3b1c23]"
               >
@@ -342,6 +359,7 @@ const localePath = useLocalePath();
 const isUserLoggedIn = useState("isUserLoggedIn");
 const { post } = useApiEndpoint();
 const router = useRouter();
+const pageLoading = useState("pageLoading");
 const alertVisible = ref(false);
 const alertTitle = ref("");
 const alertMessage = ref("");
@@ -350,6 +368,7 @@ const showOtpInput = ref(false);
 const countdown = ref(0);
 const canSendOtp = ref(true);
 const otpVerificationId = ref("");
+const config = useRuntimeConfig();
 
 const verifyOtpButtonLoading = ref(false);
 const sendOtpButtonLoading = ref(false);

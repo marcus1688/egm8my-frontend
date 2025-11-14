@@ -1,6 +1,12 @@
 <template>
   <ClientOnly>
     <LiveChatButton />
+    <CompleteProfilePopup
+      :is-visible="showCompleteProfile"
+      :user-data="userData"
+      @close="showCompleteProfile = false"
+      @updated="handleProfileUpdated"
+    />
     <Alerts
       :title="alertTitle"
       :message="alertMessage"
@@ -47,6 +53,9 @@ const { alertVisible, alertTitle, alertMessage, alertType, showAlert } =
 const { notificationState } = useNotification();
 const scrollContainer = ref(null);
 const pageLoading = useState("pageLoading", () => false);
+const isUserLoggedIn = useState("isUserLoggedIn");
+const userData = useState("userData");
+const showCompleteProfile = ref(false);
 const {
   isConfirmAlertVisible,
   confirmAlertTitle,
@@ -67,7 +76,6 @@ const excludeNavigationFooter = computed(() => {
 function handleConfirmClose(confirmed) {
   closeConfirmAlert(confirmed);
 }
-const isUserLoggedIn = useState("isUserLoggedIn");
 
 const scrollToElement = (targetId, headerOffset = 80) => {
   const targetElement = document.getElementById(targetId);
@@ -85,6 +93,37 @@ const scrollToElement = (targetId, headerOffset = 80) => {
       top: offsetPosition,
       behavior: "smooth",
     });
+  }
+};
+
+const checkProfileComplete = () => {
+  if (
+    isUserLoggedIn.value &&
+    userData.value &&
+    userData.value.googleId &&
+    !userData.value.phonenumber
+  ) {
+    showCompleteProfile.value = true;
+  }
+};
+
+watch(
+  [isUserLoggedIn, userData],
+  () => {
+    checkProfileComplete();
+  },
+  { immediate: true }
+);
+
+const handleProfileUpdated = async () => {
+  const { get } = useApiEndpoint();
+  try {
+    const { data } = await get("user");
+    if (data.success) {
+      userData.value = data.user;
+    }
+  } catch (error) {
+    console.error("Failed to refresh user data:", error);
   }
 };
 
