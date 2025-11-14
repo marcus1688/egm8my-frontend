@@ -1,17 +1,11 @@
 <template>
-  <div class="google-btn-custom">
-    <GoogleSignInButton
-      @success="handleSuccess"
-      @error="handleError"
-      type="standard"
-      ux-mode="redirect"
-      :theme="theme"
-      :size="size"
-      :text="text"
-    />
-    <button
-      class="relative z-[1] w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 pointer-events-none transition-all"
-    >
+  <button
+    @click="handleGoogleLogin"
+    :disabled="!isReady || isProcessing"
+    class="relative w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    <Icon v-if="isProcessing" icon="mdi:loading" class="w-5 h-5 animate-spin" />
+    <template v-else>
       <svg class="w-5 h-5" viewBox="0 0 24 24">
         <path
           fill="#4285F4"
@@ -30,11 +24,13 @@
           d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
         />
       </svg>
-    </button>
-  </div>
+    </template>
+  </button>
 </template>
 
 <script setup>
+import { Icon } from "@iconify/vue";
+
 const props = defineProps({
   referralCode: {
     type: String,
@@ -44,48 +40,75 @@ const props = defineProps({
     type: String,
     default: "",
   },
-  type: {
-    type: String,
-    default: "standard",
-  },
-  theme: {
-    type: String,
-    default: "outline",
-  },
-  size: {
-    type: String,
-    default: "large",
-  },
-  text: {
-    type: String,
-    default: "signin_with",
-  },
 });
 
+const config = useRuntimeConfig();
 const { post } = useApiEndpoint();
 const router = useRouter();
 const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
 const { showAlert, alertVisible } = useAlert();
 const isProcessing = ref(false);
+const isReady = ref(false);
 const isUserLoggedIn = useState("isUserLoggedIn");
 
 watch(isUserLoggedIn, (newValue, oldValue) => {
   if (oldValue === true && newValue === false) {
     isProcessing.value = false;
-    if (window.google && window.google.accounts) {
-      try {
-        window.google.accounts.id.cancel();
-      } catch (error) {
-        console.log("Google reset error:", error);
-      }
-    }
   }
 });
 
-const handleSuccess = async (response) => {
+onMounted(() => {
+  const checkGoogle = setInterval(() => {
+    if (window.google?.accounts?.id) {
+      clearInterval(checkGoogle);
+      initializeGoogleSignIn();
+    }
+  }, 100);
+  setTimeout(() => {
+    clearInterval(checkGoogle);
+    if (!isReady.value) {
+      console.error("Google SDK failed to load");
+    }
+  }, 10000);
+});
+
+function initializeGoogleSignIn() {
+  try {
+    window.google.accounts.id.initialize({
+      client_id: config.public.googleClientId,
+      callback: handleCredentialResponse,
+      auto_select: false,
+      cancel_on_tap_outside: true,
+    });
+    isReady.value = true;
+    console.log("Google Sign-In initialized");
+  } catch (error) {
+    console.error("Failed to initialize Google Sign-In:", error);
+  }
+}
+
+function handleGoogleLogin() {
+  if (!isReady.value || isProcessing.value) {
+    return;
+  }
+  try {
+    window.google.accounts.id.prompt((notification) => {
+      if (notification.isNotDisplayed()) {
+        console.log("One Tap not displayed, user may have dismissed it before");
+      } else if (notification.isSkippedMoment()) {
+        console.log("One Tap skipped");
+      }
+    });
+  } catch (error) {
+    console.error("Google login error:", error);
+    showAlert($t("error"), $t("google_signin_failed"), "error");
+  }
+}
+
+async function handleCredentialResponse(response) {
   if (isProcessing.value) {
-    console.log("Already processing, skipping...");
+    console.log("Already processing");
     return;
   }
   isProcessing.value = true;
@@ -127,33 +150,5 @@ const handleSuccess = async (response) => {
   } finally {
     pageLoading.value = false;
   }
-};
-
-const handleError = (error) => {
-  console.error("Google Sign-In 错误:", error);
-  showAlert($t("error"), $t("google_signin_failed"), "error");
-};
+}
 </script>
-
-<style scoped>
-.google-btn-custom {
-  position: relative;
-  width: 100%;
-}
-
-.google-btn-custom :deep(div) {
-  opacity: 0 !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  z-index: 2 !important;
-  cursor: pointer !important;
-}
-
-.google-btn-custom:hover .custom-overlay-btn {
-  background: #f9fafb;
-  border-color: #d1d5db;
-}
-</style>
