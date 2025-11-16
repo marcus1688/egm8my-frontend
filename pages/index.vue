@@ -98,10 +98,10 @@ const pageLoading = useState("pageLoading");
 const userData = useState("userData");
 const { get, post } = useApiEndpoint();
 const generalSetting = useState("generalSetting");
-const carousel = ref([]);
-const activePopup = ref(null);
-const shouldShowPopup = ref(false);
+const activePopup = useState("activePopup");
+const shouldShowPopup = useState("shouldShowPopup");
 const showLuckySpin = ref(false);
+const carousel = useState("carousel");
 
 const announcement = computed(() => {
   return $locale.value === "zh"
@@ -208,18 +208,6 @@ useHead({
       href: "https://www.egm8my.vip/",
     },
   ],
-});
-
-onMounted(async () => {
-  pageLoading.value = true;
-  try {
-    await fetchCarousel();
-    await checkPopupVisibility();
-  } catch (error) {
-    console.error("Error during initialization:", error);
-  } finally {
-    pageLoading.value = false;
-  }
 });
 </script>
 

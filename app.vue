@@ -25,6 +25,10 @@ const { showNotification } = useNotification();
 const smsStatus = useState("smsStatus", () => null);
 const luckyDrawStatus = useState("luckyDrawStatus", () => false);
 const userGameLocks = useState("userGameLocks", () => ({}));
+const carousel = useState("carousel", () => []);
+const pageLoading = useState("pageLoading");
+const activePopup = useState("activePopup", () => null);
+const shouldShowPopup = useState("shouldShowPopup", () => false);
 
 if (process.client) {
   window.$t = i18n.t;
@@ -127,6 +131,52 @@ async function fetchUserGameLocks() {
   }
 }
 
+async function fetchCarousel() {
+  try {
+    const { data } = await get("client/getallcarousels");
+    if (data.success) {
+      carousel.value = data.carousels;
+    }
+  } catch (error) {
+    console.error("Error fetching carousels:", error);
+  }
+}
+
+const checkPopupVisibility = async () => {
+  try {
+    const { data } = await get("active-popup");
+    if (data.success && data.data) {
+      const popup = data.data;
+      if (process.client && popup.image) {
+        const img = new Image();
+        img.src = popup.image;
+      }
+      const lastPopupId = localStorage.getItem("lastPopupId");
+      const lastPopupTime = localStorage.getItem("lastPopupTime");
+      const shouldShow = checkShouldShowPopup(
+        popup._id,
+        lastPopupId,
+        lastPopupTime
+      );
+      if (shouldShow) {
+        activePopup.value = popup;
+        shouldShowPopup.value = true;
+      }
+    }
+  } catch (error) {
+    console.error("Error fetching popup:", error);
+  }
+};
+
+const checkShouldShowPopup = (currentPopupId, lastPopupId, lastPopupTime) => {
+  if (!lastPopupId || !lastPopupTime) return true;
+  if (currentPopupId !== lastPopupId) return true;
+  const lastTime = new Date(lastPopupTime);
+  const currentTime = new Date();
+  const hoursDiff = (currentTime - lastTime) / (1000 * 60 * 60);
+  return hoursDiff >= 1;
+};
+
 watchEffect(() => {
   if (allKiosks.value?.length > 0) {
     partners.value = allKiosks.value.map((kiosk) => ({
@@ -177,12 +227,8 @@ const preloadAllImages = async () => {
       if (!src) return Promise.resolve();
       return new Promise((resolve) => {
         const img = new Image();
-        img.onload = () => {
-          resolve();
-        };
-        img.onerror = () => {
-          resolve();
-        };
+        img.onload = () => resolve();
+        img.onerror = () => resolve();
         img.src = src;
       });
     };
@@ -198,21 +244,38 @@ const preloadAllImages = async () => {
       const url = path.replace("/public", "");
       imagePromises.push(preloadImage(url));
     });
+    if (carousel.value?.length > 0) {
+      carousel.value.forEach((item) => {
+        if (item.link) imagePromises.push(preloadImage(item.link));
+        if (item.link2) imagePromises.push(preloadImage(item.link2));
+      });
+    }
+    if (activePopup.value?.image) {
+      imagePromises.push(preloadImage(activePopup.value.image));
+    }
     await Promise.all(imagePromises);
-    // console.log("🎉 所有图片预加载完成!总共:", imagePromises.length, "张");
   } catch (error) {
     console.error("❌ 预加载图片时发生错误:", error);
   }
 };
 
 onMounted(async () => {
-  await Promise.all([
-    fetchGeneralSetting(),
-    fetchKiosks(),
-    fetchSmsStatus(),
-    fetchLuckyDrawStatus(),
-    preloadAllImages(),
-  ]);
+  pageLoading.value = true;
+  try {
+    await Promise.all([
+      fetchGeneralSetting(),
+      fetchKiosks(),
+      fetchSmsStatus(),
+      fetchLuckyDrawStatus(),
+      fetchCarousel(),
+      checkPopupVisibility(),
+    ]);
+    await preloadAllImages();
+  } catch (error) {
+    console.error("Error during initialization:", error);
+  } finally {
+    pageLoading.value = false;
+  }
 });
 
 onUnmounted(() => {
