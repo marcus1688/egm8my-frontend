@@ -211,7 +211,7 @@ const confirmUpdate = async () => {
     return;
   }
 
-  if (!userData.value?.email && !formData.value.email) {
+  if (!props.userData?.email && !formData.value.email) {
     showAlert($t("error"), $t("email_required"), "error");
     return;
   }
