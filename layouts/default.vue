@@ -100,7 +100,7 @@ const checkProfileComplete = () => {
   if (
     isUserLoggedIn.value &&
     userData.value &&
-    userData.value.googleId &&
+    (userData.value.googleId || userData.value.telegramId) &&
     !userData.value.phonenumber
   ) {
     showCompleteProfile.value = true;
