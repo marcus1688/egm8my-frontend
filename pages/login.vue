@@ -160,6 +160,21 @@
                   </span>
                 </LoadingButton>
               </form>
+              <div class="relative my-4">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-[#3b1c23]"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                  <span class="px-2 bg-[#241017]/60 text-[#b37a7a]">
+                    {{ $t("or") }}
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-2 gap-x-2 justify-items-center">
+                <GoogleSignIn />
+                <TelegramSignIn />
+              </div>
 
               <div
                 class="mt-4 max-[314px]:!mt-0 border-t text_3 border-[#3b1c23]"
