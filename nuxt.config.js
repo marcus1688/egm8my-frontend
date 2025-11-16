@@ -65,6 +65,8 @@ export default defineNuxtConfig({
       apiUrl: APIURL,
       googleClientId:
         "1083167078252-ahld76fsgas145iv3790f2e6493ud3rk.apps.googleusercontent.com",
+      telegramBotUsername: "bm8login_bot",
+      telegramBotId: "8553763158",
     },
   },
 
@@ -76,17 +78,11 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    "nuxt-vue3-google-signin",
     "@nuxtjs/google-fonts",
     "@nuxtjs/i18n",
     "@nuxt/image",
     "nuxt-marquee",
   ],
-
-  googleSignIn: {
-    clientId:
-      "1083167078252-ahld76fsgas145iv3790f2e6493ud3rk.apps.googleusercontent.com",
-  },
 
   i18n: {
     locales: [

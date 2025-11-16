@@ -293,8 +293,11 @@
                 </div>
               </div>
 
-              <div class="grid grid-cols-3 justify-items-center">
+              <div class="grid grid-cols-2 gap-x-2 justify-items-center">
                 <GoogleSignIn
+                  :referral-code="form.referralCode || referralFromUrl || ''"
+                />
+                <TelegramSignIn
                   :referral-code="form.referralCode || referralFromUrl || ''"
                 />
               </div>
