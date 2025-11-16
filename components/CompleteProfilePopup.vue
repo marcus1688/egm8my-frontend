@@ -47,6 +47,19 @@
               />
             </div>
 
+            <!-- Email -->
+            <div v-if="!userData?.email">
+              <label class="block text-xs font-semibold text-[#f0eaea] mb-1.5">
+                {{ $t("email") }} <span class="text-red-500">*</span>
+              </label>
+              <input
+                v-model="formData.email"
+                type="email"
+                :placeholder="$t('email')"
+                class="w-full px-3 py-2.5 bg-[#15090e] text-[#f0eaea] rounded-lg placeholder-[#b37a7a] border border-[#3b1c23] focus:border-[#ff3344] focus:outline-none transition-all text-sm font-medium"
+              />
+            </div>
+
             <!-- Date of Birth -->
             <div>
               <label class="block text-xs font-semibold text-[#f0eaea] mb-1.5">
@@ -86,7 +99,8 @@
                 updateButtonLoading ||
                 !formData.phonenumber ||
                 !formData.fullname ||
-                !formData.dob
+                !formData.dob ||
+                (!userData?.email && !formData.email)
               "
               class="w-full py-2.5 bg-[#ff3344] text-white rounded-lg font-semibold hover:bg-[#cc2a3a] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
             >
@@ -143,6 +157,7 @@ const updateButtonLoading = ref(false);
 const formData = ref({
   fullname: "",
   phonenumber: "",
+  email: "",
   dob: "",
   referralCode: "",
 });
@@ -196,6 +211,11 @@ const confirmUpdate = async () => {
     return;
   }
 
+  if (!userData.value?.email && !formData.value.email) {
+    showAlert($t("error"), $t("email_required"), "error");
+    return;
+  }
+
   if (!formData.value.dob) {
     showAlert($t("error"), $t("dob_required"), "error");
     return;
@@ -232,6 +252,7 @@ const confirmUpdate = async () => {
     const { data } = await post("complete-profile", {
       fullname: formData.value.fullname.toUpperCase(),
       phonenumber: formatPhoneNumber(formData.value.phonenumber),
+      email: formData.value.email,
       dob: formattedDob,
       referralCode: formData.value.referralCode,
     });
