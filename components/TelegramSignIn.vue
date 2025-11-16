@@ -99,6 +99,10 @@ const handleTelegramAuth = async (user) => {
 
 onMounted(() => {
   window.addEventListener("message", (event) => {
+    console.log("=== Message Event ===");
+    console.log("Origin:", event.origin);
+    console.log("Data:", event.data);
+    console.log("====================");
     if (event.origin !== "https://oauth.telegram.org") return;
 
     if (event.data && event.data.event === "auth_user") {
