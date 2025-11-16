@@ -2,7 +2,7 @@
   <div class="w-full">
     <button
       @click="triggerTelegramLogin"
-      class="relative w-full h-11 bg-[#0088cc] border-0 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-white hover:bg-[#0077b3] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      class="relative w-full h-11 bg-[#0088cc] border-0 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-white lg:hover:bg-[#0077b3] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <svg class="w-5 h-5" viewBox="0 0 24 24" fill="white">
         <path

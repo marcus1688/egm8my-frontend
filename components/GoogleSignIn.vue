@@ -7,7 +7,7 @@
     <button
       ref="customGoogleBtn"
       @click="triggerGoogleLogin"
-      class="relative w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 hover:bg-gray-50 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+      class="relative w-full h-11 bg-white border border-gray-200 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-gray-800 lg:hover:bg-gray-100 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <svg class="w-5 h-5" viewBox="0 0 24 24">
         <path
