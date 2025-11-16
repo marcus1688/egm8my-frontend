@@ -1066,7 +1066,7 @@
               <!-- Sports Games -->
               <div
                 v-if="item.name === 'Sports'"
-                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid gap-x-2"
               >
                 <template v-for="game in sportsKiosks" :key="game._id">
                   <div
@@ -1074,7 +1074,7 @@
                     @click="launchGame(game)"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1093,7 +1093,7 @@
               <!-- E-Sports Games -->
               <div
                 v-if="item.name === 'E-Sports'"
-                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid gap-x-2"
               >
                 <template v-for="game in esportsKiosks" :key="game._id">
                   <div
@@ -1101,7 +1101,7 @@
                     @click="launchGame(game)"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1120,7 +1120,7 @@
               <!-- Casino Games -->
               <div
                 v-if="item.name === 'Casino'"
-                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid gap-x-2"
               >
                 <template v-for="game in liveCasinoKiosks" :key="game._id">
                   <div
@@ -1128,7 +1128,7 @@
                     @click="launchGame(game)"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1147,7 +1147,7 @@
               <!-- Slots Games -->
               <div
                 v-if="item.name === 'Slots'"
-                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid gap-x-2"
               >
                 <template v-for="(game, index) in slotKiosks" :key="game._id">
                   <div
@@ -1156,7 +1156,7 @@
                     @click="launchGame(game)"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1181,7 +1181,7 @@
                     class="game-item group cursor-pointer relative block h-full"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1212,7 +1212,7 @@
               <!-- Fishing Games -->
               <div
                 v-if="item.name === 'Fishing'"
-                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid gap-x-2"
               >
                 <template v-for="game in fishingKiosks" :key="game._id">
                   <div
@@ -1220,7 +1220,7 @@
                     @click="launchGame(game)"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
@@ -1239,7 +1239,7 @@
               <!-- Lottery Games -->
               <div
                 v-if="item.name === 'Lottery'"
-                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid"
+                class="grid grid-cols-8 max-2xl:grid-cols-7 max-xl:grid-cols-6 max-lg:grid-cols-5 game-grid gap-x-2"
               >
                 <template v-for="game in lotteryKiosks" :key="game._id">
                   <div
@@ -1247,7 +1247,7 @@
                     @click="launchGame(game)"
                   >
                     <div
-                      class="aspect-[3/4] flex items-center justify-center p-3 relative overflow-hidden transition-all duration-300"
+                      class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
