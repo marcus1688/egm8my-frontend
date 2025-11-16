@@ -1,12 +1,6 @@
 <template>
   <div class="w-full">
-    <div
-      ref="telegramButtonContainer"
-      style="position: absolute; visibility: hidden; pointer-events: none"
-    ></div>
-
     <button
-      ref="customTelegramBtn"
       @click="triggerTelegramLogin"
       class="relative w-full h-11 bg-[#0088cc] border-0 rounded-lg flex items-center justify-center gap-2 text-sm font-medium text-white hover:bg-[#0077b3] transition-all disabled:opacity-50 disabled:cursor-not-allowed"
     >
@@ -37,8 +31,6 @@ const router = useRouter();
 const localePath = useLocalePath();
 const pageLoading = useState("pageLoading");
 const { showAlert, alertVisible } = useAlert();
-const telegramButtonContainer = ref(null);
-const customTelegramBtn = ref(null);
 
 const handleTelegramAuth = async (user) => {
   pageLoading.value = true;
@@ -57,13 +49,11 @@ const handleTelegramAuth = async (user) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("refreshToken", data.refreshToken);
       localStorage.setItem("gametoken", data.newGameToken);
-
       showAlert(
         $t("success"),
         data.message[$locale.value] || $t("login_successful"),
         "success"
       );
-
       setTimeout(() => {
         alertVisible.value = false;
         router.push(localePath("/"));
@@ -88,38 +78,36 @@ const handleTelegramAuth = async (user) => {
 };
 
 const triggerTelegramLogin = () => {
-  const iframe = telegramButtonContainer.value?.querySelector("iframe");
-  if (iframe) {
-    iframe.click();
-  }
-};
-
-const renderTelegramButton = () => {
-  if (!telegramButtonContainer.value) {
+  if (!window.Telegram?.Login) {
+    console.error("Telegram Widget not loaded");
+    showAlert($t("error"), "Telegram widget not loaded", "error");
     return;
   }
+  window.Telegram.Login.auth(
+    {
+      bot_id: config.public.telegramBotId,
+      request_access: true,
+    },
+    (data) => {
+      if (!data) {
+        console.log("Telegram authorization failed or cancelled");
+        return;
+      }
+      handleTelegramAuth(data);
+    }
+  );
+};
+
+onMounted(() => {
   const script = document.createElement("script");
   script.src = "https://telegram.org/js/telegram-widget.js?22";
   script.async = true;
-  script.setAttribute("data-telegram-login", config.public.telegramBotUsername);
-  script.setAttribute("data-size", "large");
-  script.setAttribute("data-radius", "8");
-  script.setAttribute("data-onauth", "onTelegramAuth(user)");
-  script.setAttribute("data-request-access", "write");
-  telegramButtonContainer.value.appendChild(script);
-};
-
-if (process.client) {
-  window.onTelegramAuth = handleTelegramAuth;
-}
-
-onMounted(() => {
-  const checkContainer = setInterval(() => {
-    if (telegramButtonContainer.value) {
-      clearInterval(checkContainer);
-      renderTelegramButton();
-    }
-  }, 100);
-  setTimeout(() => clearInterval(checkContainer), 10000);
+  script.onload = () => {
+    console.log("✅ Telegram Widget loaded");
+  };
+  script.onerror = () => {
+    console.error("❌ Failed to load Telegram Widget");
+  };
+  document.head.appendChild(script);
 });
 </script>
