@@ -1186,5 +1186,6 @@
   "update_failed": "Gagal mengemaskini profil",
   "fullname_required": "Nama penuh diperlukan",
   "dob_required": "Tarikh lahir diperlukan",
-  "or": "ATAU"
+  "or": "ATAU",
+  "fullname_letters_only": "Nama penuh hanya boleh mengandungi huruf dan ruang"
 }

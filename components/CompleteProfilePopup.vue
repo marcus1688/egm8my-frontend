@@ -206,8 +206,13 @@ const confirmUpdate = async () => {
     return;
   }
 
-  if (!formData.value.phonenumber) {
-    showAlert($t("error"), $t("phone_required"), "error");
+  if (!formData.value.fullname) {
+    showAlert($t("error"), $t("fullname_required"), "error");
+    return;
+  }
+
+  if (!/^[a-zA-Z\s]+$/.test(formData.value.fullname)) {
+    showAlert($t("error"), $t("fullname_letters_only"), "error");
     return;
   }
 

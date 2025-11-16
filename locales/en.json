@@ -1186,5 +1186,6 @@
   "update_failed": "Failed to update profile",
   "fullname_required": "Full name is required",
   "dob_required": "Date of birth is required",
-  "or": "OR"
+  "or": "OR",
+  "fullname_letters_only": "Full name can only contain letters and spaces"
 }
