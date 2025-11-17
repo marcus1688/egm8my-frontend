@@ -1241,5 +1241,8 @@
   "tiny_prize": "六等奖",
   "tiny_prize_desc": "安慰奖",
   "better_luck_next_time": "下次好运",
-  "important_terms": "重要条款"
+  "important_terms": "重要条款",
+  "you_have": "您有",
+  "points_available": "可用积分",
+  "login_required_view_records": "请登录以查看您的中奖记录"
 }

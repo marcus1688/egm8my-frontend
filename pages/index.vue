@@ -69,7 +69,7 @@
       <HomePopup v-if="shouldShowPopup" :popup-data="activePopup" />
       <SeoContent />
 
-      <div
+      <!-- <div
         v-if="userData && userData.luckySpinClaim === false"
         class="fixed bottom-32 right-0 z-[60] max-lg:right-1 cursor-pointer animate-pulse-glow lg:hover:animate-none hidden"
         @click="showLuckySpin = true"
@@ -81,7 +81,7 @@
             class="w-32 h-auto object-contain animate-float max-lg:w-20 drop-shadow-[0_0_12px_rgba(239,68,68,0.8)]"
           />
         </div>
-      </div>
+      </div> -->
     </div>
   </ClientOnly>
 </template>

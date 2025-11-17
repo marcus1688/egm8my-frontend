@@ -1241,5 +1241,8 @@
   "tiny_prize": "Tiny Prize",
   "tiny_prize_desc": "Consolation prize",
   "better_luck_next_time": "Better Luck",
-  "important_terms": "Important Terms"
+  "important_terms": "Important Terms",
+  "you_have": "You have",
+  "points_available": "Points available",
+  "login_required_view_records": "Please login to view your winning records"
 }

@@ -19,39 +19,14 @@
               <div
                 class="flex items-center justify-center gap-8 max-lg:gap-6 max-lg:flex-col relative w-full max-w-7xl"
               >
-                <!-- Left Section - Stats Card -->
-                <div class="w-[25%] max-lg:w-full max-lg:max-w-sm">
-                  <div
-                    class="bg-[#241017]/60 rounded-xl p-6 max-lg:p-4 border border-[#3b1c23] shadow-lg shadow-red-500/20"
-                  >
-                    <h3
-                      class="text-xl font-bold text-[#f0eaea] mb-4 max-lg:text-lg max-lg:mb-3 text-center"
-                    >
-                      {{ $t("your_stats") || "Your Stats" }}
-                    </h3>
-
-                    <!-- Spin Count -->
-                    <div
-                      class="bg-[#15090e] rounded-lg p-4 max-lg:p-3 mb-3 border border-[#3b1c23]/50"
-                    >
-                      <p class="text-sm text-[#b37a7a] mb-1 max-lg:text-xs">
-                        {{ $t("remaining_spins") || "Remaining Spins" }}
-                      </p>
-                      <p class="text-3xl font-bold text-white max-lg:text-2xl">
-                        {{ userData?.luckySpinPoints || 0 }}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
                 <!-- Center Section - Wheel -->
                 <div
-                  class="relative w-[50%] max-lg:w-full max-lg:max-w-md flex justify-center"
+                  class="relative w-[65%] max-lg:w-full max-lg:max-w-md flex flex-col items-center"
                 >
                   <img
                     src="/images/luckyspin/wheel-prize.png"
                     alt="Wheel Prize"
-                    class="w-full h-auto transition-transform duration-[4s] ease-in-out"
+                    class="w-[70%] max-lg:w-full h-auto transition-transform duration-[4s] ease-in-out"
                     :style="{ transform: `rotate(${rotation}deg)` }"
                   />
 
@@ -59,12 +34,12 @@
                   <img
                     src="/images/luckyspin/spin.png"
                     alt="Spin Button"
-                    class="w-[10%] h-auto absolute left-1/2 top-[40%] -translate-x-1/2 cursor-pointer z-50 transition-transform lg:hover:scale-110"
+                    class="w-[5%] h-auto absolute left-1/2 top-[35%] -translate-x-1/2 cursor-pointer z-50 transition-transform lg:hover:scale-110"
                     @click="spinWheel"
                   />
 
                   <!-- Click to Spin Indicator -->
-                  <div
+                  <!-- <div
                     class="absolute top-[59%] left-[40%] -translate-x-1/2 z-40 pointer-events-none animate-bounce rounded-lg w-[21%] max-2xl:w-[25%] max-2xl:left-[38%] max-xl:w-[30%] max-xl:left-[35%] max-lg:w-[100px] max-lg:left-[41.5%] max-lg:top-[62%] max-sm:left-[38%] max-sm:w-[25%]"
                   >
                     <div
@@ -80,70 +55,116 @@
                         />
                       </div>
                     </div>
+                  </div> -->
+
+                  <!-- Text Box with Available Points -->
+                  <div
+                    class="relative w-full mt-6 max-lg:mt-4 flex justify-center"
+                  >
+                    <img
+                      src="/images/luckyspin/text-box.png"
+                      alt="Text Box"
+                      class="w-[50%] max-xl:w-[60%] max-lg:w-[90%] h-auto"
+                    />
+                    <div
+                      class="absolute inset-0 flex items-center justify-center"
+                    >
+                      <p
+                        class="text-white font-bold text-lg max-lg:text-base max-sm:text-sm text-center px-4"
+                      >
+                        {{ $t("you_have") || "You have" }}
+                        <span class="text-[#ff3344]">{{
+                          userData?.luckySpinPoints || 0
+                        }}</span>
+                        {{ $t("points_available") || "Points available" }}
+                      </p>
+                    </div>
                   </div>
                 </div>
 
                 <!-- Right Section - Leaderboard with Tabs -->
-                <div class="w-[30%] max-lg:w-full max-lg:max-w-sm">
+                <div
+                  class="w-[35%] max-lg:w-full max-lg:max-w-sm h-full pt-16 max-lg:pt-12"
+                >
                   <div
-                    class="bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-lg shadow-red-500/20 overflow-hidden"
+                    class="bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-lg shadow-red-500/20 h-full flex flex-col"
                   >
-                    <!-- Tabs Header -->
-                    <div class="flex border-b border-[#3b1c23]">
-                      <button
-                        @click="activeLeaderboardTab = 'winners'"
-                        class="flex-1 py-3 px-4 max-lg:py-2.5 max-lg:px-3 font-semibold transition-all text-sm max-lg:text-xs"
-                        :class="
-                          activeLeaderboardTab === 'winners'
-                            ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
-                            : 'bg-[#15090e] text-[#b37a7a] lg:hover:text-[#f0eaea]'
-                        "
+                    <!-- Tabs Header with Icon -->
+                    <div class="relative">
+                      <!-- Leaderboard Icon -->
+                      <div
+                        class="absolute top-[-110%] left-1/2 -translate-x-1/2 z-10"
                       >
-                        <i class="bi bi-trophy mr-1"></i>
-                        {{ $t("winner_list") || "Winner List" }}
-                      </button>
-                      <button
-                        @click="activeLeaderboardTab = 'records'"
-                        class="flex-1 py-3 px-4 max-lg:py-2.5 max-lg:px-3 font-semibold transition-all text-sm max-lg:text-xs"
-                        :class="
-                          activeLeaderboardTab === 'records'
-                            ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
-                            : 'bg-[#15090e] text-[#b37a7a] lg:hover:text-[#f0eaea]'
-                        "
+                        <img
+                          src="/images/luckyspin/leaderboard.png"
+                          alt="Leaderboard"
+                          class="w-32 max-lg:w-24 h-auto object-contain"
+                        />
+                      </div>
+
+                      <!-- Tabs Buttons -->
+                      <div
+                        class="flex border-b border-[#3b1c23] pt-4 max-lg:pt-3 px-4 max-lg:px-3 pb-4 max-lg:pb-3 gap-2 text-nowrap"
                       >
-                        <i class="bi bi-clock-history mr-1"></i>
-                        {{ $t("winning_record") || "Winning Record" }}
-                      </button>
+                        <button
+                          @click="activeLeaderboardTab = 'winners'"
+                          class="flex-1 py-3 px-4 max-lg:py-2.5 max-lg:px-3 max-sm:py-2 max-sm:px-2 font-semibold transition-all text-sm max-lg:text-xs max-sm:text-[10px] rounded-full"
+                          :class="
+                            activeLeaderboardTab === 'winners'
+                              ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
+                              : 'bg-[#15090e] text-[#b37a7a] lg:hover:text-[#f0eaea]'
+                          "
+                        >
+                          <i class="bi bi-trophy mr-1 max-sm:mr-0.5"></i>
+                          {{ $t("winner_list") || "Winner List" }}
+                        </button>
+                        <button
+                          @click="handleRecordsTabClick"
+                          class="flex-1 py-3 px-4 max-lg:py-2.5 max-lg:px-3 max-sm:py-2 max-sm:px-2 font-semibold transition-all text-sm max-lg:text-xs max-sm:text-[10px] rounded-full"
+                          :class="
+                            activeLeaderboardTab === 'records'
+                              ? 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white'
+                              : 'bg-[#15090e] text-[#b37a7a] lg:hover:text-[#f0eaea]'
+                          "
+                        >
+                          <i class="bi bi-clock-history mr-1 max-sm:mr-0.5"></i>
+                          {{ $t("winning_record") || "Winning Record" }}
+                        </button>
+                      </div>
                     </div>
 
                     <!-- Tab Content -->
                     <div
-                      class="h-[400px] max-lg:h-[300px] overflow-y-auto custom-scrollbar bg-[#15090e]"
+                      class="flex-1 overflow-y-auto custom-scrollbar bg-[#15090e] rounded-b-xl"
                     >
                       <!-- Winner List Tab -->
                       <div
                         v-show="activeLeaderboardTab === 'winners'"
-                        class="p-4 max-lg:p-3"
+                        class="p-4 max-lg:p-3 max-sm:p-2"
                       >
                         <div
                           v-if="bigwinner.length === 0"
-                          class="text-center py-8 text-[#b37a7a] text-sm"
+                          class="text-center py-8 text-[#b37a7a] text-sm max-sm:text-xs"
                         >
                           {{ $t("no_winners_yet") || "No winners yet" }}
                         </div>
-                        <div v-else class="space-y-2">
+                        <div v-else class="space-y-2 max-sm:space-y-1.5">
                           <div
                             v-for="(log, index) in bigwinner"
                             :key="index"
-                            class="bg-[#241017]/60 rounded-lg p-3 max-lg:p-2 border border-[#3b1c23]/50 hover:border-[#ff3344]/30 transition-all"
+                            class="bg-[#241017]/60 rounded-lg p-3 max-lg:p-2 max-sm:p-1.5 border border-[#3b1c23]/50 hover:border-[#ff3344]/30 transition-all"
                           >
-                            <div class="flex items-center justify-between mb-1">
+                            <div
+                              class="flex items-center justify-between mb-1 max-sm:mb-0.5"
+                            >
                               <span
-                                class="text-white font-bold text-sm max-lg:text-xs"
+                                class="text-white font-bold text-sm max-lg:text-xs max-sm:text-[10px]"
                                 >{{ maskUsername(log.playerusername) }}</span
                               >
                             </div>
-                            <div class="text-[#b37a7a] text-xs">
+                            <div
+                              class="text-[#b37a7a] text-xs max-sm:text-[10px]"
+                            >
                               {{ formatDate(log.createdAt) }}
                             </div>
                           </div>
@@ -153,28 +174,30 @@
                       <!-- Winning Record Tab -->
                       <div
                         v-show="activeLeaderboardTab === 'records'"
-                        class="p-4 max-lg:p-3"
+                        class="p-4 max-lg:p-3 max-sm:p-2"
                       >
                         <div
                           v-if="winningRecords.length === 0"
-                          class="text-center py-8 text-[#b37a7a] text-sm"
+                          class="text-center py-8 text-[#b37a7a] text-sm max-sm:text-xs"
                         >
                           {{ $t("no_records_yet") || "No records yet" }}
                         </div>
-                        <div v-else class="space-y-2">
+                        <div v-else class="space-y-2 max-sm:space-y-1.5">
                           <div
                             v-for="(record, index) in winningRecords"
                             :key="index"
-                            class="bg-[#241017]/60 rounded-lg p-3 max-lg:p-2 border border-[#3b1c23]/50 hover:border-[#ff3344]/30 transition-all"
+                            class="bg-[#241017]/60 rounded-lg p-3 max-lg:p-2 max-sm:p-1.5 border border-[#3b1c23]/50 hover:border-[#ff3344]/30 transition-all"
                           >
-                            <div class="flex items-center justify-between mb-1">
+                            <div
+                              class="flex items-center justify-between mb-1 max-sm:mb-0.5"
+                            >
                               <span
-                                class="text-white font-bold text-sm max-lg:text-xs"
+                                class="text-white font-bold text-sm max-lg:text-xs max-sm:text-[10px]"
                               >
                                 {{ userData.username }}
                               </span>
                               <span
-                                class="font-semibold text-sm max-lg:text-xs"
+                                class="font-semibold text-sm max-lg:text-xs max-sm:text-[10px]"
                                 :class="
                                   record.amount > 0
                                     ? 'text-[#ff3344]'
@@ -188,7 +211,9 @@
                                 }}
                               </span>
                             </div>
-                            <div class="text-[#b37a7a] text-xs">
+                            <div
+                              class="text-[#b37a7a] text-xs max-sm:text-[10px]"
+                            >
                               {{ formatDate(record.createdAt) }}
                             </div>
                           </div>
@@ -609,6 +634,14 @@ const winningRecords = ref([]);
 const activeLeaderboardTab = ref("winners");
 const { showAlert } = useAlert();
 
+const handleRecordsTabClick = () => {
+  if (!userData.value) {
+    showAlert($t("info"), $t("login_required_view_records"), "info");
+    return;
+  }
+  activeLeaderboardTab.value = "records";
+};
+
 const spinWheel = async () => {
   if (!userData.value) {
     showAlert($t("info"), $t("login_required_spin"), "info");
@@ -682,7 +715,7 @@ const formatDate = (dateString) => {
 async function fetchBigWinner() {
   try {
     const { data } = await get("UserLuckySpinLog");
-    console.log(data);
+
     if (data.success) {
       bigwinner.value = data.data;
     }
@@ -694,7 +727,7 @@ async function fetchBigWinner() {
 async function fetchWinningRecords() {
   try {
     const { data } = await get("MyLuckySpinLog");
-    console.log(data);
+
     if (data.success) {
       winningRecords.value = data.data;
     }
@@ -722,7 +755,10 @@ const maskUsername = (username) => {
 
 onMounted(async () => {
   try {
-    await Promise.all([fetchBigWinner(), fetchWinningRecords()]);
+    await fetchBigWinner();
+    if (userData.value) {
+      await fetchWinningRecords();
+    }
   } finally {
     isPageLoading.value = false;
   }
