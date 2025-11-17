@@ -20,6 +20,7 @@ const lotteryKiosks = useState("lotteryKiosks", () => []);
 const partners = useState("partners", () => []);
 const userData = useState("userData");
 const unreadCount = useState("unreadCount", () => null);
+const luckySpinPointRate = useState("luckySpinPointRate", () => 0);
 const { socket, connectSocketIO, cleanup } = useSocketIO();
 const { showNotification } = useNotification();
 const smsStatus = useState("smsStatus", () => null);
@@ -65,6 +66,17 @@ async function fetchUnreadCount() {
     }
   } catch (error) {
     console.error("Error fetching unread count:", error);
+  }
+}
+
+async function fetchLuckySpinRate() {
+  try {
+    const { data } = await get("getLuckySpinPointRate");
+    if (data.success) {
+      luckySpinPointRate.value = data.pointsPerSpin;
+    }
+  } catch (error) {
+    console.error("Error fetching lucky spin rate:", error);
   }
 }
 
@@ -269,6 +281,7 @@ onMounted(async () => {
       fetchLuckyDrawStatus(),
       fetchCarousel(),
       checkPopupVisibility(),
+      fetchLuckySpinRate(),
     ]);
     await preloadAllImages();
   } catch (error) {

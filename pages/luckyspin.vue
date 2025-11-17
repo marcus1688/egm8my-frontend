@@ -501,7 +501,7 @@
                 {{ $t("step_1") }}
               </h3>
               <p class="text-sm text-[#b37a7a] leading-relaxed max-lg:text-xs">
-                {{ $t("spin_rule_1") }}
+                {{ $t("spin_rule_1", { points: luckySpinPointRate }) }}
               </p>
             </div>
 
@@ -569,7 +569,9 @@
                   {{ $t("how_to_play") }}
                 </h3>
                 <div class="space-y-2 text-[#f0eaea] text-sm max-lg:text-xs">
-                  <p>1. {{ $t("spin_rule_1") }}</p>
+                  <p>
+                    1. {{ $t("spin_rule_1", { points: luckySpinPointRate }) }}
+                  </p>
                   <p>2. {{ $t("spin_rule_2") }}</p>
                   <p>3. {{ $t("spin_rule_3") }}</p>
                 </div>
@@ -635,6 +637,7 @@ const WinningAmount = ref(null);
 const bigwinner = ref([]);
 const winningRecords = ref([]);
 const activeLeaderboardTab = ref("winners");
+const luckySpinPointRate = useState("luckySpinPointRate");
 const { showAlert } = useAlert();
 
 const handleRecordsTabClick = () => {
@@ -650,7 +653,7 @@ const spinWheel = async () => {
     showAlert($t("info"), $t("login_required_spin"), "info");
     return;
   }
-  if (userData.value.luckySpinPoints < 100) {
+  if (userData.value.luckySpinPoints < luckySpinPointRate) {
     showAlert($t("info"), $t("no_spins_remaining"), "info");
     return;
   }

@@ -57,7 +57,7 @@
         </div>
       </section>
 
-      <LuckySpin v-if="showLuckySpin" @close="showLuckySpin = false" />
+      <!-- <LuckySpin v-if="showLuckySpin" @close="showLuckySpin = false" /> -->
       <Sports />
       <HomePromotionList />
       <Transaction />

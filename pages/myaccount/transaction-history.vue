@@ -169,7 +169,13 @@
                   <td
                     class="py-3 px-4 text-sm text-[#f0eaea] uppercase max-lg:text-xs"
                   >
-                    {{ transaction.promotionnameEN || "-" }}
+                    {{
+                      $i18n.locale === "zh"
+                        ? transaction?.promotionnameCN ||
+                          transaction?.promotionnameEN ||
+                          "-"
+                        : transaction?.promotionnameEN || "-"
+                    }}
                   </td>
                 </tr>
               </tbody>
