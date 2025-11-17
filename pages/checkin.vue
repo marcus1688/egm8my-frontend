@@ -437,16 +437,19 @@
               <!-- Check-in Button -->
               <button
                 @click="handleCheckIn"
-                :disabled="isCheckedInToday"
+                :disabled="isCheckedInToday || isPageLoading"
                 class="w-full group relative inline-flex items-center justify-center px-8 py-4 rounded-xl text-white font-bold overflow-hidden transition-all shadow-lg"
                 :class="
-                  isCheckedInToday
+                  isPageLoading
+                    ? 'bg-[#241017] text-[#b37a7a] border border-[#3b1c23] cursor-wait'
+                    : isCheckedInToday
                     ? 'bg-[#241017] text-[#b37a7a] border border-[#3b1c23] cursor-not-allowed'
                     : 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a] hover:brightness-110 hover:scale-105 shadow-red-500/30'
                 "
               >
                 <span class="relative flex items-center gap-3">
                   <Icon
+                    v-if="!isPageLoading"
                     :icon="
                       isCheckedInToday
                         ? 'mdi:check-circle'
@@ -454,9 +457,16 @@
                     "
                     class="text-2xl"
                   />
+                  <Icon
+                    v-else
+                    icon="mdi:loading"
+                    class="text-2xl animate-spin"
+                  />
                   <span class="text-lg">
                     {{
-                      isCheckedInToday
+                      isPageLoading
+                        ? $t("loading")
+                        : isCheckedInToday
                         ? $t("come_back_tomorrow")
                         : $t("check_in_now")
                     }}
