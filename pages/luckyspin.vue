@@ -73,7 +73,7 @@
                         class="text-white font-bold text-lg max-lg:text-base max-sm:text-sm text-center px-4"
                       >
                         {{ $t("you_have") || "You have" }}
-                        <span class="text-[#ff3344]">{{
+                        <span class="text-white">{{
                           userData?.luckySpinPoints || 0
                         }}</span>
                         {{ $t("points_available") || "Points available" }}
@@ -84,7 +84,7 @@
 
                 <!-- Right Section - Leaderboard with Tabs -->
                 <div
-                  class="w-[35%] max-lg:w-full max-lg:max-w-sm h-full pt-16 max-lg:pt-12"
+                  class="w-[35%] max-lg:w-full max-lg:max-w-sm h-full max-h-[600px] max-lg:max-h-[500px] pt-16 max-lg:pt-12"
                 >
                   <div
                     class="bg-[#241017]/60 rounded-xl border border-[#3b1c23] shadow-lg shadow-red-500/20 h-full flex flex-col"
@@ -135,7 +135,10 @@
 
                     <!-- Tab Content -->
                     <div
+                      ref="scrollContainer"
                       class="flex-1 overflow-y-auto custom-scrollbar bg-[#15090e] rounded-b-xl"
+                      @mouseenter="pauseScroll"
+                      @mouseleave="resumeScroll"
                     >
                       <!-- Winner List Tab -->
                       <div
@@ -753,15 +756,75 @@ const maskUsername = (username) => {
   return visiblePart + "****";
 };
 
+const scrollContainer = ref(null);
+let scrollInterval = null;
+
+const startAutoScroll = () => {
+  if (activeLeaderboardTab.value !== "winners") return;
+
+  if (scrollContainer.value) {
+    scrollInterval = setInterval(() => {
+      const container = scrollContainer.value;
+      const isAtBottom =
+        container.scrollTop + container.clientHeight >=
+        container.scrollHeight - 5;
+      if (isAtBottom) {
+        container.scrollTop = 0;
+      } else {
+        container.scrollTop += 1;
+      }
+    }, 50);
+  }
+};
+
+const pauseScroll = () => {
+  if (scrollInterval) {
+    clearInterval(scrollInterval);
+    scrollInterval = null;
+  }
+};
+
+const resumeScroll = () => {
+  if (activeLeaderboardTab.value === "winners" && bigwinner.value.length > 5) {
+    startAutoScroll();
+  }
+};
+
+watch(activeLeaderboardTab, (newTab) => {
+  pauseScroll();
+  if (scrollContainer.value) {
+    scrollContainer.value.scrollTop = 0;
+  }
+  if (newTab === "winners") {
+    setTimeout(() => {
+      if (bigwinner.value.length > 5) {
+        startAutoScroll();
+      }
+    }, 500);
+  }
+});
+
 onMounted(async () => {
   try {
     await fetchBigWinner();
     if (userData.value) {
       await fetchWinningRecords();
     }
+    setTimeout(() => {
+      if (
+        bigwinner.value.length > 5 &&
+        activeLeaderboardTab.value === "winners"
+      ) {
+        startAutoScroll();
+      }
+    }, 1000);
   } finally {
     isPageLoading.value = false;
   }
+});
+
+onUnmounted(() => {
+  pauseScroll();
 });
 
 useHead({
