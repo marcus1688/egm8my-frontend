@@ -354,7 +354,8 @@ const formatBenefitValue = (value, rowName) => {
     rowName === "Rebate Slot" ||
     rowName === "Rebate Live Casino" ||
     rowName === "Rebate Sports" ||
-    rowName === "Rebate Esports"
+    rowName === "Rebate Esports" ||
+    rowName === "Unlimited Deposit Bonus"
   ) {
     return formattedNumber + "%";
   } else {
