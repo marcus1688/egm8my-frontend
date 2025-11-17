@@ -731,7 +731,45 @@ const fetchDepositBank = async () => {
 const fetchPromotionList = async () => {
   try {
     const { data } = await get("getdepositpromotion");
-    if (data.success) promotionlist.value = data.data;
+    if (data.success) {
+      let filteredPromotions = data.data;
+      const unlimitedBonusPromo = filteredPromotions.find(
+        (promo) =>
+          promo.maintitleEN === "Unlimited Bonus" ||
+          promo.maintitle === "无限存款"
+      );
+      if (unlimitedBonusPromo) {
+        try {
+          const vipResponse = await get("vipsettings");
+          if (vipResponse.data?.success && userData.value?.viplevel) {
+            const vipSettings = vipResponse.data.data[0];
+            const userVipLevel = vipSettings.vipLevels.find(
+              (level) => level.name === userData.value.viplevel
+            );
+            const unlimitedBonusPercent =
+              userVipLevel?.benefits?.get?.("Unlimited Deposit Bonus") ||
+              userVipLevel?.benefits?.["Unlimited Deposit Bonus"] ||
+              0;
+            if (parseFloat(unlimitedBonusPercent) <= 0) {
+              filteredPromotions = filteredPromotions.filter(
+                (promo) => promo._id !== unlimitedBonusPromo._id
+              );
+            }
+          } else {
+            filteredPromotions = filteredPromotions.filter(
+              (promo) => promo._id !== unlimitedBonusPromo._id
+            );
+          }
+        } catch (error) {
+          console.error("Error checking VIP settings:", error);
+          filteredPromotions = filteredPromotions.filter(
+            (promo) => promo._id !== unlimitedBonusPromo._id
+          );
+        }
+      }
+
+      promotionlist.value = filteredPromotions;
+    }
   } catch (error) {
     console.error("Error fetching promotions:", error);
   }
