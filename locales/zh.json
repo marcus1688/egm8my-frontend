@@ -1244,5 +1244,6 @@
   "important_terms": "重要条款",
   "you_have": "您有",
   "points_available": "可用积分",
-  "login_required_view_records": "请登录以查看您的中奖记录"
+  "login_required_view_records": "请登录以查看您的中奖记录",
+  "check_in_bonus": "签到奖励"
 }

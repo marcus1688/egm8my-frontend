@@ -111,26 +111,10 @@
                       <template v-else>
                         <span class="text-[#f0eaea] font-semibold">
                           {{
-                            row.name === "Withdraw Limit" &&
-                            level.benefits &&
-                            level.benefits[row.name]
-                              ? formatNumber(level.benefits[row.name], row.name)
-                              : (row.name === "Rebate Slot" ||
-                                  row.name === "Rebate Live Casino" ||
-                                  row.name === "Rebate Sports & Esports") &&
-                                level.benefits &&
-                                level.benefits[row.name]
-                              ? formatNumber(
-                                  level.benefits[row.name],
-                                  row.name
-                                ) + "%"
-                              : "MYR " +
-                                formatNumber(
-                                  level.benefits
-                                    ? level.benefits[row.name]
-                                    : "",
-                                  row.name
-                                )
+                            formatBenefitValue(
+                              level.benefits ? level.benefits[row.name] : "",
+                              row.name
+                            )
                           }}
                         </span>
                       </template>
@@ -247,29 +231,12 @@
                 <div v-else class="flex-shrink-0 flex items-center gap-1.5">
                   <span class="text-[0.9rem] font-bold text-[#ff3344]">
                     {{
-                      row.name === "Withdraw Limit" &&
-                      selectedMobileLevel.benefits &&
-                      selectedMobileLevel.benefits[row.name]
-                        ? formatNumber(
-                            selectedMobileLevel.benefits[row.name],
-                            row.name
-                          )
-                        : (row.name === "Rebate Slot" ||
-                            row.name === "Rebate Live Casino" ||
-                            row.name === "Rebate Sports & Esports") &&
-                          selectedMobileLevel.benefits &&
-                          selectedMobileLevel.benefits[row.name]
-                        ? formatNumber(
-                            selectedMobileLevel.benefits[row.name],
-                            row.name
-                          ) + "%"
-                        : "MYR " +
-                          formatNumber(
-                            selectedMobileLevel.benefits
-                              ? selectedMobileLevel.benefits[row.name]
-                              : "",
-                            row.name
-                          )
+                      formatBenefitValue(
+                        selectedMobileLevel.benefits
+                          ? selectedMobileLevel.benefits[row.name]
+                          : "",
+                        row.name
+                      )
                     }}
                   </span>
                   <div class="w-1.5 h-1.5 rounded-full bg-[#ff3344]"></div>
@@ -374,6 +341,26 @@ const getLocalizedTerms = computed(() => {
   else return settingsData.value.terms?.en;
 });
 
+const formatBenefitValue = (value, rowName) => {
+  if (!value) return "";
+  const isNumeric = !isNaN(value) && !isNaN(parseFloat(value));
+  if (!isNumeric) {
+    return value;
+  }
+  const formattedNumber = formatNumber(value, rowName);
+  if (rowName === "Withdraw Limit") {
+    return formattedNumber;
+  } else if (
+    rowName === "Rebate Slot" ||
+    rowName === "Rebate Live Casino" ||
+    rowName === "Rebate Sports & Esports"
+  ) {
+    return formattedNumber + "%";
+  } else {
+    return "MYR " + formattedNumber;
+  }
+};
+
 const levelNameTranslations = {
   bronze: { en: "Bronze", zh: "青銅", ms: "Gangsa" },
   silver: { en: "Silver", zh: "白銀", ms: "Perak" },
@@ -426,6 +413,41 @@ const rowNameTranslations = {
     zh: "提款限额",
     ms: "Had Pengeluaran",
   },
+  "Daily Rewards": {
+    en: "Daily Rewards",
+    zh: "每日奖励",
+    ms: "Daily Rewards",
+  },
+  "Weekly Rewards": {
+    en: "Weekly Rewards",
+    zh: "每周奖励",
+    ms: "Weekly Rewards",
+  },
+  "Monthly Rewards": {
+    en: "Monthly Rewards",
+    zh: "每月奖励",
+    ms: "Monthly Rewards",
+  },
+  "Daily Bank Withdraw Limit": {
+    en: "Daily Bank Withdraw Limit",
+    zh: "每日银行提款限额",
+    ms: "Had Pengeluaran Bank Harian",
+  },
+  "Unlimited Deposit Bonus": {
+    en: "Unlimited Deposit Bonus",
+    zh: "无限存款奖金",
+    ms: "Bonus Deposit Tanpa Had",
+  },
+  "Membership Renewal": {
+    en: "Membership Renewal",
+    zh: "会员续期",
+    ms: "Pembaharuan Keahlian",
+  },
+  "Monthly Tier Retention Requirement": {
+    en: "Monthly Tier Retention Requirement",
+    zh: "每月等级保留要求",
+    ms: "Keperluan Pengekalan Tahap Bulanan",
+  },
 };
 
 const localizedTableTitle = computed(() => {
@@ -446,13 +468,21 @@ const isFirstInGroup = (index) => {
 };
 
 const getGroupName = (rowName) => {
-  if (rowName.includes("Deposit") || rowName.includes("Total")) {
+  if (rowName.includes("Total Deposit") || rowName.includes("Total")) {
     return $t("membership_requirements");
-  } else if (rowName.includes("Bonus") || rowName.includes("Upgrade")) {
+  } else if (rowName.includes("Birthday") || rowName.includes("Upgrade")) {
     return $t("bonuses_rewards");
   } else if (rowName.includes("Rebate") || rowName.includes("Sport")) {
     return $t("special_rebates");
-  } else if (rowName.includes("Withdraw") || rowName.includes("Account")) {
+  } else if (rowName.includes("Rewards")) {
+    return $t("check_in_bonus");
+  } else if (
+    rowName.includes("Withdraw") ||
+    rowName.includes("Account") ||
+    rowName.includes("Membership") ||
+    rowName.includes("Retention") ||
+    rowName.includes("Unlimited Deposit Bonus")
+  ) {
     return $t("account_benefits");
   } else {
     return $t("other_benefits");
