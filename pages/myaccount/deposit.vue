@@ -736,7 +736,7 @@ const fetchPromotionList = async () => {
       const unlimitedBonusPromo = filteredPromotions.find(
         (promo) =>
           promo.maintitleEN === "Unlimited Bonus" ||
-          promo.maintitle === "无限存款"
+          promo.maintitle === "无限存款奖金"
       );
       if (unlimitedBonusPromo) {
         try {
