@@ -2002,6 +2002,17 @@
                           </NuxtLinkLocale>
 
                           <NuxtLinkLocale
+                            to="/myaccount/bankaccount"
+                            @click="closeMobileMenu"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
+                          >
+                            <i class="bi bi-bank text-[#ff3344]"></i>
+                            <span class="text-[#f0eaea] text-sm">{{
+                              $t("bank_account")
+                            }}</span>
+                          </NuxtLinkLocale>
+
+                          <NuxtLinkLocale
                             to="/myaccount/promocode"
                             @click="closeMobileMenu"
                             class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
@@ -2023,17 +2034,6 @@
                             <i class="bi bi-dice-5 text-[#ff3344]"></i>
                             <span class="text-[#f0eaea] text-sm">{{
                               $t("lucky_draw")
-                            }}</span>
-                          </NuxtLinkLocale>
-
-                          <NuxtLinkLocale
-                            to="/myaccount/bankaccount"
-                            @click="closeMobileMenu"
-                            class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
-                          >
-                            <i class="bi bi-bank text-[#ff3344]"></i>
-                            <span class="text-[#f0eaea] text-sm">{{
-                              $t("bank_account")
                             }}</span>
                           </NuxtLinkLocale>
                         </div>

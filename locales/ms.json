@@ -1289,5 +1289,21 @@
   "this_month": "Bulan Ini",
   "reset_in": "Penetapan Semula Dalam",
   "please_login_to_continue_check_in": "Sila log masuk untuk menggunakan ciri daftar masuk harian",
-  "promo_code": "Promo Code"
+  "promo_code": "Promo Code",
+  "claim_promo_code_desc": "Masukkan kod promosi anda untuk menuntut ganjaran",
+  "claim_promo_code": "Tuntut Kod Promosi",
+  "enter_promo_code": "Masukkan Kod Promosi",
+  "promo_code_placeholder": "Masukkan kod promosi anda di sini",
+  "claiming": "Menuntut...",
+  "claim_history": "Sejarah Tuntutan",
+  "code": "Kod",
+  "no_claims_yet": "Tiada Tuntutan Lagi",
+  "claim_your_first_code": "Masukkan kod promosi di atas untuk bermula",
+  "how_to_use": "Cara Menggunakan",
+  "promo_step_1": "Masukkan kod promosi anda di ruang di atas",
+  "promo_step_2": "Klik 'Tuntut Sekarang' untuk menebus ganjaran anda",
+  "promo_step_3": "Kredit akan ditambah ke dompet anda serta-merta",
+  "promo_notice_1": "Setiap kod promosi hanya boleh dituntut sekali setiap pengguna",
+  "promo_notice_2": "Kod promosi tidak sensitif huruf besar/kecil",
+  "promo_notice_3": "Kod tamat tempoh atau tidak sah tidak boleh dituntut"
 }

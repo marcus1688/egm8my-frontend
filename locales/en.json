@@ -1288,5 +1288,21 @@
   "monthly_reward_desc": "Complete the entire month",
   "this_month": "This Month",
   "please_login_to_continue_check_in": "Please login to access the daily check-in feature",
-  "promo_code": "Promo Code"
+  "promo_code": "Promo Code",
+  "claim_promo_code_desc": "Enter your promo code to claim rewards",
+  "claim_promo_code": "Claim Promo Code",
+  "enter_promo_code": "Enter Promo Code",
+  "promo_code_placeholder": "Enter your promo code here",
+  "claiming": "Claiming...",
+  "claim_history": "Claim History",
+  "code": "Code",
+  "no_claims_yet": "No Claims Yet",
+  "claim_your_first_code": "Enter a promo code above to get started",
+  "how_to_use": "How to Use",
+  "promo_step_1": "Enter your promo code in the field above",
+  "promo_step_2": "Click 'Claim Now' to redeem your reward",
+  "promo_step_3": "Credits will be added to your wallet instantly",
+  "promo_notice_1": "Each promo code can only be claimed once per user",
+  "promo_notice_2": "Promo codes are case-insensitive",
+  "promo_notice_3": "Expired or invalid codes cannot be claimed"
 }

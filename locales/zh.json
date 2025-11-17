@@ -1289,5 +1289,21 @@
   "this_month": "本月",
   "reset_in": "重置倒计时",
   "please_login_to_continue_check_in": "请登录以使用每日签到功能",
-  "promo_code": "优惠码"
+  "promo_code": "优惠码",
+  "claim_promo_code_desc": "输入您的优惠码以领取奖励",
+  "claim_promo_code": "领取优惠码",
+  "enter_promo_code": "输入优惠码",
+  "promo_code_placeholder": "在此输入您的优惠码",
+  "claiming": "领取中...",
+  "claim_history": "领取记录",
+  "code": "代码",
+  "no_claims_yet": "暂无记录",
+  "claim_your_first_code": "在上方输入优惠码开始领取",
+  "how_to_use": "如何使用",
+  "promo_step_1": "在上方输入您的优惠码",
+  "promo_step_2": "点击立即领取兑换奖励",
+  "promo_step_3": "积分将立即添加到您的钱包",
+  "promo_notice_1": "每个优惠码每位用户只能领取一次",
+  "promo_notice_2": "优惠码不区分大小写",
+  "promo_notice_3": "过期或无效的优惠码无法领取"
 }
