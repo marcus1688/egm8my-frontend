@@ -546,7 +546,7 @@
         </div>
 
         <!-- Terms & Conditions Section -->
-        <div class="mb-8 max-lg:mb-6">
+        <div>
           <div
             class="bg-[#15090e] rounded-xl p-6 max-lg:p-4 border border-[#3b1c23]/50"
           >
