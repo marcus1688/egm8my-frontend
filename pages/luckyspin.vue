@@ -34,7 +34,7 @@
                   <img
                     src="/images/luckyspin/spin.png"
                     alt="Spin Button"
-                    class="w-[5%] h-auto absolute left-1/2 top-[35%] -translate-x-1/2 cursor-pointer z-50 transition-transform lg:hover:scale-110"
+                    class="w-[5%] max-lg:w-[10%] h-auto absolute left-1/2 top-[35%] -translate-x-1/2 cursor-pointer z-50 transition-transform lg:hover:scale-110"
                     @click="spinWheel"
                   />
 
