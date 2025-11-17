@@ -353,7 +353,8 @@ const formatBenefitValue = (value, rowName) => {
   } else if (
     rowName === "Rebate Slot" ||
     rowName === "Rebate Live Casino" ||
-    rowName === "Rebate Sports & Esports"
+    rowName === "Rebate Sports" ||
+    rowName === "Rebate Esports"
   ) {
     return formattedNumber + "%";
   } else {
@@ -398,10 +399,15 @@ const rowNameTranslations = {
     zh: "真人娱乐返水",
     ms: "Rebat Live Casino",
   },
-  "Rebate Sports & Esports": {
-    en: "Rebate Sports & Esports",
-    zh: "体育与电竞返水",
-    ms: "Rebat Sports & Esports",
+  "Rebate Sports": {
+    en: "Rebate Sports",
+    zh: "体育返水",
+    ms: "Rebat Sports",
+  },
+  "Rebate Esports": {
+    en: "Rebate Esports",
+    zh: "电竞返水",
+    ms: "Rebat Esports",
   },
   "Birthday Bonus": {
     en: "Birthday Bonus",
