@@ -110,7 +110,7 @@
                     <td
                       class="py-3 px-4 text-sm max-lg:text-xs font-bold text-green-400"
                     >
-                      +${{ formatAmount(claim.amount) }}
+                      MYR {{ formatAmount(claim.amount) }}
                     </td>
                   </tr>
                 </tbody>
