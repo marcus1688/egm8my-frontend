@@ -565,10 +565,10 @@ const handleCheckIn = async () => {
     return;
   }
 
-  if (!userData.value?.firstDepositDate) {
+  if (!userData.value) {
     showAlert(
-      $t("deposit_required"),
-      $t("first_deposit_required_text"),
+      $t("login_required"),
+      $t("please_login_to_continue_check_in"),
       "info"
     );
     return;
@@ -655,7 +655,7 @@ const currentMonth = computed(() => {
 
 onMounted(async () => {
   try {
-    await checkTodayStatus();
+    if (userData.value) await checkTodayStatus();
     updateTimeRemaining();
     const timer = setInterval(updateTimeRemaining, 1000);
     onUnmounted(() => {

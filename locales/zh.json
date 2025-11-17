@@ -1287,5 +1287,6 @@
   "monthly_reward": "每月奖励",
   "monthly_reward_desc": "完成整月签到",
   "this_month": "本月",
-  "reset_in": "重置倒计时"
+  "reset_in": "重置倒计时",
+  "please_login_to_continue_check_in": "请登录以使用每日签到功能"
 }

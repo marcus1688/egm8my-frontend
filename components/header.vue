@@ -122,6 +122,17 @@
                   </NuxtLinkLocale>
                 </div>
                 <div v-else class="flex items-center gap-3">
+                  <!-- Check-in Icon -->
+                  <NuxtLinkLocale to="/checkin" class="relative max-lg:hidden">
+                    <div
+                      class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"
+                    >
+                      <i
+                        class="bi bi-calendar-check-fill text-white text-lg"
+                      ></i>
+                    </div>
+                  </NuxtLinkLocale>
+
                   <!-- Message Icon -->
                   <NuxtLinkLocale to="/myaccount/messaging" class="relative">
                     <div
@@ -1376,6 +1387,16 @@
                         </div>
                       </div>
                     </div>
+
+                    <NuxtLinkLocale
+                      to="/checkin"
+                      @click="closeMobileMenu"
+                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
+                    >
+                      <i
+                        class="bi bi-calendar-check-fill text-base text-gray-200"
+                      ></i>
+                    </NuxtLinkLocale>
 
                     <div class="relative">
                       <button
