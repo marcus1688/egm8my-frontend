@@ -760,21 +760,18 @@ const scrollContainer = ref(null);
 let scrollInterval = null;
 
 const startAutoScroll = () => {
-  if (activeLeaderboardTab.value !== "winners") return;
+  if (scrollInterval) clearInterval(scrollInterval);
 
-  if (scrollContainer.value) {
-    scrollInterval = setInterval(() => {
-      const container = scrollContainer.value;
-      const isAtBottom =
-        container.scrollTop + container.clientHeight >=
-        container.scrollHeight - 5;
-      if (isAtBottom) {
-        container.scrollTop = 0;
-      } else {
-        container.scrollTop += 1;
-      }
-    }, 50);
-  }
+  scrollInterval = setInterval(() => {
+    if (!scrollContainer.value) return;
+
+    const container = scrollContainer.value;
+    const isAtBottom =
+      container.scrollTop + container.clientHeight >=
+      container.scrollHeight - 5;
+
+    container.scrollTop = isAtBottom ? 0 : container.scrollTop + 1;
+  }, 50);
 };
 
 const pauseScroll = () => {
@@ -792,32 +789,22 @@ const resumeScroll = () => {
 
 watch(activeLeaderboardTab, (newTab) => {
   pauseScroll();
-  if (scrollContainer.value) {
-    scrollContainer.value.scrollTop = 0;
-  }
-  if (newTab === "winners") {
-    setTimeout(() => {
-      if (bigwinner.value.length > 5) {
-        startAutoScroll();
-      }
-    }, 500);
+  if (scrollContainer.value) scrollContainer.value.scrollTop = 0;
+  if (newTab === "winners" && bigwinner.value.length > 5) {
+    setTimeout(startAutoScroll, 500);
   }
 });
 
 onMounted(async () => {
   try {
     await fetchBigWinner();
-    if (userData.value) {
-      await fetchWinningRecords();
+    if (userData.value) await fetchWinningRecords();
+    if (
+      bigwinner.value.length > 5 &&
+      activeLeaderboardTab.value === "winners"
+    ) {
+      setTimeout(startAutoScroll, 1000);
     }
-    setTimeout(() => {
-      if (
-        bigwinner.value.length > 5 &&
-        activeLeaderboardTab.value === "winners"
-      ) {
-        startAutoScroll();
-      }
-    }, 1000);
   } finally {
     isPageLoading.value = false;
   }
@@ -826,7 +813,6 @@ onMounted(async () => {
 onUnmounted(() => {
   pauseScroll();
 });
-
 useHead({
   title: "EGM8 | Lucky Spin - Win Amazing Prizes Daily",
   meta: [
