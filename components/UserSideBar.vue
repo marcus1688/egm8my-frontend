@@ -109,16 +109,16 @@
             </NuxtLinkLocale>
 
             <NuxtLinkLocale
-              to="/myaccount/checkin"
+              to="/myaccount/promocode"
               class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
               :class="
-                isActiveRoute('checkin')
+                isActiveRoute('promocode')
                   ? 'text-[#ff3344] bg-[#1A0D13]'
                   : 'text-[#b37a7a]'
               "
             >
-              <Icon icon="mdi:calendar-check" class="w-4 h-4" />
-              <span>{{ $t("checkin") }}</span>
+              <Icon icon="mdi:ticket-percent" class="w-4 h-4" />
+              <span>{{ $t("promo_code") }}</span>
             </NuxtLinkLocale>
           </div>
         </Transition>
@@ -368,7 +368,8 @@ watchEffect(() => {
     route.path.includes("/myaccount/withdraw") ||
     route.path.includes("/myaccount/bankaccount") ||
     route.path.includes("/myaccount/rebate") ||
-    route.path.includes("/myaccount/checkin")
+    route.path.includes("/myaccount/checkin") ||
+    route.path.includes("/myaccount/promocode")
   ) {
     activeMenuItem.value = "cashier";
   } else if (

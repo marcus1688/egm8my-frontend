@@ -318,15 +318,15 @@
                                 >
                               </NuxtLinkLocale>
                               <NuxtLinkLocale
-                                to="/myaccount/checkin"
+                                to="/myaccount/promocode"
                                 class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
                               >
                                 <i
-                                  class="bi bi-calendar-check text-[#ff3344] text-sm"
+                                  class="bi bi-ticket-perforated text-[#ff3344] text-sm"
                                 ></i>
                                 <span
                                   class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
-                                  >{{ $t("checkin") }}</span
+                                  >{{ $t("promo_code") }}</span
                                 >
                               </NuxtLinkLocale>
                             </div>
@@ -2002,13 +2002,15 @@
                           </NuxtLinkLocale>
 
                           <NuxtLinkLocale
-                            to="/myaccount/checkin"
+                            to="/myaccount/promocode"
                             @click="closeMobileMenu"
                             class="flex items-center gap-3 px-3 py-2 rounded-lg lg:hover:bg-[#2a0f14] transition-colors"
                           >
-                            <i class="bi bi-calendar-check text-[#ff3344]"></i>
+                            <i
+                              class="bi bi-ticket-perforated text-[#ff3344]"
+                            ></i>
                             <span class="text-[#f0eaea] text-sm">{{
-                              $t("checkin")
+                              $t("promo_code")
                             }}</span>
                           </NuxtLinkLocale>
 
