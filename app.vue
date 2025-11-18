@@ -32,6 +32,7 @@ const activePopup = useState("activePopup", () => null);
 const shouldShowPopup = useState("shouldShowPopup", () => false);
 const checkinreminder = useState("checkinreminder", () => false);
 const missionreminder = useState("missionreminder", () => false);
+const vipSettings = useState("vipSettings");
 
 if (process.client) {
   window.$t = i18n.t;
@@ -179,6 +180,17 @@ async function fetchMissionReminder() {
   }
 }
 
+const fetchVipSettings = async () => {
+  try {
+    const { data } = await get("vipsettings");
+    if (data?.success) {
+      vipSettings.value = data.data[0];
+    }
+  } catch (error) {
+    console.error("Error fetching VIP settings:", error);
+  }
+};
+
 const checkPopupVisibility = async () => {
   try {
     const { data } = await get("active-popup");
@@ -229,9 +241,12 @@ watch(
       if (oldId && oldId !== newId) {
         cleanup();
       }
-      await fetchCheckInReminder();
-      await fetchMissionReminder();
-      await fetchUnreadCount();
+      await Promise.all([
+        fetchCheckInReminder(),
+        fetchMissionReminder(),
+        fetchVipSettings(),
+        fetchUnreadCount(),
+      ]);
       if (!localStorage.getItem("adminAccess")) {
         try {
           await connectSocketIO(userData.value);

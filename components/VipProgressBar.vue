@@ -115,27 +115,34 @@
 <script setup>
 const { get } = useApiEndpoint();
 const userData = useState("userData");
-const settingsData = ref({
-  tableTitle: "VIP Exclusive Benefits",
-  rowHeaders: [],
-  vipLevels: [],
-  terms: {
-    en: "",
-    zh: "",
-  },
-});
+const vipSettings = useState("vipSettings");
 
 const progressAnimatedWidth = ref(0);
+
 const fetchSettings = async () => {
+  if (vipSettings.value) return;
   try {
     const { data } = await get("vipsettings");
     if (data?.success) {
-      settingsData.value = data.data[0];
+      vipSettings.value = data.data[0];
     }
   } catch (error) {
     console.error("Error fetching VIP settings:", error);
   }
 };
+
+const settingsData = computed(
+  () =>
+    vipSettings.value || {
+      tableTitle: "VIP Exclusive Benefits",
+      rowHeaders: [],
+      vipLevels: [],
+      terms: {
+        en: "",
+        zh: "",
+      },
+    }
+);
 
 const vipLevels = computed(() => settingsData.value.vipLevels || []);
 

@@ -17,11 +17,11 @@
 
     <div>
       <header
-        class="relative w-full h-[80px] max-lg:h-[60px] py-2 border-b-2 border-red-600 z-50"
+        class="relative w-full h-[80px] max-lg:h-[60px] py-2 border-b-2 border-red-600 z-50 overflow-x-auto"
         style="background-image: url('/images/header.png')"
       >
         <div
-          class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-xl:px-4 max-lg:p-2"
+          class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-xl:px-4 max-lg:p-2 min-w-max"
         >
           <div class="flex justify-between items-center h-full">
             <div class="flex items-center gap-4 max-[373px]:!gap-2">
@@ -122,6 +122,17 @@
                   </NuxtLinkLocale>
                 </div>
                 <div v-else class="flex items-center gap-3">
+                  <!-- Deposit Icon -->
+                  <NuxtLinkLocale
+                    to="/myaccount/deposit"
+                    class="relative max-lg:hidden"
+                  >
+                    <div
+                      class="w-9 h-9 bg-red-600 rounded-full flex items-center justify-center"
+                    >
+                      <i class="bi bi-credit-card-fill text-white text-lg"></i>
+                    </div>
+                  </NuxtLinkLocale>
                   <!-- Check-in Icon -->
                   <NuxtLinkLocale to="/checkin" class="relative max-lg:hidden">
                     <div
