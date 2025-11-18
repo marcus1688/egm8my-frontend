@@ -82,7 +82,9 @@
                 {{ provider.name }}
               </span>
               <div
-                v-if="provider.isHotGame"
+                v-if="
+                  provider.isHotGame && !isGameLocked(provider.databaseName)
+                "
                 class="absolute -top-1 -right-1 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-1.5 py-0.5 rounded shadow-sm max-lg:text-[10px] max-lg:px-1 max-lg:py-0 max-lg:top-0 max-lg:right-0 max-lg:z-10"
               >
                 {{ $t("hot") }}

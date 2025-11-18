@@ -22,7 +22,7 @@
       ></div>
 
       <div
-        v-if="game.isHotGame"
+        v-if="game.isHotGame && !isGameLocked(game.databaseName)"
         class="absolute top-0 right-0 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white text-xs font-semibold px-2 py-0.5 rounded-bl-lg rounded-tr-lg shadow-lg flex items-center gap-1 z-10"
       >
         <Icon icon="mdi:fire" class="text-orange-400" />

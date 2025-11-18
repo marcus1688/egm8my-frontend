@@ -246,6 +246,7 @@ watch(
         fetchMissionReminder(),
         fetchVipSettings(),
         fetchUnreadCount(),
+        fetchKiosks(),
       ]);
       if (!localStorage.getItem("adminAccess")) {
         try {
