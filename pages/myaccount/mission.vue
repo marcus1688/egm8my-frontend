@@ -27,7 +27,7 @@
                 class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
               >
                 <img
-                  src="/images/mission/turnover.png"
+                  src="/images/daily-mission/turnover.png"
                   alt="Turnover"
                   class="w-full h-full object-contain"
                 />
@@ -44,7 +44,7 @@
                 class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
               >
                 <img
-                  src="/images/mission/withdraw.png"
+                  src="/images/daily-mission/withdraw.png"
                   alt="Withdraw"
                   class="w-full h-full object-contain"
                 />
@@ -61,7 +61,7 @@
                 class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
               >
                 <img
-                  src="/images/mission/deposit.png"
+                  src="/images/daily-mission/deposit.png"
                   alt="Deposit"
                   class="w-full h-full object-contain"
                 />
@@ -103,7 +103,7 @@
                     class="w-12 h-12 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center p-2"
                   >
                     <img
-                      src="/images/mission/mission.png"
+                      src="/images/daily-mission/mission.png"
                       alt="Mission"
                       class="w-full h-full object-contain"
                     />
@@ -185,7 +185,7 @@
                     }"
                   >
                     <img
-                      src="/images/mission/lightning.gif"
+                      src="/images/daily-mission/lightning.gif"
                       alt="Progress"
                       class="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-80"
                     />
