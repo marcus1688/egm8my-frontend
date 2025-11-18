@@ -447,7 +447,7 @@
                 </div>
               </div>
 
-              <!-- Check-in Button -->
+              <!-- Check-in Button  -->
               <div
                 v-if="isCheckingStatus"
                 class="w-full py-4 rounded-xl bg-[#241017] border border-[#3b1c23] flex items-center justify-center"
