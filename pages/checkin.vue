@@ -94,7 +94,21 @@
           </div>
 
           <!-- Check-in Button -->
+          <div
+            v-if="isCheckingStatus"
+            class="w-full py-3 rounded-xl bg-[#241017] border border-[#3b1c23] flex items-center justify-center"
+          >
+            <Icon
+              icon="mdi:loading"
+              class="text-xl text-[#b37a7a] animate-spin"
+            />
+            <span class="ml-2 text-[#b37a7a] text-sm"
+              >{{ $t("loading") }}...</span
+            >
+          </div>
+
           <button
+            v-else
             @click="handleCheckIn"
             :disabled="isCheckedInToday"
             class="w-full group relative inline-flex items-center justify-center px-8 py-3 rounded-xl text-white font-bold overflow-hidden transition-all shadow-lg"
@@ -434,7 +448,19 @@
               </div>
 
               <!-- Check-in Button -->
+              <div
+                v-if="isCheckingStatus"
+                class="w-full py-4 rounded-xl bg-[#241017] border border-[#3b1c23] flex items-center justify-center"
+              >
+                <Icon
+                  icon="mdi:loading"
+                  class="text-2xl text-[#b37a7a] animate-spin"
+                />
+                <span class="ml-2 text-[#b37a7a]">{{ $t("loading") }}...</span>
+              </div>
+
               <button
+                v-else
                 @click="handleCheckIn"
                 :disabled="isCheckedInToday || pageLoading"
                 class="w-full group relative inline-flex items-center justify-center px-8 py-4 rounded-xl text-white font-bold overflow-hidden transition-all shadow-lg"
@@ -497,7 +523,7 @@ const checkInData = ref({
 
 const isCheckedInToday = ref(false);
 const timeRemaining = ref("");
-
+const isCheckingStatus = ref(true);
 const alertVisible = ref(false);
 const alertTitle = ref("");
 const alertMessage = ref("");
@@ -643,6 +669,7 @@ const handleCheckIn = async () => {
 };
 
 const checkTodayStatus = async () => {
+  isCheckingStatus.value = true;
   try {
     const { data, error } = await get("checkin/status");
     if (error) throw error;
@@ -663,6 +690,8 @@ const checkTodayStatus = async () => {
     }
   } catch (error) {
     console.error("Error checking status:", error);
+  } finally {
+    isCheckingStatus.value = false;
   }
 };
 

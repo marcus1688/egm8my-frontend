@@ -21,9 +21,9 @@
         style="background-image: url('/images/header.png')"
       >
         <div
-          class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-[1350px]:px-2 max-[1070px]:px-0 max-lg:p-2 max-[1350px]:flex max-lg:block max-[1350px]:justify-center max-lg:justify-between"
+          class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-[1350px]:px-2 max-[1070px]:px-0 max-lg:p-2 max-[1350px]:flex max-lg:block max-[1350px]:justify-between"
         >
-          <div class="flex justify-between items-center h-full">
+          <div class="flex justify-between items-center h-full w-full">
             <div class="flex items-center gap-4 max-[373px]:!gap-2">
               <button
                 @click="mobileMenuOpen = !mobileMenuOpen"
