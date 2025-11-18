@@ -505,6 +505,19 @@
                                 >
                               </NuxtLinkLocale>
                               <NuxtLinkLocale
+                                to="/myaccount/mission"
+                                class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
+                              >
+                                <i
+                                  class="bi bi-clipboard-check text-[#ff3344] text-sm"
+                                ></i>
+                                <span
+                                  class="text-sm lg:group-hover:text-[#ff3344] transition-colors"
+                                >
+                                  {{ $t("daily_missions") }}
+                                </span>
+                              </NuxtLinkLocale>
+                              <NuxtLinkLocale
                                 to="/myaccount/messaging"
                                 class="group flex items-center gap-3 pl-12 pr-3 py-2.5 text-[#f0eaea] lg:hover:bg-[#2a0f14] transition-all duration-200"
                               >
@@ -1850,6 +1863,27 @@
                           class="text-sm font-medium text-center text-white lg:group-hover:text-white transition-colors"
                         >
                           {{ $t("promotions") }}
+                        </span>
+                      </NuxtLinkLocale>
+
+                      <NuxtLinkLocale
+                        to="/myaccount/mission"
+                        @click="closeMobileMenu"
+                        class="group flex flex-col items-center p-3 bg-[#241017]/60 rounded-xl border border-[#3b1c23] lg:hover:bg-[#2a0f14] lg:hover:border-[#ff3344]/30 transition-all"
+                      >
+                        <div
+                          class="w-12 h-12 flex items-center justify-center mb-2 lg:group-hover:scale-105 transition-transform"
+                        >
+                          <img
+                            src="/images/burger-menu/mission.png"
+                            class="w-full h-auto object-contain"
+                            alt="Daily Missions"
+                          />
+                        </div>
+                        <span
+                          class="text-sm font-medium text-white text-center lg:group-hover:text-[#ff3344] transition-colors"
+                        >
+                          {{ $t("missions") }}
                         </span>
                       </NuxtLinkLocale>
 
