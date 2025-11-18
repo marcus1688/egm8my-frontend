@@ -24,11 +24,12 @@
           <div class="grid grid-cols-3 gap-4 max-md:gap-3">
             <div class="text-center">
               <div
-                class="w-16 h-16 mx-auto rounded-full bg-blue-500/10 border border-blue-500/30 flex items-center justify-center mb-2 max-lg:w-12 max-lg:h-12"
+                class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
               >
-                <Icon
-                  icon="mdi:chart-line"
-                  class="w-8 h-8 text-blue-400 max-lg:w-6 max-lg:h-6"
+                <img
+                  src="/images/mission/turnover.png"
+                  alt="Turnover"
+                  class="w-full h-full object-contain"
                 />
               </div>
               <p class="text-xs text-[#b37a7a] mb-1 max-lg:text-[10px]">
@@ -40,11 +41,12 @@
             </div>
             <div class="text-center">
               <div
-                class="w-16 h-16 mx-auto rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center mb-2 max-lg:w-12 max-lg:h-12"
+                class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
               >
-                <Icon
-                  icon="mdi:cash-minus"
-                  class="w-8 h-8 text-green-400 max-lg:w-6 max-lg:h-6"
+                <img
+                  src="/images/mission/withdraw.png"
+                  alt="Withdraw"
+                  class="w-full h-full object-contain"
                 />
               </div>
               <p class="text-xs text-[#b37a7a] mb-1 max-lg:text-[10px]">
@@ -56,11 +58,12 @@
             </div>
             <div class="text-center">
               <div
-                class="w-16 h-16 mx-auto rounded-full bg-purple-500/10 border border-purple-500/30 flex items-center justify-center mb-2 max-lg:w-12 max-lg:h-12"
+                class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
               >
-                <Icon
-                  icon="mdi:cash-plus"
-                  class="w-8 h-8 text-purple-400 max-lg:w-6 max-lg:h-6"
+                <img
+                  src="/images/mission/deposit.png"
+                  alt="Deposit"
+                  class="w-full h-full object-contain"
                 />
               </div>
               <p class="text-xs text-[#b37a7a] mb-1 max-lg:text-[10px]">
@@ -91,12 +94,22 @@
             v-else-if="missions.length > 0"
             v-for="mission in missions"
             :key="mission._id"
-            class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden"
+            class="bg-[#241017] border border-[#3b1c23] rounded-xl overflow-hidden lg:hover:border-[#ff3344]/50 transition-all duration-300"
           >
-            <div class="p-6 max-lg:p-4">
-              <div class="flex items-start justify-between gap-4 mb-4">
-                <div class="flex-1">
-                  <div class="flex items-center gap-2 mb-2">
+            <div class="p-5 max-lg:p-4">
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-lg bg-[#15090e] border border-[#3b1c23] flex items-center justify-center p-2"
+                  >
+                    <img
+                      src="/images/mission/mission.png"
+                      alt="Mission"
+                      class="w-full h-full object-contain"
+                    />
+                  </div>
+
+                  <div>
                     <h3
                       class="font-bold text-[#f0eaea] text-base max-lg:text-sm"
                     >
@@ -108,91 +121,91 @@
                           : mission.title
                       }}
                     </h3>
-                    <span
-                      :class="[
-                        'px-2 py-0.5 rounded text-[10px] font-medium',
-                        mission.missionType === 'totalTurnover'
-                          ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30'
-                          : mission.missionType === 'withdrawCount'
-                          ? 'bg-green-500/20 text-green-300 border border-green-500/30'
-                          : 'bg-purple-500/20 text-purple-300 border border-purple-500/30',
-                      ]"
-                    >
+                    <p class="text-xs text-[#b37a7a] mt-0.5">
                       {{ getMissionTypeIcon(mission.missionType) }}
-                    </span>
+                    </p>
                   </div>
-                  <p
-                    v-if="
-                      mission.description ||
-                      mission.descriptionCN ||
-                      mission.descriptionMS
-                    "
-                    class="text-xs text-[#b37a7a] mb-3"
+                </div>
+
+                <div class="text-right">
+                  <div class="text-xs text-[#b37a7a]">{{ $t("reward") }}</div>
+                  <div
+                    class="text-base font-bold text-[#ff3344] max-lg:text-sm"
                   >
-                    {{
-                      $i18n.locale === "zh"
-                        ? mission.descriptionCN
-                        : $i18n.locale === "ms"
-                        ? mission.descriptionMS
-                        : mission.description
-                    }}
-                  </p>
-
-                  <div class="mb-3">
-                    <div class="flex items-center justify-between mb-2">
-                      <span class="text-xs text-[#b37a7a]">
-                        {{ $t("progress") }}
-                      </span>
-                      <span class="text-xs font-medium text-[#f0eaea]">
-                        {{ mission.currentProgress || 0 }} /
-                        {{ mission.targetValue || 0 }}
-                      </span>
-                    </div>
-
-                    <div
-                      class="w-full bg-[#15090e] rounded-full h-2 relative overflow-hidden"
-                    >
-                      <div
-                        class="absolute top-0 left-0 h-full rounded-full transition-all duration-500"
-                        :class="
-                          mission.isClaimed
-                            ? 'bg-gradient-to-r from-green-500 to-green-400'
-                            : 'bg-gradient-to-r from-[#a1122d] to-[#c21b3a]'
-                        "
-                        :style="{
-                          width:
-                            mission.targetValue > 0
-                              ? `${Math.min(
-                                  (mission.currentProgress /
-                                    mission.targetValue) *
-                                    100,
-                                  100
-                                )}%`
-                              : '0%',
-                        }"
-                      ></div>
-                    </div>
+                    +{{ mission.rewardPoints }} {{ $t("points") }}
                   </div>
+                </div>
+              </div>
 
+              <p
+                v-if="
+                  mission.description ||
+                  mission.descriptionCN ||
+                  mission.descriptionMS
+                "
+                class="text-xs text-[#b37a7a] mb-4 max-lg:text-[11px]"
+              >
+                {{
+                  $i18n.locale === "zh"
+                    ? mission.descriptionCN
+                    : $i18n.locale === "ms"
+                    ? mission.descriptionMS
+                    : mission.description
+                }}
+              </p>
+
+              <!-- Progress -->
+              <div class="mb-4">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs text-[#b37a7a]">{{
+                    $t("progress")
+                  }}</span>
                   <div class="flex items-center gap-2">
-                    <Icon
-                      icon="mdi:gift"
-                      class="w-5 h-5 text-[#ff3344] max-lg:w-4 max-lg:h-4"
-                    />
-                    <span
-                      class="text-sm font-bold text-[#ff3344] max-lg:text-xs"
-                    >
-                      +{{ mission.rewardPoints }} {{ $t("lucky_spin_points") }}
+                    <span class="text-sm font-medium text-[#f0eaea]">
+                      {{ mission.currentProgress || 0 }} /
+                      {{ mission.targetValue || 0 }}
                     </span>
                   </div>
                 </div>
+
+                <div
+                  class="w-full bg-[#15090e] rounded-full h-2 overflow-hidden"
+                >
+                  <div
+                    class="h-full bg-[#ff3344] rounded-full transition-all duration-500"
+                    :style="{
+                      width:
+                        mission.targetValue > 0
+                          ? `${Math.min(
+                              (mission.currentProgress / mission.targetValue) *
+                                100,
+                              100
+                            )}%`
+                          : '0%',
+                    }"
+                  ></div>
+                </div>
+
+                <span class="text-xs font-bold text-[#ff3344]">
+                  {{
+                    mission.targetValue > 0
+                      ? Math.min(
+                          Math.round(
+                            (mission.currentProgress / mission.targetValue) *
+                              100
+                          ),
+                          100
+                        )
+                      : 0
+                  }}%
+                </span>
               </div>
 
               <button
                 v-if="mission.isCompleted && !mission.isClaimed"
                 @click="claimMission(mission._id)"
                 :disabled="claimingMissionId === mission._id"
-                class="w-full py-3 bg-gradient-to-r from-[#a1122d] to-[#c21b3a] text-white font-semibold rounded-lg lg:hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 max-lg:py-2.5 max-lg:text-sm"
+                class="w-full py-3 bg-[#ff3344] text-white font-semibold rounded-lg lg:hover:bg-[#ff4455] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 max-lg:py-2.5 max-lg:text-sm"
               >
                 <Icon
                   v-if="claimingMissionId !== mission._id"
@@ -213,7 +226,7 @@
 
               <div
                 v-else-if="mission.isClaimed"
-                class="w-full py-3 bg-green-500/10 border border-green-500/30 text-green-400 font-semibold rounded-lg flex items-center justify-center gap-2 max-lg:py-2.5 max-lg:text-sm"
+                class="w-full py-3 bg-[#15090e] border border-[#3b1c23] text-[#5a9367] font-semibold rounded-lg flex items-center justify-center gap-2 max-lg:py-2.5 max-lg:text-sm"
               >
                 <Icon
                   icon="mdi:check-circle"

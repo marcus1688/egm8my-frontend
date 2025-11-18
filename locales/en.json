@@ -1326,5 +1326,6 @@
   "mission_step_4": "Missions reset daily at midnight",
   "mission_notice_1": "All missions reset daily at 12:00 AM (MYT)",
   "mission_notice_2": "You can only claim each mission reward once per day",
-  "mission_notice_3": "Lucky Spin Points can be used to spin the Lucky Wheel"
+  "mission_notice_3": "Lucky Spin Points can be used to spin the Lucky Wheel",
+  "reward": "Reward"
 }

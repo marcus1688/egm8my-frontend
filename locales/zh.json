@@ -1327,5 +1327,6 @@
   "mission_step_4": "任务每天午夜重置",
   "mission_notice_1": "所有任务每天凌晨 12:00 (马来西亚时间) 重置",
   "mission_notice_2": "每个任务奖励每天只能领取一次",
-  "mission_notice_3": "幸运转盘积分可用于转动幸运轮盘"
+  "mission_notice_3": "幸运转盘积分可用于转动幸运轮盘",
+  "reward": "奖励"
 }
