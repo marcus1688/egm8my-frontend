@@ -264,6 +264,19 @@
             </NuxtLinkLocale>
 
             <NuxtLinkLocale
+              to="/myaccount/mission"
+              class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
+              :class="
+                isActiveRoute('mission')
+                  ? 'text-[#ff3344] bg-[#1A0D13]'
+                  : 'text-[#b37a7a]'
+              "
+            >
+              <Icon icon="mdi:clipboard-check" class="w-4 h-4" />
+              <span>{{ $t("daily_missions") }}</span>
+            </NuxtLinkLocale>
+
+            <NuxtLinkLocale
               to="/myaccount/messaging"
               class="flex items-center gap-2 py-3 px-4 text-[0.95rem] transition-colors lg:hover:bg-[#1A0D13]"
               :class="
@@ -380,6 +393,7 @@ watchEffect(() => {
     activeMenuItem.value = "agent";
   } else if (
     route.path.includes("/myaccount/profile") ||
+    route.path.includes("/myaccount/mission") ||
     route.path.includes("/myaccount/messaging") ||
     route.path.includes("/myaccount/change-password")
   ) {

@@ -347,6 +347,7 @@ import UserAccountLayout from "~/layouts/UserAccountLayout.vue";
 const { alertVisible, alertTitle, alertMessage, alertType, showAlert } =
   useAlert();
 const pageLoading = useState("pageLoading");
+const missionreminder = useState("missionreminder");
 const userData = useState("userData");
 const { get, post } = useApiEndpoint();
 
@@ -382,6 +383,18 @@ const getMissionTypeIcon = (type) => {
   };
   return types[type] || type;
 };
+
+async function fetchMissionReminder() {
+  try {
+    const { data } = await get("missions/reminder");
+    if (data.success) {
+      missionreminder.value = data.reminder;
+      console.log(missionreminder.value);
+    }
+  } catch (error) {
+    console.error("Error fetching carousels:", error);
+  }
+}
 
 const formatAmount = (value) => {
   if (!value && value !== 0) return "0.00";

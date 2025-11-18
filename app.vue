@@ -31,6 +31,7 @@ const pageLoading = useState("pageLoading");
 const activePopup = useState("activePopup", () => null);
 const shouldShowPopup = useState("shouldShowPopup", () => false);
 const checkinreminder = useState("checkinreminder", () => false);
+const missionreminder = useState("missionreminder", () => false);
 
 if (process.client) {
   window.$t = i18n.t;
@@ -166,6 +167,18 @@ async function fetchCheckInReminder() {
   }
 }
 
+async function fetchMissionReminder() {
+  try {
+    const { data } = await get("missions/reminder");
+    if (data.success) {
+      missionreminder.value = data.reminder;
+      console.log(missionreminder.value);
+    }
+  } catch (error) {
+    console.error("Error fetching carousels:", error);
+  }
+}
+
 const checkPopupVisibility = async () => {
   try {
     const { data } = await get("active-popup");
@@ -217,6 +230,7 @@ watch(
         cleanup();
       }
       await fetchCheckInReminder();
+      await fetchMissionReminder();
       await fetchUnreadCount();
       if (!localStorage.getItem("adminAccess")) {
         try {
