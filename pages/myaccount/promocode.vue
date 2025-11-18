@@ -88,6 +88,11 @@
                     >
                       {{ $t("amount") }}
                     </th>
+                    <th
+                      class="py-3 px-4 text-xs max-lg:text-[10px] font-medium text-[#b37a7a] uppercase"
+                    >
+                      {{ $t("reward_type") }}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -110,7 +115,31 @@
                     <td
                       class="py-3 px-4 text-sm max-lg:text-xs font-bold text-green-400"
                     >
-                      MYR {{ formatAmount(claim.amount) }}
+                      {{
+                        claim.rewardType === "luckySpinPoints"
+                          ? `${formatAmount(claim.amount)} ${$t("points")}`
+                          : `MYR ${formatAmount(claim.amount)}`
+                      }}
+                    </td>
+                    <td class="py-3 px-4">
+                      <span
+                        :class="[
+                          'px-2 py-1 rounded text-[10px] max-lg:text-[9px] font-medium',
+                          claim.rewardType === 'luckySpinPoints'
+                            ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                            : 'bg-green-500/20 text-green-300 border border-green-500/30',
+                        ]"
+                      >
+                        {{
+                          claim.rewardType === "luckySpinPoints"
+                            ? $i18n.locale === "zh"
+                              ? "幸运转盘"
+                              : "Lucky Spin"
+                            : $i18n.locale === "zh"
+                            ? "钱包"
+                            : "Wallet"
+                        }}
+                      </span>
                     </td>
                   </tr>
                 </tbody>
@@ -271,6 +300,7 @@ import moment from "moment-timezone";
 const { alertVisible, alertTitle, alertMessage, alertType, showAlert } =
   useAlert();
 const pageLoading = useState("pageLoading");
+const userData = useState("userData");
 const promoCode = ref("");
 const isLoading = ref(false);
 const claims = ref([]);
@@ -327,6 +357,17 @@ const fetchClaimHistory = async () => {
   }
 };
 
+const fetchUserData = async () => {
+  try {
+    const { data } = await get("userdata");
+    if (data.success) {
+      userData.value = data.user;
+    }
+  } catch (error) {
+    console.error("Error fetching helps:", error);
+  }
+};
+
 const claimPromoCode = async () => {
   if (!promoCode.value.trim()) return;
 
@@ -344,12 +385,7 @@ const claimPromoCode = async () => {
       );
       promoCode.value = "";
       await fetchClaimHistory();
-
-      // Refresh user data
-      const userData = useState("userData");
-      if (userData.value) {
-        userData.value.wallet += data.data.amount;
-      }
+      await fetchUserData();
     } else {
       showAlert(
         $t("alert_info"),

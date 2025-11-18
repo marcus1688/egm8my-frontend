@@ -1305,5 +1305,7 @@
   "promo_step_3": "积分将立即添加到您的钱包",
   "promo_notice_1": "每个优惠码每位用户只能领取一次",
   "promo_notice_2": "优惠码不区分大小写",
-  "promo_notice_3": "过期或无效的优惠码无法领取"
+  "promo_notice_3": "过期或无效的优惠码无法领取",
+  "points": "积分",
+  "reward_type": "奖励类型"
 }

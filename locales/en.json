@@ -1304,5 +1304,7 @@
   "promo_step_3": "Credits will be added to your wallet instantly",
   "promo_notice_1": "Each promo code can only be claimed once per user",
   "promo_notice_2": "Promo codes are case-insensitive",
-  "promo_notice_3": "Expired or invalid codes cannot be claimed"
+  "promo_notice_3": "Expired or invalid codes cannot be claimed",
+  "points": "Points",
+  "reward_type": "Reward Type"
 }

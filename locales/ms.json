@@ -1305,5 +1305,7 @@
   "promo_step_3": "Kredit akan ditambah ke dompet anda serta-merta",
   "promo_notice_1": "Setiap kod promosi hanya boleh dituntut sekali setiap pengguna",
   "promo_notice_2": "Kod promosi tidak sensitif huruf besar/kecil",
-  "promo_notice_3": "Kod tamat tempoh atau tidak sah tidak boleh dituntut"
+  "promo_notice_3": "Kod tamat tempoh atau tidak sah tidak boleh dituntut",
+  "points": "mata",
+  "reward_type": "Jenis Ganjaran"
 }
