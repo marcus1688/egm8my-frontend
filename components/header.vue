@@ -131,6 +131,14 @@
                         class="bi bi-calendar-check-fill text-white text-lg"
                       ></i>
                     </div>
+                    <span
+                      v-if="checkinreminder"
+                      class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse shadow-lg shadow-yellow-500/50"
+                    >
+                      <span
+                        class="absolute inset-0 w-3 h-3 bg-yellow-400 rounded-full animate-ping"
+                      ></span>
+                    </span>
                   </NuxtLinkLocale>
 
                   <!-- Message Icon -->
@@ -1391,11 +1399,19 @@
                     <NuxtLinkLocale
                       to="/checkin"
                       @click="closeMobileMenu"
-                      class="w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
+                      class="relative w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
                     >
                       <i
                         class="bi bi-calendar-check-fill text-base text-gray-200"
                       ></i>
+                      <span
+                        v-if="checkinreminder"
+                        class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse shadow-lg shadow-yellow-500/50"
+                      >
+                        <span
+                          class="absolute inset-0 w-3 h-3 bg-yellow-400 rounded-full animate-ping"
+                        ></span>
+                      </span>
                     </NuxtLinkLocale>
 
                     <div class="relative">
@@ -2295,6 +2311,7 @@ const activeDropdown = ref(null);
 const mobileActiveSubmenu = ref(null);
 const showMainMenu = ref(false);
 const showLanguageMenu = ref(false);
+const checkinreminder = useState("checkinreminder");
 const mobileTab = ref("games");
 const { locale, setLocale, availableLocales, t } = useI18n();
 const i18nCookie = useCookie("i18n_redirected", {

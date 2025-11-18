@@ -486,6 +486,7 @@ import { Icon } from "@iconify/vue";
 const userData = useState("userData");
 const { get, post } = useApiEndpoint();
 const pageLoading = useState("pageLoading");
+const checkinreminder = useState("checkinreminder");
 
 const checkInData = ref({
   currentStreak: 0,
@@ -568,6 +569,18 @@ const updateTimeRemaining = () => {
     .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 };
 
+async function fetchCheckInReminder() {
+  try {
+    const { data } = await get("checkin/reminder");
+    console.log(data);
+    if (data.success) {
+      checkinreminder.value = data.reminder;
+    }
+  } catch (error) {
+    console.error("Error fetching carousels:", error);
+  }
+}
+
 const handleCheckIn = async () => {
   if (isCheckedInToday.value) {
     showAlert($t("already_checked_in"), $t("already_checked_in_text"), "info");
@@ -592,7 +605,7 @@ const handleCheckIn = async () => {
         monthlyCheckIns: data.checkInData.monthlyCheckIns || {},
       };
       isCheckedInToday.value = true;
-
+      await fetchCheckInReminder();
       if (data.isMonthlyComplete) {
         showAlert(
           $t("monthly_complete_title"),

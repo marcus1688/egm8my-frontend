@@ -368,7 +368,6 @@ watchEffect(() => {
     route.path.includes("/myaccount/withdraw") ||
     route.path.includes("/myaccount/bankaccount") ||
     route.path.includes("/myaccount/rebate") ||
-    route.path.includes("/myaccount/checkin") ||
     route.path.includes("/myaccount/promocode")
   ) {
     activeMenuItem.value = "cashier";
