@@ -169,10 +169,10 @@
                 </div>
 
                 <div
-                  class="w-full bg-[#15090e] rounded-full h-2 overflow-hidden"
+                  class="w-full bg-[#15090e] rounded-full opacity-90 h-2 overflow-hidden relative"
                 >
                   <div
-                    class="h-full bg-[#ff3344] rounded-full transition-all duration-500"
+                    class="h-full rounded-full transition-all duration-500 overflow-hidden relative bg-[#ff3344]"
                     :style="{
                       width:
                         mission.targetValue > 0
@@ -183,7 +183,13 @@
                             )}%`
                           : '0%',
                     }"
-                  ></div>
+                  >
+                    <img
+                      src="/images/mission/lightning.gif"
+                      alt="Progress"
+                      class="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-80"
+                    />
+                  </div>
                 </div>
 
                 <span class="text-xs font-bold text-[#ff3344]">
