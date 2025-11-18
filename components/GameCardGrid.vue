@@ -19,12 +19,7 @@
       <div
         v-if="isGameLocked(game.databaseName)"
         class="absolute inset-0 bg-black/60 flex items-center justify-center z-20 rounded-xl"
-      >
-        <div class="text-center">
-          <i class="bi bi-shield-lock-fill text-white text-4xl mb-2"></i>
-          <p class="text-white text-xs font-medium">{{ $t("game_locked") }}</p>
-        </div>
-      </div>
+      ></div>
 
       <div
         v-if="game.isHotGame"

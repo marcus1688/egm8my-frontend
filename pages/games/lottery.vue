@@ -54,9 +54,7 @@
             <div
               v-if="isGameLocked(provider.databaseName)"
               class="absolute inset-0 bg-black/60 flex items-center justify-center z-20 rounded-lg"
-            >
-              <i class="bi bi-shield-lock-fill text-white text-lg"></i>
-            </div>
+            ></div>
             <div
               class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 max-lg:px-3 max-lg:py-1.5"
               :class="
