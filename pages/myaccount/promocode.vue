@@ -11,7 +11,7 @@
         </p>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-6 max-lg:gap-4">
+      <div class="lg:grid lg:grid-cols-3 gap-6 max-lg:gap-4">
         <!-- Claim Promo Code Card -->
         <div class="lg:col-span-2">
           <div
@@ -67,10 +67,13 @@
 
           <!-- Claim History -->
           <div
-            class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mt-6 max-lg:mt-4"
+            class="bg-[#15090e]/50 rounded-xl border border-[#3b1c23] overflow-hidden shadow-lg shadow-red-500/20 mt-6 max-lg:my-4"
           >
             <div class="overflow-x-auto">
-              <table v-if="claims.length > 0" class="w-full text-center">
+              <table
+                v-if="claims.length > 0"
+                class="w-full text-center max-lg:text-nowrap"
+              >
                 <thead>
                   <tr class="bg-[#241017]/80 border-b border-[#3b1c23]">
                     <th
