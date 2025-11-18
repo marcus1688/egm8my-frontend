@@ -1,6 +1,5 @@
 <template>
   <div>
-    <PageLoading v-if="isPageLoading" />
     <Teleport to="body">
       <Alerts
         :title="alertTitle"
@@ -437,10 +436,10 @@
               <!-- Check-in Button -->
               <button
                 @click="handleCheckIn"
-                :disabled="isCheckedInToday || isPageLoading"
+                :disabled="isCheckedInToday || pageLoading"
                 class="w-full group relative inline-flex items-center justify-center px-8 py-4 rounded-xl text-white font-bold overflow-hidden transition-all shadow-lg"
                 :class="
-                  isPageLoading
+                  pageLoading
                     ? 'bg-[#241017] text-[#b37a7a] border border-[#3b1c23] cursor-wait'
                     : isCheckedInToday
                     ? 'bg-[#241017] text-[#b37a7a] border border-[#3b1c23] cursor-not-allowed'
@@ -449,7 +448,7 @@
               >
                 <span class="relative flex items-center gap-3">
                   <Icon
-                    v-if="!isPageLoading"
+                    v-if="!pageLoading"
                     :icon="
                       isCheckedInToday
                         ? 'mdi:check-circle'
@@ -464,7 +463,7 @@
                   />
                   <span class="text-lg">
                     {{
-                      isPageLoading
+                      pageLoading
                         ? $t("loading")
                         : isCheckedInToday
                         ? $t("come_back_tomorrow")
@@ -486,7 +485,7 @@ import { Icon } from "@iconify/vue";
 
 const userData = useState("userData");
 const { get, post } = useApiEndpoint();
-const isPageLoading = ref(true);
+const pageLoading = useState("pageLoading");
 
 const checkInData = ref({
   currentStreak: 0,
@@ -583,7 +582,7 @@ const handleCheckIn = async () => {
     );
     return;
   }
-
+  pageLoading.value = true;
   try {
     const { data } = await post("checkin");
 
@@ -625,6 +624,8 @@ const handleCheckIn = async () => {
         $t("network_error"),
       "error"
     );
+  } finally {
+    pageLoading.value = false;
   }
 };
 
@@ -672,7 +673,7 @@ onMounted(async () => {
       clearInterval(timer);
     });
   } finally {
-    isPageLoading.value = false;
+    pageLoading.value = false;
   }
 });
 

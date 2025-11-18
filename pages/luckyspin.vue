@@ -1,8 +1,6 @@
 <template>
   <ClientOnly>
     <div class="bg-[#0a0005] min-h-screen">
-      <PageLoading v-if="isPageLoading" />
-
       <!-- Main Lucky Spin Section -->
       <section class="containerWid px-6 py-8 max-lg:px-4 max-lg:py-6">
         <!-- Game Area -->
@@ -628,7 +626,7 @@
 <script setup>
 import { Icon } from "@iconify/vue";
 
-const isPageLoading = ref(true);
+const pageLoading = useState("pageLoading");
 const { get, post } = useApiEndpoint();
 const rotation = ref(0);
 const isSpinning = ref(false);
@@ -809,7 +807,7 @@ onMounted(async () => {
       setTimeout(startAutoScroll, 1000);
     }
   } finally {
-    isPageLoading.value = false;
+    pageLoading.value = false;
   }
 });
 
