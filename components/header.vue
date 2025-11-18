@@ -17,11 +17,11 @@
 
     <div>
       <header
-        class="relative w-full h-[80px] max-lg:h-[60px] py-2 border-b-2 border-red-600 z-50 overflow-x-auto"
+        class="relative w-full h-[80px] max-lg:h-[60px] py-2 border-b-2 border-red-600 z-50"
         style="background-image: url('/images/header.png')"
       >
         <div
-          class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-xl:px-4 max-lg:p-2 min-w-max"
+          class="mx-auto px-24 py-4 h-full max-2xl:px-12 max-[1350px]:px-2 max-[1070px]:px-0 max-lg:p-2 max-[1350px]:flex max-lg:block max-[1350px]:justify-center max-lg:justify-between"
         >
           <div class="flex justify-between items-center h-full">
             <div class="flex items-center gap-4 max-[373px]:!gap-2">
@@ -35,7 +35,7 @@
                 <img
                   :src="generalSetting.logoimage"
                   alt="Logo"
-                  class="w-24 h-auto"
+                  class="w-24 h-auto max-[1350px]:hidden"
                 />
               </NuxtLinkLocale>
               <div v-if="!userData">
@@ -60,6 +60,14 @@
             </div>
 
             <nav class="hidden lg:flex items-center flex-1 justify-center">
+              <NuxtLinkLocale
+                to="/"
+                class="hidden max-[1350px]:flex items-center gap-1 menuText font-medium text-gray-300 lg:hover:text-red-400 transition-colors px-3"
+              >
+                <span class="max-[1060px]:text-[0.8rem] max-lg:text-[1rem]">{{
+                  $t("home")
+                }}</span></NuxtLinkLocale
+              >
               <div
                 v-for="item in HeaderNav"
                 :key="item.name"
@@ -187,6 +195,7 @@
                     <div
                       class="absolute right-0 top-full w-full h-2 bg-transparent"
                     ></div>
+
                     <!-- Profile Dropdown Menu -->
                     <div
                       v-if="showProfileMenu"
