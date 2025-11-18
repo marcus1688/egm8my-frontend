@@ -1129,6 +1129,11 @@
                       class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
+                        v-if="isGameLocked(game.databaseName)"
+                        class="absolute inset-0 bg-black/80 flex items-center justify-center z-20"
+                      ></div>
+
+                      <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
                       ></div>
 
@@ -1155,6 +1160,10 @@
                     <div
                       class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
+                      <div
+                        v-if="isGameLocked(game.databaseName)"
+                        class="absolute inset-0 bg-black/80 flex items-center justify-center z-20"
+                      ></div>
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
                       ></div>
@@ -1183,6 +1192,10 @@
                       class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
+                        v-if="isGameLocked(game.databaseName)"
+                        class="absolute inset-0 bg-black/80 flex items-center justify-center z-20"
+                      ></div>
+                      <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
                       ></div>
 
@@ -1210,6 +1223,10 @@
                     <div
                       class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
+                      <div
+                        v-if="isGameLocked(game.databaseName)"
+                        class="absolute inset-0 bg-black/80 flex items-center justify-center z-20"
+                      ></div>
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
                       ></div>
@@ -1275,6 +1292,10 @@
                       class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
                       <div
+                        v-if="isGameLocked(game.databaseName)"
+                        class="absolute inset-0 bg-black/80 flex items-center justify-center z-20"
+                      ></div>
+                      <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
                       ></div>
 
@@ -1301,6 +1322,10 @@
                     <div
                       class="aspect-[3/4] flex items-center justify-center relative overflow-hidden transition-all duration-300"
                     >
+                      <div
+                        v-if="isGameLocked(game.databaseName)"
+                        class="absolute inset-0 bg-black/80 flex items-center justify-center z-20"
+                      ></div>
                       <div
                         class="inactive-overlay absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 pointer-events-none z-10"
                       ></div>
@@ -2366,6 +2391,7 @@ const mobileActiveSubmenu = ref(null);
 const showMainMenu = ref(false);
 const showLanguageMenu = ref(false);
 const checkinreminder = useState("checkinreminder");
+const userGameLocks = useState("userGameLocks");
 const mobileTab = ref("games");
 const { locale, setLocale, availableLocales, t } = useI18n();
 const i18nCookie = useCookie("i18n_redirected", {
@@ -2396,6 +2422,11 @@ const isSpecialNav = (navName) => {
 const toggleMobileSubmenu = (navName) => {
   mobileActiveSubmenu.value =
     mobileActiveSubmenu.value === navName ? null : navName;
+};
+
+const isGameLocked = (gameDatabaseName) => {
+  if (!isUserLoggedIn.value || !gameDatabaseName) return false;
+  return userGameLocks.value?.[gameDatabaseName]?.lock === true;
 };
 
 // Function to get the appropriate icon for each navigation item
