@@ -708,7 +708,11 @@ const currentMonth = computed(() => {
 
 onMounted(async () => {
   try {
-    if (userData.value) await checkTodayStatus();
+    if (userData.value) {
+      await checkTodayStatus();
+    } else {
+      isCheckingStatus.value = false;
+    }
     updateTimeRemaining();
     const timer = setInterval(updateTimeRemaining, 1000);
     onUnmounted(() => {

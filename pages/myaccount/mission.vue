@@ -264,10 +264,14 @@
               />
             </div>
             <h3 class="text-[#f0eaea] font-medium mb-1 max-lg:text-sm">
-              {{ $t("no_missions_available") }}
+              {{
+                userData ? $t("no_missions_available") : $t("login_required")
+              }}
             </h3>
             <p class="text-[#b37a7a] text-sm max-lg:text-xs">
-              {{ $t("check_back_later") }}
+              {{
+                userData ? $t("check_back_later") : $t("login_to_view_missions")
+              }}
             </p>
           </div>
         </div>
@@ -495,6 +499,11 @@ const claimMission = async (missionId) => {
 };
 
 onMounted(async () => {
+  if (!userData.value) {
+    isLoading.value = false;
+    pageLoading.value = false;
+    return;
+  }
   pageLoading.value = true;
   try {
     await fetchMissionsProgress();
