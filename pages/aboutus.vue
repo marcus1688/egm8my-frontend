@@ -875,19 +875,16 @@ const responsibleFeatures = [
 
 .license-icon {
   background: #ff3344;
-  background-opacity: 0.2;
   color: #ff3344;
 }
 
 .security-icon {
   background: #ff3344;
-  background-opacity: 0.2;
   color: #ff3344;
 }
 
 .fairplay-icon {
   background: #ff3344;
-  background-opacity: 0.2;
   color: #ff3344;
 }
 
