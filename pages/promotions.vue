@@ -296,35 +296,35 @@ onMounted(async () => {
 });
 
 useHead({
-  title: "EGM8 | Latest Promotions & Bonuses - Malaysia Online Casino Offers",
+  title: "BM8 | Latest Promotions & Bonuses - Malaysia Online Casino Offers",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Exclusive Casino Promotions & Welcome Bonuses",
+      content: "BM8 | Exclusive Casino Promotions & Welcome Bonuses",
     },
     {
       name: "description",
       content:
-        "Discover EGM8's latest promotions and bonuses including welcome bonuses, free spins, cashback offers, sports betting promotions, VIP rewards, and daily specials.",
+        "Discover BM8's latest promotions and bonuses including welcome bonuses, free spins, cashback offers, sports betting promotions, VIP rewards, and daily specials.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 promotions, casino bonuses Malaysia, welcome bonus, free spins, cashback offers, sports betting bonus, slot promotions, live casino bonus, VIP rewards",
+        "BM8 promotions, casino bonuses Malaysia, welcome bonus, free spins, cashback offers, sports betting bonus, slot promotions, live casino bonus, VIP rewards",
     },
   ],
   htmlAttrs: { lang: "en" },
   link: [
-    { rel: "canonical", href: "https://www.egm8my.vip/promotions" },
+    { rel: "canonical", href: "https://www.bm8my.vip/promotions" },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/promotions",
+      href: "https://www.bm8my.vip/promotions",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/promotions",
+      href: "https://www.bm8my.vip/promotions",
     },
   ],
 });

@@ -228,7 +228,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: `https://www.egm8my.vip/blog/${route.params.slug}`,
+      href: `https://www.bm8my.vip/blog/${route.params.slug}`,
     },
   ],
 });

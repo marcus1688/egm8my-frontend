@@ -222,7 +222,7 @@ function getLevelBarClass(levelName) {
       return "bg-gradient-to-r from-cyan-500 to-cyan-700";
     case "Diamond":
       return "bg-gradient-to-r from-indigo-400 to-indigo-600";
-    case "EGM8 ELite VIP":
+    case "BM8 ELite VIP":
       return "bg-gradient-to-r from-purple-500 to-purple-700";
     default:
       return "bg-gradient-to-r from-blue-400 to-blue-600";
@@ -242,7 +242,7 @@ function getInnerCircleClass(levelName) {
       return "bg-gradient-to-br from-[#71c4cf] to-[#3d898f] border-2 border-[#71c4cf]/80";
     case "Diamond":
       return "bg-gradient-to-br from-[#e0e0e0] to-[#b9b9b9] border-2 border-[#e0e0e0]/80";
-    case "EGM8 ELite VIP":
+    case "BM8 ELite VIP":
       return "bg-gradient-to-br from-[#9370DB] to-[#800080] border-2 border-[#9370DB]/80";
     default:
       return "bg-gradient-to-br from-gray-400 to-gray-500 border-2 border-gray-400/80";
@@ -278,12 +278,12 @@ const levelNameTranslations = {
     ms: "Platinum",
     id: "Platinum",
   },
-  "egm8 elite vip": {
-    en: "EGM8 Elite VIP",
-    zh: "EGM8 尊贵贵宾",
-    zh_hk: "EGM8 尊贵贵宾",
-    ms: "EGM8 Elite VIP",
-    id: "EGM8 Elite VIP",
+  "bm8 elite vip": {
+    en: "BM8 Elite VIP",
+    zh: "BM8 尊贵贵宾",
+    zh_hk: "BM8 尊贵贵宾",
+    ms: "BM8 Elite VIP",
+    id: "BM8 Elite VIP",
   },
   diamond: {
     en: "Diamond",

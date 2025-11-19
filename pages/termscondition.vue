@@ -672,21 +672,21 @@ const acceptTerms = () => {
 };
 
 useHead({
-  title: "EGM8 | Terms & Conditions - Legal Agreement Malaysia Online Casino",
+  title: "BM8 | Terms & Conditions - Legal Agreement Malaysia Online Casino",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Terms & Conditions - User Agreement & Policies",
+      content: "BM8 | Terms & Conditions - User Agreement & Policies",
     },
     {
       name: "description",
       content:
-        "Read EGM8's comprehensive terms and conditions covering user agreements, account policies, intellectual property rights, deposits & withdrawals, responsible gaming, and legal provisions for Malaysia's premier gaming platform.",
+        "Read BM8's comprehensive terms and conditions covering user agreements, account policies, intellectual property rights, deposits & withdrawals, responsible gaming, and legal provisions for Malaysia's premier gaming platform.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 terms conditions, user agreement, casino terms, gaming policies Malaysia, legal terms, account policies, intellectual property, deposit withdrawal terms, responsible gaming policy, casino legal agreement",
+        "BM8 terms conditions, user agreement, casino terms, gaming policies Malaysia, legal terms, account policies, intellectual property, deposit withdrawal terms, responsible gaming policy, casino legal agreement",
     },
   ],
   htmlAttrs: {
@@ -695,17 +695,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/termscondition",
+      href: "https://www.bm8my.vip/termscondition",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/termscondition",
+      href: "https://www.bm8my.vip/termscondition",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/termscondition",
+      href: "https://www.bm8my.vip/termscondition",
     },
   ],
 });

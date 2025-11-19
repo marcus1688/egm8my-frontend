@@ -815,35 +815,35 @@ onUnmounted(() => {
   pauseScroll();
 });
 useHead({
-  title: "EGM8 | Lucky Spin - Win Amazing Prizes Daily",
+  title: "BM8 | Lucky Spin - Win Amazing Prizes Daily",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Lucky Spin Challenge - Spin & Win",
+      content: "BM8 | Lucky Spin Challenge - Spin & Win",
     },
     {
       name: "description",
       content:
-        "Try your luck with EGM8's Lucky Spin! Spin the wheel daily for a chance to win amazing cash prizes. Multiple prize tiers, fair play guaranteed, and instant rewards.",
+        "Try your luck with BM8's Lucky Spin! Spin the wheel daily for a chance to win amazing cash prizes. Multiple prize tiers, fair play guaranteed, and instant rewards.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 lucky spin, spin to win, daily prizes, casino wheel, lucky draw, instant rewards, Malaysia casino games, spin wheel prizes",
+        "BM8 lucky spin, spin to win, daily prizes, casino wheel, lucky draw, instant rewards, Malaysia casino games, spin wheel prizes",
     },
   ],
   htmlAttrs: { lang: "en" },
   link: [
-    { rel: "canonical", href: "https://www.egm8my.vip/luckyspin" },
+    { rel: "canonical", href: "https://www.bm8my.vip/luckyspin" },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/luckyspin",
+      href: "https://www.bm8my.vip/luckyspin",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/luckyspin",
+      href: "https://www.bm8my.vip/luckyspin",
     },
   ],
 });

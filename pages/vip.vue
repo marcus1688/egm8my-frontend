@@ -368,10 +368,10 @@ const levelNameTranslations = {
   silver: { en: "Silver", zh: "白銀", ms: "Perak" },
   gold: { en: "Gold", zh: "黃金", ms: "Emas" },
   platinum: { en: "Platinum", zh: "鉑金", ms: "Platinum" },
-  "egm8 elite vip": {
-    en: "EGM8 Elite VIP",
-    zh: "EGM8 尊贵贵宾",
-    ms: "EGM8 Elite VIP",
+  "bm8 elite vip": {
+    en: "BM8 Elite VIP",
+    zh: "BM8 尊贵贵宾",
+    ms: "BM8 Elite VIP",
   },
   diamond: { en: "Diamond", zh: "鑽石", ms: "Berlian" },
   royal: { en: "Royal", zh: "至尊", ms: "Raja" },
@@ -501,32 +501,32 @@ const getSectionTitle = (rowName) => {
 };
 
 useHead({
-  title: "EGM8 | VIP Membership Program & Exclusive Benefits - Malaysia Casino",
+  title: "BM8 | VIP Membership Program & Exclusive Benefits - Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 VIP | Elite Gaming Benefits & Premium Rewards",
+      content: "BM8 VIP | Elite Gaming Benefits & Premium Rewards",
     },
     {
       name: "description",
       content:
-        "Experience EGM8's exclusive VIP membership program with premium benefits including higher withdrawal limits, special rebates, monthly bonuses, birthday rewards, and personalized customer service in Malaysia's top gaming platform.",
+        "Experience BM8's exclusive VIP membership program with premium benefits including higher withdrawal limits, special rebates, monthly bonuses, birthday rewards, and personalized customer service in Malaysia's top gaming platform.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 VIP, VIP membership Malaysia, casino VIP program, exclusive gaming benefits, premium rewards, VIP rebates, monthly VIP bonus, high roller benefits, elite gaming Malaysia, EGM8 premium membership",
+        "BM8 VIP, VIP membership Malaysia, casino VIP program, exclusive gaming benefits, premium rewards, VIP rebates, monthly VIP bonus, high roller benefits, elite gaming Malaysia, BM8 premium membership",
     },
   ],
   htmlAttrs: { lang: "en" },
   link: [
-    { rel: "canonical", href: "https://www.egm8my.vip/vip" },
+    { rel: "canonical", href: "https://www.bm8my.vip/vip" },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/vip",
+      href: "https://www.bm8my.vip/vip",
     },
-    { rel: "alternate", hreflang: "en", href: "https://www.egm8my.vip/vip" },
+    { rel: "alternate", hreflang: "en", href: "https://www.bm8my.vip/vip" },
   ],
 });
 

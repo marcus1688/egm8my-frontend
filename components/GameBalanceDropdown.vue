@@ -51,7 +51,7 @@
         <div class="px-4 py-3 bg-[#ff3344]/5 border-b border-white/5">
           <div class="flex items-center justify-between">
             <div class="flex items-center gap-3">
-              <img src="/images/egm8my.png" alt="" class="w-[30px]" />
+              <img src="/images/logo.png" alt="" class="w-[30px]" />
               <div>
                 <p class="text-sm font-semibold text-white">
                   {{ $t("main_wallet") }}

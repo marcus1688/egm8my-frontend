@@ -172,21 +172,21 @@ const checkShouldShowPopup = (currentPopupId, lastPopupId, lastPopupTime) => {
 };
 
 useHead({
-  title: "EGM8 | Premier Online Gaming & Casino Experience in Malaysia",
+  title: "BM8 | Premier Online Gaming & Casino Experience in Malaysia",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Malaysia's Leading Online Gaming Platform",
+      content: "BM8 | Malaysia's Leading Online Gaming Platform",
     },
     {
       name: "description",
       content:
-        "EGM8 delivers the ultimate online gaming experience in Malaysia with premium slot machines, live dealer games, comprehensive sportsbook, instant withdrawals, and exclusive member benefits.",
+        "BM8 delivers the ultimate online gaming experience in Malaysia with premium slot machines, live dealer games, comprehensive sportsbook, instant withdrawals, and exclusive member benefits.",
     },
     {
       name: "keywords",
       content:
-        "EGM8, Malaysia online gaming, premium slots, live dealers, sports betting, instant withdrawal, member rewards, gaming platform Malaysia, online casino games, trusted gaming site",
+        "BM8, Malaysia online gaming, premium slots, live dealers, sports betting, instant withdrawal, member rewards, gaming platform Malaysia, online casino games, trusted gaming site",
     },
   ],
   htmlAttrs: {
@@ -195,17 +195,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/",
+      href: "https://www.bm8my.vip/",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/",
+      href: "https://www.bm8my.vip/",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/",
+      href: "https://www.bm8my.vip/",
     },
   ],
 });

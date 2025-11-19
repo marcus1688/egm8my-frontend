@@ -377,21 +377,21 @@ onMounted(async () => {
 });
 
 useHead({
-  title: "EGM8 | Lucky Draw",
+  title: "BM8 | Lucky Draw",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Lucky Draw",
+      content: "BM8 | Lucky Draw",
     },
     {
       name: "description",
       content:
-        "Join EGM8's exciting 9 grid lucky draw game! Win amazing prizes including cash rewards and exclusive bonuses. Test your luck today!",
+        "Join BM8's exciting 9 grid lucky draw game! Win amazing prizes including cash rewards and exclusive bonuses. Test your luck today!",
     },
     {
       name: "keywords",
       content:
-        "EGM8 lucky draw, 9 grid lottery, casino games, win prizes, cash rewards, online gaming Malaysia",
+        "BM8 lucky draw, 9 grid lottery, casino games, win prizes, cash rewards, online gaming Malaysia",
     },
   ],
   htmlAttrs: {
@@ -400,7 +400,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/luckydraw",
+      href: "https://www.bm8my.vip/luckydraw",
     },
   ],
 });

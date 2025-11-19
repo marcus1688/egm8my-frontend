@@ -1734,21 +1734,21 @@ const handleAnchorClick = (e, targetId) => {
 };
 
 useHead({
-  title: "EGM8 | Responsible Gaming & Player Protection - Safe Gaming Malaysia",
+  title: "BM8 | Responsible Gaming & Player Protection - Safe Gaming Malaysia",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Responsible Gaming - Safe & Fair Gaming Environment",
+      content: "BM8 | Responsible Gaming - Safe & Fair Gaming Environment",
     },
     {
       name: "description",
       content:
-        "EGM8 promotes responsible gaming with self-assessment tools, deposit limits, time controls, self-exclusion options, and comprehensive player protection measures. Play safely and responsibly on Malaysia's trusted gaming platform.",
+        "BM8 promotes responsible gaming with self-assessment tools, deposit limits, time controls, self-exclusion options, and comprehensive player protection measures. Play safely and responsibly on Malaysia's trusted gaming platform.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 responsible gaming, safe gaming Malaysia, player protection, self-assessment, deposit limits, gambling addiction help, gaming controls, responsible gambling, player safety, gaming support",
+        "BM8 responsible gaming, safe gaming Malaysia, player protection, self-assessment, deposit limits, gambling addiction help, gaming controls, responsible gambling, player safety, gaming support",
     },
   ],
   htmlAttrs: {
@@ -1757,17 +1757,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/responsible",
+      href: "https://www.bm8my.vip/responsible",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/responsible",
+      href: "https://www.bm8my.vip/responsible",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/responsible",
+      href: "https://www.bm8my.vip/responsible",
     },
   ],
 });

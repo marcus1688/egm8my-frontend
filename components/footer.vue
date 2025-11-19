@@ -253,8 +253,8 @@
         >
           <div class="flex items-center">
             <img
-              src="/images/egm8my.png"
-              alt="EGM8 Logo"
+              src="/images/logo.png"
+              alt="BM8 Logo"
               class="h-10 max-lg:h-8"
             />
           </div>

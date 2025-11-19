@@ -748,7 +748,7 @@ onMounted(async () => {
 });
 
 useHead({
-  title: "EGM8 | Daily Check-In - Earn Rewards",
+  title: "BM8 | Daily Check-In - Earn Rewards",
 });
 </script>
 

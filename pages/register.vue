@@ -42,7 +42,7 @@
       <div class="w-full max-w-sm relative">
         <div class="text-center mb-3">
           <div class="inline-block p-0.5">
-            <img src="/images/egm8my.png" alt="" class="w-36" />
+            <img src="/images/logo.png" alt="BM8" class="w-36" />
           </div>
         </div>
 
@@ -816,21 +816,21 @@ const headConfig = computed(() => {
 useHead(headConfig);
 
 useHead({
-  title: "EGM8 | Register Free Account & Get Welcome Bonus - Malaysia Casino",
+  title: "BM8 | Register Free Account & Get Welcome Bonus - Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Join Malaysia's Premier Gaming Platform Today",
+      content: "BM8 | Join Malaysia's Premier Gaming Platform Today",
     },
     {
       name: "description",
       content:
-        "Register your free EGM8 account now and unlock exclusive welcome bonuses, premium slot games, live casino, sports betting, and instant withdrawals. Join Malaysia's most trusted online gaming platform today.",
+        "Register your free BM8 account now and unlock exclusive welcome bonuses, premium slot games, live casino, sports betting, and instant withdrawals. Join Malaysia's most trusted online gaming platform today.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 register, free casino account, welcome bonus Malaysia, sign up EGM8, new member bonus, casino registration, Malaysia gaming signup, online casino join, free account bonus, EGM8 membership",
+        "BM8 register, free casino account, welcome bonus Malaysia, sign up BM8, new member bonus, casino registration, Malaysia gaming signup, online casino join, free account bonus, BM8 membership",
     },
   ],
   htmlAttrs: {
@@ -839,17 +839,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/register",
+      href: "https://www.bm8my.vip/register",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/register",
+      href: "https://www.bm8my.vip/register",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/register",
+      href: "https://www.bm8my.vip/register",
     },
   ],
 });

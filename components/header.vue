@@ -1398,11 +1398,7 @@
             >
               <div class="bg-gradient-to-r from-[#1f0a0f] to-[#3d1219] p-4">
                 <div class="flex justify-between items-center">
-                  <img
-                    src="/images/egm8my.png"
-                    alt="Logo"
-                    class="h-auto w-16"
-                  />
+                  <img src="/images/logo.png" alt="Logo" class="h-auto w-16" />
                   <div class="flex items-center gap-2">
                     <div class="relative language-dropdown hidden">
                       <button
@@ -1681,7 +1677,7 @@
                       >
                         <div class="flex items-center justify-between">
                           <div class="flex items-center gap-3">
-                            <img src="/images/egm8my.png" alt="" class="w-8" />
+                            <img src="/images/logo.png" alt="" class="w-8" />
                             <div>
                               <p class="text-sm font-semibold text-[#f0eaea]">
                                 {{ $t("main_wallet") }}
@@ -2612,10 +2608,8 @@ const currentDomain = computed(() => {
   return "";
 });
 
-const isMalaysiaDomain = computed(() => currentDomain.value.includes("egm8my"));
-const isSingaporeDomain = computed(() =>
-  currentDomain.value.includes("egm8sg")
-);
+const isMalaysiaDomain = computed(() => currentDomain.value.includes("bm8my"));
+const isSingaporeDomain = computed(() => currentDomain.value.includes("bm8sg"));
 
 const switchToMalaysia = (lang) => {
   const hostname = window.location.hostname;
@@ -2624,8 +2618,8 @@ const switchToMalaysia = (lang) => {
     changeLocale(lang);
     return;
   }
-  if (!hostname.includes("egm8my")) {
-    window.location.href = `https://www.egm8my.vip${langPath}`;
+  if (!hostname.includes("bm8my")) {
+    window.location.href = `https://www.bm8my.vip${langPath}`;
   } else {
     changeLocale(lang);
   }
@@ -2638,8 +2632,8 @@ const switchToSingapore = (lang) => {
     changeLocale(lang);
     return;
   }
-  if (!hostname.includes("egm8sg")) {
-    window.location.href = `https://www.egm8sg.vip${langPath}`;
+  if (!hostname.includes("bm8sg")) {
+    window.location.href = `https://www.bm8sg.vip${langPath}`;
   } else {
     changeLocale(lang);
   }
@@ -2674,12 +2668,12 @@ const levelNameTranslations = {
     ms: "Platinum",
     id: "Platinum",
   },
-  "egm8 elite vip": {
-    en: "EGM8 Elite VIP",
-    zh: "EGM8 尊贵贵宾",
-    zh_hk: "EGM8 尊贵贵宾",
-    ms: "EGM8 Elite VIP",
-    id: "EGM8 Elite VIP",
+  "bm8 elite vip": {
+    en: "BM8 Elite VIP",
+    zh: "BM8 尊贵贵宾",
+    zh_hk: "BM8 尊贵贵宾",
+    ms: "BM8 Elite VIP",
+    id: "BM8 Elite VIP",
   },
   diamond: {
     en: "Diamond",

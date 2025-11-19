@@ -238,35 +238,35 @@ onUnmounted(() => {
 });
 
 useHead({
-  title: "EGM8 | Exclusive Leaderboard - Compete & Win Amazing Prizes",
+  title: "BM8 | Exclusive Leaderboard - Compete & Win Amazing Prizes",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | Monthly Leaderboard Challenge",
+      content: "BM8 | Monthly Leaderboard Challenge",
     },
     {
       name: "description",
       content:
-        "Join EGM8's exclusive leaderboard competition. Top 10 players with highest turnover win generous prizes every month. Real-time rankings, lucrative rewards, and fair play challenges.",
+        "Join BM8's exclusive leaderboard competition. Top 10 players with highest turnover win generous prizes every month. Real-time rankings, lucrative rewards, and fair play challenges.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 leaderboard, casino rankings, monthly prizes, turnover competition, VIP rewards, casino challenge, top players, Malaysia casino leaderboard",
+        "BM8 leaderboard, casino rankings, monthly prizes, turnover competition, VIP rewards, casino challenge, top players, Malaysia casino leaderboard",
     },
   ],
   htmlAttrs: { lang: "en" },
   link: [
-    { rel: "canonical", href: "https://www.egm8my.vip/leaderboard" },
+    { rel: "canonical", href: "https://www.bm8my.vip/leaderboard" },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/leaderboard",
+      href: "https://www.bm8my.vip/leaderboard",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/leaderboard",
+      href: "https://www.bm8my.vip/leaderboard",
     },
   ],
 });

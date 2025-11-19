@@ -525,21 +525,21 @@ const openLiveChat = () => {
 };
 
 useHead({
-  title: "EGM8 | Customer Support & Help Center - 24/7 Assistance Malaysia",
+  title: "BM8 | Customer Support & Help Center - 24/7 Assistance Malaysia",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | 24/7 Customer Support - Live Chat, WhatsApp & More",
+      content: "BM8 | 24/7 Customer Support - Live Chat, WhatsApp & More",
     },
     {
       name: "description",
       content:
-        "Get instant help from EGM8's 24/7 customer support team. Contact us via live chat, WhatsApp, Telegram, or email for account assistance, payment support, technical help, and general inquiries in English, Chinese, and Malay.",
+        "Get instant help from BM8's 24/7 customer support team. Contact us via live chat, WhatsApp, Telegram, or email for account assistance, payment support, technical help, and general inquiries in English, Chinese, and Malay.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 customer support, 24/7 help center, live chat support, WhatsApp support, technical assistance, payment help Malaysia, multilingual support, customer service, account support, gaming help",
+        "BM8 customer support, 24/7 help center, live chat support, WhatsApp support, technical assistance, payment help Malaysia, multilingual support, customer service, account support, gaming help",
     },
   ],
   htmlAttrs: {
@@ -548,17 +548,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/helpcenter",
+      href: "https://www.bm8my.vip/helpcenter",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/helpcenter",
+      href: "https://www.bm8my.vip/helpcenter",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/helpcenter",
+      href: "https://www.bm8my.vip/helpcenter",
     },
   ],
 });

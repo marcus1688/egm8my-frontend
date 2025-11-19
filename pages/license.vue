@@ -84,7 +84,7 @@
                           class="bi bi-check-circle-fill text-green-400 mt-1 mr-2 max-lg:text-xs"
                         ></i>
                         <span
-                          ><strong>{{ $t("issued_to") }}:</strong> EGM8 ASIA
+                          ><strong>{{ $t("issued_to") }}:</strong> BM8 ASIA
                           GROUP LIMITED</span
                         >
                       </li>
@@ -329,21 +329,21 @@
 <script setup>
 useHead({
   title:
-    "EGM8 | Official PAGCOR Gaming License - Legal & Regulated Malaysia Casino",
+    "BM8 | Official PAGCOR Gaming License - Legal & Regulated Malaysia Casino",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 | PAGCOR Licensed Gaming Platform - Fully Regulated",
+      content: "BM8 | PAGCOR Licensed Gaming Platform - Fully Regulated",
     },
     {
       name: "description",
       content:
-        "EGM8 operates under official PAGCOR gaming license OSP25-0315-1-C, ensuring legal, regulated, and secure gaming services. Fully licensed by Philippine Amusement & Gaming Corporation for your protection and peace of mind.",
+        "BM8 operates under official PAGCOR gaming license OSP25-0315-1-C, ensuring legal, regulated, and secure gaming services. Fully licensed by Philippine Amusement & Gaming Corporation for your protection and peace of mind.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 PAGCOR license, gaming license Malaysia, PAGCOR regulated casino, legal online casino, licensed gaming platform, EGM8 Asia Group Limited, gaming authority, regulated gambling Malaysia, licensed casino operator",
+        "BM8 PAGCOR license, gaming license Malaysia, PAGCOR regulated casino, legal online casino, licensed gaming platform, BM8 Asia Group Limited, gaming authority, regulated gambling Malaysia, licensed casino operator",
     },
   ],
   htmlAttrs: {
@@ -352,17 +352,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/license",
+      href: "https://www.bm8my.vip/license",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/license",
+      href: "https://www.bm8my.vip/license",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/license",
+      href: "https://www.bm8my.vip/license",
     },
   ],
 });

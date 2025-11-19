@@ -44,7 +44,7 @@
         <!-- Logo with animation -->
         <div class="text-center mb-3">
           <div class="inline-block p-0.5">
-            <img src="/images/egm8my.png" alt="" class="w-36" />
+            <img src="/images/logo.png" alt="BM8" class="w-36" />
           </div>
         </div>
 
@@ -297,21 +297,21 @@ const togglePasswordVisibility = () => {
 };
 
 useHead({
-  title: "EGM8 | Login Access Your Gaming Account - Malaysia Online Casino",
+  title: "BM8 | Login Access Your Gaming Account - Malaysia Online Casino",
   meta: [
     {
       property: "og:title",
-      content: "EGM8 Member Login | Secure Access to Premium Gaming",
+      content: "BM8 Member Login | Secure Access to Premium Gaming",
     },
     {
       name: "description",
       content:
-        "Login to your EGM8 account to access premium slot games, live casino, sports betting, exclusive promotions, and secure gaming experience in Malaysia's top online casino platform.",
+        "Login to your BM8 account to access premium slot games, live casino, sports betting, exclusive promotions, and secure gaming experience in Malaysia's top online casino platform.",
     },
     {
       name: "keywords",
       content:
-        "EGM8 login, member access, online casino login, gaming account Malaysia, secure login, casino member portal, EGM8 account, Malaysia gaming login, online betting access",
+        "BM8 login, member access, online casino login, gaming account Malaysia, secure login, casino member portal, BM8 account, Malaysia gaming login, online betting access",
     },
   ],
   htmlAttrs: {
@@ -320,17 +320,17 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: "https://www.egm8my.vip/login",
+      href: "https://www.bm8my.vip/login",
     },
     {
       rel: "alternate",
       hreflang: "x-default",
-      href: "https://www.egm8my.vip/login",
+      href: "https://www.bm8my.vip/login",
     },
     {
       rel: "alternate",
       hreflang: "en",
-      href: "https://www.egm8my.vip/login",
+      href: "https://www.bm8my.vip/login",
     },
   ],
 });
