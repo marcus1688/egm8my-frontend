@@ -264,7 +264,11 @@
                     selectedPromotion._id === promotion._id,
                 }"
               >
-                {{ promotion.maintitleEN }}
+                {{
+                  $i18n.locale === "zh"
+                    ? promotion.maintitle
+                    : promotion.maintitleEN
+                }}
               </button>
             </div>
           </Transition>
