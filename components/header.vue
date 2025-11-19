@@ -1459,9 +1459,11 @@
                       @click="closeMobileMenu"
                       class="relative w-8 h-8 flex items-center justify-center rounded-full bg-white/20 text-white lg:hover:bg-white/30 transition-colors"
                     >
-                      <i
-                        class="bi bi-calendar-check-fill text-base text-gray-200"
-                      ></i>
+                      <img
+                        src="/images/checkin/checkin.png"
+                        alt="Check-in"
+                        class="w-4 h-4 object-contain"
+                      />
                       <span
                         v-if="checkinreminder"
                         class="absolute -top-1 -right-1 w-3 h-3 bg-yellow-400 rounded-full animate-pulse shadow-lg shadow-yellow-500/50"

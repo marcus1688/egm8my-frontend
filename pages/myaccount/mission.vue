@@ -24,7 +24,7 @@
           <div class="grid grid-cols-3 gap-4 max-md:gap-3">
             <div class="text-center">
               <div
-                class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
+                class="w-24 h-24 mx-auto rounded-full bg-[#241017] flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16 border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4 max-lg:p-3"
               >
                 <img
                   src="/images/daily-mission/turnover.png"
@@ -35,13 +35,14 @@
               <p class="text-xs text-[#b37a7a] mb-1 max-lg:text-[10px]">
                 {{ $t("total_turnover") }}
               </p>
-              <p class="text-lg font-bold text-blue-400 max-lg:text-base">
+              <p class="text-lg font-bold text-white max-lg:text-sm">
                 {{ formatAmount(todayStats.totalTurnover) }}
               </p>
             </div>
+
             <div class="text-center">
               <div
-                class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
+                class="w-24 h-24 mx-auto rounded-full bg-[#241017] flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16 border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4 max-lg:p-3"
               >
                 <img
                   src="/images/daily-mission/withdraw.png"
@@ -52,13 +53,14 @@
               <p class="text-xs text-[#b37a7a] mb-1 max-lg:text-[10px]">
                 {{ $t("withdrawals") }}
               </p>
-              <p class="text-lg font-bold text-green-400 max-lg:text-base">
+              <p class="text-lg font-bold text-white max-lg:text-sm">
                 {{ todayStats.withdrawCount }}
               </p>
             </div>
+
             <div class="text-center">
               <div
-                class="w-24 h-24 mx-auto flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16"
+                class="w-24 h-24 mx-auto rounded-full bg-[#241017] flex items-center justify-center mb-2 max-lg:w-16 max-lg:h-16 border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4 max-lg:p-3"
               >
                 <img
                   src="/images/daily-mission/deposit.png"
@@ -69,7 +71,7 @@
               <p class="text-xs text-[#b37a7a] mb-1 max-lg:text-[10px]">
                 {{ $t("deposits") }}
               </p>
-              <p class="text-lg font-bold text-purple-400 max-lg:text-base">
+              <p class="text-lg font-bold text-white max-lg:text-sm">
                 {{ todayStats.depositCount }}
               </p>
             </div>

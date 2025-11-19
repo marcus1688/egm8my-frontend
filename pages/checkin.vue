@@ -18,28 +18,28 @@
             class="bg-gradient-to-r from-[#a1122d] to-[#c21b3a] rounded-xl p-4 shadow-lg shadow-red-500/20"
           >
             <h1
-              class="text-xl font-bold text-white flex items-center gap-2 mb-3"
+              class="text-base font-bold text-white flex items-center gap-2 mb-3"
             >
-              <Icon icon="mdi:calendar-check" class="text-2xl" />
+              <Icon icon="mdi:calendar-check" class="text-lg" />
               {{ $t("daily_check_in") }}
             </h1>
 
             <div
-              class="bg-black/20 backdrop-blur-sm rounded-lg p-3 border border-white/10"
+              class="bg-black/20 backdrop-blur-sm rounded-lg p-2.5 border border-white/10"
             >
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-2.5">
                 <div
-                  class="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0"
+                  class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center flex-shrink-0"
                 >
-                  <Icon icon="mdi:clock-outline" class="text-xl text-white" />
+                  <Icon icon="mdi:clock-outline" class="text-base text-white" />
                 </div>
                 <div class="flex-1">
                   <p
-                    class="text-[10px] text-red-100/70 uppercase tracking-wide mb-0.5"
+                    class="text-[9px] text-red-100/70 uppercase tracking-wide mb-0.5"
                   >
                     {{ $t("next_check_in_reset") }}
                   </p>
-                  <p class="text-lg font-bold text-white font-mono">
+                  <p class="text-base font-bold text-white font-mono">
                     {{ timeRemaining }}
                   </p>
                 </div>
@@ -143,9 +143,13 @@
               class="bg-[#15090e] rounded-lg p-3 border border-[#3b1c23] text-center"
             >
               <div
-                class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center border border-blue-500/30"
+                class="w-20 h-20 mx-auto mb-3 rounded-full bg-[#241017] flex items-center justify-center border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4"
               >
-                <Icon icon="mdi:gift" class="text-xl text-blue-400" />
+                <img
+                  src="/images/checkin/daily-rewards.png"
+                  alt="Daily Reward"
+                  class="w-full h-full object-contain"
+                />
               </div>
               <h3 class="text-xs font-semibold text-[#f0eaea] mb-1">
                 {{ $t("daily_reward") }}
@@ -159,9 +163,13 @@
               class="bg-[#15090e] rounded-lg p-3 border border-[#3b1c23] text-center"
             >
               <div
-                class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center border border-purple-500/30"
+                class="w-20 h-20 mx-auto mb-3 rounded-full bg-[#241017] flex items-center justify-center border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4"
               >
-                <Icon icon="mdi:trophy" class="text-xl text-purple-400" />
+                <img
+                  src="/images/checkin/weekly-rewards.png"
+                  alt="Weekly Reward"
+                  class="w-full h-full object-contain"
+                />
               </div>
               <h3 class="text-xs font-semibold text-[#f0eaea] mb-1">
                 {{ $t("weekly_reward") }}
@@ -175,9 +183,13 @@
               class="bg-[#15090e] rounded-lg p-3 border border-[#3b1c23] text-center"
             >
               <div
-                class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 flex items-center justify-center border border-yellow-500/30"
+                class="w-20 h-20 mx-auto mb-3 rounded-full bg-[#241017] flex items-center justify-center border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4"
               >
-                <Icon icon="mdi:crown" class="text-xl text-yellow-400" />
+                <img
+                  src="/images/checkin/monthly-rewards.png"
+                  alt="Monthly Reward"
+                  class="w-full h-full object-contain"
+                />
               </div>
               <h3 class="text-xs font-semibold text-[#f0eaea] mb-1">
                 {{ $t("monthly_reward") }}
@@ -295,9 +307,13 @@
                 class="bg-[#15090e] rounded-xl p-5 border border-[#3b1c23] text-center"
               >
                 <div
-                  class="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center border border-blue-500/30"
+                  class="w-24 h-24 mx-auto mb-3 rounded-full bg-[#241017] flex items-center justify-center border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4"
                 >
-                  <Icon icon="mdi:gift" class="text-3xl text-blue-400" />
+                  <img
+                    src="/images/checkin/daily-rewards.png"
+                    alt="Daily Reward"
+                    class="w-full h-full object-contain"
+                  />
                 </div>
                 <h3 class="text-base font-semibold text-[#f0eaea] mb-2">
                   {{ $t("daily_reward") }}
@@ -311,9 +327,13 @@
                 class="bg-[#15090e] rounded-xl p-5 border border-[#3b1c23] text-center"
               >
                 <div
-                  class="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-600/20 flex items-center justify-center border border-purple-500/30"
+                  class="w-24 h-24 mx-auto mb-3 rounded-full bg-[#241017] flex items-center justify-center border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4"
                 >
-                  <Icon icon="mdi:trophy" class="text-3xl text-purple-400" />
+                  <img
+                    src="/images/checkin/weekly-rewards.png"
+                    alt="Weekly Reward"
+                    class="w-full h-full object-contain"
+                  />
                 </div>
                 <h3 class="text-base font-semibold text-[#f0eaea] mb-2">
                   {{ $t("weekly_reward") }}
@@ -327,9 +347,13 @@
                 class="bg-[#15090e] rounded-xl p-5 border border-[#3b1c23] text-center"
               >
                 <div
-                  class="w-14 h-14 mx-auto mb-3 rounded-full bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 flex items-center justify-center border border-yellow-500/30"
+                  class="w-24 h-24 mx-auto mb-3 rounded-full bg-[#241017] flex items-center justify-center border border-[#ff3344]/40 shadow-[0_0_20px_rgba(255,51,68,0.3)] p-4"
                 >
-                  <Icon icon="mdi:crown" class="text-3xl text-yellow-400" />
+                  <img
+                    src="/images/checkin/monthly-rewards.png"
+                    alt="Monthly Reward"
+                    class="w-full h-full object-contain"
+                  />
                 </div>
                 <h3 class="text-base font-semibold text-[#f0eaea] mb-2">
                   {{ $t("monthly_reward") }}
