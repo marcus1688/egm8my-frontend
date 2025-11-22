@@ -322,17 +322,10 @@ const formatNumber = (value, rowName) => {
   }
   const number = parseFloat(value);
   if (isNaN(number)) return value;
-  if (rowName === "Withdraw Limit" || rowName === "Total Deposit") {
-    return number.toLocaleString("en-US", {
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-    });
-  } else {
-    return number.toLocaleString("en-US", {
-      maximumFractionDigits: 2,
-      minimumFractionDigits: 2,
-    });
-  }
+  return number.toLocaleString("en-US", {
+    maximumFractionDigits: 2,
+    minimumFractionDigits: 0,
+  });
 };
 
 const getLocalizedTerms = computed(() => {
